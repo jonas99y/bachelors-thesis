@@ -1,9 +1,25 @@
 \chapter{Ideen und Konzepte}
 
-Im folgenden Kapitel wird auf die grundlegenden Architekturentscheidungen
-eingegangen und erklährt wieso diese so umgesetzt wurden.
 
-\section{Architektur}
+% Hier geht es um die Fragestellung, wie Sie die formulierten Ziele der Arbeit erreichen wollen.
+% Sie halten z.B. erste, grobe Ideen, skizzenhafte Lösungsansätze fest. Gibt es mehrere Wege, Ansätze
+% um dieses Ziel zu erreichen, begründen Sie hier, warum Sie einen bestimmten Weg einschlagen.
+% Beispiel für ein Softwareprojekt: Erste Gedanken über eine grobe Systemarchitektur. Ist z.B. eine
+% Microservice-Architektur angebracht? Welche Alternativen bestehen, wo gibt es Problempunkte? Die
+% Umsetzung, die Beurteilung der Machbarkeit und die detaillierte Beschreibung der umgesetzten
+% Architektur sind dann Teil der Realisierung.
+% Abgrenzung zu Kapitel 5:
+% - Besteht ein wesentliches Projektziel darin, für Ihre Kunden z.B. ein Security-Konzept, ein
+% Kommunikations-Konzeptes, ein IT-Fachkonzept oder ein anderes Fach-Konzept zu erstellen, dann
+% wird die Entwicklung dieser (fachlichen) Konzepte unter «Realisierung» beschrieben (sie sind ja der
+% eigentliche Kern Ihrer Arbeit).
+% - Besteht z.B. ein wesentliches Ziel der Arbeit darin, eine passende Software-Architektur zu
+% evaluieren, dann gehören die entsprechenden Beschreibungen ins Kapitel 5.
+
+Im folgenden Kapitel werden einige Architektur Ideen und gängige Konzepte
+aufgezeigt welche für die Realisierung des Projektes relevant sind.
+
+\section{Microservices}
 
 Da die Applikation laut dem Auftraggeber skalierbar sein sollte, wurde
 eine Mikroservice Architektur in Betracht gezogen.
@@ -16,7 +32,7 @@ einer Software\footnote{
 Diese Komponenten können danach unabhängig voneinander entwickelt und
 releast werden.
 Die Kommunikation zwischen den einzelnen Komponenten geschieht mittels
-vordeffinierter \ac{API}s. Häuffig werden Message Queues wie RabbitMQ dafür
+vordefinierter \ac{API}s. Häufig werden Message Queues wie RabbitMQ dafür
 eingesetzt. Wichtig dabei ist auch dass die Datenschemen der einzelnen
 Microservices unabhängig voneinander sind. Das heisst, jeder Microservice
 besitzt eine eigene Datenbank. \cite{microservices}
@@ -27,50 +43,40 @@ können, werden häufig Container basierte Deployments verwendet.\footnote{
 Diese Deployments werden danach meist auf einen Orchestrator wie Kubernetes
 deployt.
 
-In dieser Arbeit wird keine Microservice Architektur im klassischen Sinne verwendet.
-Die einzelnen Komponenten werden zwar in sepparate Container deployt (Abbildung: \ref{fig:smic-arch})
-besitzen jedoch keine eigene Datenbank.
-Das hat den Vorteil, dass weniger Overhead implementiert werden muss (mittels Message Queue)
-und das Datenbankschema kann zentral in der Datastore Python library einmal implementiert
-und dann in den verschiedenen Komponenten wiederverwendet werden.
+Durch eine Microservice Architektur können die Komponenten dank der Containerisierung
+nach Belieben skaliert werden, um allenfalls mehr Anfragen bearbeiten zu können.
+Diese Skalierung und die unabhängige Entwicklung der einzelnen Microservices
+machen diese Art von Architektur sehr beliebt, vor allem bei grösseren Applikationen.
 
+Der Gegensatz zu Microservices ist eine monolithische Architektur. Bei einer
+solchen (klassischen) Architektur werden die Komponenten zusammen in einer
+Softwareeinheit gekapselt und auch zusammen Deployt.
+Dabei wird meist auch nur eine einzelne Datenbank gebraucht, die von den
+Applikationskomponenten verwendet wird.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1.0\textwidth]{gfx/smic-arch}
-    \caption{
-        Schamatische Darstellung der in diesem Projekt verwendeten Architektur
-    }
-    \label{fig:smic-arch}
-\end{figure}
+Generell wird in der Softwareentwicklung viel Over-Engineerd, das heisst
+das eigentliche Problem wird viel komplizierter gelöst als eigentlich
+nötig wäre. Im allgemeinen ist es keine schlechte Idee vor allem Prototypen
+so einfach wie möglich zu halten um zu beweisen dass, ein gewisses Problem
+gelöst werden kann. Danach kann die Applikation immer noch skaliert werden:
 
-Die Abbildung \ref{fig:smic-arch} zeigt die in diesem Projekt verwendete
-Architektur auf. Hier noch einige Informationen zu den einzelnen Komponenten:
+\blockquote{
+    Furthermore, there formed a consensus among developers (if consensus even possible there) that in
+    the very beginning you probably don’t need microservices. Start with monolith and see,
+    if you really need them in future. \cite{microservice-shared-db}
+}
 
+\section{Frontend und Backend Kommunikation}
 
-\begin{itemize}
-    \item \texttt{nginx}:
-        Alle Anfragen des Endbenutzer werden über einen Nginx Server
-        engegengenommen. Dieser liefert dann dem Benutzer die React WebApp
-        oder leitet Anfragen an die \ac{API} weiter.
+Dass die Datenübertragung zwischen Frontend und Backend mittels \ac{API} abstrahiert
+wird, ist heutzutage Standard. Diese Abstraktion hat viele Vorteile.
+Dadurch können beispielsweise in Zukunft Automatisierungsscript geschrieben werden,
+welche die bereits für das Frontend zur Verfügung stehende \ac{API} verwenden.
+Zudem kann das Frontend unabhängig vom Backend entwickelt und getestet werden,
+wenn eine \ac{API} im Vorhinein definiert wurde.
 
-    \item \texttt{api}:
-        Die \ac{API} verarbeitet Datenanfragen der React WebApp. Sie gibt
-        beispielsweise die Stromzählerdaten eines Tages zurück.
-
-    \item \texttt{datastore}:
-        Der datastore ist eine Python library, die das Datenbankschema festlegt.
-        Sowohl die \ac{API} als auch der dataingress greiffen auf die Datenbank zu
-        und verwenden somit die datastore library.
-
-    \item \texttt{dataingress}:
-        Der dataingress arbeitet die von den \ac{IoT} geräten gesendeten
-        Stromzählerdaten ab und speichert diese in die Datenbank.
-
-    \item \texttt{mosquitto}:
-        Mosquitto ist der in dieser Arbeit verwendete \ac{MQTT} Broker.
-\end{itemize}
-
-Ein weiterer grund für die Entscheidung einer geteilten Datenbank ist,
-dass der \texttt{dataingress} keine Daten liest sondern diese nur von
-der \ac{MQTT} Queue abarbeitet und in die Datenbank schreibt.
+Es gibt zahlreiche Technologien, um eine solche \ac{API} Abstraktion zu implementieren.
+Die wohl beliebteste und am weitesten verbreitete Technologie um Frontend und Backend
+Kommunikation via \ac{API} umzusetzen ist \ac{REST}.
+\ac{REST} ist sehr einfach umzusetzen, und wird von allen namhaften Frameworks und
+Programmiersprachen unterstützt.
