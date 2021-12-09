@@ -1,4 +1,7 @@
 \chapter{Realisierung}
+% Dies ist das Hauptkapitel Ihrer Arbeit! Hier wird die Umsetzung der eigenen Ideen und Konzepte
+% (Kapitel 3) anhand der gewählten Methoden (Kapitel 4) beschrieben, inkl. der dabei aufgetretenen
+% Schwierigkeiten und Einschränkungen.
 Die Realisierung lässt sich in drei Phasen unterteilen.
 
 In der ersten Phase werden grundlegende Entscheidungen getroffen und die Basis der Arbeit implementiert.
@@ -11,8 +14,8 @@ in welche neue Anforderungen des Auftraggebers umgesetzt werden.
 
 \section{Architekturentscheidung}
 
-In dieser Arbeit wird keine Microservice Architektur im klassischen Sinne verwendet.
-Die einzelnen Komponenten werden zwar in sepparate Container deployt (Abbildung: \ref{fig:smic-arch})
+In dieser Arbeit wird keine Microservice Architektur im klassischen Sinne verwendet. (TODO "wie im xy erklärt")
+Die einzelnen Komponenten werden zwar in separaten Container deployt (Abbildung: \ref{fig:smic-arch})
 besitzen jedoch keine eigene Datenbank.
 Das hat den Vorteil, dass weniger Overhead implementiert werden muss (mittels Message Queue)
 und das Datenbankschema kann zentral in der Datastore Python library einmal implementiert
