@@ -1,1 +1,31 @@
 \chapter{Problem, Fragestellung, Vision}
+
+Die Landis+Gyr AG prüfte intern mögliche Projekte für eine Bachelorarbeit im Bereich Machine Learning.
+Eine dieser Ideen war das Erkennen einzelner Stromverbraucher, wie beispielsweise des Backofens oder der Waschmaschine,
+basierend auf den Messwerten des gesamten Haushalts.
+Bei dieser Idee sowie auch bei anderen traten folgende Probleme auf:
+\begin{itemize}
+    \item Für Supervised Learning (TODO Quelle), müssen Daten vorhanden sein, 
+          welche über Labels verfügen (TODO mehr dazu Kapitel XY).
+          Solche Daten waren nicht verfügbar.
+    \item Die gemessenen Stromzählerdaten werden meist über 15 Minuten aggregiert und dann übermittelt.
+          Diese Frequenz und Auflösung lässt kaum Echtzeit Analysen der Messdaten zu.
+
+\end{itemize}
+
+Um für die genannten Probleme Lösungen zu erarbeiten wurde die Aufgabenstellung ``Smart Metering into the cloud`` (TODO Verweis) verfasst,
+welche Ausgangspunkt dieser Arbeit ist.
+
+\section{Zusammenfassung Aufgabenstellung}
+Es soll eine Platform entwickelt werden, welche Messdaten mittels MQTT Protokoll (TODO Verweis) empfangen kann.
+Diese Daten sollen abgespeichert werden und über eine Benutzerschnittstelle abrufbar sein. Dort sollen visuell mittels Graphen dargestellt werden.
+Über diese Schnittstelle soll es eine Möglichkeit geben, den Daten Labels hinzuzufügen, damit diese für Machine Learning verwendet werden können.
+Es wird verlangt, dass die Lösung mittels Container umgesetzt wird und dass die Benutzerschnittstelle für mobile Geräte entwickelt wird.
+Bei den restlichen Technologien verfügt das Projektteam über kreativen Freiraum. %(TODO evtl. verweis zu kapitel wo technolgien ausgewählt werden?)
+Dabei soll agil vorgegangen werden um Änderungen der Anforderungen im Verlauf des Projekts zu ermöglichen. (TODO Mehr dazu im Kapitel Methoden)
+Die vollständige Aufgabenstellung ist im Anhang dieser Arbeit zu finden. (TODO verweis)
+
+% Aus Aufbau_Bericht.pdf
+% Welche Ziele, Fragestellungen werden mit dem Projekt verfolgt? Die Bedeutung, Auswirkung und
+% Relevanz dieses Projektes für die unterschiedlichen Beteiligten soll aufgeführt werden.
+% Typischerweise wird hier ein Verweis auf die Aufgabenstellung im Anhang gemacht. 
