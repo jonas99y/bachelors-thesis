@@ -273,6 +273,16 @@ einmal versucht. Beispielsweise kann die Datenbank noch nicht bereit sein.\footn
 }
 Dadurch soll möglichst verhindert werden, dass eingehende Messdaten verloren gehen.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/dataingress-sequence}
+    \caption{
+        Das Sequenzdiagramm zeigt auf wie der Dataingress die \ac{MQTT} Messages
+        von den Stromzählern abarbeitet und in die Datenbank persisitiert.
+    }
+    \label{fig:dataingress-sequence}
+\end{figure}
+
 \section{Demo nach der ersten Phase}
 Screenshot der ersten version
 Rückmeldungen:
