@@ -183,6 +183,8 @@ angezeigt.
     \label{fig:usecase1}
 \end{figure}
 
+\subsection{Frontend und Backend Abstraktion}
+
 Damit die Arbeit von Frontend und Backend aufgeteilt werden kann, wurde zuerst
 die \ac{API} Schnittstelle definiert. Für die Implementierung im Backend
 stand die Entscheidung zwischen Flask\footnote{https://flask.palletsprojects.com/en/2.0.x/}
@@ -229,8 +231,47 @@ damit das \ac{ORM} die Abfragen an die Datenbank machen kann.
 Als \ac{ORM} Framework wird sqlmodel\footnote{https://github.com/tiangolo/sqlmodel} verwendet.
 Sqlmodel wird vom gleichen Entwickler wie FastAPI maintaint und bietet eine gute Integration.
 
-Da nun das Datenmodell (in der datastore Library) und die \ac{API} deffiniert wurden,
-kann das Web Fr
+Da nun das Datenmodell (in der datastore Library) und die \ac{API} definiert wurden,
+kann das Web Frontend unabhängig vom Verarbeiten der \ac{MQTT} Daten gemacht werden.
+
+\subsection{Implementation der Backend \ac{API}}
+
+Wie alle Python Komponenten dieses Projektes wird auch das Backend \ac{API}
+als Python Poetry\footnote{https://python-poetry.org/} Projekt implementiert.
+Poetry verbessert das Paketmanagement von Python erheblich gegenüber Setuptools
+und pip. \cite{python_poetry}
+Dadurch ist es auch einfacher die Applikation als Container zu bauen und
+damit einen reproduzierbaren Build zu garantieren.
+
+Die Datenbankanbindung kann per Datenbank \ac{URI} dem sqlmodel Framework
+mitgegeben um zu bestimmen auf welche Datenbank zugegriffen werden soll.
+
+\subsection{Implementation der Datenvisualisierung}
+
+TODO: Jonas
+
+\subsection{\ac{MQTT} Datenverarbeitung}
+
+Die Daten der Stromzähler werden per \ac{MQTT} an den Broker gesendet. \ref{state:mqtt}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/smic-arch-mqtt}
+    \caption{
+        Architektur des \ac{MQTT} Messagebroker und des Dataingress welcher die
+        empfangenen Nachrichten in die Datenbank persistiert.
+    }
+    \label{fig:arch-mqtt}
+\end{figure}
+
+Der Dataingress (ebenfalls ein Python Poetry projekt) registriert sich dann auf die von
+den Stromzählern gesendeten Events und arbeitet diese ab. Das Empfangen und Abarbeiten, bzw.
+in die Datenbank schreiben wird von unterschiedlichen internen Komponenten übernommen.
+Beim Abarbeiten wird zudem, falls ein Datensatz nicht prozessiert werden kann dies noch
+einmal versucht. Beispielsweise kann die Datenbank noch nicht bereit sein.\footnote{
+    Das kann beispielsweise passieren, wenn die Datenbank neu gestartet wird nach einem update.
+}
+Dadurch soll möglichst verhindert werden, dass eingehende Messdaten verloren gehen.
 
 \section{Demo nach der ersten Phase}
 Screenshot der ersten version
