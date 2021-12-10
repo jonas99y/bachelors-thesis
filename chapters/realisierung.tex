@@ -144,7 +144,7 @@ Um das Projekt automatisch Testen zu können und eine Reproduzierbare Umgebung z
 wurde bereits zu Beginn eine \ac{CI/CD} Pipeline mit GitHub Actions\footnote{https://github.com/features/actions}
 aufgebaut.
 Die Entwickler sollen sich nicht nur um die Entwicklung, sondern auch das automatische Bauen und Deployen der
-Software kümmern. Dieser "DevOps" Gedanke hat den Vorteil, dass
+Software kümmern. Dieser DevOps Gedanke hat den Vorteil, dass
 theoretisch jedes kleine Feature und jeder Bugfix direkt automatisiert getestet
 wird und danach (wenn die Tests erfolgreich waren) auf das Produktivsystem
 Deployt werden kann. \cite{what_is_devops}
@@ -167,6 +167,70 @@ Dank dieser \ac{CI/CD} Umgebung und der Verwendung von Podman, kann die gesamte 
 (Wie im Kapitel \ref{architekturentscheidung} beschrieben) mit einem
 Befehl gebaut und gestartet werden.
 
+\section{Verarbeitung und Visualisierung von Stromzählerdaten}
+
+In einer ersten Phase werden laut der Aufgabenstellung \ref{aufgabenstellung} Stromzähler
+Messdaten per \ac{MQTT} empfangen und in eine Datenbank gespeichert.
+Diese gespeicherten Daten werden dann in einer WebApp visualisiert und dem Benutzer
+angezeigt.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/usecase1}
+    \caption{
+        UseCase Diagramm der Verarbeitung und Visualisierung von Stromzählerdaten.
+    }
+    \label{fig:usecase1}
+\end{figure}
+
+Damit die Arbeit von Frontend und Backend aufgeteilt werden kann, wurde zuerst
+die \ac{API} Schnittstelle definiert. Für die Implementierung im Backend
+stand die Entscheidung zwischen Flask\footnote{https://flask.palletsprojects.com/en/2.0.x/}
+und FastAPI\footnote{https://fastapi.tiangolo.com/}.
+Flask ist ein simples Web Framework mit dem \ac{API}s aber auch Server Side Rendering \cite{flask_server_side}
+gemacht werden kann. FastAPI ist ein typisiertes Framework das darauf spezialisiert ist
+\ac{REST} \ac{API}s zu implementieren. FastAPI ist ähnlich aufgebaut wie Flask aber auf den
+\ac{API} Bereich spezialisiert. Die Dokumentation wird auch automatisch generiert.
+FastAPI eignet sich perfekt um die \ac{API} zwischen Frontend und Backend zu implementieren.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/api-visualization}
+    \caption{
+        \ac{API} Definition für die Visualisierung von Stromzählerdaten
+    }
+    \label{fig:api-visualization}
+\end{figure}
+
+Wie in Abbildung \ref{fig:api-visualization} dargestellt, besteht die \ac{API} der Stromzähler
+und Messdaten ausschliesslich aus Abfragen. Die zu speichernden Daten kommen dann (wie im nächsten
+Abschnitt erklärt) aus den \ac{MQTT} Daten der Stromzähler selbst.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{gfx/sim-arch-api}
+    \caption{
+        Architektur der \ac{API} zwischen Frontend und Backend
+    }
+    \label{fig:arch-visualization-front-back}
+\end{figure}
+
+Sobald die WebApp von einem Benutzer aufgerufen wird, lifert der Nginx Server
+die WebApp per \ac{HTTP} request aus. (Abbildung \ref{fig:arch-visualization-front-back})
+Wenn der Benutzer (in diesem Fall über das React Web Frontend) danach die Messdaten seines
+Stromzählers abfragen will, wird ebenfalls eine Asynchrone \ac{HTTP} Anfrage an die Backend \ac{API} gemacht.
+Die Abfrage landet dann beim Nginx und wird an das Python FastAPI Backend weitergeleitet.
+Dieses Python Backend führt danach eine SQL Abfrage via \ac{ORM} auf der Datenbank aus.
+Um die Daten im Web Frontend anzeigen zu können, werden sie noch \ac{JSON} serialisiert
+und zurück an die WebApp gesendet.
+
+Die datastore Python Library stellt der \ac{API} das Datenbankschema zur Verfügung,
+damit das \ac{ORM} die Abfragen an die Datenbank machen kann.
+Als \ac{ORM} Framework wird sqlmodel\footnote{https://github.com/tiangolo/sqlmodel} verwendet.
+Sqlmodel wird vom gleichen Entwickler wie FastAPI maintaint und bietet eine gute Integration.
+
+Da nun das Datenmodell (in der datastore Library) und die \ac{API} deffiniert wurden,
+kann das Web Fr
 
 \section{Demo nach der ersten Phase}
 Screenshot der ersten version
