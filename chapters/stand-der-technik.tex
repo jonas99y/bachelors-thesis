@@ -4,29 +4,27 @@
 % angehen? Wodurch unterscheidet sich Ihre Lösung von anderen Lösungen? Für wissenschaftlich
 % orientierte Arbeiten sei hier explizit auf (Balzert, S. 66 ff) verwiesen.
 
-Das folgende Kapitel gibt einen Einblick in den Stand der Technik und Hingergrundinformationen
-für diese Arbeit.
+In diesem Kapitel wird aufgezeigt,
+welche Daten von Stromzählern erhoben werden und wie diese übermittelt werden.
+Anhand des \ac{MQTT} wird ein Protokoll vorgestellt, welches im \ac{IoT} oft verwendet wird. 
+%TODO ac?
+\section{Stromzähler}
+Damit ein Elektrizitätswerk den Stromverbrauch eines Haushaltes messen und somit Verrechnen kann, werden Stromzähler eingesetzt.
+Dazu wird die elektrische Arbeit während 15 Minute gemessen und als einzelner Wert gespeichert. 
+Einmal Täglich werden diese Werte vom Elektrizitätswerk ausgelesen. \cite{smart_meter_faq} %4.1
+Diese tiefe Auflösung und der träge Ausleseintervall sind gesetzlich festgelegt \cite{admin_strom_VV_art8d}.
+Nur mit Einwilligung der betroffenen Personen dürfen mehr Daten erfasst und öfter übertragen werden.
 
-\section{Einführung}
-
-TODO: Jonas, Stand der stromzähler Technik.
-
-Ein Stromzähler \cite{wikipedia:meter} misst den Stromverbrauch eines Haushaltes über eine
-Zeitspanne. Diese Daten können sowohl für den Endverbraucher als auch für Kraftwerke
-und Verteiler interessant sein. Beispielsweise können \ac{THD} \cite{siemens:disw_2021}
-Werte eine Aussage über den Zustand eines Generators in einem Kraftwerk machen. \cite{thd-generators}
-
-Moderne Stromzähler verfügen über zu wenig Rechenleistung um die Daten lokal
-aufbereiten zu können. \cite{dc450-technical-data}
-Aus diesem Grund sollen die Daten via \ac{MQTT} \footnote{https://mqtt.org/} Protokoll
-an einen Server zur Weiterverarbeitung gesendet werden.
-
-\ac{MQTT} eignet sich vor allem für \ac{IoT} Geräte mit geringer Leistungsfähigkeit
-und wurde vom Auftraggeber bereits so vorgegeben, da Sie von verschiedenen
-Stromzählern bereits unterstützt wird.
+\section{Datenübertragung}
+Für die Datenübertragung der Messwerte wird bestehende Netzwerkinfrastruktur verwendet.
+Wo möglich, werden die Zähler direkt an ein Glasfasernetz angeschlossen. 
+Ist dies nicht möglich, können die Daten auch über das Mobilfunknetz oder per ADSL übertragen werden. \cite{smart_meter_faq} %1.8
+Dazu werden DLMS /COSEM \cite{dlms_cosem} als Kommunikationsschicht verwendet.
+Dabei übernehmen die Storzähler die Rolle des Servers. 
+Die Kommunikation wird somit nicht von ihm initiiert, sondern von bspw. einem Head End System \cite{hes}.
 
 
-\section{MQTT}
+\section{MQTT} %TODO
 
 \ac{MQTT} ist ein lightweight Pub/Sub messageing Protokoll, welches aufgrund des
 geringen Netzwerkoverheads und Codefootprint bei \ac{IoT} Geräten eingesetzt wird.\cite{mqtt}
