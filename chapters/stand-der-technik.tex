@@ -11,24 +11,25 @@ Anhand des \ac{MQTT} wird ein Protokoll vorgestellt, welches im \ac{IoT} oft ver
 \section{Stromzähler}
 Damit ein Elektrizitätswerk den Stromverbrauch eines Haushaltes messen und somit Verrechnen kann, werden Stromzähler eingesetzt.
 Dazu wird die elektrische Arbeit während 15 Minuten gemessen und als einzelner Wert gespeichert. 
-Einmal Täglich werden diese Werte vom Elektrizitätswerk ausgelesen \parencite{smart_meter_faq}.  %4.1
-Diese tiefe Auflösung und der träge Ausleseintervall sind gesetzlich festgelegt \cite{admin_strom_VV_art8d}.
+Einmal Täglich werden diese Werte vom Elektrizitätswerk ausgelesen \parencite{smart_meter_faq}.
+Diese tiefe Auflösung und der träge Ausleseintervall sind gesetzlich festgelegt \parencite{admin_strom_VV_art8d}.
 Nur mit Einwilligung der betroffenen Personen dürfen mehr Daten erfasst und öfter übertragen werden.
 
 \section{Datenübertragung}
 Für die Datenübertragung der Messwerte wird bestehende Netzwerkinfrastruktur verwendet.
 Wo möglich, werden die Zähler direkt an ein Glasfasernetz angeschlossen.
-Ist dies nicht möglich, können die Daten auch über das Mobilfunknetz oder per ADSL übertragen werden. \cite{smart_meter_faq} %1.8
-Dazu werden DLMS /COSEM \cite{dlms_cosem} als Kommunikationsschicht verwendet.
+Ist dies nicht möglich, können die Daten auch über das Mobilfunknetz oder per ADSL übertragen werden \parencite{smart_meter_faq}.  %1.8
+Dazu werden DLMS /COSEM \footnote{https://www.dlms.com/dlms-cosem/overview} als Kommunikationsschicht verwendet.
 Dabei übernehmen die Storzähler die Rolle des Servers.
-Die Kommunikation wird somit nicht von ihm initiiert, sondern von bspw. einem Head End System \cite{hes}.
+Die Kommunikation wird somit nicht von ihm initiiert,
+sondern von bspw. einem Head End System \footnote{https://openei.org/wiki/Definition:Head-End\_System}.
 
 
 \section{MQTT} %TODO
 \label{state:mqtt}
 
-\ac{MQTT} ist ein lightweight Pub/Sub messageing Protokoll, welches aufgrund des
-geringen Netzwerkoverheads und Codefootprint bei \ac{IoT} Geräten eingesetzt wird.\cite{mqtt}
+"\ac{MQTT} ist ein lightweight Pub/Sub messageing Protokoll, welches aufgrund des
+geringen Netzwerkoverheads und Codefootprint bei \ac{IoT} Geräten eingesetzt wird."\cite{mqtt}
 Die \ac{MQTT} Technologie wurde bereits vom Auftraggeber vorgeschrieben, jedoch
 nicht die konkrete Implementation.
 
