@@ -273,6 +273,10 @@ einmal versucht. Beispielsweise kann die Datenbank noch nicht bereit sein.\footn
 }
 Dadurch soll möglichst verhindert werden, dass eingehende Messdaten verloren gehen.
 
+Auch der Dataingress verwendet die Datastore Python Library. Dies stellt sicher,
+dass die \ac{API} und er Dataingress das gleiche Datenbankformat verwenden da
+die Datenbank ja zwischen den beiden Applikationen geshart ist.
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=1.0\textwidth]{gfx/dataingress-sequence}
@@ -282,6 +286,16 @@ Dadurch soll möglichst verhindert werden, dass eingehende Messdaten verloren ge
     }
     \label{fig:dataingress-sequence}
 \end{figure}
+
+Im Sequenzdiagramm des Dataingress (Abbildung \ref{fig:dataingress-sequence}) wird aufgezeigt
+wie \ac{MQTT} Messages vom Dataingress abgearbeitet werden.
+Die Messages müssen zuerst \ac{JSON} deserialisiert werden um in Python
+gebraucht zuwerden. Danach werden die Messdaten und allenfalls der
+Stromzähler mit Serialnummer in die Datenbank gespeichert.
+
+\subsection{Automatisierte End to End tests}
+
+
 
 \section{Demo nach der ersten Phase}
 Screenshot der ersten version
