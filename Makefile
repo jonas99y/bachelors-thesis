@@ -5,6 +5,7 @@ SURNAME = Mustermann
 
 all: clean
 	@pdflatex ${MASTER}.tex
+	@biber ${MASTER}
 	@test -f ${MASTER}-blx.bib && ( bibtex ${MASTER}; pdflatex ${MASTER}.tex ) || echo "No Bibtex"
 	@pdflatex ${MASTER}.tex
 
@@ -21,8 +22,9 @@ cleanall: clean
 	@rm *.pdf
 
 test: clean
+	@biber ${MASTER}
 	@pdflatex -interaction=nonstopmode -halt-on-error ${MASTER}.tex
-	@test -f ${MASTER}-blx.bib && ( bibtex ${MASTER}; pdflatex ${MASTER}.tex ) || echo "No Bibtex" 
+	@test -f ${MASTER}-blx.bib && ( bibtex ${MASTER}; pdflatex ${MASTER}.tex ) || echo "No Bibtex"
 	@pdflatex ${MASTER}.tex
 
 bz2: clean
