@@ -19,7 +19,8 @@ RUN apt-get -qq update && apt-get install -y --no-install-recommends \
     texlive-science \
     texlive-pstricks \
     texlive-pictures \
-    chktex
+    chktex \
+    biber
 
 # Command to actually build the LaTeX code.
 CMD ["make", "--directory", "/thesis-template/", "test"]
