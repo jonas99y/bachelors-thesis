@@ -300,22 +300,32 @@ die Datenbank ja zwischen den beiden Applikationen geshart ist.
 
 Im Sequenzdiagramm des Dataingress (Abbildung \ref{fig:dataingress-sequence}) wird aufgezeigt
 wie \ac{MQTT} Messages vom Dataingress abgearbeitet werden.
-Die Messages müssen zuerst \ac{JSON} deserialisiert werden um in Python
-gebraucht zuwerden. Danach werden die Messdaten und allenfalls der
+Die Messages müssen zuerst \ac{JSON} deserialisiert werden, um in Python
+gebraucht zu werden. Danach werden die Messdaten und allenfalls der
 Stromzähler mit Serialnummer in die Datenbank gespeichert.
 
-\subsection{Automatisierte End to End tests}
+\subsection{Automatisierte End to End Tests}
 
 Um sicherzustellen, dass das Projekt jederzeit funktioniert und keine Änderungen
 aus Versehen andere Funktionalität beeinträchtigt, wurden Automatisierte
-End to End tests erstellt. (Siehe Teststrategie \ref{teststrategie})
+End to End Tests erstellt. (Siehe Teststrategie \ref{teststrategie})
 
 Diese Tests wurden Behaviour Driven implementiert.\footnote{
     Behavior-driven development (BDD) is an Agile software development methodology
     in which an application is documented and designed around the behavior a user
     expects to experience when interacting with it.
-}\parencite{what_is_bdd} Die tests wurden anhand der Anforderungen \ref{aufgabenstellung}
+}\parencite{what_is_bdd} Die Tests wurden anhand der Anforderungen \ref{aufgabenstellung}
 und User Stories in der Gherking Sprache\footnote{https://cucumber.io/docs/gherkin/reference/} implementiert.
+
+Damit die Tests automatisiert ausgeführt werden können, wurde ein Stromzähler Simulator entwickelt.
+Zwar wäre es theoretisch möglich gewesen auch einen echten Stromzähler für Tests zu verwenden,
+jedoch ist es immer schwierig Automatisierungen mit Hardware zu machen. Zudem können
+Daten bei physikalischen Geräten nur in Echtzeit und nicht schneller übertragen werden.
+Durch diesen "Fakemeter" konnten Daten mehrerer Tage innert weniger Sekunden oder Millisekunden
+an das Backend (den Dataingres \ref{fig:dataingress-sequence}) gesendet werden.
+Die Daten sind echte Stromzählerdaten welche von der Landis+Gyr zur Verfügung
+gestellt wurden.
+
 
 \section{Demo nach der ersten Phase}
 Screenshot der ersten version
