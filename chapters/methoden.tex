@@ -34,3 +34,34 @@ backend automatisiert mit e2e tests
 % Dazu gehört auch eine Teststrategie (wo setzen Sie im Projekt Schwerpunkte betr. Testen?). Die
 % eigentliche Testdurchführung ist dann unter Realisierung, im Anhang oder einem selbstständigen
 % Testdokument beschrieben.
+
+\section{Versionskontrolle}
+
+Wie im Softwareengineering Bereich üblich, wurde auch in diesem Projekt mit Git\footnote{https://git-scm.com/}
+gearbeitet. Dies ist mittlerweile der de facto Standard um Software Projekte zu versionieren. \parencite{git}
+Da das Projekt nur zu zweit realisiert wurde und von keinem grossen Projektteam, wurde auf
+eine komplizierte Branching Strategie wie beispielsweise
+GitFlow\footnote{https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow} verzichtet.
+Für die Erstellung grösserer Features wurden Branches erstellt und falls nur kleinere
+Änderungen gemacht wurden, wurden diese direkt auf den Hauptbranch gepusht.
+
+Diese Arbeit wurde in \LaTeX geschrieben, weswegen sie ebenfalls Versionskontrolliert abgelegt wurde.
+Beide Projekte sind Open Source auf GitHub\footnote{https://github.com} abgelegt unt under
+folgenden Links zu finden:
+
+\begin{itemize}
+  \item Das Projekt: \url{https://github.com/randombenj/hslu-wipro-smic}
+  \item Diese Arbeit: \url{https://github.com/randombenj/hslu-wipro-smic-doc}
+\end{itemize}
+
+Ob das Projekt direkt Open Source implementiert werden darf, wurde zuvor so mit der Landis+Gyr abgesprochen.
+
+\section{Code Reviews}
+
+Um eine hohe Qualität der Software sicherzustellen, wurde nebst der Teststrategie \ref{teststrategie}
+auch Code Reviews und Pair Programming durchgeführt. \parencite{fu2017code}
+Die Reviews und Pair Programming sessions wurden jeweils an den wöchentlichen
+Meetings (TODO describe) durchgeführt.
+Bei den grösseren Fetures bei denen ein eigener Branch erstellt wurde, wurden die
+Reviews direkt über einen Pull Request auf GitHub gemacht. \parencite{github_flow_docs_2021}
+
