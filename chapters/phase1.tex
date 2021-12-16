@@ -12,8 +12,7 @@ Für das Projektteam war es wichtig, dass diese beiden Teile unabhängig von ein
 Die Kommunikation zwischen beiden wird mit einer \ac{REST} \ac{API} realisiert, da dies in der Aufgabenstellung verlangt wird. TODO Verweis
 
 \subsubsection{Frontend}
-\subsection{Implementation der Datenvisualisierung}
-Vorgabe für die Datenvisualisierung war zu Beginn des Projektes lediglich,
+Vorgabe für das Frontend war zu Beginn des Projektes lediglich,
 dass sie von mobilen Endgeräte, also Smartphones, abrufbar sein sollte.
 Dies lässt sich auf zwei Arten umsetzt:
 \begin{itemize}
@@ -32,6 +31,15 @@ Die Gründe dazu sind:
           Nebst den Grundlagen zu Datenvisualisierung wurde in diesem Modul auch die Anwendung des Visualisierungs-Frameworks D3.js \footnote{TODO} vertieft.
           Da mit D3.js Grafiken für Webseiten erstellt werden können, lag es auf der Hand, das bereits gelernte auch in dieser Arbeit umzusetzen.
 \end{itemize}
+
+Um von den in \ref{state:frontend} erwähnten Vorteile eines Frontend Framework zu profitieren,
+wurde React.js \footnote{TODO} verwendet.
+
+Das Projekt Team hatte in der Vergangenheit bereits mit den Frameworks Angular \footnote{TODO}, Vue.js \footnote{TODO} und React.js \footnote{TODO} gearbeitet
+und unterschiedliche Erfahrungen gesammelt, sieht sich jedoch als Anfänger im Bezug auf Webentwicklung.
+Die Entscheidung fiel auf React.js, da dies sich für Anfänger eignet und im Zusammenspiel mit weiteren Frameworks eingesetzt werden kann \parencite{react_angular_vue}.
+Letzteres ist wichtig, da das zuvor erwähnte D3.js Framework für die Visualisierungen verwendet werden soll.
+
 \subsection{Backend}
 Bei er Auswahl des Technologiestacks wurde auf verschiedene Aspekte geachtet.
 Zum einen sollte das Frontend unabhängig vom Backend entwickelt werden können.
@@ -148,7 +156,7 @@ Dank dieser \ac{CI/CD} Umgebung und der Verwendung von Podman, kann die gesamte 
 (Wie im Kapitel \ref{architekturentscheidung} beschrieben) mit einem
 Befehl gebaut und gestartet werden.
 
-\subsection{Verarbeitung und Visualisierung von Stromzählerdaten} 
+\subsection{Verarbeitung und Visualisierung von Stromzählerdaten}
 TODO Kapitel Aufteilung überdenken...
 In einer ersten Phase werden laut der Aufgabenstellung \ref{aufgabenstellung} Stromzähler
 Messdaten per \ac{MQTT} empfangen und in eine Datenbank gespeichert.
