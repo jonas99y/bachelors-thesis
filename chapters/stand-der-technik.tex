@@ -7,7 +7,10 @@
 In diesem Kapitel wird aufgezeigt,
 welche Daten von Stromzählern erhoben werden und wie diese übermittelt werden.
 Anhand des \ac{MQTT} wird ein Protokoll vorgestellt, welches im \ac{IoT} oft verwendet wird.
-%TODO ac?
+Des weiteren werden gängige Stacks und Frameworks vorgestellt,
+welche für die für die Entwicklung von Front- rsp. Backends verwendet werden können.
+TODO noch etwas zu den restlichen Unterkapitel sagen.
+
 \section{Stromzähler}
 Damit ein Elektrizitätswerk den Stromverbrauch eines Haushaltes messen und somit Verrechnen kann, werden Stromzähler eingesetzt.
 Dazu wird die elektrische Arbeit während 15 Minuten gemessen und als einzelner Wert gespeichert.
@@ -24,6 +27,7 @@ Dabei übernehmen die Storzähler die Rolle des Servers.
 Die Kommunikation wird somit nicht von ihm initiiert,
 sondern von bspw. einem Head End System \footnote{https://openei.org/wiki/Definition:Head-End\_System}.
 
+% \section{DLMSCOSE} TODO, villicht no mache, wenn nötig
 
 \section{MQTT} %TODO
 \label{state:mqtt}
