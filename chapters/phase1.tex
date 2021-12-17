@@ -41,6 +41,9 @@ und unterschiedliche Erfahrungen gesammelt, sieht sich jedoch als Anfänger im B
 Die Entscheidung fiel auf React.js, da dies sich für Anfänger eignet und im Zusammenspiel mit weiteren Frameworks eingesetzt werden kann \parencite{react_angular_vue}.
 Letzteres ist wichtig, da das zuvor erwähnte D3.js Framework für die Visualisierungen verwendet werden soll.
 
+TODO evaluation MUI
+
+
 \subsection{Backend}
 Bei er Auswahl des Technologiestacks wurde auf verschiedene Aspekte geachtet.
 Zum einen sollte das Frontend unabhängig vom Backend entwickelt werden können.
@@ -342,9 +345,21 @@ an das Backend (den Dataingres \ref{fig:dataingress-sequence}) gesendet werden.
 Die Daten sind echte Stromzählerdaten welche von der Landis+Gyr zur Verfügung
 gestellt wurden.
 
+\subsection{Benutzerschnittelle}
+Um den Anwendungsfall, ``Einsehen von Spannungswerten über Zeit`` (Abbildung \ref{fig:usecase1}) zu erfüllen,
+wurde eine minimale Benutzerschnittstelle entwickelt, welches lediglich einen Graphen darstellt.
+Dieser stellt den Verlauf der Spannungswerte über die Zeit dar.
+Der Aufbau der Benutzerschnittstelle basiert auf der Skizze,
+welche im Kapitel \ref{konzepte:entwurf-benutzerschnittstelle} vorgestellt wurde.
+Auf die dort angedachten Filter-Komponenten wurde bewusst verzichtet, da diese für das erreichen des
+minimalen Prototypen noch nicht benötigt werden.
+
+Die gezeigten Daten werden über die \ac{REST} \ac{API} geladen und mit Hilfe von d3.js dargestellt.
+
+
 \subsection{Schwierigkeiten}
 Das gewählte Frontend Framework, React, war für das Projektteam grösstenteils neu.
-Somit wurde in dieser ersten Phase viel Zeit in erlernen der Grundlage von React investiert.
+Somit wurde in dieser ersten Phase viel Zeit in das Erlernen der Grundlagen von React investiert.
 Kleine Programmierfehler führten aufgrund der fehlenden Erfahrung und Routine zu grösseren Schwierigkeiten.
 Durch die Hilfe von Freunden, Mitstudienenden und Hilfsmittel im Internet liessen sich diese meistern 
 und die erste Phase im geplanten Zeitrahmen abschliessen.
