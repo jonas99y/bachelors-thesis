@@ -72,9 +72,18 @@ dem Benutzer angezeigt werden können. Zudem muss der Benutzer teilweise auch mi
 Daten interagieren können, indem beispielsweise eine Zeitspanne angepasst wird, in
 der gewisse Daten angezeigt werden. \parencite{anokhina_2019}
 
+Ein Frontend Framework versucht diese Probleme auf möglichst einheitliche Art und Weise
+zu lösen. Grundsätzlich sind die Ziele eines solchen Frameworks: \parencite{do-i-need-a-frontend-fwk}
 
-
-TODO Erklären was ein Frontend Framework ist, und wieso es eingesetzt wird
+\begin{itemize}
+    \item Der Sourcecode soll wartbar sein: Andere Entwickler sollen ihn einfach lesen, ändern und testen können
+    \item Einzelne Komponenten des Benutzerinterfaces sollen einfach wiederverwendet werden können
+    \item Das Updaten des Benutzerinterfaces ist langsam, es sollten somit möglichst wenige updates gemacht werden
+    \item Das Benutzerinterface soll einfach anhand der Daten erstellt werden können
+    \item Ein gutes Benutzerinterface ist konsistent und intuitive; dies wird durch einheitliche Schrift, Farbe, Knöpfe und andere Elemente erreicht
+    \item Repetitive Arbeiten um häufige Probleme im Frontend Design zu läsen sollen vom Framework abgenommen werden.
+    \item Durch das Framework sollen Ideen in einer einheitlichen Sprache ausgedrückt werden, um mit anderen Entwicklern zusammenzuarbeiten,
+\end{itemize}
 
 \subsection{Web Frontend}
 
@@ -83,22 +92,20 @@ durchgemacht. Nebst den Grossen wie Angular, Vue und React, gibt es noch zahlrei
 Remix. Das Ziel dieser Frameworks ist, häufige Architekturelle Probleme (wie das Wiederverwenden von Komponenten
 oder State-Management) zu lösen.\cite{do-i-need-a-frontend-fwk}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics{gfx/js-milk}
-    \caption{
-        Die Welt der JavaScript Frameworks ändert sich ständig.\cite{twitter-js-state}
-        %\footnote{https://twitter.com/iamdevloper/status/540481335362875392}
-    }
-    \label{fig:frontend-stack}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \includegraphics{gfx/js-milk}
+%    \caption{
+%        Die Welt der JavaScript Frameworks ändert sich ständig.\cite{twitter-js-state}
+%        %\footnote{https://twitter.com/iamdevloper/status/540481335362875392}
+%    }
+%    \label{fig:frontend-stack}
+%\end{figure}
 
 Die Debatte, welches Framework denn nun am besten ist, wollen wir in dieser Arbeit nicht behandeln.
 Für die Entscheidung welches Frontend Framwork verwendet werden soll, wurde vor allem 'The State of JS'\footnote{https://2020.stateofjs.com/en-US/}
 verwendet. The State of JS wertet jedes Jahr verschiedene JavaScript Technologien und Frontend Frameworks
 anhand von Entwicklerumfragen aus.\cite{state-of-js-2020-fwk}
-
-
 
 
 \section{Hosting und Deployment}
