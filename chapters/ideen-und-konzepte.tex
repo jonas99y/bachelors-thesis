@@ -22,19 +22,25 @@
 % - mqtt arch backend
 %
 
-Ich denke mer chöns stuff von Realisierig da übere tue. So Architektur und so.
-Eifach ohni vorgehe und evaluation.
 
-TODO Einleitung
-Im folgenden Kapitel werden einige Architektur Ideen und gängige Konzepte
-aufgezeigt welche für die Realisierung des Projektes relevant sind.
 
-TODO Bezug auf Ziele und Anforderungen des Projekts. Punkte von Stand der Technik übernehmen.
+%Ich denke mer chöns stuff von Realisierig da übere tue. So Architektur und so.
+%Eifach ohni vorgehe und evaluation.
+%
+%TODO Einleitung
+%Im folgenden Kapitel werden einige Architektur Ideen und gängige Konzepte
+%aufgezeigt welche für die Realisierung des Projektes relevant sind.
+%
+%TODO Bezug auf Ziele und Anforderungen des Projekts. Punkte von Stand der Technik übernehmen.
 
-\section{Microservices}
+In diesem Kapitel werden grundlegende Design und Architekturentscheidungen erklärt
+und begründet.
+
+\section{Grundlegende Architekturentscheidungen}
 \label{konzepte:microservices}
 
-Da die Applikation laut dem Auftraggeber skalierbar sein sollte, wurde
+Bereits von Anfang an war klar, dass die einzelnen Komponenten unabhängig voneneinader
+entwickelt werden sollten oder dies die Architektur zumindest zulässt. Dazu wurde
 eine Mikroservice Architektur in Betracht gezogen.
 
 Bei einer solchen Architektur werden die einzelnen unabhängigen Komponenten
@@ -46,9 +52,9 @@ Diese Komponenten können danach unabhängig voneinander entwickelt und
 releast werden.
 Die Kommunikation zwischen den einzelnen Komponenten geschieht mittels
 vordefinierter \ac{API}s. Häufig werden Message Queues wie RabbitMQ dafür
-eingesetzt. Wichtig dabei ist auch dass die Datenschemen der einzelnen
+eingesetzt. Wichtig dabei ist auch, dass die Datenschemen der einzelnen
 Microservices unabhängig voneinander sind. Das heisst, jeder Microservice
-besitzt eine eigene Datenbank. \cite{microservices}
+besitzt eine eigene Datenbank. \parencite{microservices}
 Um die einzelnen Komponenten danach unabhängig voneinander releasen zu
 können, werden häufig Container basierte Deployments verwendet.\footnote{
     Wie beispielsweise Docker oder Podman.
@@ -68,11 +74,8 @@ Dabei wird meist auch nur eine einzelne Datenbank gebraucht, die von den
 Applikationskomponenten verwendet wird.
 
 % TODO wir simple loesung
-Generell wird in der Softwareentwicklung viel Over-Engineerd, das heisst
-das eigentliche Problem wird viel komplizierter gelöst als eigentlich
-nötig wäre. Im Allgemeinen ist es keine schlechte Idee vor allem Prototypen
-so einfach wie möglich zu halten um zu beweisen dass, ein gewisses Problem
-gelöst werden kann. Danach kann die Applikation immer noch skaliert werden:
+Für diese Arbeit war von Anfang an klar, eine möglichst einfache
+Architektur zu verwenden und diese dann zu erweitern, wenn es nötig wird:
 
 \blockquote{
     Furthermore, there formed a consensus among developers (if consensus even possible there) that in
@@ -111,7 +114,7 @@ veranschaulicht grob, wie die einzelnen Komponenten angeordnet werden könnten.
 Sie besteht aus zwei Bereichen: Eine Fläche, auf welcher die Messdaten visualisiert werden können.
 Diese ist im Entwurf mit ``This is the graph`` beschriftet.
 Darunter sind einige Eingabekomponenten angeordnet, welche bspw. dazu dienen können,
-zwischen verschiedenen Messdatentypen umzuschalten oder eine benutzerdefinierte Zeitspanne 
+zwischen verschiedenen Messdatentypen umzuschalten oder eine benutzerdefinierte Zeitspanne
 zu wählen.
 
 Dieser Entwurf deckt somit alle Anforderungen ab, welche in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) beschrieben wurden.
