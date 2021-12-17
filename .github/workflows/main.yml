@@ -12,7 +12,7 @@ jobs:
       - name: Build
         run: |
           docker pull mbredel/thesis-template:latest
-          docker run --volume $(pwd):/thesis-template/ --entrypoint="sh -c 'apt update && apt install --yes biber && make --directory /thesis-template/ publish'" mbredel/thesis-template:latest
+          docker run --volume $(pwd):/thesis-template/ --entrypoint="/bin/sh -c 'apt update && apt install --yes biber && make --directory /thesis-template/ publish'" mbredel/thesis-template:latest
 
       - name: Archive thesis
         uses: actions/upload-artifact@v2
