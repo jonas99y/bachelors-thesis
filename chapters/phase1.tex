@@ -288,16 +288,8 @@ Stromzähler mit Serialnummer in die Datenbank gespeichert.
 
 \subsection{Automatisierte End to End Tests}
 
-Um sicherzustellen, dass das Projekt jederzeit funktioniert und keine Änderungen
-aus Versehen andere Funktionalität beeinträchtigt, wurden Automatisierte
-End to End Tests erstellt. (Siehe Teststrategie \ref{teststrategie})
-
-Diese Tests wurden Behaviour Driven implementiert.\footnote{
-    Behavior-driven development (BDD) is an Agile software development methodology
-    in which an application is documented and designed around the behavior a user
-    expects to experience when interacting with it.
-}\parencite{what_is_bdd} Die Tests wurden anhand der Anforderungen \ref{aufgabenstellung}
-und User Stories in der Gherking Sprache\footnote{https://cucumber.io/docs/gherkin/reference/} implementiert.
+Wie bereits in der Teststrategie \ref{teststrategie} erwähnt werden für dieses Projekt
+hauptsächlich automatisierte End to End Tests implementiert.
 
 Damit die Tests automatisiert ausgeführt werden können, wurde ein Stromzähler Simulator entwickelt.
 Zwar wäre es theoretisch möglich gewesen auch einen echten Stromzähler für Tests zu verwenden,
@@ -305,8 +297,15 @@ jedoch ist es immer schwierig Automatisierungen mit Hardware zu machen. Zudem k�
 Daten bei physikalischen Geräten nur in Echtzeit und nicht schneller übertragen werden.
 Durch diesen "Fakemeter" konnten Daten mehrerer Tage innert weniger Sekunden oder Millisekunden
 an das Backend (den Dataingres \ref{fig:dataingress-sequence}) gesendet werden.
-Die Daten sind echte Stromzählerdaten welche von der Landis+Gyr zur Verfügung
-gestellt wurden.
+
+Der Stromzählersimulatof verfügt sowohl über eine Python Schnittstelle als auch über
+ein Command Line Interface. Dies ist besonders während der Entwicklung nützlich:
+
+\begin{verbatim}
+poetry run fakemeter --meter-serial METER_SERIAL \
+  VOLT_1 VOLT_2 VOLT_3 POWER
+\end{verbatim}
+
 
 \subsection{Benutzerschnittelle}
 Um den Anwendungsfall, ``Einsehen von Spannungswerten über Zeit`` (Abbildung \ref{fig:usecase1}) zu erfüllen,
@@ -324,5 +323,5 @@ Die gezeigten Daten werden über die \ac{REST} \ac{API} geladen und mit Hilfe vo
 Das gewählte Frontend Framework, React, war für das Projektteam grösstenteils neu.
 Somit wurde in dieser ersten Phase viel Zeit in das Erlernen der Grundlagen von React investiert.
 Kleine Programmierfehler führten aufgrund der fehlenden Erfahrung und Routine zu grösseren Schwierigkeiten.
-Durch die Hilfe von Freunden, Mitstudienenden und Hilfsmittel im Internet liessen sich diese meistern 
+Durch die Hilfe von Freunden, Mitstudienenden und Hilfsmittel im Internet liessen sich diese meistern
 und die erste Phase im geplanten Zeitrahmen abschliessen.

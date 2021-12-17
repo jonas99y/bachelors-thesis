@@ -29,12 +29,18 @@ Gegen Ende der Projektzeit wurde das Endresultat vom Projektteam präsentiert un
 \section{Teststrategie}
 \label{teststrategie}
 
-UI tests manuell. evtl. noch ein Testplan schrieben?
+Um sicherzustellen, dass das Projekt jederzeit funktioniert und keine Änderungen
+aus Versehen andere Funktionalität beeinträchtigt, werden Automatisierte
+End to End Tests erstellt. Bei End to End Tests werden die Tests möglichst
+so ausgeführt wie die Applikation auch deployt wird. \parencite{georgian_2021}
+Auf andere Tests wie Unit Tests wird in diese Projekt aus zeitgründen verzichtet.
 
-backend automatisiert mit e2e tests
-% Dazu gehört auch eine Teststrategie (wo setzen Sie im Projekt Schwerpunkte betr. Testen?). Die
-% eigentliche Testdurchführung ist dann unter Realisierung, im Anhang oder einem selbstständigen
-% Testdokument beschrieben.
+Diese Tests wurden Behaviour Driven implementiert.\footnote{
+    Behavior-driven development (BDD) is an Agile software development methodology
+    in which an application is documented and designed around the behavior a user
+    expects to experience when interacting with it.
+} \parencite{what_is_bdd} Die Tests wurden anhand der Anforderungen \ref{aufgabenstellung}
+und User Stories in der Gherking Sprache\footnote{https://cucumber.io/docs/gherkin/reference/} implementiert.
 
 \section{Versionskontrolle}
 
