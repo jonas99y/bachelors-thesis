@@ -47,7 +47,11 @@ Beide Broker können einfach in ein Deployment per Container integriert werden.
 \section{Backend Stack}
 \label{state:backend}
 
-Für \ac{CRUD} Applikationen gibt es unzählige Libraries in diversen Tech-Stacks.
+Um Daten (in diesem Fall Stromzählerdaten) zu empfangen, verarbeiten und abzuspeichern
+wird eine Businesslogik benötigt. Diese Businesslogik stellt die Daten
+danach auch  Generell wird eine solche Applikation als \ac{CRUD} Applikation
+bezeichnet. \parencite{sulemani_2021} \parencite{johnston_2021}
+Für solche \ac{CRUD} Applikationen gibt es unzählige Libraries in diversen Tech-Stacks.
 Einige populäre sind PHP (mit Laravel\footnote{https://laravel.com/}),
 Ruby on Rails\footnote{https://rubyonrails.org/}, ASP.NET MVC\footnote{https://dotnet.microsoft.com/apps/aspnet/mvc},
 Python Flask/FastAPI\footnote{https://fastapi.tiangolo.com/}, Java spring\footnote{https://spring.io/}.
@@ -63,7 +67,16 @@ auch bestätigt.
 \section{Frontend Stack}
 \label{state:frontend}
 
+Damit die von einem Backend verarbeiteten daten eine Wert für den Benutzer haben, müssen diese
+dem Benutzer angezeigt werden können. Zudem muss der Benutzer teilweise auch mit den
+Daten interagieren können, indem beispielsweise eine Zeitspanne angepasst wird, in
+der gewisse Daten angezeigt werden. \parencite{anokhina_2019}
+
+
+
 TODO Erklären was ein Frontend Framework ist, und wieso es eingesetzt wird
+
+\subsection{Web Frontend}
 
 Die Welt der (Web)-Frontend Frameworks hat wohl in den letzten Jahren eine der grössten Änderungen
 durchgemacht. Nebst den Grossen wie Angular, Vue und React, gibt es noch zahlreiche kleinere wie Svelte oder
@@ -91,7 +104,7 @@ anhand von Entwicklerumfragen aus.\cite{state-of-js-2020-fwk}
 \section{Hosting und Deployment}
 \label{state:deployment}
 
-Zu beginn des Projektes war die Idee, das Projekt in der Google Cloud zu hosten.
+Zu Beginn des Projektes war die Idee, das Projekt in der Google Cloud zu hosten.
 Da jedoch die Infrastruktur auf Seiten des Auftraggebers noch nicht dazu bereit
 war, konnte dies nicht umgesetzt werden. Stadtdessen soll eine möglichst
 generische lösung, welche vielleicht später auf einen Kubernetes\footnote{https://kubernetes.io/}
