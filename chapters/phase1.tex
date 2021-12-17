@@ -239,46 +239,7 @@ damit einen reproduzierbaren Build zu garantieren.
 Die Datenbankanbindung kann per Datenbank \ac{URI} dem sqlmodel Framework
 mitgegeben um zu bestimmen auf welche Datenbank zugegriffen werden soll.
 
-\subsection{Datenbankschema}
 
-Gleich zu beginn des Projektes wurde das Datenbankschema erstellt.
-Dies gibt eine gute Übersicht ob die für das Projekt benötigten Daten
-abgespeicher werden können. In diesem Fall sind das die Messwerte der Stromzähler
-und die Labels des Benutzers.
-
-Die Datenbank wurde so einfach wie möglich gehalten um alle vorgegebenen
-Anforderungen zu erfüllen.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1.0\textwidth]{gfx/smic-db}
-    \caption{
-        ER Diagramm der Datenbank
-    }
-    \label{fig:smic-db}
-\end{figure}
-
-Wie in Abbildung \ref{fig:smic-db} dargestellt, können in der Datenbank
-die Verschiedenen Stromzähler mit ihrer Seriennumer abgespeichert werden.
-Beispielsweise wird pro Haushalt ein Stromzähler mit einer bestimmten
-Seriennummer abgespeichert, sobald dieser zum ersten mal Daten sendet.
-Ein solcher Stromzähler sendet danach einzelne Messdaten zu bestimmten
-Zeitpunkten. Die Messdaten beinhalten neben der Messzeit die drei Phasen
-und wie viel Leistung gebraucht wurde.
-
-Damit danach abgespeichert werden kann zu welcher Zeit beispielsweise ein
-Toaster gelaufen ist, werden Labels erstellt. Ein solches Label hat eine
-Bezeichnung und kann verschiedene Annotationen beinhalten.
-Eine Annotation ist immer von einem bestimmten Stromzähler und kann implizit mehrere
-Messdaten beinhalten. Dies wird über eine Start- und Endzeit abgespeichert.
-Durch diese Struktur können danach einfach Auswertungen der Labels über mehrere
-Stromzähler und Messpunkte gemacht werden.
-
-
-Die zu visualisierenden Daten sind jeweils Messwerte von Spannung oder Leistung zu einem bestimmten Zeitpunkt.
-Da diese Daten nur dann aussagekräftig und interessant sind, wenn sie in zeitliche Abfolge dargestellt sind.
-Deshalb wurden Liniendiagramme gewählt. Ein Vortiel dieser ist, dass sicht verschiedene Werte, bspw. die drei Spannungswerte der verschiedenen Phasen
-gleichzeitig dargestellt werden können. TODO Bild
 
 \subsection{\ac{MQTT} Datenverarbeitung}
 
