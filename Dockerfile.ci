@@ -23,4 +23,4 @@ RUN apt-get -qq update && apt-get install -y --no-install-recommends \
     biber
 
 # Command to actually build the LaTeX code.
-CMD ["make", "--directory", "/thesis-template/", "test"]
+CMD ["make", "--directory", "/thesis-template/"]
