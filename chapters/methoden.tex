@@ -1,8 +1,10 @@
 \chapter{Methoden}
 \label{methoden}
+TODO Methoden GIT, CICD und so erklären und wieso diese hier erwähnt sind:
+
 Für dieses Projekt wurde zu Beginn ein agiles Vorgehen gewählt.
 Der Grund dafür war, dass das genaue Projektziel noch nicht klar definiert werden konnte.
-Als erstes sollte eine minimaler Prototyp erarbeitet werden. In der Aufgabenstellung \cite{aufgabenstellung} wurden dafür folgende Aufforderungen definiert:
+Als erstes sollte eine minimaler Prototyp erarbeitet werden. In der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) wurden dafür folgende Aufforderungen definiert:
 \begin{itemize}
 \item Visualisierung des Spannungsverlaufs (drei Phasen) eines Stromzählers
 basierend auf gespeicherten Messdaten.
@@ -33,7 +35,7 @@ Um sicherzustellen, dass das Projekt jederzeit funktioniert und keine Änderunge
 aus Versehen andere Funktionalität beeinträchtigt, werden Automatisierte
 End to End Tests erstellt. Bei End to End Tests werden die Tests möglichst
 so ausgeführt wie die Applikation auch deployt wird. \parencite{georgian_2021}
-Auf andere Tests wie Unit Tests wird in diese Projekt aus zeitgründen verzichtet.
+Auf andere Tests wie Unit Tests wird in diese Projekt aus zeitgründen verzichtet. TODO
 
 Diese Tests wurden Behaviour Driven implementiert.\footnote{
     Behavior-driven development (BDD) is an Agile software development methodology
@@ -72,3 +74,33 @@ Meetings (TODO describe) durchgeführt.
 Bei den grösseren Fetures bei denen ein eigener Branch erstellt wurde, wurden die
 Reviews direkt über einen Pull Request auf GitHub gemacht. \parencite{github_flow_docs_2021}
 
+\subsection{\ac{CI/CD}}
+
+Um das Projekt automatisch Testen zu können und eine Reproduzierbare Umgebung zu bauen,
+wurde bereits zu Beginn eine \ac{CI/CD} Pipeline mit GitHub Actions\footnote{https://github.com/features/actions}
+aufgebaut.
+Die Entwickler sollen sich nicht nur um die Entwicklung, sondern auch das automatische Bauen und Deployen der
+Software kümmern. Dieser DevOps Gedanke hat den Vorteil, dass
+theoretisch jedes kleine Feature und jeder Bugfix direkt automatisiert getestet
+wird und danach (wenn die Tests erfolgreich waren) auf das Produktivsystem
+Deployt werden kann. \cite{what_is_devops}
+zudem ist für jeden Entwickler das Bauen und Ausführen des Projektes gleich und
+reproduzierbar. Dies erspart das Suchen von unnötigen Fehlern die auf unterschiedlich
+konfigurierten Entwicklungsmaschinen auftreten können.
+
+TODO konkrete CI pliplie in Iteration1 erklären
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/ci-env}
+    \caption{
+        Visualisierung der GitHub Actions Pipeline mit zwei aufeinanderfolgenden Stages.
+        Zuerst werden die einzelnen Komponenten (Siehe \ref{fig:smic-arch}) gebaut und
+        anschliessend getestet.
+    }
+    \label{fig:ci-env}
+\end{figure}
+
+Dank dieser \ac{CI/CD} Umgebung und der Verwendung von Podman, kann die gesamte Applikation
+(Wie im Kapitel \ref{architekturentscheidung} beschrieben) mit einem
+Befehl gebaut und gestartet werden.
