@@ -4,12 +4,12 @@ Für dieses Projekt wurde zu Beginn ein agiles Vorgehen gewählt.
 Der Grund dafür war, dass das genaue Projektziel noch nicht klar definiert werden konnte.
 Als erstes sollte eine minimaler Prototyp erarbeitet werden. In der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) wurden dafür folgende Aufforderungen definiert:
 \begin{itemize}
-\item Visualisierung des Spannungsverlaufs (drei Phasen) eines Stromzählers
-basierend auf gespeicherten Messdaten.
-\item Empfangen (TLS Verschlüsselung) und abspeichern von Messdaten (Spannung über drei Phasen) und
-Zeitstempel mittels MQTT.
-\item Bereitstellen von virtuellen Stromzählern, welche mittels MQTT Messdaten
-übermitteln.
+    \item Visualisierung des Spannungsverlaufs (drei Phasen) eines Stromzählers
+          basierend auf gespeicherten Messdaten.
+    \item Empfangen (TLS Verschlüsselung) und abspeichern von Messdaten (Spannung über drei Phasen) und
+          Zeitstempel mittels MQTT.
+    \item Bereitstellen von virtuellen Stromzählern, welche mittels MQTT Messdaten
+          übermitteln.
 \end{itemize}
 Nach ca. einem Drittel der Projektzeit wurde das erarbeitete dem Auftraggeber vorgeführt und die implementierten Funktionalitäten demonstriert.
 Gemeinsam mit dem Auftraggeber wurden danach die Anforderungen für die nächste Iteration definiert.
@@ -35,23 +35,33 @@ wichtig sind und wie sie für dieses Projekt angewendet wurden.
 Um sicherzustellen, dass das Projekt jederzeit funktioniert und keine Änderungen
 aus Versehen andere Funktionalität beeinträchtigt, werden automatisierte
 End to End Tests erstellt. Bei End to End Tests werden die Tests möglichst
-so ausgeführt wie die Applikation auch produktiv betrieben wird \parencite{georgian_2021}. 
-Auf andere Tests wie Unit Tests wird in diese Projekt aus zeitgründen verzichtet. TODO
-
+so ausgeführt wie die Applikation auch produktiv betrieben wird \parencite{georgian_2021}.
 Diese Tests wurden Behaviour Driven implementiert.\footnote{
     Behavior-driven development (BDD) is an Agile software development methodology
     in which an application is documented and designed around the behavior a user
     expects to experience when interacting with it \parencite{what_is_bdd}.
 }  Die Tests wurden anhand der Anforderungen \ref{aufgabenstellung}
 und User Stories in der Gherking Sprache\footnote{https://cucumber.io/docs/gherkin/reference/} implementiert.
+Es wurde bewusst darauf verzichtete, einzelne Komponenten mittels Unit Tests zu testen.
+Diese hat zwei Gründe:
+\begin{itemize}
+    \item Bei der Software handelt es sich um einen Prototypen.
+          Sie ist nicht für den produktiven Betrieb ausgelegt.
+          Aufgrund des iterativen Vorgehens ist auch damit zu rechnen, dass sich teile des Codes oft verändern.
+          Das pflegen von Unit Tests hätte zu viel Zeit in anspruch genommen.
+    \item Es werden keine eigenen Algorithmen oder komplexe Funktionen implementiert.
+          Deswegen wurde der Code als trivial eingeschätzt und Unit Test nicht für nötig befunden.
+\end{itemize}
+
+
 
 \section{Versionskontrolle}
 Um die Quellcode Dateien zu verwalten, wurde ein Git-Repository\footnote{https://git-scm.com/} verwendet.
 Git ist das populärste Versionskontrollsystem und der de facto Standard für Softwareentwicklungsprojekt \parencite{git}.
-Im Magazin Dev Insider  wird ein Vorteil von Git wie folgt beschrieben: 
+Im Magazin Dev Insider  wird ein Vorteil von Git wie folgt beschrieben:
 ``Das Programm ermöglicht es mehreren Entwicklern, unabhängig von ihrem Aufenthaltsort gleichzeitig an einem Projekt zu arbeiten.`` \cite{was_ist_git}
 
-Da am Projekt nur zwei Entwickler arbeiten, 
+Da am Projekt nur zwei Entwickler arbeiten,
 wurde auf eine Branching-Strategie wie beispielsweise
 GitFlow\footnote{https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow} verzichtet.
 Für die Erstellung grösserer Features wurden Branches erstellt.
@@ -61,23 +71,23 @@ Diese Arbeit wurde in \LaTeX geschrieben. Deren Quelldateien sind ebenfalls mit 
 Beide Projekte sind auf GitHub\footnote{https://github.com} abgelegt und können über diese Links abgerufen werden:
 
 \begin{itemize}
-  \item Das Softwareprojekt: \url{https://github.com/randombenj/hslu-wipro-smic}
-  \item Diese Arbeit: \url{https://github.com/randombenj/hslu-wipro-smic-doc}
+    \item Das Softwareprojekt: \url{https://github.com/randombenj/hslu-wipro-smic}
+    \item Diese Arbeit: \url{https://github.com/randombenj/hslu-wipro-smic-doc}
 \end{itemize}
 
 Beide Repositories sind unter der MIT Lizenz\footnote{https://opensource.org/licenses/MIT} veröffentlicht.
 Diese erlaubt die freie Nutzung und Weitergabe des Quellcodes, durch Drittpersonen.
-Dazu müssen diese lediglich einen Vermerk des ursprünglichen Authors und den Lizenztext ihrer Anwendung anfügen (\parencite{mit_licence}). 
+Dazu müssen diese lediglich einen Vermerk des ursprünglichen Authors und den Lizenztext ihrer Anwendung anfügen (\parencite{mit_licence}).
 Diese wurde so mit den Auftraggeber vereinbart.
 
 \section{Code Reviews}
 
 Um eine hohe Qualität der Software sicherzustellen, wurde nebst der Teststrategie \ref{teststrategie}
-auch Code Reviews und Pair Programming durchgeführt \parencite{fu2017code}. 
+auch Code Reviews und Pair Programming durchgeführt \parencite{fu2017code}.
 Die Reviews und Pair Programming sessions wurden jeweils an den wöchentlichen
 Meetings (TODO describe) durchgeführt.
 Bei den grösseren Fetures bei denen ein eigener Branch erstellt wurde, wurden die
-Reviews direkt über einen Pull Request auf GitHub gemacht \parencite{github_flow_docs_2021}. 
+Reviews direkt über einen Pull Request auf GitHub gemacht \parencite{github_flow_docs_2021}.
 
 \subsection{\ac{CI/CD}}
 
