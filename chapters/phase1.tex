@@ -241,17 +241,17 @@ einmal versucht. Beispielsweise kann die Datenbank noch nicht bereit sein.\footn
 Dadurch soll möglichst verhindert werden, dass eingehende Messdaten verloren gehen.
 
 Auch der Dataingress verwendet die Datastore Python Library. Dies stellt sicher,
-dass die \ac{API} und er Dataingress das gleiche Datenbankformat verwenden da
-die Datenbank ja zwischen den beiden Applikationen geshart ist.
+dass die \ac{API} und der Dataingress das gleiche Datenbankformat verwenden da
+die Datenbank ja zwischen den beiden Applikationen geteilt ist.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1.0\textwidth]{gfx/dataingress-sequence}
+    \includegraphics[width=1.0\textwidth]{gfx/dataingress-sequence-no-err}
     \caption{
         Das Sequenzdiagramm zeigt auf wie der Dataingress die \ac{MQTT} Messages
         von den Stromzählern abarbeitet und in die Datenbank persisitiert.
     }
-    \label{fig:dataingress-sequence}
+    \label{fig:dataingress-sequence-no-err}
 \end{figure}
 
 Im Sequenzdiagramm des Dataingress (Abbildung \ref{fig:dataingress-sequence}) wird aufgezeigt
