@@ -1,7 +1,5 @@
 \chapter{Methoden}
 \label{methoden}
-TODO Methoden GIT, CICD und so erklären und wieso diese hier erwähnt sind:
-
 Für dieses Projekt wurde zu Beginn ein agiles Vorgehen gewählt.
 Der Grund dafür war, dass das genaue Projektziel noch nicht klar definiert werden konnte.
 Als erstes sollte eine minimaler Prototyp erarbeitet werden. In der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) wurden dafür folgende Aufforderungen definiert:
@@ -27,52 +25,59 @@ Gegen Ende der Projektzeit wurde das Endresultat vom Projektteam präsentiert un
 % Bei einem Softwareprojekt können dies z.B. der geplante Einsatz einer Anforderungsanalyse, der
 % Einsatz von Review-Techniken (Architektur-Reviews) oder bekannter Programmiertechniken sein.
 
+Die folgenden Abschnitte erläutern weitere Methoden welche für ein Softwareentwicklungsprojekt
+wichtig sind und wie sie für dieses Projekt angewendet wurden.
+
 
 \section{Teststrategie}
 \label{teststrategie}
 
 Um sicherzustellen, dass das Projekt jederzeit funktioniert und keine Änderungen
-aus Versehen andere Funktionalität beeinträchtigt, werden Automatisierte
+aus Versehen andere Funktionalität beeinträchtigt, werden automatisierte
 End to End Tests erstellt. Bei End to End Tests werden die Tests möglichst
-so ausgeführt wie die Applikation auch deployt wird. \parencite{georgian_2021}
+so ausgeführt wie die Applikation auch produktiv betrieben wird \parencite{georgian_2021}. 
 Auf andere Tests wie Unit Tests wird in diese Projekt aus zeitgründen verzichtet. TODO
 
 Diese Tests wurden Behaviour Driven implementiert.\footnote{
     Behavior-driven development (BDD) is an Agile software development methodology
     in which an application is documented and designed around the behavior a user
-    expects to experience when interacting with it.
-} \parencite{what_is_bdd} Die Tests wurden anhand der Anforderungen \ref{aufgabenstellung}
+    expects to experience when interacting with it \parencite{what_is_bdd}.
+}  Die Tests wurden anhand der Anforderungen \ref{aufgabenstellung}
 und User Stories in der Gherking Sprache\footnote{https://cucumber.io/docs/gherkin/reference/} implementiert.
 
 \section{Versionskontrolle}
+Um die Quellcode Dateien zu verwalten, wurde ein Git-Repository\footnote{https://git-scm.com/} verwendet.
+Git ist das populärste Versionskontrollsystem und der de facto Standard für Softwareentwicklungsprojekt \parencite{git}.
+Im Magazin Dev Insider  wird ein Vorteil von Git wie folgt beschrieben: 
+``Das Programm ermöglicht es mehreren Entwicklern, unabhängig von ihrem Aufenthaltsort gleichzeitig an einem Projekt zu arbeiten.`` \cite{was_ist_git}
 
-Wie im Softwareengineering Bereich üblich, wurde auch in diesem Projekt mit Git\footnote{https://git-scm.com/}
-gearbeitet. Dies ist mittlerweile der de facto Standard um Software Projekte zu versionieren. \parencite{git}
-Da das Projekt nur zu zweit realisiert wurde und von keinem grossen Projektteam, wurde auf
-eine komplizierte Branching Strategie wie beispielsweise
+Da am Projekt nur zwei Entwickler arbeiten, 
+wurde auf eine Branching-Strategie wie beispielsweise
 GitFlow\footnote{https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow} verzichtet.
-Für die Erstellung grösserer Features wurden Branches erstellt und falls nur kleinere
-Änderungen gemacht wurden, wurden diese direkt auf den Hauptbranch gepusht.
+Für die Erstellung grösserer Features wurden Branches erstellt.
+Kleinere Änderungen wurden jeweils direkt auf den Hauptbranch gepusht.
 
-Diese Arbeit wurde in \LaTeX geschrieben, weswegen sie ebenfalls Versionskontrolliert abgelegt wurde.
-Beide Projekte sind Open Source auf GitHub\footnote{https://github.com} abgelegt unt under
-folgenden Links zu finden:
+Diese Arbeit wurde in \LaTeX geschrieben. Deren Quelldateien sind ebenfalls mit Git verwaltet.
+Beide Projekte sind auf GitHub\footnote{https://github.com} abgelegt und können über diese Links abgerufen werden:
 
 \begin{itemize}
-  \item Das Projekt: \url{https://github.com/randombenj/hslu-wipro-smic}
+  \item Das Softwareprojekt: \url{https://github.com/randombenj/hslu-wipro-smic}
   \item Diese Arbeit: \url{https://github.com/randombenj/hslu-wipro-smic-doc}
 \end{itemize}
 
-Ob das Projekt direkt Open Source implementiert werden darf, wurde zuvor so mit der Landis+Gyr abgesprochen.
+Beide Repositories sind unter der MIT Lizenz\footnote{https://opensource.org/licenses/MIT} veröffentlicht.
+Diese erlaubt die freie Nutzung und Weitergabe des Quellcodes, durch Drittpersonen.
+Dazu müssen diese lediglich einen Vermerk des ursprünglichen Authors und den Lizenztext ihrer Anwendung anfügen (\parencite{mit_licence}). 
+Diese wurde so mit den Auftraggeber vereinbart.
 
 \section{Code Reviews}
 
 Um eine hohe Qualität der Software sicherzustellen, wurde nebst der Teststrategie \ref{teststrategie}
-auch Code Reviews und Pair Programming durchgeführt. \parencite{fu2017code}
+auch Code Reviews und Pair Programming durchgeführt \parencite{fu2017code}. 
 Die Reviews und Pair Programming sessions wurden jeweils an den wöchentlichen
 Meetings (TODO describe) durchgeführt.
 Bei den grösseren Fetures bei denen ein eigener Branch erstellt wurde, wurden die
-Reviews direkt über einen Pull Request auf GitHub gemacht. \parencite{github_flow_docs_2021}
+Reviews direkt über einen Pull Request auf GitHub gemacht \parencite{github_flow_docs_2021}. 
 
 \subsection{\ac{CI/CD}}
 
