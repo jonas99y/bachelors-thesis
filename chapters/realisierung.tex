@@ -1,26 +1,25 @@
 \chapter{Realisierung}
 
-TODO replace Phase mit iteration.
 
 % Dies ist das Hauptkapitel Ihrer Arbeit! Hier wird die Umsetzung der eigenen Ideen und Konzepte
 % (Kapitel 3) anhand der gewählten Methoden (Kapitel 4) beschrieben, inkl. der dabei aufgetretenen
 % Schwierigkeiten und Einschränkungen.
-Die Realisierung lässt sich in drei Phasen unterteilen.
-In der ersten Phase werden grundlegende Entscheidungen getroffen und die Basis der Arbeit implementiert.
-Am Ende der ersten Phase existiert ein Prototyp,
+Die Realisierung lässt sich in drei Iterationn unterteilen.
+In der ersten Iteration werden grundlegende Entscheidungen getroffen und die Basis der Arbeit implementiert.
+Am Ende der ersten Iteration existiert ein Prototyp,
 welcher bei allen Komponenten des System über die minimalen Funktionen verfügt.
-Wie im Kapitel \ref{methoden} Methoden beschrieben, folgen darauf zwei weitere Phasen,
+Wie im Kapitel \ref{methoden} Methoden beschrieben, folgen darauf zwei weitere Iterationn,
 in welche neue Anforderungen des Auftraggebers umgesetzt werden.
 
-Über das Vorgehen während dieser drei Phase wird in den folgenden Passagen berichtet.
+Über das Vorgehen während dieser drei Iteration wird in den folgenden Passagen berichtet.
 Einige Aspekte der Realisierung, bspw. das Datenbankschema,  wurden bewusst nicht in diese Passagen integriert,
-das sie sich über die Phasen hinweg erstrecken, 
-die Veränderungen über die Phasen hinweg jedoch nicht weiter relevant sind.
+das sie sich über die Iterationn hinweg erstrecken, 
+die Veränderungen über die Iterationn hinweg jedoch nicht weiter relevant sind.
 Über diese wird zu Schluss dieses Kapitels berichtet.
 
-\input{chapters/phase1}
-\input{chapters/phase2}
-\input{chapters/phase3}
+\input{chapters/iteration1}
+\input{chapters/iteration2}
+\input{chapters/iteration3}
 
 \subsection{Datenbankschema}
 
@@ -46,7 +45,7 @@ die Verschiedenen Stromzähler mit ihrer Seriennummer abgespeichert werden.
 Beispielsweise wird pro Haushalt ein Stromzähler mit einer bestimmten
 Seriennummer abgespeichert, sobald dieser zum ersten mal Daten sendet.
 Ein solcher Stromzähler sendet danach einzelne Messdaten zu bestimmten
-Zeitpunkten. Die Messdaten beinhalten neben der Messzeit die drei Phasen
+Zeitpunkten. Die Messdaten beinhalten neben der Messzeit die drei Iterationn
 und wie viel Leistung gebraucht wurde.
 
 Damit danach abgespeichert werden kann zu welcher Zeit beispielsweise ein
@@ -60,7 +59,7 @@ Stromzähler und Messpunkte gemacht werden.
 
 Die zu visualisierenden Daten sind jeweils Messwerte von Spannung oder Leistung zu einem bestimmten Zeitpunkt.
 Da diese Daten nur dann aussagekräftig und interessant sind, wenn sie in zeitliche Abfolge dargestellt sind.
-Deshalb wurden Liniendiagramme gewählt. Ein Vortiel dieser ist, dass sicht verschiedene Werte, bspw. die drei Spannungswerte der verschiedenen Phasen
+Deshalb wurden Liniendiagramme gewählt. Ein Vortiel dieser ist, dass sicht verschiedene Werte, bspw. die drei Spannungswerte der verschiedenen Iterationn
 gleichzeitig dargestellt werden können. TODO Bild
 
 
