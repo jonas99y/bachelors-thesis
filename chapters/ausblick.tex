@@ -23,7 +23,20 @@ THD thematik nicht weiterverfolgt, da Auftraggeber keine Daten hatte.
 
 Mithilfe der entwickelten Platform ist es nun möglich, Messdaten in hoher Auflösung zu speichern
 und mit Labels zu versehen. Somit kann die Idee (TODO verweis kapitel 1), welcher der Ursprung dieser
-Arbeit war, neu beurteilt werden. 
+Arbeit war, neu beurteilt werden.
+
+\subsection{\ac{TLS} Client Zertifikat}
+
+Zwar werden die übertragenen Daten zurzeit mit \ac{TLS} verschlüsselt aber
+momentan kann jeder, der das \ac{MQTT} Broker Passwort kennt Daten an den
+Dataingress senden. Dieses Passwort soll natürlich nicht öffentlich sein.
+Das Problem ist jedoch, durch Auslesen des Speichers der Stromzähler
+könnte das Passwort herausgefunden werden.
+Zwar könnte man ein Passwort pro gerät generieren, eine bessere Möglichkeit
+wäre jedoch die Verwendung von Client Zertifikaten \parencite{rfc5246_2021}.
+Dadurch können nicht nur die Stromzähler die Integrität des \ac{MQTT} Brokers
+verifizieren sondern auch der Broker ob nur die richtigen Geräte
+Daten senden.
 
 
 % Aus Aufbau_Bericht.pdf
