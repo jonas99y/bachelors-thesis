@@ -5,14 +5,50 @@ Dabei sind folgenden Rückmeldungen entstanden:
     \item Die für Desktops optimiert Benutzerschnittelle entspricht den Vorstellungen und wirkt intuitiv.
     \item Da vom Auftraggeber keine echten \ac{THD} Werte zur Verfügung gestellt werden können,
     können diese weggelassen werden.
-    \item Die Applikation soll unm die in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) beschrieben Anforderung:
+    \item Die Applikation soll um die in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) beschrieben Anforderung:
     ``Eine benutzerdefinierte Zeitspanne der Messwerte mittels vorgegebener
     Labels beschriften. Bsp.: («Backofen war von 09:31 – 10:15 aktiv»)`` soll implementiert werden.
     \item Die Übertragung der Messdaten mittels \ac{MQTT} soll,
      wie bereits in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) verlangt, mit \ac{TLS} verschlüsselt werden.
 \end{itemize}
 
-\subsection{TLS Verschlüsselung}
+\subsection{\ac{TLS} Verschlüsselung}
+
+Mit \ac{TLS} können drei Sachen erreicht werden \parencite{what_is_tls}:
+
+\begin{itemize}
+    \item \texttt{Verschlüsselung}: Garantiert, dass gesendete Daten nicht von Dritten abgehört werden können.
+    \item \texttt{Authentifizierung}: Versichert, dass die an der Kommunikation teilnehmenden Parteien, die sind für die sie sich ausgeben.
+    \item \texttt{Integrität}: Verifiziert, dass gesendete Daten auf dem Sendeweg nicht durch Dritte geändert worden sind.
+\end{itemize}
+
+Erreicht wird dies, durch SSL Zertifikate \parencite{what_is_ssl_certificate}. Diese sind auf dem Server
+installiert und werden durch eine \ac{CA} ausgestellt \parencite{what_is_ca}.
+Dadurch wird die Authentifizierung eines Servers sichergestellt. Grundsätzlich kann man sich das
+so vorstellen, dass eine \ac{CA} eine vertrauenswürdige Stelle\footnote{
+    Beispielsweise Letsencrypt \parencite{letsencrypt_2021}
+} sicherstellt, dass eine Domäne wirklich dieser Person gehört die das auch behauptet.
+Um \ac{TLS} Verschlüsselung für die Entwicklung zu verwenden ist das jedoch nicht notwendig.
+Dann kann man mit sogenannten Self Signed Certificates arbeiten \parencite{self_signed_cert}.
+Der einzige Unterschied dabei ist, dass keine \ac{CA} das Zertifikat signiert, sondern, dass man
+dies selber tut. In diesem Projekt wurde für die automatische Erstellung eines solchen
+Zertifikates mkcert\footnote{https://github.com/FiloSottile/mkcert} verwendet.
+
+Die Konfiguration des \ac{MQTT} Brokers kann einfach aus der Anleitung \parencite{mosquitto.conf_man_page_2021}
+implementiert werden:
+
+\begin{verbatim}
+cafile /rootCA.pem
+certfile /localhost+4.pem
+keyfile /localhost+4-key.pem
+\end{verbatim}
+
+Den Clients\footnote{
+    In diesem fall ist das der Fakemeter der die Daten verarbeitet und die verschiedenen
+    Stromzähler welche die Daten senden.
+} muss danach nur noch gesagt werden welcher \ac{CA} sie vertrauen können.
+In diesem fall, ist dies ein Self Signed Certificate namens \texttt{rootCA.pem} das mittels
+mkcert generiert wurde.
 
 \subsection{Benutzerschnittstelle}
 % \subsection{Labeling}
@@ -36,4 +72,10 @@ Labelerstellung und zum anderen, ob die \ac{TLS} Verschlüsselung funktioniert (
 \end{figure}
 
 \subsection{Schwierigkeiten}
-TLS..
+
+Obwohl die Implementierung von \ac{TLS} sehr einfach ist, akzeptierte die paho \ac{MQTT} Python
+Libarary unser mit mkcert generiertes Zertifikat nicht.
+Nach einiger Recherche, zeigte sich, dass paho ein unübliches \ac{TLS}
+Verhalten aufweist \parencite{eclipse_paho_ssl_2019}.
+Nachdem der Parameter \texttt{cert\_reqs=ssl.CERT\_NONE} gesetzt wurde, funktionierte
+die \ac{TLS} verschlüsselung dann auch.
