@@ -5,7 +5,7 @@ Dabei sind folgenden Rückmeldungen entstanden:
     \item Der Prototyp entspricht den Vorstellungen und erfüllt die definierten Anforderungen.
     \item Die Vorgabe, dass die Benutzerschnittstelle für Mobilgeräte ausgelegt sein soll, fällt weg.
           Sie soll nur für Desktop-Geräte ausgelegt sein.
-    \item Nebst Spannungswerten soll die Applikation auch Leistungs- und THD Werte verarbeiten können.
+    \item Nebst Spannungswerten soll die Applikation auch Leistungs- und \ac{THD} Werte verarbeiten können.
     \item Bisher wurden sämtliche Daten künstlich erstellt.
     Diese sollen um echte Messwerte erweiter werden, welche von Auftraggeber zur Verfügung gestellt werden.
     \item Die Benutzerschnittstelle soll um die Funktion erweitert werden,
@@ -17,9 +17,9 @@ Dabei sind folgenden Rückmeldungen entstanden:
 
 \subsection{\ac{MQTT} Datenverarbeitung}
 
-Da neu auch die Leistungs- und THD Werte der Stromzähler verarbeitet werden sollen, wurde
+Da neu auch die Leistungs- und \ac{THD} Werte der Stromzähler verarbeitet werden sollen, wurde
 die \ac{MQTT} Datenverarbeitung angepasst. Der Dataingress erwartet nun, dass nebst
-den Spannungen der drei Phasen auch noch die Leistung und der THD Wert mitgeschickt wird.
+den Spannungen der drei Phasen auch noch die Leistung und der \ac{THD} Wert mitgeschickt wird.
 
 Dazu wurde auch das Datenbankschema so angepasst, dass die neuen Daten abgespeichert
 werden können. Zudem wurden die Tests so angepasst, dass sie auch diese Daten
@@ -65,8 +65,34 @@ wurde der Fakemeter noch um einen "Batch Mode" erweitert. Das heisst
 er liest das bereitgestellte CSV File mit den Datensätzen ein und sendet die Daten in
 gewissen Zeitabständen. Dies soll das Verhalten eines echten Stromzählers
 möglichst realitätsnah Simulieren.
+add an image
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/phase2}
+    \caption{
+        Die Benutzerschnittstelle, ausgelegt für Desktop Geräte.
+    }
+    \label{fig:phase2-ui}
+\end{figure}
 
 \subsection{Benutzerschnittstelle}
+Um die neuen Anforderungen zur Benutzerschnittstelle zu erfüllen, musste diese neu Entworfen werden.
+Das Layout, welches bisher für Mobilgeräte ausgelegt war, konnte sehr einfach für Desktop-Geräte angepasst werden.
+In Abbildung \ref{fig:phase2-ui} ist dies zu sehen.
+Für die Auswahl eines Zeitintervalls wurden neuen Komponenten oberhalb des Graphen platziert.
+Die neuen Leitungs- und \ac{THD} Werte werden in separaten Graphen angezeigt und sind horizontal neben dem bestehenden Graphen angezeigt.
+Drei Checkboxen wurden neu hinzugefügt, um die Anzeige der einzelnen Graphen zu steuern.
+Ein Dropdown-Menu ermöglicht die Auswahl des Stromzählers, wessen Daten angezeigt werden.
+Diese Funktionalität wurde nicht explizit vom Auftraggeber gefordert, war jedoch für das manuelle Testen
+und das Demonstrieren der Anwendung sehr praktisch, da so unterschiedliche Daten angezeigt werden können.
+
+\subsection{\ac{API}}
+Im vorherigen Abschnitt wurden neue Filter- und Selektionsfunktionen der Benutzerschnittstelle beschrieben.
+Damit diese richtig funktionieren, musste auch die \ac{API} entsprechend erweitert werden.
+Ein neuer Endpunkt gibt eine Liste aller in der Datenbank vorhandener Stromzähler zurück, so, dass diese für die Auswahl angezeigt werden.
+Bei der Anfrage, welche die Messdaten eines bestimmten Stromzählers zurückgibt, kann nun auch ein Zeitintervall mitgegeben werden.
+
+TODO API images
 
 \subsection{Schwierigkeiten}
 Schwierigkeiten während der zweiten Iteration
