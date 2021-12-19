@@ -19,9 +19,9 @@ Dabei sind folgenden Rückmeldungen entstanden:
 
 Da neu auch die Leistungs- und THD Werte der Stromzähler verarbeitet werden sollen, wurde
 die \ac{MQTT} Datenverarbeitung angepasst. Der Dataingress erwartet nun, dass nebst
-den Spannungen der drei Iterationn auch noch die Leistung und der THD Wert mitgeschickt wird.
+den Spannungen der drei Phasen auch noch die Leistung und der THD Wert mitgeschickt wird.
 
-Natürlich wurde auch das Datenbankschema so angepasst, dass die Daten darin abgespeichert
+Dazu wurde auch das Datenbankschema so angepasst, dass die neuen Daten abgespeichert
 werden können. Zudem wurden die Tests so angepasst, dass sie auch diese Daten
 mitsenden.
 
@@ -35,30 +35,35 @@ mitsenden.
     \label{fig:dataingress-sequence}
 \end{figure}
 
-Bei der Entwicklung zeigte sich zudem, dass der Dataingress nicht sehr Stabiel
-funktioniert und Sporadisch failt. Nach einiger Analyse zeigte sich, dass
-die Datenbankverbindung teilweise unstabil ist. Dies aufgrund der verwendeten
-SQLite Datenbank. Das Problem ist aber nicht vernachlässigbar, da auch in einer
+Bei der Entwicklung zeigte sich zudem, dass der Dataingress nicht sehr stabil
+funktioniert und sporadisch fehlschlägt. Analysen zeigten, dass
+die Datenbankverbindung teilweise instabil ist. 
+Diese Verbindungsprobleme liessen sich auf die verwendete SQLite Datenbank zurückführen.
+
+Das Problem ist aber nicht vernachlässigbar, da auch in einer
 Produktivumgebung wo beispielsweise ein PostgreSQL Server eingesetzt wird,
-dieser von zeit zu zeit upgedatet werden muss.
-Während dieser kurzen Zeit in der die Datenbank nicht verfügbar ist, sollten keine
-Daten verlohren gehen.
-Aus diesem Grund wurde wie in Abbildung \ref{fig:dataingress-sequence} aufgezeigt
-ein Errorhandling implementiert. Die empfangenen Daten der Stromzähler
+dieser von Zeit zu Zeit upgedatet werden muss.
+Es ist davon auszugehen, dass dieses Problem in einer Produktivumgebung mit einem Datenbanksystem wie PostgreSQL
+weniger auftreten würde.
+Der Code sollte jedoch auf den Fall, dass die Verbindung zur Datenbank nicht hergestellt werden kann, reagieren können,
+und sicherstellen, dass keine Daten verloren gehen.
+Dazu wurde wie in Abbildung \ref{fig:dataingress-sequence} aufgezeigt
+eine Fehlerbehandlung implementiert. 
+Die empfangenen Daten der Stromzähler
 werden nun über einen Messagehandler abgearbeitet.
-Dieser Messagehandler versucht die Daten in die Datenbank zu speichern und
-reagiert im Fehlerfall.
+Schlägt das Schreiben in die Datenbank fehl, versucht es der Messsagehandler nach einem kurzen Zeitintervall erneut.
+Nach einer festgelegten Anzahl von Versuchen wird der fehlgeschlagene Schreibversuch in einer Logdatei gespeichert.
 
 \subsection{Fakemeter}
 
 Um die neue Funktionalität des Dataingress testen zu können, wurde auch der
 Fakemeter um Leistungs- und THD Werte erweitert.
 
-Die Landis+Gyr stellte zudem noch einen Datensatz von echten Stromzählerdaten
-zur verfügung. Damit diese echten Daten in das System eingelesen werdn können,
+Der Auftraggeber stellte einen Datensatz von echten Stromzählerdaten
+zur Verfügung. Damit diese echten Daten in das System eingelesen werden können,
 wurde der Fakemeter noch um einen "Batch Mode" erweitert. Das heisst
-er liest das CSV File mit den Datensätzen und sendet die Daten in
-gewissen Zeitabständen. Dies soll das Verhalten eines Stromzählers
+er liest das bereitgestellte CSV File mit den Datensätzen ein und sendet die Daten in
+gewissen Zeitabständen. Dies soll das Verhalten eines echten Stromzählers
 möglichst realitätsnah Simulieren.
 
 \subsection{Benutzerschnittstelle}
