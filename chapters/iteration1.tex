@@ -281,6 +281,44 @@ poetry run fakemeter --meter-serial METER_SERIAL \
 \end{verbatim}
 
 
+\subsection{Verifikation}
+
+Um die Funktionalität und Erfüllungsgrad der Anforderungen in der ersten Iteration zu verifizieren, wurde anhand
+des Teststrategie \ref{teststrategie} ein End to End Test implementiert:
+
+
+\begin{verbatim}
+Feature: Measurement Data Publishing to SMIC
+
+Scenario: Publish some measuring data
+    Given an electricity meter
+    And the database is empty
+    When we publish some measuring data
+    Then the data is available via the api
+\end{verbatim}
+
+Der Test wurde zuerst mit dem Python \ac{BDD} Framework Behave\footnote{https://behave.readthedocs.io/en/stable/}
+implementiert. Behave ist zwar ein beliebtes Python Testframework, bietet jedoch nur
+beschränkt automatisierte Fehlerreports. Das heisst, wenn ein Test fehlschlägt, kann der Ursprung
+des Fehlers nicht gleich anhand des Testlogs gesehen werden.
+Aus diesem Grund wurden die Tests danach auf pytest-bdd\footnote{https://pytest-bdd.readthedocs.io/en/latest/}
+migriert. Das auf pytest\footnote{https://docs.pytest.org/en/6.2.x/} basierende \ac{BDD} Framework
+bietet sehr gute Fehlerlogs. Dadurch wird das Finden und vor allem das Fixen von Fehlern
+um einiges vereinfacht.
+
+Das Ausführen dieser Tests wurde danach unserer \ac{CI/CD} Pipeline hinzugefügt (Abbildung \ref{fig:test-iteration-1}).
+Für jede weitere Änderung, die an dem Projekt gemacht wird, werden diese Tests ausgeführt.
+Falls also jemand des Entwicklerteams einen Regressionsfehler einbaut, fällt dies beim nächsten Build auf.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/testlog-iteration-0}
+    \caption{
+        Automatische Ausführung der Tests in der \ac{CI/CD} Pipeline nach Iteration 1 \parencite{randombenj_testlog_it_0_2021}.
+    }
+    \label{fig:test-iteration-1}
+\end{figure}
+
 \subsection{Benutzerschnittelle} TODO no ufeneh?
 Um den Anwendungsfall, ``Einsehen von Spannungswerten über Zeit`` (Abbildung \ref{fig:usecase1}) zu erfüllen,
 wurde eine minimale Benutzerschnittstelle entwickelt, welches lediglich einen Graphen darstellt.

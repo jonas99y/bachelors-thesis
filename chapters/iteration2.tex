@@ -1,6 +1,8 @@
 \section{Iteration 2}
+
 Der in der ersten Iteration erstellte Prototyp wurde dem Auftraggeber in Form eine Demo gezeigt.
 Dabei sind folgenden Rückmeldungen entstanden:
+
 \begin{itemize}
     \item Der Prototyp entspricht den Vorstellungen und erfüllt die definierten Anforderungen.
     \item Die Vorgabe, dass die Benutzerschnittstelle für Mobilgeräte ausgelegt sein soll, fällt weg.
@@ -37,7 +39,7 @@ mitsenden.
 
 Bei der Entwicklung zeigte sich zudem, dass der Dataingress nicht sehr stabil
 funktioniert und sporadisch fehlschlägt. Analysen zeigten, dass
-die Datenbankverbindung teilweise instabil ist. 
+die Datenbankverbindung teilweise instabil ist.
 Diese Verbindungsprobleme liessen sich auf die verwendete SQLite Datenbank zurückführen.
 
 Das Problem ist aber nicht vernachlässigbar, da auch in einer
@@ -48,7 +50,7 @@ weniger auftreten würde.
 Der Code sollte jedoch auf den Fall, dass die Verbindung zur Datenbank nicht hergestellt werden kann, reagieren können,
 und sicherstellen, dass keine Daten verloren gehen.
 Dazu wurde wie in Abbildung \ref{fig:dataingress-sequence} aufgezeigt
-eine Fehlerbehandlung implementiert. 
+eine Fehlerbehandlung implementiert.
 Die empfangenen Daten der Stromzähler
 werden nun über einen Messagehandler abgearbeitet.
 Schlägt das Schreiben in die Datenbank fehl, versucht es der Messsagehandler nach einem kurzen Zeitintervall erneut.
@@ -93,6 +95,13 @@ Ein neuer Endpunkt gibt eine Liste aller in der Datenbank vorhandener Stromzähl
 Bei der Anfrage, welche die Messdaten eines bestimmten Stromzählers zurückgibt, kann nun auch ein Zeitintervall mitgegeben werden.
 
 TODO API images
+
+
+\subsection{Verifikation}
+
+Um die neue Funktionalität des Dataingress zu testen, wurde der in Iteration 1
+implementierte Test (Abbildung \ref{fig:test-iteration-1}) um die neue Funktionalität
+erweitert.
 
 \subsection{Schwierigkeiten}
 Schwierigkeiten während der zweiten Iteration
