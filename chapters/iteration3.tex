@@ -1,6 +1,6 @@
 \section{Iteration 3}
 Wie bereits nach der ersten Iteration wurde dem Auftraggeber auch nach der zweiten Iteration
-Anhand einer kurzen Demonstration der Entwicklungsstand präsentiert.
+anhand einer kurzen Demonstration der Entwicklungsstand präsentiert.
 
 Folgende Punkte sind bei dabei rückgemeldet worden:
 \begin{itemize}
@@ -9,7 +9,7 @@ Folgende Punkte sind bei dabei rückgemeldet worden:
           können diese weggelassen werden.
     \item Die Applikation soll um den in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) beschrieben Use Case:
           ``Eine benutzerdefinierte Zeitspanne der Messwerte mittels vorgegebener
-          Labels beschriften. Bsp.: («Backofen war von 09:31 – 10:15 aktiv»)`` soll implementiert werden.
+          Labels beschriften. Bsp.: («Backofen war von 09:31 – 10:15 aktiv»)`` erweitert werden.
     \item Die Übertragung der Messdaten mittels \ac{MQTT} soll,
           wie bereits in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) verlangt, mit \ac{TLS} verschlüsselt werden.
 \end{itemize}
@@ -21,7 +21,7 @@ Wie in Kapitel \ref{cap1} beschrieben, ist ein Ziel dieser Arbeit,
 dass Messdaten für Supervised Learning aufbereitet werden können.
 Dazu müssen diese mit Labels versehen werden.
 Was grundsätzlich unter Labels zu verstehen ist, wird im Abschnitt \ref{state:supervised-learning} Supervised Learning erklärt.
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{gfx/labeling.drawio}
     \caption{Anwendungsfall Diagramm zu Labeling}
@@ -37,8 +37,8 @@ mussten Anpassungen an der Benutzerschnittstelle sowie an der \ac{API} vorgenomm
 \subsubsection{Benutzerschnittstelle}
 Um das Erfassen von Labels intuitiv zu gestalten,
 wurden die Graphen so angepasst, dass mit der Maus per Drag ein Zeitabschnitt markiert werden kann.
-Die in Abbildung \ref{fig:add_label} gezeigte Komponenten `New Label`, wird dann angezeigt, wenn ein Zeitabschnitt angewählt wurde.
-Sie beinhaltet genaue Angaben zum Ausgewählten Abschnitt
+Die in Abbildung \ref{fig:add_label} gezeigte Komponente `New Label` wird dann angezeigt, wenn ein Zeitabschnitt angewählt wurde.
+Sie beinhaltet genaue Angaben zum ausgewählten Abschnitt
 und ermöglicht es, das passende Label auszuwählen. \footnote{
     In der Abbildung dienen `Label one` und `Label two` als Platzhalter für richtige Labels wie beispielsweise `Kühlschrank` oder `Waschmaschine`}.
 
@@ -53,9 +53,10 @@ Alle vorhandenen Labels werden als farbige Balken auf die Graphen gezeichnet.
 Jedem Label-Typ wird dazu von der \ac{API} eine eigene Farbe zugewiesen.
 In Abbildung \ref{fig:view_label} sind zwei Labels ersichtlich.
 Um mehr Informationen über die Labels zu erhalten kann bei der `Label mode` Komponente auf der linken Seite von
-`New` auf `View` gewechselt werden.' Wird nun ein Label angeklickt,
-erscheinen einige Informationen über das Label sowie eine Möglichkeit dieses zu Löschen.
-Um danach erneut Labels zu erstellen, muss der Modus widere auf `New` gewechselt werden.
+`New` auf `View` gewechselt werden.
+Wird nun ein Label angeklickt,
+erscheinen einige Informationen über das Label sowie eine Möglichkeit dieses zu löschen.
+Um danach erneut Labels zu erstellen, muss der Modus wider auf `New` gewechselt werden.
 
 
 
@@ -67,8 +68,34 @@ Um danach erneut Labels zu erstellen, muss der Modus widere auf `New` gewechselt
 \end{figure}
 
 \subsubsection{API}
-Die \ac{API} musste um einige Endpunkte erweitert werden.
-TODO
+Die \ac{API} musste um einige Endpunkte erweitert werden:
+
+\begin{verbatim}
+    GET /label
+\end{verbatim}
+Gibt eine Liste aller verfügbaren Labels zurück.
+Diese Liste ist einfachheitshalber nicht über die \ac{API} erweiterbar.
+Die Einträge wurden direkt in die Datenbank eingetragen.
+\begin{verbatim}
+    GET /meters/{meter_id}/labels
+\end{verbatim}
+Gibt eine Liste aller Labels zurück, welche dem gewählten Zähler zugeordnet wurden.
+
+\begin{verbatim}
+    POST /meters/{meter_id}/labels
+\end{verbatim}
+Ermöglicht das Hinzufügen neuer Labels. Im Body müssen jeweils Angaben zur Start- und Endzeit
+sowie gewähltem Label mitgeschickt werden.
+
+\begin{verbatim}
+    DELETE /labels/assignments/{assignment_id}
+\end{verbatim}
+Ermöglicht das Löschen einer zuvor erstellten Label-Zuordnung.
+
+Die aufgeführten Endpunkte führen einfache Schreib- und Lesezugriffe auf die Datenbank aus.
+Labels und Label-Zuweisungen in dieser Iteration neu zur Datenbank hinzugefügt worden.
+Das vollständige Schema der Datenbank wird in Kapitel \ref{rel:db} beschrieben.
+
 
 \subsection{\ac{TLS} Verschlüsselung}
 
@@ -88,12 +115,12 @@ Diese \ac{CA} ist eine vertrauenswürdige Stelle\footnote{
 } welche sicherstellt, dass eine Domäne wirklich dieser Person gehört die das auch behauptet.
 Um \ac{TLS} Verschlüsselung für die Entwicklung zu verwenden ist das jedoch nicht notwendig.
 Dann kann mit sogenannten Self Signed Certificates gearbeitet werden \parencite{self_signed_cert}.
-Der einzige Unterschied dabei ist, dass keine \ac{CA} das Zertifikat signiert, sondern, dass
+Der einzige Unterschied dabei ist, dass das Zertifikat nicht durch eine \ac{CA} signiert wird, sondern, dass
 dies selbst gemacht werden muss. In diesem Projekt wurde für die automatische Erstellung eines solchen
 Zertifikates mkcert\footnote{https://github.com/FiloSottile/mkcert} verwendet.
 
-Die Konfiguration des \ac{MQTT} Brokers kann einfach aus der Anleitung \parencite{mosquitto.conf_man_page_2021}
-implementiert werden:
+Die Konfiguration des \ac{MQTT} Brokers kann basierend auf der Anleitung \parencite{mosquitto.conf_man_page_2021}
+einfach vorgenommen werden:
 
 \begin{verbatim}
 cafile /rootCA.pem
@@ -118,7 +145,7 @@ Labelerstellung und zum anderen, ob die \ac{TLS} Verschlüsselung funktioniert (
     \centering
     \includegraphics[width=1.0\textwidth]{gfx/testlog-iteration-2}
     \caption{
-        Erweiterung der Tests um das Assignment der Labels und Testen der \ac{TLS} Verschlüsselung \parencite{randombenj_testlog_it_2_2021}.
+        Erweiterung der Tests um das Zuweisen von Labels und Testen der \ac{TLS} Verschlüsselung \parencite{randombenj_testlog_it_2_2021}.
     }
     \label{fig:test-iteration-3}
 \end{figure}
@@ -130,3 +157,4 @@ Nach einiger Recherche, zeigte sich, dass `paho` ein unübliches \ac{TLS}
 Verhalten aufweist \parencite{eclipse_paho_ssl_2019}.
 Nachdem der Parameter \texttt{cert\_reqs=ssl.CERT\_NONE} gesetzt wurde, funktionierte
 die \ac{TLS} Verschlüsselung dann auch.
+Somit konnte zum Schluss der Iteration auch die letzte, noch offene, Anforderung erfüllt werden.
