@@ -1,6 +1,8 @@
 \section{Iteration 3}
-TODO Einleitung
-Dabei sind folgenden Rückmeldungen entstanden:
+Wie bereits nach der ersten Iteration wurde dem Auftraggeber auch nach der zweiten Iteration
+Anhand einer kurzen Demonstration der Entwicklungsstand präsentiert.
+
+Folgende Punkte sind bei dabei rückgemeldet worden:
 \begin{itemize}
     \item Die für Desktops optimiert Benutzerschnittelle entspricht den Vorstellungen und wirkt intuitiv.
     \item Da vom Auftraggeber keine echten \ac{THD} Werte zur Verfügung gestellt werden können,
@@ -11,6 +13,20 @@ Dabei sind folgenden Rückmeldungen entstanden:
     \item Die Übertragung der Messdaten mittels \ac{MQTT} soll,
      wie bereits in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) verlangt, mit \ac{TLS} verschlüsselt werden.
 \end{itemize}
+In der letzten der drei Iterationen wurden diese finalen Anforderungen umgesetzt.
+Die nächsten Abschnitte berichten darüber.
+
+\subsection{Labeling}
+Kurz Ziel des labelings erklären und bezug auf stadnd er technik nehmen
+
+\subsubsection{Benutzerschnittstelle}
+% \subsection{Labeling}
+% - Labeling:
+% Labels graphisch darstellen
+% Labels mittels UI hinzufügen
+
+\subsubsection{API}
+Was musste bei der api gemacht werden
 
 \subsection{\ac{TLS} Verschlüsselung}
 
@@ -49,15 +65,6 @@ Den Clients\footnote{
 } muss danach nur noch gesagt werden welcher \ac{CA} sie vertrauen können.
 In diesem fall, ist dies ein Self Signed Certificate namens \texttt{rootCA.pem} das mittels
 mkcert generiert wurde.
-
-\subsection{Labeling}
-Kurz Ziel des labelings erklären und bezug auf stadnd er technik nehmen
-
-\subsection{Benutzerschnittstelle}
-% \subsection{Labeling}
-% - Labeling:
-% Labels graphisch darstellen
-% Labels mittels UI hinzufügen
 
 \subsection{Verifikation}
 
