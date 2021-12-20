@@ -86,9 +86,9 @@ Architektur zu verwenden und diese dann zu erweitern, wenn es nötig wird:
 \section{Entwurf der Applikationsschnittstelle}
 \label{konzepte:api-kommunikation}
 
-Die zu implementierende Applikation muss Datentechnisch zwei Anforderungen erfüllen.
+Die zu implementierende Applikation muss datentechnisch zwei Anforderungen erfüllen.
 Die Stromzählerdaten müssen gemäss Auftrag via \ac{MQTT} empfangen werden
-und auf irgendeine Weise dem Endbenutzer dargestellt werden.
+und danach dem Endbenutzer dargestellt werden.
 
 \begin{figure}[h]
     \centering
@@ -99,18 +99,18 @@ und auf irgendeine Weise dem Endbenutzer dargestellt werden.
     \label{fig:high-level-arch}
 \end{figure}
 
-Die Architekturidee ist, die Applikation in grob in drei Hauptteile zu unterteilen (Abbildung \ref{fig:high-level-arch}):
+Die Architekturidee ist, die Applikation grob in drei Hauptteile zu unterteilen (Abbildung \ref{fig:high-level-arch}):
 
 \begin{itemize}
     \item \texttt{dataingress}: Bietet eine Schnittstelle für die Stromzähler an, damit die von ihnen gesendeten Daten
-        empfangen werden können.
-    \item \texttt{api}: Stellt eine Schnittstelle zur verfügung über die Endbenutzer die Stromzählerdaten abfragen können.
+          empfangen werden können.
+    \item \texttt{api}: Stellt Endpunkte zur Verfügung über welche Stromzählerdaten abgefragt werden können.
     \item \texttt{datenbank}: Dient als indirekte Schnittstelle zwischen \texttt{dataingress} und \texttt{api}.
 \end{itemize}
 
-Dadurch, dass der dataingress nur in die Datenbank schreibt und die api nur lesend auf die Stromzählerdaten zugreift\footnote{
-    Die api greift zwar bei der Erstellung der Labels schreibend auf die Datenbank zu, jedoch nicht auf von den
-    Stromzählern gesendeten Daten.
+Dadurch, dass der \texttt{dataingress} nur in die Datenbank schreibt und die \texttt{api} nur lesend auf die Stromzählerdaten zugreift\footnote{
+    Die \texttt{api} greift bei der Erstellung der Labels schreibend auf die Datenbank zu,
+    jedoch nicht auf Daten, welche von Stromzählern gesendet wurden.
 },
 kann die Datenbank gut als Schnittstelle zwischen den beiden Komponenten verwendet werden.
 

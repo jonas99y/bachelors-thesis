@@ -91,25 +91,27 @@ zu lösen. Grundsätzlich sind die Ziele eines solchen Frameworks \parencite{do-
 \section{Hosting und Deployment}
 \label{state:deployment}
 
-Zu Beginn des Projektes war die Idee, das Projekt in der Google Cloud zu hosten.
-Da jedoch die Infrastruktur auf Seiten des Auftraggebers noch nicht dazu bereit
-war, konnte dies nicht umgesetzt werden. Stadtdessen soll eine möglichst
-generische Lösung, welche vielleicht später auf einer Kubernetes\footnote{https://kubernetes.io/}
-Instanz deployt werden kann.
+% Zu Beginn des Projektes war die Idee, das Projekt in der Google Cloud zu hosten.
+% Da jedoch die Infrastruktur auf Seiten des Auftraggebers noch nicht dazu bereit
+% war, konnte dies nicht umgesetzt werden. Stadtdessen soll eine möglichst
+% generische Lösung, welche vielleicht später auf einer Kubernetes\footnote{https://kubernetes.io/}
+% Instanz deployt werden kann.
 
 Damit eine Applikation reproduzierbar
-gebaut, getestet und deployt werden kann, werden heutzutage Container verwendet \parencite{what-is-a-container}.
-Das wohl bekannteste und weit verbreitetste Container Framework
+gebaut, getestet und ausgeliefert werden kann, können Container eingesetzt werden \parencite{what-is-a-container}.
+Das wohl bekannteste und am weitesten verbreitete Container Framework
 ist Docker\footnote{https://www.docker.com/}. Docker hat jedoch einige Nachteile.
-So ist Docker beispielsweise per default nicht rootless \parencite{docker:rootless}.
+So ist Docker standardmässig nicht rootless \parencite{docker:rootless}.
 Das bedeutet, dass ein in einem Container gestarteter Prozess als root user
-auch auf dem Host system unter dem gleichen Benutzer läuft. Wenn jetzt also
+auch auf dem Host System unter dem gleichen Benutzer läuft.
+Wenn jetzt also
 der Prozess aus der Containerisolation ausbricht\footnote{Dies kann beispielsweise durcheine Sicherheitslücke passieren}
 ist er auch auf dem Hostsystem root \parencite{so_2020}.
 Zudem ist Docker an einen Damon gebunden, der im Hintergrund läuft.
 Dadurch werden alle Container neu gestartet wenn der Daemon neu gestartet werden muss \parencite{docker:daemon}.
-Aus diesen gründen setzen viele Projekte podman\footnote{https://docs.podman.io/en/latest/}
-als Container Engine ein. Podman ist rootless by default und erlaubt Daemonless Container.
+Aus diesen Gründen wird vermehrt podman\footnote{https://docs.podman.io/en/latest/}
+als Container Engine eingesetzt.
+Podman ist rootless by default und erlaubt Daemonless Container.
 Zudem können multicontainer Projekte einfach mit Kubernetes Config files
 erstellt werden \parencite{redhat:podman-pods}.
 
