@@ -6,18 +6,33 @@ Folgende Punkte sind bei dabei rückgemeldet worden:
 \begin{itemize}
     \item Die für Desktops optimiert Benutzerschnittelle entspricht den Vorstellungen und wirkt intuitiv.
     \item Da vom Auftraggeber keine echten \ac{THD} Werte zur Verfügung gestellt werden können,
-    können diese weggelassen werden.
-    \item Die Applikation soll um die in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) beschrieben Anforderung:
-    ``Eine benutzerdefinierte Zeitspanne der Messwerte mittels vorgegebener
-    Labels beschriften. Bsp.: («Backofen war von 09:31 – 10:15 aktiv»)`` soll implementiert werden.
+          können diese weggelassen werden.
+    \item Die Applikation soll um den in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) beschrieben Use Case:
+          ``Eine benutzerdefinierte Zeitspanne der Messwerte mittels vorgegebener
+          Labels beschriften. Bsp.: («Backofen war von 09:31 – 10:15 aktiv»)`` soll implementiert werden.
     \item Die Übertragung der Messdaten mittels \ac{MQTT} soll,
-     wie bereits in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) verlangt, mit \ac{TLS} verschlüsselt werden.
+          wie bereits in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) verlangt, mit \ac{TLS} verschlüsselt werden.
 \end{itemize}
 In der letzten der drei Iterationen wurden diese finalen Anforderungen umgesetzt.
 Die nächsten Abschnitte berichten darüber.
 
 \subsection{Labeling}
-Kurz Ziel des labelings erklären und bezug auf stadnd er technik nehmen
+Wie in Kapitel \ref{cap1} beschrieben, ist ein Ziel dieser Arbeit,
+dass Messdaten für Supervised Learning aufbereitet werden können.
+Dazu müssen diese mit Labels versehen werden.
+Was grundsätzlich unter Labels zu verstehen ist, wird im Abschnitt \ref{state:supervised-learning} Supervised Learning erklärt.
+Für diese Arbeit sollen Zeitabschnitte, während denen Messdaten erfasst wurden, mit Labels versehen werden.
+Ein Label entspricht dabei einem Typ von Stromverbraucher wie beispielsweise einem Backofen oder einem Kühlschrank.
+
+Die beiden dazugehöigen Anwenungsfälle sind in Abbildung \ref{fig:labeling} zu dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/labeling.drawio}
+    \caption{Anwendungsfall Diagramm zu Labeling}
+    \label{fig:labeling}
+\end{figure}
+
 
 \subsubsection{Benutzerschnittstelle}
 % \subsection{Labeling}
@@ -72,7 +87,7 @@ Um die korrekte Funktionalität der neu implementierten Anforderungen zu verifiz
 zwei neue End to End Tests implementiert. Diese verifizieren zum einen die Funktionalität der
 Labelerstellung und zum anderen, ob die \ac{TLS} Verschlüsselung funktioniert (Abbildung \ref{fig:test-iteration-3}).
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{gfx/testlog-iteration-2}
     \caption{
@@ -82,7 +97,7 @@ Labelerstellung und zum anderen, ob die \ac{TLS} Verschlüsselung funktioniert (
 \end{figure}
 
 \subsection{Schwierigkeiten}
-Die Python Library `paho`, welche für die \ac{MQTT} Kommunikation verwendet wird, so zu konfigurieren, 
+Die Python Library `paho`, welche für die \ac{MQTT} Kommunikation verwendet wird, so zu konfigurieren,
 dass sie die \ac{TLS} Verschlüsselung unterstützt, stellte sich als Schwierigkeit heraus.
 Nach einiger Recherche, zeigte sich, dass `paho` ein unübliches \ac{TLS}
 Verhalten aufweist \parencite{eclipse_paho_ssl_2019}.
