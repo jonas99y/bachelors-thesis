@@ -35,8 +35,23 @@ sondern von bspw. einem Head End System\footnote{https://openei.org/wiki/Definit
 
 \section{MQTT} %TODO
 \label{state:mqtt}
-\ac{MQTT} ist ein lightweight Pub/Sub messageing Protokoll, welches aufgrund des
-geringen Netzwerkoverheads und Codefootprint bei \ac{IoT} Geräten eingesetzt wird \parencite{mqtt}.
+
+\ac{MQTT} ist ein Nachrichtenprotokoll das speziell für \ac{IoT} Geräte entwickelt wurde.
+Dies aus dem Grund da es sehr klein ist und somit wenig Speicher benötigt und zudem
+nicht viel Rechenleistung beansprucht.
+Ein zentraler Bestandteil dieses Nachrichtenprotokolls ist der sogenannte "Broker".
+Alle Teilnehmer verbinden sich mit diesem Broker (Abildung \ref{fig:mqtt}) und Senden/Empfangen Nachrichten
+für verschiedene Themen \parencite{mqtt}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/mqtt-publish-subscribe}
+    \caption{
+        Funktionsweise von \ac{MQTT}. Nachrichten werden über den Broker gesendet und empfangen \parencite{mqtt}.
+    }
+    \label{fig:mqtt}
+\end{figure}
+
 Die \ac{MQTT} Technologie wurde bereits vom Auftraggeber vorgeschrieben, jedoch
 nicht die konkrete Implementation.
 
