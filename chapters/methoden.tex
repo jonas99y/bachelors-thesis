@@ -102,20 +102,3 @@ Deployt werden kann. \cite{what_is_devops}
 zudem ist für jeden Entwickler das Bauen und Ausführen des Projektes gleich und
 reproduzierbar. Dies erspart das Suchen von unnötigen Fehlern die auf unterschiedlich
 konfigurierten Entwicklungsmaschinen auftreten können.
-
-TODO konkrete CI pliplie in Iteration1 erklären
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1.0\textwidth]{gfx/ci-env}
-    \caption{
-        Visualisierung der GitHub Actions Pipeline mit zwei aufeinanderfolgenden Stages.
-        Zuerst werden die einzelnen Komponenten (Siehe \ref{fig:smic-arch}) gebaut und
-        anschliessend getestet.
-    }
-    \label{fig:ci-env}
-\end{figure}
-
-Dank dieser \ac{CI/CD} Umgebung und der Verwendung von Podman, kann die gesamte Applikation
-(Wie im Kapitel \ref{architekturentscheidung} beschrieben) mit einem
-Befehl gebaut und gestartet werden.

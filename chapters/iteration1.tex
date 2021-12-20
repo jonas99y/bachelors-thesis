@@ -319,6 +319,21 @@ Falls also jemand des Entwicklerteams einen Regressionsfehler einbaut, fällt di
     \label{fig:test-iteration-1}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/ci-env}
+    \caption{
+        Visualisierung der GitHub Actions Pipeline mit zwei aufeinanderfolgenden Stages.
+        Zuerst werden die einzelnen Komponenten (Siehe \ref{fig:smic-arch}) gebaut und
+        anschliessend getestet.
+    }
+    \label{fig:ci-env}
+\end{figure}
+
+Diese \ac{CI/CD} Umgebung kann die gesamte Applikation
+(Wie im Kapitel \ref{architekturentscheidung} beschrieben) automatisiert bauen und in
+danach die gesamte Umgebung starten und testen (Abbildung \ref{fig:ci-env}).
+
 \subsection{Benutzerschnittelle} TODO no ufeneh?
 Um den Anwendungsfall, ``Einsehen von Spannungswerten über Zeit`` (Abbildung \ref{fig:usecase1}) zu erfüllen,
 wurde eine minimale Benutzerschnittstelle entwickelt, welches lediglich einen Graphen darstellt.
