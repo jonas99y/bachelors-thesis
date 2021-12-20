@@ -21,27 +21,54 @@ Wie in Kapitel \ref{cap1} beschrieben, ist ein Ziel dieser Arbeit,
 dass Messdaten für Supervised Learning aufbereitet werden können.
 Dazu müssen diese mit Labels versehen werden.
 Was grundsätzlich unter Labels zu verstehen ist, wird im Abschnitt \ref{state:supervised-learning} Supervised Learning erklärt.
-Für diese Arbeit sollen Zeitabschnitte, während denen Messdaten erfasst wurden, mit Labels versehen werden.
-Ein Label entspricht dabei einem Typ von Stromverbraucher wie beispielsweise einem Backofen oder einem Kühlschrank.
-
-Die beiden dazugehöigen Anwenungsfälle sind in Abbildung \ref{fig:labeling} zu dargestellt.
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{gfx/labeling.drawio}
     \caption{Anwendungsfall Diagramm zu Labeling}
     \label{fig:labeling}
 \end{figure}
+Für diese Arbeit sollen Zeitabschnitte, während denen Messdaten erfasst wurden, mit Labels versehen werden.
+Ein Label entspricht dabei einem Typ von Stromverbraucher wie beispielsweise einem Backofen oder einem Kühlschrank.
 
+Die beiden dazugehörigen Anwendungsfälle sind in Abbildung \ref{fig:labeling} dargestellt.
+Um diese zu implementieren,
+mussten Anpassungen an der Benutzerschnittstelle sowie an der \ac{API} vorgenommen werden.
 
 \subsubsection{Benutzerschnittstelle}
-% \subsection{Labeling}
-% - Labeling:
-% Labels graphisch darstellen
-% Labels mittels UI hinzufügen
+Um das Erfassen von Labels intuitiv zu gestalten,
+wurden die Graphen so angepasst, dass mit der Maus per Drag ein Zeitabschnitt markiert werden kann.
+Die in Abbildung \ref{fig:add_label} gezeigte Komponenten `New Label`, wird dann angezeigt, wenn ein Zeitabschnitt angewählt wurde.
+Sie beinhaltet genaue Angaben zum Ausgewählten Abschnitt
+und ermöglicht es, das passende Label auszuwählen. \footnote{
+    In der Abbildung dienen `Label one` und `Label two` als Platzhalter für richtige Labels wie beispielsweise `Kühlschrank` oder `Waschmaschine`}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/newLabel}
+    \caption{Benutzerschnittstelle bei der Erstellung eines neuen Labels}
+    \label{fig:add_label}
+\end{figure}
+Mit dem `ADD` Knopf wird das neue Label an die \ac{API} übermittelt und dort abgespeichert.
+Alle vorhandenen Labels werden als farbige Balken auf die Graphen gezeichnet.
+Jedem Label-Typ wird dazu von der \ac{API} eine eigene Farbe zugewiesen.
+In Abbildung \ref{fig:view_label} sind zwei Labels ersichtlich.
+Um mehr Informationen über die Labels zu erhalten kann bei der `Label mode` Komponente auf der linken Seite von
+`New` auf `View` gewechselt werden.' Wird nun ein Label angeklickt,
+erscheinen einige Informationen über das Label sowie eine Möglichkeit dieses zu Löschen.
+Um danach erneut Labels zu erstellen, muss der Modus widere auf `New` gewechselt werden.
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{gfx/viewLabel}
+    \caption{Benutzerschnittstelle bei Inspektion eines bestehenden Labels}
+    \label{fig:view_label}
+\end{figure}
 
 \subsubsection{API}
-Was musste bei der api gemacht werden
+Die \ac{API} musste um einige Endpunkte erweitert werden.
+TODO
 
 \subsection{\ac{TLS} Verschlüsselung}
 
