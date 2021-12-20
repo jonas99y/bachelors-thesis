@@ -8,10 +8,12 @@ In diesem Kapitel wird aufgezeigt,
 welche Daten von Stromzählern erhoben werden und wie diese übermittelt werden.
 Anhand des \ac{MQTT} wird ein Protokoll vorgestellt, welches im \ac{IoT} oft verwendet wird.
 Des weiteren werden gängige Stacks und Frameworks vorgestellt,
-welche für die für die Entwicklung von Front- rsp. Backends verwendet werden können.
-Es die Grundlagen des Supervised Learnings werden erklärt,
+welche für die Entwicklung von Front- rsp. Backends verwendet werden können.
+Es werden auch die zurzeit gängigen Containertechnologien angeschaut.
+Die Grundlagen des Supervised Learnings werden erklärt,
 um ein Verständnis für die Motivation hinter diesem Projekts zu vermitteln.
-TODO noch etwas zu den restlichen Unterkapitel sagen.
+
+%TODO: noch etwas zu den restlichen Unterkapitel sagen.
 
 \section{Stromzähler}
 Damit ein Elektrizitätswerk den Stromverbrauch eines Haushaltes messen und somit Verrechnen kann, werden Stromzähler eingesetzt.
@@ -24,10 +26,10 @@ Nur mit Einwilligung der betroffenen Personen dürfen mehr Daten erfasst und öf
 Für die Datenübertragung der Messwerte wird bestehende Netzwerkinfrastruktur verwendet.
 Wo möglich, werden die Zähler direkt an ein Glasfasernetz angeschlossen.
 Ist dies nicht möglich, können die Daten auch über das Mobilfunknetz oder per ADSL übertragen werden \parencite{smart_meter_faq}.  %1.8
-Dazu werden DLMS /COSEM \footnote{https://www.dlms.com/dlms-cosem/overview} als Kommunikationsschicht verwendet.
+Dazu werden DLMS/COSEM\footnote{https://www.dlms.com/dlms-cosem/overview} als Kommunikationsschicht verwendet.
 Dabei übernehmen die Storzähler die Rolle des Servers.
 Die Kommunikation wird somit nicht von ihm initiiert,
-sondern von bspw. einem Head End System \footnote{https://openei.org/wiki/Definition:Head-End\_System}.
+sondern von bspw. einem Head End System\footnote{https://openei.org/wiki/Definition:Head-End\_System}.
 
 % \section{DLMSCOSEM} TODO, villicht no mache, wenn nötig
 
@@ -38,20 +40,19 @@ geringen Netzwerkoverheads und Codefootprint bei \ac{IoT} Geräten eingesetzt wi
 Die \ac{MQTT} Technologie wurde bereits vom Auftraggeber vorgeschrieben, jedoch
 nicht die konkrete Implementation.
 
-Es gibt zahlreiche \ac{MQTT} Broker Implementationen,\footnote{https://mqtt.org/software/}
-Einige namhafte sind EMQX\footnote{https://docs.emqx.io/en/broker/v4.3/} und mosquitto.\footnote{https://mosquitto.org/}.
-Mosquitto ist von Eclipse maintaint und bietet vom selben hersteller auch eine
-Python client library (phao) an.\footnote{https://github.com/eclipse/paho.mqtt.python}
-Beide Broker können einfach in ein Deployment per Container integriert werden.
-\footnote{https://github.com/emqx/emqx\#installing-via-emq-x-docker-image} \footnote{https://hub.docker.com/\_/eclipse-mosquitto}
+Es gibt zahlreiche \ac{MQTT} Broker Implementationen\footnote{https://mqtt.org/software/}.
+Einige namhafte sind EMQX\footnote{https://docs.emqx.io/en/broker/v4.3/} und mosquitto\footnote{https://mosquitto.org/}.
+Mosquitto ist von Eclipse entwickelt und bietet vom selben Hersteller auch eine
+Python client library (phao) an\footnote{https://github.com/eclipse/paho.mqtt.python}.
+Beide Broker können einfach in ein Deployment per Container integriert werden\footnote{https://github.com/emqx/emqx\#installing-via-emq-x-docker-image}$^{,}$\footnote{https://hub.docker.com/\_/eclipse-mosquitto}.
 
 \section{Backend Stack}
 \label{state:backend}
 
 Um Daten (in diesem Fall Stromzählerdaten) zu empfangen, verarbeiten und abzuspeichern
 wird eine Businesslogik benötigt. Diese Businesslogik stellt die Daten
-danach auch  Generell wird eine solche Applikation als \ac{CRUD} Applikation
-bezeichnet. \parencite{sulemani_2021} \parencite{johnston_2021}
+danach auch dem Frontend zur verfügung. Generell wird eine solche Applikation als \ac{CRUD} Applikation
+bezeichnet \parencite{sulemani_2021} \parencite{johnston_2021}.
 Für solche \ac{CRUD} Applikationen gibt es unzählige Libraries in diversen Tech-Stacks.
 Einige populäre sind PHP (mit Laravel\footnote{https://laravel.com/}),
 Ruby on Rails\footnote{https://rubyonrails.org/}, ASP.NET MVC\footnote{https://dotnet.microsoft.com/apps/aspnet/mvc},
@@ -61,13 +62,14 @@ Python Flask/FastAPI\footnote{https://fastapi.tiangolo.com/}, Java spring\footno
 \section{Frontend Stack}
 \label{state:frontend}
 
-Damit die von einem Backend verarbeiteten daten eine Wert für den Benutzer haben, müssen diese
+Damit die von einem Backend verarbeiteten Daten einen Wert für den Benutzer haben, müssen diese
 dem Benutzer angezeigt werden können. Zudem muss der Benutzer teilweise auch mit den
-Daten interagieren können, indem beispielsweise eine Zeitspanne angepasst wird, in
-der gewisse Daten angezeigt werden. \parencite{anokhina_2019}
+Daten interagieren können, indem beispielsweise eine Zeitspanne angepasst wird in
+der gewisse Daten angezeigt werden \parencite{anokhina_2019}.
 
-Ein Frontend Framework versucht diese Probleme auf möglichst einheitliche Art und Weise
-zu lösen. Grundsätzlich sind die Ziele eines solchen Frameworks: \parencite{do-i-need-a-frontend-fwk}
+Häuffig wird für das Darstellen dieser Daten ein Frontend Framework verwendet.
+Ein solches Framework versucht gängige Architekturprobleme beim Anzeigen von Daten auf möglichst einheitliche Art und Weise
+zu lösen. Grundsätzlich sind die Ziele eines solchen Frameworks \parencite{do-i-need-a-frontend-fwk}:
 
 \begin{itemize}
     \item Der Sourcecode soll wartbar sein: Andere Entwickler sollen ihn einfach lesen, ändern und testen können
@@ -79,12 +81,12 @@ zu lösen. Grundsätzlich sind die Ziele eines solchen Frameworks: \parencite{do
     \item Durch das Framework sollen Ideen in einer einheitlichen Sprache ausgedrückt werden, um mit anderen Entwicklern zusammenzuarbeiten,
 \end{itemize}
 
-\subsection{Web Frontend}
-
-Die Welt der (Web)-Frontend Frameworks hat wohl in den letzten Jahren eine der grössten Änderungen
-durchgemacht. Nebst den Grossen wie Angular, Vue und React, gibt es noch zahlreiche kleinere wie Svelte oder
-Remix. Das Ziel dieser Frameworks ist, häufige Architekturelle Probleme (wie das Wiederverwenden von Komponenten
-oder State-Management) zu lösen \parencite{do-i-need-a-frontend-fwk}.
+%\subsection{Web Frontend}
+%
+%Die Welt der Webfrontend Frameworks hat wohl in den letzten Jahren eine der grössten Änderungen
+%durchgemacht. Nebst den Grossen wie Angular, Vue und React, gibt es noch zahlreiche kleinere wie Svelte oder
+%Remix. Das Ziel dieser Frameworks ist, häufige Architekturelle Probleme (wie das Wiederverwenden von Komponenten
+%oder State-Management) zu lösen \parencite{do-i-need-a-frontend-fwk}.
 
 \section{Hosting und Deployment}
 \label{state:deployment}
@@ -92,15 +94,16 @@ oder State-Management) zu lösen \parencite{do-i-need-a-frontend-fwk}.
 Zu Beginn des Projektes war die Idee, das Projekt in der Google Cloud zu hosten.
 Da jedoch die Infrastruktur auf Seiten des Auftraggebers noch nicht dazu bereit
 war, konnte dies nicht umgesetzt werden. Stadtdessen soll eine möglichst
-generische lösung, welche vielleicht später auf einen Kubernetes\footnote{https://kubernetes.io/}
-Cluseter deployen zu können. Damit ein Produkt reproduzierbar
-deployt werden kann, werden heutzutage Container verwendet \parencite{what-is-a-container}.
+generische Lösung, welche vielleicht später auf einer Kubernetes\footnote{https://kubernetes.io/}
+Instanz deployt werden kann.
 
+Damit eine Applikation reproduzierbar
+gebaut, getestet und deployt werden kann, werden heutzutage Container verwendet \parencite{what-is-a-container}.
 Das wohl bekannteste und weit verbreitetste Container Framework
 ist Docker\footnote{https://www.docker.com/}. Docker hat jedoch einige Nachteile.
 So ist Docker beispielsweise per default nicht rootless \parencite{docker:rootless}.
 Das bedeutet, dass ein in einem Container gestarteter Prozess als root user
-auch auf dem Host system unter der gleichen Benutzer läuft. Wenn jetzt also
+auch auf dem Host system unter dem gleichen Benutzer läuft. Wenn jetzt also
 der Prozess aus der Containerisolation ausbricht\footnote{Dies kann beispielsweise durcheine Sicherheitslücke passieren}
 ist er auch auf dem Hostsystem root \parencite{so_2020}.
 Zudem ist Docker an einen Damon gebunden, der im Hintergrund läuft.
