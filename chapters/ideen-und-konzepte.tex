@@ -83,10 +83,39 @@ Architektur zu verwenden und diese dann zu erweitern, wenn es nötig wird:
     if you really need them in future. \cite{microservice-shared-db}
 }
 
-\section{Frontend und Backend Kommunikation}
+\section{Entwurf der Applikationsschnittstelle}
 \label{konzepte:api-kommunikation}
 
-TODO: unsere Idee erläutern: Mqtt-db-api-web
+Die zu implementierende Applikation muss Datentechnisch zwei Anforderungen erfüllen.
+Die Stromzählerdaten müssen gemäss Auftrag via \ac{MQTT} empfangen werden
+und auf irgendeine Weise dem Endbenutzer dargestellt werden.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{gfx/scmic-high-level-arch}
+    \caption{
+        Visualisierung der Grobarchitektur und des Datenflusses in der Applikation
+    }
+    \label{fig:high-level-arch}
+\end{figure}
+
+Die Architekturidee ist, die Applikation in grob in drei Hauptteile zu unterteilen (Abbildung \ref{fig:high-level-arch}):
+
+\begin{itemize}
+    \item \texttt{dataingress}: Bietet eine Schnittstelle für die Stromzähler an, damit die von ihnen gesendeten Daten
+        empfangen werden können.
+    \item \texttt{api}: Stellt eine Schnittstelle zur verfügung über die Endbenutzer die Stromzählerdaten abfragen können.
+    \item \texttt{datenbank}: Dient als indirekte Schnittstelle zwischen \texttt{dataingress} und \texttt{api}.
+\end{itemize}
+
+Dadurch, dass der dataingress nur in die Datenbank schreibt und die api nur lesend auf die Stromzählerdaten zugreift\footnote{
+    Die api greift zwar bei der Erstellung der Labels schreibend auf die Datenbank zu, jedoch nicht auf von den
+    Stromzählern gesendeten Daten.
+},
+kann die Datenbank gut als Schnittstelle zwischen den beiden Komponenten verwendet werden.
+
+\subsection{Front- und Backend Schnittstelle}
+
 Dass die Datenübertragung zwischen Frontend und Backend mittels \ac{API} abstrahiert
 wird, ist heutzutage Standard. Diese Abstraktion hat viele Vorteile.
 Dadurch können beispielsweise in Zukunft Automatisierungsscript geschrieben werden,
