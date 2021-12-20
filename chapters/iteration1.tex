@@ -85,7 +85,7 @@ damit die Messdaten der Stromzähler empfangen und in die Datenbank abgespeicher
 Python bietet für jedes dieser Anforderungen gleich mehrere Frameworks an. Mit Python können sehr
 schnell Prototypen erstellt werden. Es eignet sich aber auch für grosse Produktivsoftware.
 Einige der wohl Bekanntesten Programme wie YouTube, Instagram, Spotify oder Reddit sind
-in Python geschrieben. \cite{popular_python_sw}
+in Python geschrieben \parencite{popular_python_sw}.
 
 Bei der Implementation des Frontends wurde wie in Kapitel \ref{state:frontend} beschrieben
 anhand der State of Js Umfragen React\footnote{https://reactjs.org/} verwendet.
@@ -158,7 +158,7 @@ Damit die Arbeit von Frontend und Backend aufgeteilt werden kann, wurde zuerst
 die \ac{API} Schnittstelle definiert. Für die Implementierung im Backend
 stand die Entscheidung zwischen Flask\footnote{https://flask.palletsprojects.com/en/2.0.x/}
 und FastAPI\footnote{https://fastapi.tiangolo.com/}.
-Flask ist ein simples Web Framework mit dem \ac{API}s aber auch Server Side Rendering \cite{flask_server_side}
+Flask ist ein simples Web Framework mit dem \ac{API}s aber auch Server Side Rendering \parencite{flask_server_side}
 gemacht werden kann. FastAPI ist ein typisiertes Framework das darauf spezialisiert ist
 \ac{REST} \ac{API}s zu implementieren. FastAPI ist ähnlich aufgebaut wie Flask aber auf den
 \ac{API} Bereich spezialisiert. Die Dokumentation wird auch automatisch generiert.
@@ -208,7 +208,7 @@ kann das Web Frontend unabhängig vom Verarbeiten der \ac{MQTT} Daten gemacht we
 Wie alle Python Komponenten dieses Projektes wird auch das Backend \ac{API}
 als Python Poetry\footnote{https://python-poetry.org/} Projekt implementiert.
 Poetry verbessert das Paketmanagement von Python erheblich gegenüber Setuptools
-und pip. \cite{python_poetry}
+und pip \parencite{python_poetry}.
 Dadurch ist es auch einfacher die Applikation als Container zu bauen und
 damit einen reproduzierbaren Build zu garantieren.
 
