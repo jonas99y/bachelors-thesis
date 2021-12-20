@@ -24,14 +24,14 @@ Mit \ac{TLS} können drei Sachen erreicht werden \parencite{what_is_tls}:
 
 Erreicht wird dies, durch SSL Zertifikate \parencite{what_is_ssl_certificate}. Diese sind auf dem Server
 installiert und werden durch eine \ac{CA} ausgestellt \parencite{what_is_ca}.
-Dadurch wird die Authentifizierung eines Servers sichergestellt. Grundsätzlich kann man sich das
-so vorstellen, dass eine \ac{CA} eine vertrauenswürdige Stelle\footnote{
+Dadurch wird die Authentifizierung eines Servers sichergestellt.
+Diese \ac{CA} ist eine vertrauenswürdige Stelle\footnote{
     Beispielsweise Letsencrypt \parencite{letsencrypt_2021}
-} sicherstellt, dass eine Domäne wirklich dieser Person gehört die das auch behauptet.
+} welche sicherstellt, dass eine Domäne wirklich dieser Person gehört die das auch behauptet.
 Um \ac{TLS} Verschlüsselung für die Entwicklung zu verwenden ist das jedoch nicht notwendig.
-Dann kann man mit sogenannten Self Signed Certificates arbeiten \parencite{self_signed_cert}.
-Der einzige Unterschied dabei ist, dass keine \ac{CA} das Zertifikat signiert, sondern, dass man
-dies selber tut. In diesem Projekt wurde für die automatische Erstellung eines solchen
+Dann kann mit sogenannten Self Signed Certificates gearbeitet werden \parencite{self_signed_cert}.
+Der einzige Unterschied dabei ist, dass keine \ac{CA} das Zertifikat signiert, sondern, dass
+dies selbst gemacht werden muss. In diesem Projekt wurde für die automatische Erstellung eines solchen
 Zertifikates mkcert\footnote{https://github.com/FiloSottile/mkcert} verwendet.
 
 Die Konfiguration des \ac{MQTT} Brokers kann einfach aus der Anleitung \parencite{mosquitto.conf_man_page_2021}
@@ -49,6 +49,9 @@ Den Clients\footnote{
 } muss danach nur noch gesagt werden welcher \ac{CA} sie vertrauen können.
 In diesem fall, ist dies ein Self Signed Certificate namens \texttt{rootCA.pem} das mittels
 mkcert generiert wurde.
+
+\subsection{Labeling}
+Kurz Ziel des labelings erklären und bezug auf stadnd er technik nehmen
 
 \subsection{Benutzerschnittstelle}
 % \subsection{Labeling}
