@@ -75,10 +75,9 @@ Labelerstellung und zum anderen, ob die \ac{TLS} Verschlüsselung funktioniert (
 \end{figure}
 
 \subsection{Schwierigkeiten}
-
-Obwohl die Implementierung von \ac{TLS} sehr einfach ist, akzeptierte die paho \ac{MQTT} Python
-Libarary unser mit mkcert generiertes Zertifikat nicht.
-Nach einiger Recherche, zeigte sich, dass paho ein unübliches \ac{TLS}
+Die Python Library `paho`, welche für die \ac{MQTT} Kommunikation verwendet wird, so zu konfigurieren, 
+dass sie die \ac{TLS} Verschlüsselung unterstützt, stellte sich als Schwierigkeit heraus.
+Nach einiger Recherche, zeigte sich, dass `paho` ein unübliches \ac{TLS}
 Verhalten aufweist \parencite{eclipse_paho_ssl_2019}.
 Nachdem der Parameter \texttt{cert\_reqs=ssl.CERT\_NONE} gesetzt wurde, funktionierte
-die \ac{TLS} verschlüsselung dann auch.
+die \ac{TLS} Verschlüsselung dann auch.
