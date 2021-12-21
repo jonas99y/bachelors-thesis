@@ -2,19 +2,25 @@
 \label{methoden}
 Für dieses Projekt wurde zu Beginn ein agiles Vorgehen gewählt.
 Der Grund dafür war, dass das genaue Projektziel noch nicht klar definiert werden konnte.
-Als erstes sollte eine minimaler Prototyp erarbeitet werden. In der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) wurden dafür folgende Aufforderungen definiert:
+Als erstes sollte eine minimaler Prototyp erarbeitet werden.
+In der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) wurden dafür folgende Aufforderungen definiert:
 \begin{itemize}
-    \item Visualisierung des Spannungsverlaufs (drei Phasen) eines Stromzählers
-          basierend auf gespeicherten Messdaten.
-    \item Empfangen (TLS Verschlüsselung) und abspeichern von Messdaten (Spannung über drei Phasen) und
-          Zeitstempel mittels MQTT.
-    \item Bereitstellen von virtuellen Stromzählern, welche mittels MQTT Messdaten
-          übermitteln.
+      \item Visualisierung des Spannungsverlaufs (drei Phasen) eines Stromzählers
+            basierend auf gespeicherten Messdaten.
+      \item Empfangen (TLS Verschlüsselung) und abspeichern von Messdaten (Spannung über drei Phasen) und
+            Zeitstempel mittels MQTT.
+      \item Bereitstellen von virtuellen Stromzählern, welche mittels MQTT Messdaten
+            übermitteln.
 \end{itemize}
 Nach ca. einem Drittel der Projektzeit wurde das erarbeitete dem Auftraggeber vorgeführt und die implementierten Funktionalitäten demonstriert.
 Gemeinsam mit dem Auftraggeber wurden danach die Anforderungen für die nächste Iteration definiert.
 Diese Prinzip wurde noch ein weiteres mal durchgeführt.
 Gegen Ende der Projektzeit wurde das Endresultat vom Projektteam präsentiert und eine letzte Rückmeldung von Auftraggeber eingeholt.
+
+
+Hinweis: In diesem, sowie in den folgenden Kapiteln, ist mit der Bezeichnung ``Auftraggeber``
+jeweils Ronny Milani gemeint. 
+Er arbeitet bei der Landis+Gyr AG (der eigentlichen Auftraggeberin) und fungierte für das Projektteam als Ansprechperson.
 
 % Aus Aufbau_Bericht.pdf
 % Hier halten Sie fest und begründen, welches Vorgehensmodell Sie für Ihr Projekt wählen. Sie
@@ -26,7 +32,7 @@ Gegen Ende der Projektzeit wurde das Endresultat vom Projektteam präsentiert un
 % Einsatz von Review-Techniken (Architektur-Reviews) oder bekannter Programmiertechniken sein.
 
 Die folgenden Abschnitte erläutern weitere Methoden welche für ein Softwareentwicklungsprojekt
-wichtig sind und wie sie für dieses Projekt angewendet wurden.
+wichtig sind und wie sie für dieses Projekt DD wurden.
 
 
 \section{Teststrategie}
@@ -37,20 +43,20 @@ aus Versehen andere Funktionalität beeinträchtigt, werden automatisierte
 End to End Tests erstellt. Bei End to End Tests werden die Tests möglichst
 so ausgeführt wie die Applikation auch produktiv betrieben wird \parencite{georgian_2021}.
 Diese Tests wurden Behaviour Driven implementiert.\footnote{
-    Behavior-driven development (BDD) is an Agile software development methodology
-    in which an application is documented and designed around the behavior a user
-    expects to experience when interacting with it \parencite{what_is_bdd}.
+      Behavior-driven development (BDD) is an Agile software development methodology
+      in which an application is documented and designed around the behavior a user
+      expects to experience when interacting with it \parencite{what_is_bdd}.
 }  Die Tests wurden anhand der Anforderungen \ref{aufgabenstellung}
 und User Stories in der Gherking Sprache\footnote{https://cucumber.io/docs/gherkin/reference/} implementiert.
 Es wurde bewusst darauf verzichtete, einzelne Komponenten mittels Unit Tests zu testen.
 Diese hat zwei Gründe:
 \begin{itemize}
-    \item Bei der Software handelt es sich um einen Prototypen.
-          Sie ist nicht für den produktiven Betrieb ausgelegt.
-          Aufgrund des iterativen Vorgehens ist auch damit zu rechnen, dass sich teile des Codes oft verändern.
-          Das pflegen von Unit Tests hätte zu viel Zeit in anspruch genommen.
-    \item Es werden keine eigenen Algorithmen oder komplexe Funktionen implementiert.
-          Deswegen wurde der Code als trivial eingeschätzt und Unit Test nicht für nötig befunden.
+      \item Bei der Software handelt es sich um einen Prototypen.
+            Sie ist nicht für den produktiven Betrieb ausgelegt.
+            Aufgrund des iterativen Vorgehens ist auch damit zu rechnen, dass sich teile des Codes oft verändern.
+            Das pflegen von Unit Tests hätte zu viel Zeit in anspruch genommen.
+      \item Es werden keine eigenen Algorithmen oder komplexe Funktionen implementiert.
+            Deswegen wurde der Code als trivial eingeschätzt und Unit Test nicht für nötig befunden.
 \end{itemize}
 
 
@@ -72,8 +78,8 @@ Diese Arbeit wurde in \LaTeX geschrieben. Deren Quelldateien sind ebenfalls mit 
 Beide Projekte sind auf GitHub\footnote{https://github.com} abgelegt und können über diese Links abgerufen werden:
 
 \begin{itemize}
-    \item Das Softwareprojekt: \url{https://github.com/randombenj/hslu-wipro-smic}
-    \item Diese Arbeit: \url{https://github.com/randombenj/hslu-wipro-smic-doc}
+      \item Das Softwareprojekt: \url{https://github.com/randombenj/hslu-wipro-smic}
+      \item Diese Arbeit: \url{https://github.com/randombenj/hslu-wipro-smic-doc}
 \end{itemize}
 
 Beide Repositories sind unter der MIT Lizenz\footnote{https://opensource.org/licenses/MIT} veröffentlicht.
