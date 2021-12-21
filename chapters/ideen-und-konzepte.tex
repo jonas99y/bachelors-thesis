@@ -104,7 +104,8 @@ Die Architekturidee ist, die Applikation grob in drei Hauptteile zu unterteilen 
 \begin{itemize}
     \item \texttt{dataingress}: Bietet eine Schnittstelle für die Stromzähler an, damit die von ihnen gesendeten Daten
           empfangen werden können.
-    \item \texttt{api}: Stellt Endpunkte zur Verfügung über welche Stromzählerdaten abgefragt werden können.
+    \item \texttt{api}: Stellt Endpunkte zur Verfügung über welche Stromzählerdaten abgefragt und
+          danach im Frontend dargestellt werden können.
     \item \texttt{datenbank}: Dient als indirekte Schnittstelle zwischen \texttt{dataingress} und \texttt{api}.
 \end{itemize}
 
@@ -117,7 +118,7 @@ kann die Datenbank gut als Schnittstelle zwischen den beiden Komponenten verwend
 \subsection{Front- und Backend Schnittstelle}
 
 Dass die Datenübertragung zwischen Frontend und Backend mittels \ac{API} abstrahiert
-wird, ist heutzutage Standard. Diese Abstraktion hat viele Vorteile.
+wird, hat viele Vorteile.
 Dadurch können beispielsweise in Zukunft Automatisierungsscript geschrieben werden,
 welche die bereits für das Frontend zur Verfügung stehende \ac{API} verwenden.
 Zudem kann das Frontend unabhängig vom Backend entwickelt und getestet werden,

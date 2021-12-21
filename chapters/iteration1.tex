@@ -9,7 +9,7 @@ Damit Iteration 1 nicht viel grösser als die anderen ist. In Einleitung entspre
 \subsection{Verarbeitung und Visualisierung von Stromzählerdaten}
 
 
-%TODO: schriibe, was s ziel vo dere iteration isch
+%TODO: schriibe, was s ziel vo dere iteration isch (done)
 
 In einer ersten Iteration werden laut der Aufgabenstellung \ref{aufgabenstellung} Stromzähler
 Messdaten per \ac{MQTT} empfangen und in eine Datenbank gespeichert.
@@ -28,19 +28,19 @@ angezeigt.
 \subsection{Evaluation der Technologien}
 \label{p1:evaluation_tech}
 Die Evaluation der Technologien lässt sich grundsätzlich in Frontend und Backend unterteilen.
-Für das Projektteam war es wichtig, dass diese beiden Teile unabhängig von einander evaluiert und entwickelt werden können.
-Die Kommunikation zwischen beiden wird mit einer \ac{REST} \ac{API} realisiert, da dies in der Aufgabenstellung verlangt wird. TODO Verweis
+Für das Projektteam war es wichtig, dass diese beiden Teile unabhängig voneinander evaluiert und entwickelt werden können.
+Die Kommunikation zwischen beiden wird mit einer \ac{REST} \ac{API} realisiert, da dies in der Aufgabenstellung verlangt wird (Anhang \ref{anhang:aufgabenstellung}).
 
 \subsubsection{Benutzerschnittstelle}
 Vorgabe für die Benutzerschnittstelle war zu Beginn des Projektes lediglich,
-dass sie von mobilen Endgeräte, also Smartphones, abrufbar sein sollte.
+dass sie von mobilen Endgeräten, also Smartphones, abrufbar sein sollte.
 Dies lässt sich auf zwei Arten umsetzt:
 \begin{itemize}
     \item Eine App entwickeln, welche auf dem Gerät installiert werden kann.
     \item Eine Webseite entwickeln, welche vom Gerät aufgerufen werden kann.
 \end{itemize}
 Die Entscheidung fiel auf letztere Art, also eine Webseite.
-Die Gründe dazu sind:
+Dies aus folgenden Gründen:
 \begin{itemize}
     \item Das Projektteam hat in der Vergangenheit bereits Webseiten entwickelt.
           Diese Erfahrungen warne positiv und zeigten, dass so in geringer Zeit gute Resultate erreicht werden können.
@@ -90,18 +90,16 @@ schnell Prototypen erstellt werden. Es eignet sich aber auch für grosse Produkt
 Einige der wohl Bekanntesten Programme wie YouTube, Instagram, Spotify oder Reddit sind
 in Python geschrieben \parencite{popular_python_sw}.
 
-Bei der Implementation des Frontends wurde wie in Kapitel \ref{state:frontend} beschrieben
-anhand der State of Js Umfragen React\footnote{https://reactjs.org/} verwendet.
-Um nicht das ganze Benutzerinterface selber gestalten zu müssen, wurde eine Material Design\footnote{https://material.io/design}
-Library verwendet.
-
 Um die Applikation für die Entwicklung lokal aufzusetzen, zu testen oder zu Deployen wurde dazu
 Podman verwendet (Siehe Kapitel \ref{state:deployment}).
 
 
 \subsection{Systemarchitektur}
 \label{architekturentscheidung}
-TODO Aufschreiben, dass geplantes Konzept umgesetzt wurde, konkrete Technologien erwähnen.
+
+%TODO Aufschreiben, dass geplantes Konzept umgesetzt wurde, konkrete Technologien erwähnen.
+
+
 In dieser Arbeit wird keine Microservice Architektur im klassischen Sinne verwendet. (Siehe Kapitel \ref{konzepte:microservices})
 Die einzelnen Komponenten werden zwar in separaten Container deployt (Abbildung: \ref{fig:smic-arch})
 besitzen jedoch keine eigene Datenbank.
@@ -109,6 +107,8 @@ Das hat den Vorteil, dass weniger Overhead implementiert werden muss (mittels Me
 und das Datenbankschema kann zentral in der Datastore Library einmal definiert
 und dann in den verschiedenen Komponenten wiederverwendet werden.
 
+Die grundlegenden Ideen für diesen Architekturentscheid wurden bereits im
+Kapitel \ref{konzepte:api-kommunikation} behandelt.
 
 \begin{figure}[h]
     \centering
@@ -165,7 +165,7 @@ Flask ist ein simples Web Framework mit dem \ac{API}s aber auch Server Side Rend
 gemacht werden kann. FastAPI ist ein typisiertes Framework das darauf spezialisiert ist
 \ac{REST} \ac{API}s zu implementieren. FastAPI ist ähnlich aufgebaut wie Flask aber auf den
 \ac{API} Bereich spezialisiert. Die Dokumentation wird auch automatisch generiert.
-FastAPI eignet sich perfekt um die \ac{API} zwischen Frontend und Backend zu implementieren.
+FastAPI eignet sich somit perfekt um die \ac{API} zwischen Frontend und Backend zu implementieren.
 
 \begin{figure}[h]
     \centering
@@ -237,11 +237,6 @@ Die Daten der Stromzähler werden per \ac{MQTT} an den Broker gesendet. \ref{sta
 Der Dataingress (ebenfalls ein Python Poetry projekt) registriert sich dann auf die von
 den Stromzählern gesendeten Events und arbeitet diese ab. Das Empfangen und Abarbeiten, bzw.
 in die Datenbank schreiben wird von unterschiedlichen internen Komponenten übernommen.
-Beim Abarbeiten wird zudem, falls ein Datensatz nicht prozessiert werden kann dies noch
-einmal versucht. Beispielsweise kann die Datenbank noch nicht bereit sein.\footnote{
-    Das kann beispielsweise passieren, wenn die Datenbank neu gestartet wird nach einem update.
-}
-Dadurch soll möglichst verhindert werden, dass eingehende Messdaten verloren gehen.
 
 Auch der Dataingress verwendet die Datastore Python Library. Dies stellt sicher,
 dass die \ac{API} und der Dataingress das gleiche Datenbankformat verwenden da
@@ -257,7 +252,7 @@ die Datenbank ja zwischen den beiden Applikationen geteilt ist.
     \label{fig:dataingress-sequence-no-err}
 \end{figure}
 
-Im Sequenzdiagramm des Dataingress (Abbildung \ref{fig:dataingress-sequence}) wird aufgezeigt
+Im Sequenzdiagramm des Dataingress (Abbildung \ref{fig:dataingress-sequence-no-err}) wird aufgezeigt
 wie \ac{MQTT} Messages vom Dataingress abgearbeitet werden.
 Die Messages müssen zuerst \ac{JSON} deserialisiert werden, um in Python
 gebraucht zu werden. Danach werden die Messdaten und allenfalls der
@@ -275,7 +270,7 @@ Daten bei physikalischen Geräten nur in Echtzeit und nicht schneller übertrage
 Durch diesen "Fakemeter" konnten Daten mehrerer Tage innert weniger Sekunden oder Millisekunden
 an das Backend (den Dataingres \ref{fig:dataingress-sequence}) gesendet werden.
 
-Der Stromzählersimulatof verfügt sowohl über eine Python Schnittstelle als auch über
+Der Fakemeter verfügt sowohl über eine Python Schnittstelle als auch über
 ein Command Line Interface. Dies ist besonders während der Entwicklung nützlich:
 
 \begin{verbatim}
@@ -283,7 +278,7 @@ poetry run fakemeter --meter-serial METER_SERIAL \
   VOLT_1 VOLT_2 VOLT_3
 \end{verbatim}
 
-Eine detailiertere Anleitung für den Fakemeter kann im Anhang \ref{anhang:readme-fakemeter}
+Eine detailliertere Anleitung für den Fakemeter kann im Anhang \ref{anhang:readme-fakemeter}
 gefunden werden.
 
 \subsection{Verifikation}
@@ -308,7 +303,7 @@ beschränkt automatisierte Fehlerreports. Das heisst, wenn ein Test fehlschlägt
 des Fehlers nicht gleich anhand des Testlogs gesehen werden.
 Aus diesem Grund wurden die Tests danach auf pytest-bdd\footnote{https://pytest-bdd.readthedocs.io/en/latest/}
 migriert. Das auf pytest\footnote{https://docs.pytest.org/en/6.2.x/} basierende \ac{BDD} Framework
-bietet sehr gute Fehlerlogs. Dadurch wird das Finden und vor allem das Fixen von Fehlern
+bietet sehr gute Fehlerlogs. Dadurch wird das Finden und vor allem das Beheben von Fehlern
 um einiges vereinfacht.
 
 Das Ausführen dieser Tests wurde danach unserer \ac{CI/CD} Pipeline hinzugefügt (Abbildung \ref{fig:test-iteration-1}).
