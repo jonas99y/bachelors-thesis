@@ -39,12 +39,12 @@ In diesem Kapitel werden grundlegende Design- und Architekturideen sowie gängig
 \label{konzepte:microservices}
 
 Bereits von Anfang an war klar, dass die einzelnen Komponenten unabhängig voneinander
-entwickelt werden sollten oder dies die Architektur zumindest zulässt. Dazu wurde
+entwickelt werden sollten oder dies die Architektur zumindest zulassen muss. Dazu wurde
 eine Mikroservice Architektur in Betracht gezogen.
 
 Bei einer solchen Architektur werden die einzelnen unabhängigen Komponenten
 einer Software\footnote{
-    In diesem fall könnte das beispielsweise die Datenverarbeitung via MQTT
+    In diesem Fall könnte das beispielsweise die Datenverarbeitung via MQTT
     von den \ac{IoT} Geräten und das Web Frontend sein.
 } in verschiedene kleinere Komponenten unterteilt.
 Diese Komponenten können danach unabhängig voneinander entwickelt und
@@ -55,7 +55,7 @@ eingesetzt. Wichtig dabei ist auch, dass die Datenschemen der einzelnen
 Microservices unabhängig voneinander sind. Das heisst, jeder Microservice
 besitzt eine eigene Datenbank. \parencite{microservices}
 Um die einzelnen Komponenten danach unabhängig voneinander releasen zu
-können, werden häufig Container basierte Deployments verwendet.\footnote{
+können, werden häufig container-basierte Deployments verwendet.\footnote{
     Wie beispielsweise Docker oder Podman.
 }
 Diese Deployments werden danach meist auf einen Orchestrator wie Kubernetes
@@ -68,7 +68,7 @@ machen diese Art von Architektur sehr beliebt, vor allem bei grösseren Applikat
 
 Der Gegensatz zu Microservices ist eine monolithische Architektur. Bei einer
 solchen (klassischen) Architektur werden die Komponenten zusammen in einer
-Softwareeinheit gekapselt und auch zusammen Deployt.
+Softwareeinheit gekapselt und auch zusammen deployt.
 Dabei wird meist auch nur eine einzelne Datenbank gebraucht, die von den
 Applikationskomponenten verwendet wird.
 
@@ -103,7 +103,7 @@ Die Architekturidee ist, die Applikation grob in drei Hauptteile zu unterteilen 
 \begin{itemize}
     \item \texttt{dataingress}: Bietet eine Schnittstelle für die Stromzähler an, damit die von ihnen gesendeten Daten
           empfangen werden können.
-    \item \texttt{api}: Stellt Endpunkte zur Verfügung über welche Stromzählerdaten abgefragt und
+    \item \texttt{api}: Stellt Endpunkte zur Verfügung, über welche Stromzählerdaten abgefragt und
           danach im Frontend dargestellt werden können.
     \item \texttt{datenbank}: Dient als indirekte Schnittstelle zwischen \texttt{dataingress} und \texttt{api}.
 \end{itemize}
@@ -125,7 +125,7 @@ wenn eine \ac{API} im Vorhinein definiert wurde.
 
 Es gibt zahlreiche Technologien, um eine solche \ac{API} Abstraktion zu implementieren.
 Die wohl beliebteste und am weitesten verbreitete Technologie um Frontend und Backend
-Kommunikation via \ac{API} umzusetzen ist \ac{REST}.
+Kommunikation via \ac{API} umzusetzen, ist \ac{REST}.
 \ac{REST} ist sehr einfach umzusetzen, und wird von allen namhaften Frameworks und
 Programmiersprachen unterstützt.
 

@@ -3,10 +3,10 @@
 Wie bereits nach der ersten Iteration wurde dem Auftraggeber auch nach der zweiten Iteration
 anhand einer kurzen Demonstration der Entwicklungsstand präsentiert.
 
-Folgende Punkte sind bei dabei rückgemeldet worden:
+Folgende Punkte sind dabei rückgemeldet worden:
 \begin{itemize}
-    \item Die für Desktops optimiert Benutzerschnittelle entspricht den Vorstellungen und wirkt intuitiv.
-    \item Da vom Auftraggeber keine echten \ac{THD} Werte zur Verfügung gestellt werden können,
+    \item Die für Desktops optimiert Benutzerschnittstelle entspricht den Vorstellungen und wirkt intuitiv.
+    \item Da vom Auftraggeber keine echten \ac{THD}-Werte zur Verfügung gestellt werden können,
           können diese weggelassen werden.
     \item Die Applikation soll um den in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) beschrieben Use Case:
           ``Eine benutzerdefinierte Zeitspanne der Messwerte mittels vorgegebener
@@ -53,11 +53,11 @@ Mit dem `ADD` Knopf wird das neue Label an die \ac{API} übermittelt und dort ab
 Alle vorhandenen Labels werden als farbige Balken auf die Graphen gezeichnet.
 Jedem Label-Typ wird dazu von der \ac{API} eine eigene Farbe zugewiesen.
 In Abbildung \ref{fig:view_label} sind zwei Labels ersichtlich.
-Um mehr Informationen über die Labels zu erhalten kann bei der `Label mode` Komponente auf der linken Seite von
+Um mehr Informationen über die Labels zu erhalten, kann bei der `Label mode` Komponente auf der linken Seite von
 `New` auf `View` gewechselt werden.
 Wird nun ein Label angeklickt,
 erscheinen einige Informationen über das Label sowie eine Möglichkeit dieses zu löschen.
-Um danach erneut Labels zu erstellen, muss der Modus wider auf `New` gewechselt werden.
+Um danach erneut Labels zu erstellen, muss der Modus wieder auf `New` gewechselt werden.
 
 
 
@@ -94,7 +94,7 @@ sowie gewähltem Label mitgeschickt werden.
 Ermöglicht das Löschen einer zuvor erstellten Label-Zuordnung.
 
 Die aufgeführten Endpunkte führen einfache Schreib- und Lesezugriffe auf die Datenbank aus.
-Labels und Label-Zuweisungen in dieser Iteration neu zur Datenbank hinzugefügt worden.
+Labels und Label-Zuweisungen sind in dieser Iteration neu zur Datenbank hinzugefügt worden.
 Das vollständige Schema der Datenbank wird in Kapitel \ref{rel:db} beschrieben.
 
 
@@ -111,15 +111,15 @@ Mit \ac{TLS} können drei Sachen erreicht werden \parencite{what_is_tls}:
     \item \texttt{Integrität}: Verifiziert, dass gesendete Daten auf dem Sendeweg nicht durch Dritte geändert worden sind.
 \end{itemize}
 
-Erreicht wird dies, durch SSL Zertifikate \parencite{what_is_ssl_certificate}. Diese sind auf dem Server
+Erreicht wird dies durch SSL Zertifikate \parencite{what_is_ssl_certificate}. Diese sind auf dem Server
 installiert und werden durch eine \ac{CA} ausgestellt \parencite{what_is_ca}.
 Dadurch wird die Authentifizierung eines Servers sichergestellt.
 Diese \ac{CA} ist eine vertrauenswürdige Stelle\footnote{
     Beispielsweise Letsencrypt \parencite{letsencrypt_2021}
-} welche sicherstellt, dass eine Domäne wirklich dieser Person gehört die das auch behauptet.
+}, welche sicherstellt, dass eine Domäne wirklich der Person gehört die das auch behauptet.
 Um \ac{TLS} Verschlüsselung für die Entwicklung zu verwenden ist das jedoch nicht notwendig.
-Dann kann mit sogenannten Self Signed Certificates gearbeitet werden \parencite{self_signed_cert}.
-Der einzige Unterschied dabei ist, dass das Zertifikat nicht durch eine \ac{CA} signiert wird, sondern, dass
+Hier kann mit sogenannten Self Signed Certificates gearbeitet werden \parencite{self_signed_cert}.
+Der einzige Unterschied dabei ist, dass das Zertifikat nicht durch eine \ac{CA} signiert wird, sondern dass
 dies selbst gemacht werden muss. In diesem Projekt wurde für die automatische Erstellung eines solchen
 Zertifikates mkcert\footnote{https://github.com/FiloSottile/mkcert} verwendet.
 
@@ -135,8 +135,8 @@ keyfile /localhost+4-key.pem
 Den Clients\footnote{
     In diesem fall ist das der Dataingress die Daten verarbeitet und die verschiedenen
     Stromzähler welche die Daten senden.
-} muss danach nur noch gesagt werden welcher \ac{CA} sie vertrauen können.
-In diesem fall ist dies ein Self Signed Certificate namens \texttt{rootCA.pem} das mittels
+} muss danach nur noch gesagt werden, welcher \ac{CA} sie vertrauen können.
+In diesem Fall ist dies ein Self Signed Certificate namens \texttt{rootCA.pem}, das mittels
 mkcert generiert wurde.
 
 \subsection{Verifikation}
@@ -157,8 +157,8 @@ Labelerstellung und zum anderen, ob die \ac{TLS} Verschlüsselung funktioniert (
 \subsection{Schwierigkeiten}
 Die Python Library `paho`, welche für die \ac{MQTT} Kommunikation verwendet wird, so zu konfigurieren,
 dass sie die \ac{TLS} Verschlüsselung unterstützt, stellte sich als Schwierigkeit heraus.
-Nach einiger Recherche, zeigte sich, dass `paho` ein unübliches \ac{TLS}
+Nach einiger Recherche zeigte sich, dass `paho` ein unübliches \ac{TLS}
 Verhalten aufweist \parencite{eclipse_paho_ssl_2019}.
 Nachdem der Parameter \texttt{cert\_reqs=ssl.CERT\_NONE} gesetzt wurde, funktionierte
 die \ac{TLS} Verschlüsselung dann auch.
-Somit konnte zum Schluss der Iteration auch die letzte, noch offene, Anforderung erfüllt werden.
+Somit konnte zum Schluss der Iteration auch die letzte noch offene Anforderung erfüllt werden.

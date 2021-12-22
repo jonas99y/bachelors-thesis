@@ -4,18 +4,18 @@
 % Dies ist das Hauptkapitel Ihrer Arbeit! Hier wird die Umsetzung der eigenen Ideen und Konzepte
 % (Kapitel 3) anhand der gewählten Methoden (Kapitel 4) beschrieben, inkl. der dabei aufgetretenen
 % Schwierigkeiten und Einschränkungen.
-Die Realisierung lässt sich in drei Iteration unterteilen.
+Die Realisierung lässt sich in drei Iterationen unterteilen.
 In der ersten Iteration werden grundlegende Entscheidungen getroffen und die Basis der Arbeit implementiert.
 Am Ende der ersten Iteration existiert ein Prototyp,
 welcher bei allen Komponenten des System über die minimalen Funktionen verfügt.
-Wie im Kapitel \ref{methoden} Methoden beschrieben, folgen darauf zwei weitere Iteration,
-in welche neue Anforderungen des Auftraggebers umgesetzt werden.
+Wie im Kapitel \ref{methoden} Methoden beschrieben, folgen darauf zwei weitere Iterationen,
+in welchen neue Anforderungen des Auftraggebers umgesetzt werden.
 
-Über das Vorgehen während dieser drei Iteration wird in den folgenden Passagen berichtet.
+Über das Vorgehen während dieser drei Iterationen wird in den folgenden Passagen berichtet.
 Einige Aspekte der Realisierung, bspw. das Datenbankschema,  wurden bewusst nicht in diese Passagen integriert,
 da sie sich über die Iteration hinweg erstrecken,
 die Veränderungen über die Iteration hinweg jedoch nicht weiter relevant sind.
-Über diese wird zu Schluss dieses Kapitels berichtet.
+Über diese wird am Schluss dieses Kapitels berichtet.
 
 \input{chapters/iteration1}
 \newpage
@@ -26,8 +26,8 @@ die Veränderungen über die Iteration hinweg jedoch nicht weiter relevant sind.
 
 \subsection{Datenbankschema}
 \label{rel:db}
-Gleich zu beginn des Projektes wurde das Datenbankschema erstellt.
-Dies gibt eine gute Übersicht ob die für das Projekt benötigten Daten
+Gleich zu Beginn des Projektes wurde das Datenbankschema erstellt.
+Dies gibt eine gute Übersicht, ob die für das Projekt benötigten Daten
 abgespeicher werden können. In diesem Fall sind das die Messwerte der Stromzähler
 und die Labels des Benutzers.
 
@@ -46,23 +46,17 @@ Anforderungen zu erfüllen.
 Wie in Abbildung \ref{fig:smic-db} dargestellt, können in der Datenbank
 die Verschiedenen Stromzähler mit ihrer Seriennummer abgespeichert werden.
 Beispielsweise wird pro Haushalt ein Stromzähler mit einer bestimmten
-Seriennummer abgespeichert, sobald dieser zum ersten mal Daten sendet.
+Seriennummer abgespeichert, sobald dieser zum ersten Mal Daten sendet.
 Ein solcher Stromzähler sendet danach einzelne Messdaten zu bestimmten
 Zeitpunkten. Die Messdaten beinhalten neben der Messzeit die drei Iteration
 und wie viel Leistung gebraucht wurde.
 
-Damit danach abgespeichert werden kann zu welcher Zeit beispielsweise ein
+Damit danach abgespeichert werden kann, zu welcher Zeit beispielsweise ein
 Toaster gelaufen ist, werden Labels erstellt. Ein solches Label hat eine
 Bezeichnung und kann verschiedene Annotationen beinhalten.
 Eine Annotation ist immer von einem bestimmten Stromzähler und kann implizit mehrere
 Messdaten beinhalten. Dies wird über eine Start- und Endzeit abgespeichert.
 Durch diese Struktur können danach einfach Auswertungen der Labels über mehrere
 Stromzähler und Messpunkte gemacht werden.
-
-
-Die zu visualisierenden Daten sind jeweils Messwerte von Spannung oder Leistung zu einem bestimmten Zeitpunkt.
-Da diese Daten nur dann aussagekräftig und interessant sind, wenn sie in zeitliche Abfolge dargestellt sind.
-Deshalb wurden Liniendiagramme gewählt. Ein Vortiel dieser ist, dass sicht verschiedene Werte, bspw. die drei Spannungswerte der verschiedenen Iteration
-gleichzeitig dargestellt werden können. TODO Bild
 
 

@@ -37,10 +37,10 @@ sondern bspw. von einem Head End System\footnote{https://openei.org/wiki/Definit
 \label{state:mqtt}
 
 \ac{MQTT} ist ein Nachrichtenprotokoll das speziell für \ac{IoT} Geräte entwickelt wurde.
-Dies aus dem Grund da es sehr klein ist und somit wenig Speicher benötigt und zudem
+Dies weil es sehr klein ist und somit wenig Speicher benötigt und zudem
 nicht viel Rechenleistung beansprucht.
 Ein zentraler Bestandteil dieses Nachrichtenprotokolls ist der sogenannte "Broker".
-Alle Teilnehmer verbinden sich mit diesem Broker (Abildung \ref{fig:mqtt}) und Senden/Empfangen Nachrichten
+Alle Teilnehmer verbinden sich mit diesem Broker (Abbildung \ref{fig:mqtt}) und Senden/Empfangen Nachrichten
 für verschiedene Themen \parencite{mqtt}.
 
 \begin{figure}[H]
@@ -56,7 +56,7 @@ Die \ac{MQTT} Technologie wurde bereits in der Aufgabenstellung (Anhang \ref{anh
 nicht die konkrete Implementation.
 
 Es gibt zahlreiche \ac{MQTT} Broker Implementationen\footnote{https://mqtt.org/software/}.
-Einige namhafte sind EMQX\footnote{https://docs.emqx.io/en/broker/v4.3/} und mosquitto\footnote{https://mosquitto.org/}.
+Zu den bekanntesten zählen EMQX\footnote{https://docs.emqx.io/en/broker/v4.3/} und mosquitto\footnote{https://mosquitto.org/}.
 Mosquitto ist von Eclipse entwickelt und bietet vom selben Hersteller auch eine
 Python client library (phao) an\footnote{https://github.com/eclipse/paho.mqtt.python}.
 Beide Broker können einfach in ein Deployment per Container integriert werden\footnote{https://github.com/emqx/emqx\#installing-via-emq-x-docker-image}$^{,}$\footnote{https://hub.docker.com/\_/eclipse-mosquitto}.
@@ -64,9 +64,9 @@ Beide Broker können einfach in ein Deployment per Container integriert werden\f
 \section{Backend Stack}
 \label{state:backend}
 
-Um Daten (in diesem Fall Stromzählerdaten) zu empfangen, verarbeiten und abzuspeichern
+Um Daten (in diesem Fall Stromzählerdaten) zu empfangen, zu verarbeiten und abzuspeichern
 wird eine Businesslogik benötigt. Diese Businesslogik stellt die Daten
-danach auch dem Frontend zur verfügung. Generell wird eine solche Applikation als \ac{CRUD} Applikation
+danach auch dem Frontend zur Verfügung. Generell wird eine solche Applikation als \ac{CRUD} Applikation
 bezeichnet \parencite{sulemani_2021} \parencite{johnston_2021}.
 Für solche \ac{CRUD} Applikationen gibt es unzählige Libraries in diversen Tech-Stacks.
 Einige populäre sind PHP (mit Laravel\footnote{https://laravel.com/}),
@@ -79,7 +79,7 @@ Python Flask/FastAPI\footnote{https://fastapi.tiangolo.com/}, Java spring\footno
 
 Damit die von einem Backend verarbeiteten Daten einen Wert für den Benutzer haben, müssen diese
 dem Benutzer angezeigt werden können. Zudem muss der Benutzer teilweise auch mit den
-Daten interagieren können, indem beispielsweise eine Zeitspanne angepasst wird in
+Daten interagieren können, indem beispielsweise eine Zeitspanne angepasst wird, in
 der gewisse Daten angezeigt werden \parencite{anokhina_2019}.
 
 Häuffig wird für das Darstellen dieser Daten ein Frontend Framework verwendet.
@@ -87,13 +87,14 @@ Ein solches Framework versucht gängige Architekturprobleme beim Anzeigen von Da
 zu lösen. Grundsätzlich sind die Ziele eines solchen Frameworks \parencite{do-i-need-a-frontend-fwk}:
 
 \begin{itemize}
-    \item Der Sourcecode soll wartbar sein: Andere Entwickler sollen ihn einfach lesen, ändern und testen können
-    \item Einzelne Komponenten des Benutzerinterfaces sollen einfach wiederverwendet werden können
-    \item Das Updaten des Benutzerinterfaces ist langsam, es sollten somit möglichst wenige updates gemacht werden
-    \item Das Benutzerinterface soll einfach anhand der Daten erstellt werden können
-    \item Ein gutes Benutzerinterface ist konsistent und intuitive; dies wird durch einheitliche Schrift, Farbe, Knöpfe und andere Elemente erreicht
+    \item Der Sourcecode soll wartbar sein: Andere Entwickler sollen ihn einfach lesen, ändern und testen können.
+    \item Einzelne Komponenten des Benutzerinterfaces sollen einfach wiederverwendet werden können.
+    \item Das Updaten des Benutzerinterfaces ist langsam, es sollten somit möglichst wenige updates gemacht werden.
+    \item Das Benutzerinterface soll anhand der Daten einfach erstellt werden können.
+    \item Ein gutes Benutzerinterface ist konsistent und intuitive; dies wird durch einheitliche Schrift, Farbe, Knöpfe und andere Elemente erreicht.
     \item Repetitive Arbeiten um häufige Probleme im Frontend Design zu läsen sollen vom Framework abgenommen werden.
-    \item Durch das Framework sollen Ideen in einer einheitlichen Sprache ausgedrückt werden, um mit anderen Entwicklern zusammenzuarbeiten,
+    \item Durch das Framework sollen Ideen in einer einheitlichen Sprache ausgedrückt werden,
+    um die Zusammenarbeit mit anderen Entwicklern zu erleichtern.
 \end{itemize}
 
 %\subsection{Web Frontend}
@@ -117,17 +118,17 @@ gebaut, getestet und ausgeliefert werden kann, können Container eingesetzt werd
 Das wohl bekannteste und am weitesten verbreitete Container Framework
 ist Docker\footnote{https://www.docker.com/}. Docker hat jedoch einige Nachteile.
 So ist Docker standardmässig nicht rootless \parencite{docker:rootless}.
-Das bedeutet, dass ein in einem Container gestarteter Prozess als root user
-auch auf dem Host System unter dem gleichen Benutzer läuft.
+Das bedeutet, dass ein in einem Container gestarteter Prozess als Root-User
+auch auf dem Hostsystem unter dem gleichen Benutzer läuft.
 Wenn jetzt also
-der Prozess aus der Containerisolation ausbricht\footnote{Dies kann beispielsweise durcheine Sicherheitslücke passieren}
-ist er auch auf dem Hostsystem root \parencite{so_2020}.
+der Prozess aus der Containerisolation ausbricht,\footnote{Dies kann beispielsweise durcheine Sicherheitslücke passieren}
+ist er auch auf dem Hostsystem Root \parencite{so_2020}.
 Zudem ist Docker an einen Damon gebunden, der im Hintergrund läuft.
-Dadurch werden alle Container neu gestartet wenn der Daemon neu gestartet werden muss \parencite{docker:daemon}.
+Dadurch werden alle Container neu gestartet, wenn der Daemon neu gestartet werden muss \parencite{docker:daemon}.
 Aus diesen Gründen wird vermehrt podman\footnote{https://docs.podman.io/en/latest/}
 als Container Engine eingesetzt.
-Podman ist rootless by default und erlaubt Daemonless Container.
-Zudem können multicontainer Projekte einfach mit Kubernetes Config files
+Podman ist Rootless-by-default und erlaubt Daemonless-Container.
+Zudem können Multicontainer-Projekte einfach mit Kubernetes-Config files
 erstellt werden \parencite{redhat:podman-pods}.
 
 \section{Supervised Learning}
@@ -138,7 +139,7 @@ Um Supervised Learning anzuwenden, wird ein Modell mit einem Datensatz trainiert
 Jeder Eintrag im Datensatz besteht aus mehreren Input-Variablen und einer Zielvariabel.
 Das trainierte Modell kann dann auf neue Daten, bei denen die Zielvariabel nicht bekannt ist, angewendet werden.
 Die Zielvariabel wird dann durch das Modell ermittelt.
-Ein Datensatz, welcher die Zielvariabel enthält wird als ``Labeled Data`` bezeichnet.
+Ein Datensatz, welcher die Zielvariabel enthält, wird als ``Labeled Data`` bezeichnet.
 Mit ``Label`` ist damit die Zielvariabel gemeint,
 welche den einzelnen Einträgen jeweils ein Label zuordnet \parencite{ml_for_dummies}.
 

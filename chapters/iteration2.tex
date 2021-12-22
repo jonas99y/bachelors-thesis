@@ -7,9 +7,9 @@ Dabei sind folgenden Rückmeldungen entstanden:
     \item Der Prototyp entspricht den Vorstellungen und erfüllt die definierten Anforderungen.
     \item Die Vorgabe, dass die Benutzerschnittstelle für Mobilgeräte ausgelegt sein soll, fällt weg.
           Sie soll neu für Desktop-Geräte optimiert werden.
-    \item Nebst Spannungswerten soll die Applikation auch Leistungs- und \ac{THD} Werte verarbeiten können.
+    \item Nebst Spannungswerten soll die Applikation auch Leistungs- und \ac{THD}-Werte verarbeiten können.
     \item Bisher wurden sämtliche Daten künstlich erstellt.
-          Diese sollen um echte Messwerte erweiter werden, welche von Auftraggeber zur Verfügung gestellt werden.
+          Diese sollen um echte Messwerte erweiter werden, welche vom Auftraggeber zur Verfügung gestellt werden.
     \item Die Benutzerschnittstelle soll um die Funktion erweitert werden,
           dass eine spezifische Zeitspanne ausgewählt werden kann.
 \end{itemize}
@@ -18,13 +18,13 @@ wie die erforderlichen Anpassungen an den einzelnen Teilen der Applikation vorge
 
 \subsection{\ac{MQTT} Datenverarbeitung}
 \label{i2:mqtt}
-Da neu auch die Leistungs- und \ac{THD} Werte der Stromzähler verarbeitet werden sollen, wurde
+Da neu auch die Leistungs- und \ac{THD}-Werte der Stromzähler verarbeitet werden sollen, wurde
 die \ac{MQTT} Datenverarbeitung angepasst. Der Dataingress erwartet nun, dass nebst
-den Spannungen der drei Phasen auch noch die Leistungs- und \ac{THD} Werte mitgeschickt werden.
+den Spannungen der drei Phasen auch noch die Leistungs- und \ac{THD}-Werte mitgeschickt werden.
 
 Um die neuen Daten abspeichern zu können, wurde auch das Datenbankschema entsprechend erweitert.
 Das vollständige Datenbankschema wird im Kapitel \ref{rel:db} aufgezeigt.
-Auch die bereits vorhandenen Tests mussten so angepasst, dass die neuen Daten
+Auch die bereits vorhandenen Tests mussten so angepasst werden, dass die neuen Daten
 mitgesendet werden.
 
 \begin{figure}[H]
@@ -44,9 +44,9 @@ Diese Verbindungsprobleme liessen sich auf die verwendete SQLite Datenbank zurü
 
 Es ist davon auszugehen, dass dieses Problem in einer Produktivumgebung mit einem Datenbanksystem wie PostgreSQL
 weniger auftreten würde.
-Der Code sollte jedoch auf den Fall, dass die Verbindung zur Datenbank nicht hergestellt werden kann, reagieren können,
+Der Code sollte jedoch auf den Fall, dass die Verbindung zur Datenbank nicht hergestellt werden kann, reagieren können
 und sicherstellen, dass keine Daten verloren gehen.
-Dazu wurde wie in Abbildung \ref{fig:dataingress-sequence} aufgezeigt
+Dazu wurde wie in Abbildung \ref{fig:dataingress-sequence} aufgezeigt,
 eine Fehlerbehandlung implementiert.
 Die empfangenen Daten der Stromzähler
 werden nun über einen Messagehandler abgearbeitet.
@@ -61,7 +61,7 @@ zur Verfügung. Damit diese echten Daten in das System eingelesen werden können
 wurde der Fakemeter noch um einen ``Batch Mode`` erweitert. Das heisst,
 er liest das bereitgestellte CSV File mit den Datensätzen ein und sendet die Daten in
 gewissen Zeitabständen. Dies soll das Verhalten eines echten Stromzählers
-möglichst realitätsnah Simulieren. 
+möglichst realitätsnah simulieren. 
 
 \begin{figure}
     \centering
@@ -80,13 +80,13 @@ wird in nächsten Abschnitt erläutert.
 
 
 \subsection{Benutzerschnittstelle}
-Um die neuen Anforderungen zur Benutzerschnittstelle zu erfüllen, musste diese neu Entworfen werden.
+Um die neuen Anforderungen zur Benutzerschnittstelle zu erfüllen, musste diese neu entworfen werden.
 Das Layout, welches bisher für Mobilgeräte ausgelegt war, konnte sehr einfach für Desktop-Geräte angepasst werden.
 In Abbildung \ref{fig:phase2-ui} ist dies zu sehen.
-Für die Auswahl eines Zeitintervalls wurden neuen Komponenten oberhalb des Graphen platziert.
-Die neuen Leitungs- und \ac{THD} Werte werden in separaten Graphen angezeigt und sind horizontal neben dem bestehenden Graphen angezeigt.
+Für die Auswahl eines Zeitintervalls wurden neue Komponenten oberhalb des Graphen platziert.
+Die neuen Leitungs- und \ac{THD}-Werte werden in separaten Graphen horizontal neben dem bestehenden Graphen angezeigt.
 Drei Checkboxen wurden neu hinzugefügt, um die Anzeige der einzelnen Graphen zu steuern.
-Ein Dropdown-Menu ermöglicht die Auswahl des Stromzählers, wessen Daten angezeigt werden.
+Ein Dropdown-Menu ermöglicht die Auswahl des Stromzählers, dessen Daten angezeigt werden.
 Diese Funktionalität wurde nicht explizit vom Auftraggeber gefordert, war jedoch für das manuelle Testen
 und das Demonstrieren der Anwendung sehr praktisch, da so unterschiedliche Daten angezeigt werden können.
 \begin{figure}[H]
@@ -103,12 +103,12 @@ Damit diese richtig funktionieren, musste auch die \ac{API} entsprechend erweite
 \begin{verbatim}
     GET /meters
 \end{verbatim}
-Gibt eine Liste aller in der Datenbank vorhandener Stromzähler zurück, so, dass diese für die Auswahl angezeigt werden.
+Gibt eine Liste aller in der Datenbank vorhandener Stromzähler zurück, so dass diese für die Auswahl angezeigt werden.
 \begin{verbatim}
     GET /meters/{meter_id}/measurements
 \end{verbatim}
 Im Body kann neu optional ein Zeitintervall angegeben werden.
-Zurückgeben werden dan alle Messungen des Zählers, welche währen des Intervals liegen.
+Zurückgegeben werden dann alle Messungen des Zählers, welche während des Intervals liegen.
 
 
 

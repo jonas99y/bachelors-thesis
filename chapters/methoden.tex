@@ -12,13 +12,13 @@ In der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) wurden dafür fol
       \item Bereitstellen von virtuellen Stromzählern, welche mittels MQTT Messdaten
             übermitteln.
 \end{itemize}
-Nach ca. einem Drittel der Projektzeit wurde das erarbeitete dem Auftraggeber vorgeführt und die implementierten Funktionalitäten demonstriert.
+Nach ca. einem Drittel der Projektzeit wurde das Erarbeitete dem Auftraggeber vorgeführt und die implementierten Funktionalitäten demonstriert.
 Gemeinsam mit dem Auftraggeber wurden danach die Anforderungen für die nächste Iteration definiert.
 Diese Prinzip wurde noch ein weiteres mal durchgeführt.
-Gegen Ende der Projektzeit wurde das Endresultat vom Projektteam präsentiert und eine letzte Rückmeldung von Auftraggeber eingeholt.
+Gegen Ende der Projektzeit wurde das Endresultat vom Projektteam präsentiert und eine letzte Rückmeldung vom Auftraggeber eingeholt.
 
 
-Hinweis: In diesem, sowie in den folgenden Kapiteln, ist mit der Bezeichnung ``Auftraggeber``
+Hinweis: In diesem sowie in den folgenden Kapiteln ist mit der Bezeichnung ``Auftraggeber``
 jeweils Ronny Milani gemeint.
 Er arbeitet bei der Landis+Gyr AG (der eigentlichen Auftraggeberin) und fungierte für das Projektteam als Ansprechperson.
 
@@ -31,7 +31,7 @@ Er arbeitet bei der Landis+Gyr AG (der eigentlichen Auftraggeberin) und fungiert
 % Bei einem Softwareprojekt können dies z.B. der geplante Einsatz einer Anforderungsanalyse, der
 % Einsatz von Review-Techniken (Architektur-Reviews) oder bekannter Programmiertechniken sein.
 
-Die folgenden Abschnitte erläutern weitere Methoden welche für ein Softwareentwicklungsprojekt
+Die folgenden Abschnitte erläutern weitere Methoden, welche für ein Softwareentwicklungsprojekt
 wichtig sind und wie sie für dieses Projekt angewendet wurden.
 
 
@@ -41,7 +41,7 @@ wichtig sind und wie sie für dieses Projekt angewendet wurden.
 Um sicherzustellen, dass das Projekt jederzeit funktioniert und keine Änderungen
 aus Versehen andere Funktionalität beeinträchtigt, werden automatisierte
 End to End Tests erstellt. Bei End to End Tests werden die Tests möglichst
-so ausgeführt wie die Applikation auch produktiv betrieben wird \parencite{georgian_2021}.
+so , wie die Applikation auch produktiv betrieben wird \parencite{georgian_2021}.
 Diese Tests wurden Behaviour Driven implementiert.\footnote{
       Behavior-driven development (BDD) is an Agile software development methodology
       in which an application is documented and designed around the behavior a user
@@ -49,14 +49,14 @@ Diese Tests wurden Behaviour Driven implementiert.\footnote{
 }  Die Tests wurden anhand der Anforderungen \ref{aufgabenstellung}
 und User Stories in der Gherking Sprache\footnote{https://cucumber.io/docs/gherkin/reference/} implementiert.
 Es wurde bewusst darauf verzichtete, einzelne Komponenten mittels Unit Tests zu testen.
-Diese hat zwei Gründe:
+Dies hat zwei Gründe:
 \begin{itemize}
       \item Bei der Software handelt es sich um einen Prototypen.
             Sie ist nicht für den produktiven Betrieb ausgelegt.
-            Aufgrund des iterativen Vorgehens ist auch damit zu rechnen, dass sich teile des Codes oft verändern.
-            Das pflegen von Unit Tests hätte zu viel Zeit in anspruch genommen.
+            Aufgrund des iterativen Vorgehens ist auch damit zu rechnen, dass sich Teile des Codes oft verändern.
+            Das Pflegen von Unit Tests hätte zu viel Zeit in Anspruch genommen.
       \item Es werden keine eigenen Algorithmen oder komplexe Funktionen implementiert.
-            Deswegen wurde der Code als trivial eingeschätzt und Unit Test nicht für nötig befunden.
+            Deswegen wurde der Code als trivial eingeschätzt und Unit Tests nicht für nötig befunden.
 \end{itemize}
 
 
@@ -83,29 +83,29 @@ Beide Projekte sind auf GitHub\footnote{https://github.com} abgelegt und können
 \end{itemize}
 
 Beide Repositories sind unter der MIT Lizenz\footnote{https://opensource.org/licenses/MIT} veröffentlicht.
-Diese erlaubt die freie Nutzung und Weitergabe des Quellcodes, durch Drittpersonen.
-Dazu müssen diese lediglich einen Vermerk des ursprünglichen Authors und den Lizenztext ihrer Anwendung anfügen \parencite{mit_licence}.
-Diese wurde so mit dem Auftraggeber vereinbart.
+Diese erlaubt die freie Nutzung und Weitergabe des Quellcodes durch Drittpersonen.
+Dazu müssen diese lediglich einen Vermerk des ursprünglichen Autors und den Lizenztext ihrer Anwendung anfügen \parencite{mit_licence}.
+Dies wurde so mit dem Auftraggeber vereinbart.
 
 \section{Code Reviews}
 
-Um eine hohe Qualität der Software sicherzustellen, wurde nebst der Teststrategie \ref{teststrategie}
+Um eine hohe Qualität der Software sicherzustellen, wurden nebst der Teststrategie \ref{teststrategie}
 auch Code Reviews und Pair Programming durchgeführt \parencite{fu2017code}.
-Die Reviews und Pair Programming sessions wurden jeweils an wöchentlichen
+Die Reviews und Pair Programming Sessions wurden jeweils an wöchentlichen
 Meetings durchgeführt.
-Bei den grösseren Fetures bei denen ein eigener Branch erstellt wurde, wurden die
+Bei den grösseren Features, bei denen ein eigener Branch erstellt wurde, wurden die
 Reviews direkt über einen Pull Request auf GitHub gemacht \parencite{github_flow_docs_2021}.
 
 \subsection{\ac{CI/CD}}
 
-Um das Projekt automatisch Testen zu können und eine Reproduzierbare Umgebung zu bauen,
+Um das Projekt automatisch testen zu können und eine reproduzierbare Umgebung zu bauen,
 wurde bereits zu Beginn eine \ac{CI/CD} Pipeline mit GitHub Actions\footnote{https://github.com/features/actions}
 aufgebaut.
-Die Entwickler sollen sich nicht nur um die Entwicklung, sondern auch das automatische Bauen und Deployen der
+Die Entwickler sollen sich nicht nur um die Entwicklung, sondern auch um das automatische Bauen und Deployen der
 Software kümmern. Dieser DevOps Gedanke hat den Vorteil, dass
 theoretisch jedes kleine Feature und jeder Bugfix direkt automatisiert getestet
 wird und danach (wenn die Tests erfolgreich waren) auf das Produktivsystem
-Deployt werden kann \parencite{what_is_devops}.
+deployt werden kann \parencite{what_is_devops}.
 Zudem ist für jeden Entwickler das Bauen und Ausführen des Projektes gleich und
-reproduzierbar. Dies erspart das Suchen von unnötigen Fehlern die auf unterschiedlich
+reproduzierbar. Dies erspart das Suchen von unnötigen Fehlern, die auf unterschiedlich
 konfigurierten Entwicklungsmaschinen auftreten können.

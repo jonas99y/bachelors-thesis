@@ -3,9 +3,9 @@ Das Ziel der ersten Iteration war es, den in der Aufgabenstellung (Anhang \ref{a
 Die Anforderungen dazu sind im Anforderungsdiagramm (\ref{fig:usecase1}) illustriert.
 Diese lassen sich wie folgt zusammenfassen:
 Ein Stromzähler schickt gemessene Spannungswerte mittels \ac{MQTT}.
-Diese sollen empfange, gespeichert und für Benutzer visualisiert werden.
+Diese sollen empfangen, gespeichert und für Benutzer visualisiert werden.
 
-Um dieses Ziel zu erreichen, mussten auch grundlegenden Arbeiten, wie das Evaluieren von Technologien und einrichten des \ac{CI/CD}
+Um dieses Ziel zu erreichen, mussten auch grundlegende Arbeiten, wie das Evaluieren von Technologien und Einrichten des \ac{CI/CD}
 erledigt werden. Dies ist in den folgenden Abschnitten beschrieben.
 
 \begin{figure}[h]
@@ -31,17 +31,17 @@ Dies lässt sich auf zwei Arten umsetzt:
     \item Eine App entwickeln, welche auf dem Gerät installiert werden kann.
     \item Eine Webseite entwickeln, welche vom Gerät aufgerufen werden kann.
 \end{itemize}
-Die Entscheidung fiel auf letztere Art, also eine Webseite.
+Die Entscheidung fiel auf eine Webseite.
 Dies aus folgenden Gründen:
 \begin{itemize}
     \item Das Projektteam hat in der Vergangenheit bereits Webseiten entwickelt.
-          Diese Erfahrungen warne positiv und zeigten, dass so in geringer Zeit gute Resultate erreicht werden können.
+          Diese Erfahrungen waren positiv und zeigten, dass so in geringer Zeit gute Resultate erreicht werden können.
     \item Eine Webseite schränkt die Zielplattform weniger ein als eine App.
-          Bei einer App müsste bereits zu beginn eine einzelne Platform, wie bspw. Android oder iOS ausgewählt werden.
+          Bei einer App müsste bereits zu Beginn eine einzelne Plattform, wie bspw. Android oder iOS ausgewählt werden.
           Webseiten können auf diversen Plattformen dargestellt werden.
     \item Eine Person des Projektteams besuchte parallel zu diesem Projekt das Modul ``Datenvisualisierung``  an der Hochschule Luzern.
           Nebst den Grundlagen zu Datenvisualisierung wurde in diesem Modul auch die Anwendung des Visualisierungs-Frameworks D3.js \footnote{https://d3js.org/} vertieft.
-          Da mit D3.js Grafiken für Webseiten erstellt werden können, lag es auf der Hand, das bereits gelernte auch in dieser Arbeit umzusetzen.
+          Da mit D3.js Grafiken für Webseiten erstellt werden können, lag es auf der Hand, das Gelernte auch in dieser Arbeit umzusetzen.
 \end{itemize}
 
 Um von den in \ref{state:frontend} erwähnten Vorteile eines Frontend Framework zu profitieren,
@@ -49,23 +49,23 @@ wurde ein passendes evaluiert.
 
 Das Projekt Team hatte in der Vergangenheit bereits mit den Frameworks Angular \footnote{https://angular.io/}, Vue.js \footnote{https://vuejs.org/} und React.js \footnote{https://reactjs.org/} gearbeitet
 und unterschiedliche Erfahrungen gesammelt, sieht sich jedoch als Anfänger im Bezug auf Webentwicklung.
-Die Entscheidung fiel auf React.js, da dies sich für Anfänger eignet und im Zusammenspiel mit weiteren Frameworks eingesetzt werden kann \parencite{react_angular_vue}.
+Die Entscheidung fiel auf React.js, da dieses sich für Anfänger eignet und im Zusammenspiel mit weiteren Frameworks eingesetzt werden kann \parencite{react_angular_vue}.
 Letzteres ist wichtig, da das zuvor erwähnte D3.js Framework für die Visualisierungen verwendet werden soll.
 
-Um die Entwicklung des Frontends durch das Verwenden von vorgefertigte Komponenten zu erleichtern, könne entsprechende Frameworks eingesetzt werden.
+Um die Entwicklung des Frontends durch das Verwenden von vorgefertigte Komponenten zu erleichtern, können entsprechende Frameworks eingesetzt werden.
 Da das Projektteam mit dem Design System `Material Design`\footnote{https://material.io/} gearbeitet hat,
 wurde ein Framework gesucht, welches React Komponenten anbietet, welche diesem System folgen.
 Basierend auf diesen Anforderungen fiel die Wahl auf MUI \footnote{https://mui.com/}.
 
 
 \subsection{Backend}
-Auch bei er Auswahl des Backend Technologiestacks wurde auf verschiedene Aspekte geachtet.
+Auch bei der Auswahl des Backend Technologiestacks wurde auf verschiedene Aspekte geachtet.
 Zum einen sollte das Frontend unabhängig vom Backend entwickelt werden können.
 Aus diesem Grund wurde für die Kommunikation, wie in Kapitel \ref{konzepte:api-kommunikation}
 bereits beschrieben, eine \ac{REST} \ac{API} verwendet.
 Auf die genaue Definition der \ac{API} wird in den nächsten Abschnitten noch genauer eingegangen.
 
-Für die Implementation des Backends gibt es unzählige Technologien die man für eine \ac{CRUD}
+Für die Implementation des Backends gibt es unzählige Technologien, die man für eine \ac{CRUD}
 Applikation verwenden kann (Siehe Kapitel \ref{state:backend}). Für dieses Projekt sollte
 eine \ac{REST} \ac{API} implementiert werden können. Und die Datenbank soll über ein \ac{ORM}
 abstrahiert werden können. Dies hat den Vorteil, dass die eigentliche Datenbanktechnologie
@@ -74,15 +74,15 @@ Objekten im Sourcecode. Als Backend kann beispielsweise zum Testen und Entwickel
 eine Sqlite\footnote{https://www.sqlite.org/index.html} Datenbank verwendet werden.
 Der gleiche Sourcecode kann danach in der Produktion auf eine PostgreSQL\footnote{https://www.postgresql.org/}
 Datenbank zugreifen um besser zu skalieren.
-Natürlich soll auch ein \ac{MQTT} Framework in der gewählten Technologie zur verfügung stehen
+Natürlich soll auch ein \ac{MQTT} Framework in der gewählten Technologie zur Verfügung stehen,
 damit die Messdaten der Stromzähler empfangen und in die Datenbank abgespeichert werden können.
 
-Python bietet für jedes dieser Anforderungen gleich mehrere Frameworks an. Mit Python können sehr
+Python bietet für jede dieser Anforderungen gleich mehrere Frameworks an. Mit Python können sehr
 schnell Prototypen erstellt werden. Es eignet sich aber auch für grosse Produktivsoftware.
-Einige der wohl Bekanntesten Programme wie YouTube, Instagram, Spotify oder Reddit sind
+Einige der wohl bekanntesten Programme wie YouTube, Instagram, Spotify oder Reddit sind
 in Python geschrieben \parencite{popular_python_sw}.
 
-Um die Applikation für die Entwicklung lokal aufzusetzen, zu testen oder zu Deployen wurde dazu
+Um die Applikation für die Entwicklung lokal aufzusetzen, zu testen oder zu deployen, wurde
 Podman verwendet (Siehe Kapitel \ref{state:deployment}).
 
 
@@ -92,8 +92,8 @@ Podman verwendet (Siehe Kapitel \ref{state:deployment}).
 %TODO Aufschreiben, dass geplantes Konzept umgesetzt wurde, konkrete Technologien erwähnen.
 
 
-In dieser Arbeit wird keine Microservice Architektur im klassischen Sinne verwendet. (Siehe Kapitel \ref{konzepte:microservices})
-Die einzelnen Komponenten werden zwar in separaten Container deployt (Abbildung: \ref{fig:smic-arch})
+In dieser Arbeit wird keine Microservice Architektur im klassischen Sinne verwendet (Siehe Kapitel \ref{konzepte:microservices}). 
+Die einzelnen Komponenten werden zwar in separaten Container deployt (Abbildung: \ref{fig:smic-arch}),
 besitzen jedoch keine eigene Datenbank.
 Das hat den Vorteil, dass weniger Overhead implementiert werden muss (mittels Message Queue)
 und das Datenbankschema kann zentral in der Datastore Library einmal definiert
@@ -126,9 +126,9 @@ Architektur auf. Hier noch einige Informationen zu den einzelnen Komponenten:
           beispielsweise die Stromzählerdaten eines Tages zurück.
 
     \item \texttt{datastore}:
-          Der datastore ist eine Python library, die das Datenbankschema mittels \ac{ORM} festlegt.
+          Der datastore ist eine Python Library, die das Datenbankschema mittels \ac{ORM} festlegt.
           Sowohl die \ac{API} als auch der dataingress greifen auf die Datenbank zu
-          und verwenden somit die datastore library.
+          und verwenden somit die datastore Library.
 
     \item \texttt{dataingress}:
           Der dataingress arbeitet die von den \ac{IoT} Geräten gesendeten
@@ -138,13 +138,13 @@ Architektur auf. Hier noch einige Informationen zu den einzelnen Komponenten:
           Mosquitto ist der in dieser Arbeit verwendete \ac{MQTT} Broker.
 \end{itemize}
 
-Ein weiterer grund für die Entscheidung einer geteilten Datenbank ist,
+Ein weiterer Grund für die Entscheidung einer geteilten Datenbank ist,
 dass der \texttt{dataingress} keine Daten liest, sondern diese nur von
 der \ac{MQTT} Queue abarbeitet und in die Datenbank schreibt.
 
 Auf die einzelnen Komponenten wird später in der Realisierungsiteration noch genauer
 eingegangen. Mosquitto wird in dieser Arbeit als \ac{MQTT} Broker verwendet.
-Dies da auch die paho Python \ac{MQTT} Library vom gleichen Entwickler Eclipse verwendet wird.
+Dies, da auch die paho Python \ac{MQTT} Library vom gleichen Entwickler Eclipse verwendet wird.
 
 \subsection{Frontend und Backend Abstraktion}
 
@@ -152,11 +152,11 @@ Damit die Arbeit von Frontend und Backend aufgeteilt werden kann, wurde zuerst
 die \ac{API} Schnittstelle definiert. Für die Implementierung im Backend
 stand die Entscheidung zwischen Flask\footnote{https://flask.palletsprojects.com/en/2.0.x/}
 und FastAPI\footnote{https://fastapi.tiangolo.com/}.
-Flask ist ein simples Web Framework mit dem \ac{API}s aber auch Server Side Rendering \parencite{flask_server_side}
-gemacht werden kann. FastAPI ist ein typisiertes Framework das darauf spezialisiert ist
-\ac{REST} \ac{API}s zu implementieren. FastAPI ist ähnlich aufgebaut wie Flask aber auf den
+Flask ist ein simples Web Framework mit dem \ac{API}s, aber auch Server Side Rendering \parencite{flask_server_side}
+gemacht werden kann. FastAPI ist ein typisiertes Framework, das darauf spezialisiert ist,
+\ac{REST} \ac{API}s zu implementieren. FastAPI ist ähnlich aufgebaut wie Flask, aber auf den
 \ac{API} Bereich spezialisiert. Die Dokumentation wird auch automatisch generiert.
-FastAPI eignet sich somit perfekt um die \ac{API} zwischen Frontend und Backend zu implementieren.
+FastAPI eignet sich somit perfekt, um die \ac{API} zwischen Frontend und Backend zu implementieren.
 
 \begin{figure}[h]
     \centering
@@ -183,12 +183,12 @@ Die gesamte \ac{API} Dokumentation ist zudem im Anhang \ref{anhang:smic-api} zu 
 \end{figure}
 
 Sobald die WebApp von einem Benutzer aufgerufen wird, liefert der Nginx Server
-die WebApp per \ac{HTTP} request aus (Abbildung \ref{fig:arch-visualization-front-back}).
+die WebApp per \ac{HTTP} Request aus (Abbildung \ref{fig:arch-visualization-front-back}).
 Wenn der Benutzer (in diesem Fall über das React Web Frontend) danach die Messdaten seines
 Stromzählers abfragen will, wird ebenfalls eine Asynchrone \ac{HTTP} Anfrage an die Backend \ac{API} gemacht.
-Die Abfrage landet dann beim Nginx und wird an das Python FastAPI Backend weitergeleitet.
+Die Abfrage landet beim Nginx und wird an das Python FastAPI Backend weitergeleitet.
 Dieses Python Backend führt danach eine SQL Abfrage via \ac{ORM} auf der Datenbank aus.
-Um die Daten im Web Frontend anzeigen zu können, werden sie noch \ac{JSON} serialisiert
+Um die Daten im Web Frontend anzeigen zu können, werden sie nach \ac{JSON} serialisiert
 und zurück an die WebApp gesendet.
 
 Die datastore Python Library stellt der \ac{API} das Datenbankschema zur Verfügung,
@@ -199,7 +199,7 @@ Sqlmodel wird vom gleichen Entwickler wie FastAPI maintaint und bietet eine gute
 Da nun das Datenmodell (in der datastore Library) und die \ac{API} definiert wurden,
 kann das Web Frontend unabhängig vom Verarbeiten der \ac{MQTT} Daten gemacht werden.
 
-\subsection{Implementation der Benutzerschnittelle}
+\subsection{Implementation der Benutzerschnittstelle}
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{gfx/mobileUI}
@@ -216,19 +216,23 @@ welche im Kapitel \ref{konzepte:entwurf-benutzerschnittstelle} vorgestellt wurde
 Auf die dort angedachten Filter-Komponenten wurde bewusst verzichtet, da diese für das erreichen des
 minimalen Prototypen noch nicht benötigt werden.
 Die angezeigten Daten werden über die \ac{REST} \ac{API} geladen und mit Hilfe von d3.js dargestellt.
-Abbildung \ref{fig:mobileUI} zeigt wie die Benutzerschnittelle nach der ersten Iteration ausgesehen hat.
+Abbildung \ref{fig:mobileUI} zeigt wie die Benutzerschnittstelle nach der ersten Iteration ausgesehen hat.
 
+Die zu visualisierenden Daten sind jeweils Messwerte von Spannung oder Leistung zu einem bestimmten Zeitpunkt.
+Diese Daten sind nur dann aussagekräftig und interessant, wenn sie in zeitliche Abfolge dargestellt sind.
+Deshalb wurden Liniendiagramme gewählt. Ein Vorteil dieser ist, dass verschiedene Werte, bspw. die drei Spannungswerte der verschiedenen Iteration
+gleichzeitig dargestellt werden können.
 \subsection{Implementation der Backend \ac{API}}
 
 Wie alle Python Komponenten dieses Projektes wird auch das Backend \ac{API}
 als Python Poetry\footnote{https://python-poetry.org/} Projekt implementiert.
 Poetry verbessert das Paketmanagement von Python erheblich gegenüber Setuptools
 und pip \parencite{python_poetry}.
-Dadurch ist es auch einfacher die Applikation als Container zu bauen und
+Dadurch ist es auch einfacher, die Applikation als Container zu bauen und
 damit einen reproduzierbaren Build zu garantieren.
 
-Die Datenbankanbindung kann per Datenbank \ac{URI} dem sqlmodel Framework
-mitgegeben um zu bestimmen auf welche Datenbank zugegriffen werden soll.
+Per Datenbank \ac{URI} kann dem Sqlmodel-Framework eine Datenbankanbindung
+mitgegeben, werden um zu bestimmen, auf welche Datenbank zugegriffen werden soll.
 
 
 
@@ -240,7 +244,7 @@ Die Daten der Stromzähler werden per \ac{MQTT} an den Broker gesendet. \ref{sta
     \centering
     \includegraphics[width=1.0\textwidth]{gfx/smic-arch-mqtt}
     \caption{
-        Architektur des \ac{MQTT} Messagebroker und des Dataingress welcher die
+        Architektur des \ac{MQTT} Messagebrokers und des Dataingresses, welcher die
         empfangenen Nachrichten in die Datenbank persistiert
     }
     \label{fig:arch-mqtt}
@@ -248,23 +252,23 @@ Die Daten der Stromzähler werden per \ac{MQTT} an den Broker gesendet. \ref{sta
 
 Der Dataingress (ebenfalls ein Python Poetry projekt) registriert sich dann auf die von
 den Stromzählern gesendeten Events und arbeitet diese ab. Das Empfangen und Abarbeiten, bzw.
-in die Datenbank schreiben wird von unterschiedlichen internen Komponenten übernommen.
+in die Datenbank Schreiben, wird von unterschiedlichen internen Komponenten übernommen.
 
 Auch der Dataingress verwendet die Datastore Python Library. Dies stellt sicher,
-dass die \ac{API} und der Dataingress das gleiche Datenbankformat verwenden da
+dass die \ac{API} und der Dataingress das gleiche Datenbankformat verwenden, da
 die Datenbank ja zwischen den beiden Applikationen geteilt ist.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=1.0\textwidth]{gfx/dataingress-sequence-no-err}
     \caption{
-        Das Sequenzdiagramm zeigt auf wie der Dataingress die \ac{MQTT} Messages
+        Das Sequenzdiagramm zeigt auf wie, der Dataingress die \ac{MQTT} Messages
         von den Stromzählern abarbeitet und in die Datenbank persisitiert
     }
     \label{fig:dataingress-sequence-no-err}
 \end{figure}
 
-Im Sequenzdiagramm des Dataingress (Abbildung \ref{fig:dataingress-sequence-no-err}) wird aufgezeigt
+Im Sequenzdiagramm des Dataingress (Abbildung \ref{fig:dataingress-sequence-no-err}) wird aufgezeigt,
 wie \ac{MQTT} Messages vom Dataingress abgearbeitet werden.
 Die Messages müssen zuerst \ac{JSON} deserialisiert werden, um in Python
 gebraucht zu werden. Danach werden die Messdaten und allenfalls der
@@ -272,11 +276,11 @@ Stromzähler mit Serialnummer in die Datenbank gespeichert.
 
 \subsection{Fakemeter}
 
-Wie bereits in der Teststrategie \ref{teststrategie} erwähnt werden für dieses Projekt
+Wie bereits in der Teststrategie \ref{teststrategie} erwähnt, werden für dieses Projekt
 hauptsächlich automatisierte End to End Tests implementiert.
 
 Damit die Tests automatisiert ausgeführt werden können, wurde ein Stromzähler Simulator entwickelt.
-Zwar wäre es theoretisch möglich gewesen auch einen echten Stromzähler für Tests zu verwenden,
+Zwar wäre es theoretisch möglich gewesen, auch einen echten Stromzähler für Tests zu verwenden,
 jedoch ist es immer schwierig Automatisierungen mit Hardware zu machen. Zudem können
 Daten bei physikalischen Geräten nur in Echtzeit und nicht schneller übertragen werden.
 Durch diesen "Fakemeter" konnten Daten mehrerer Tage innert weniger Sekunden oder Millisekunden
@@ -295,7 +299,7 @@ gefunden werden.
 
 \subsection{Verifikation}
 
-Um die Funktionalität und Erfüllungsgrad der Anforderungen in der ersten Iteration zu verifizieren, wurde anhand
+Um die Funktionalität und den Erfüllungsgrad der Anforderungen in der ersten Iteration zu verifizieren, wurde anhand
 des Teststrategie \ref{teststrategie} ein End to End Test implementiert:
 
 
@@ -335,9 +339,9 @@ Falls also jemand des Entwicklerteams einen Regressionsfehler einbaut, fällt di
     \centering
     \includegraphics[width=1.0\textwidth]{gfx/ci-env}
     \caption{
-        Visualisierung der GitHub Actions Pipeline mit zwei aufeinanderfolgenden Stages.
+        Visualisierung der GitHub Actions Pipeline mit zwei aufeinanderfolgenden Stages:
         Zuerst werden die einzelnen Komponenten (Siehe \ref{fig:smic-arch}) gebaut und
-        anschliessend getestet
+        anschliessend getestet.
     }
     \label{fig:ci-env}
 \end{figure}
@@ -351,8 +355,8 @@ im Anhang \ref{anhang:readme-tests} gefolgt werden.
 
 
 \subsection{Schwierigkeiten}
-Das gewählte Frontend Framework, React, war für das Projektteam grösstenteils neu.
+Das gewählte Frontend Framework React war für das Projektteam grösstenteils neu.
 Somit wurde in dieser ersten Iteration viel Zeit in das Erlernen der Grundlagen von React investiert.
 Kleine Programmierfehler führten aufgrund der fehlenden Erfahrung und Routine zu grösseren Schwierigkeiten.
-Durch die Hilfe von Freunden, Mitstudienenden und Hilfsmittel im Internet liessen sich diese meistern
+Durch die Hilfe von Freunden, Mitstudierenden und Hilfsmittel im Internet liessen sich diese meistern
 und die erste Iteration im geplanten Zeitrahmen abschliessen.
