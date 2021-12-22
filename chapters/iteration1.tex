@@ -1,20 +1,12 @@
 \section{Iteration 1}
-In der ersten Iteration wurden die Grundlagen des Systems entwickelt.
-Technologien wurden evaluiert, ein Datenbankschema erstellt und eine geeignete Systemarchitektur entwickelt.
-Auch die \ac{CI/CD} Infrastruktur wurde direkt zu Beginn aufgesetzt.
+Das Ziel der ersten Iteration war es, den in der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) beschriebenen End-to-End Prototypen zu realisieren.
+Die Anforderungen dazu sind im Anforderungsdiagramm (\ref{fig:usecase1}) illustriert.
+Diese lassen sich wie folgt zusammenfassen:
+Ein Stromzähler schickt gemessene Spannungswerte mittels \ac{MQTT}.
+Diese sollen empfange, gespeichert und für Benutzer visualisiert werden.
 
-TODO: Idee: Architektur und so, also alles was grundlich erklärt wird, nicht bei Iteration 1 sonder zuvor erklären.
-Damit Iteration 1 nicht viel grösser als die anderen ist. In Einleitung entsprechend darauf hinweisen.
-
-\subsection{Verarbeitung und Visualisierung von Stromzählerdaten}
-
-
-%TODO: schriibe, was s ziel vo dere iteration isch (done)
-
-In einer ersten Iteration werden laut der Aufgabenstellung \ref{aufgabenstellung} Stromzähler
-Messdaten per \ac{MQTT} empfangen und in eine Datenbank gespeichert.
-Diese gespeicherten Daten werden dann in einer WebApp visualisiert und dem Benutzer
-angezeigt.
+Um dieses Ziel zu erreichen, mussten auch grundlegenden Arbeiten, wie das Evaluieren von Technologien und einrichten des \ac{CI/CD}
+erledigt werden. Dies ist in den folgenden Abschnitten beschrieben.
 
 \begin{figure}[h]
     \centering
