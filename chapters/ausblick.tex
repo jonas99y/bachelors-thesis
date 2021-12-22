@@ -1,10 +1,9 @@
 \chapter{Ausblick}
-
-Stromzähler mit MQTT + Tool deploy in cloud + label label label
-..
-ML/AI
-
-Eppis zur Ahleitig sege da
+Wie bereits im Kaptiel \ref{cap1} beschrieben, dient dieses Projekt als Vorarbeit für mögliche
+Machine Learning Projekte, welche gelabelte Daten benötigen.
+Diese gelabelten Daten können mithilfe der erarbeiten Applikation erstellt werden.
+Die im Anhang \ref{anhang:readme-main} bis \ref{anhang:readme-tests} aufgeführten Readme Files dienen dazu als Einstiegspunkt
+um die Applikation in Betrieb zu nehmen.
 
 
 
@@ -23,9 +22,21 @@ Dadurch können nicht nur die Stromzähler die Integrität des \ac{MQTT} Brokers
 verifizieren sondern auch der Broker ob nur die richtigen Geräte
 Daten senden.
 
+\subsection{Benutzerauthentifizierung}
+Da im Auftrag nicht gefordert und für die Entwicklungsarbeiten nur hinderlich,
+wurde auf das Authentifizieren von Benutzer bei Zugriffen auf die \ac{API} vollständig verzichtet
+Bei der aktuellen Implementation sind alle Daten frei zugänglich.
+Wir die Applikation also mit echten Daten betrieben, so müsste sichergestellt werden, dass ein Zugriff durch unbefugte
+Personen nicht möglich ist.
+
 
 
 \section{Weitere Ideen}
+Während des Projektes entstand beim Auftraggeber die Anforderung, dass \ac{THD} von der Applikation
+verarbeitet werden könne sollen. Diese Werte können frühzeitige Indikatoren für Fehler in Kraftwerken sein.
+Dabei entstand die Idee, dass diese Werte in der Applikation analysiert
+und im Fall von Anomalien entsprechende Warnungen generiert werden könnten.
+
 THD: Festlegen für schwellen von Werten, dass Warnungen generiert werden können.
 THD thematik nicht weiterverfolgt, da Auftraggeber keine Daten hatte.
 
