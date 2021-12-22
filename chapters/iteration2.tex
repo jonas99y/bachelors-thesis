@@ -17,7 +17,7 @@ In den folgenden Abschnitten wird erläutert,
 wie die erforderlichen Anpassungen an den einzelnen Teilen der Applikation vorgenommen wurden.
 
 \subsection{\ac{MQTT} Datenverarbeitung}
-
+\label{i2:mqtt}
 Da neu auch die Leistungs- und \ac{THD} Werte der Stromzähler verarbeitet werden sollen, wurde
 die \ac{MQTT} Datenverarbeitung angepasst. Der Dataingress erwartet nun, dass nebst
 den Spannungen der drei Phasen auch noch die Leistungs- und \ac{THD} Werte mitgeschickt werden.
@@ -119,4 +119,7 @@ implementierte Test (Abbildung \ref{fig:test-iteration-1}) um die neue Funktiona
 erweitert.
 
 \subsection{Schwierigkeiten}
-TODO Schwierigkeiten während der zweiten Iteration oder eifach en Abschluss schriibe
+Bis auf die im Absatz \ref{i2:mqtt} beschriebenen Instabilitäten der Datenbank konnte
+die zweite Iteration ohne grosse Schwierigkeiten durchgeführt werden.
+Dies lässt darauf schliessen, dass die erstellten Grundlagen und getroffenen Entscheidungen aus 
+der ersten Iteration gut und richtig waren.
