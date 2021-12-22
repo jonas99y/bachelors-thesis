@@ -1,14 +1,68 @@
 \chapter{Evaluation und Validation}
-Alle Punkte der Aufgabenstellung durchgehen.
+Um zu validieren, dass die Implementierungen den Anforderungen und Vorstellungen des Auftraggebers entsprechen,
+wurden Entwicklungsfortschritte in mehreren Demonstrationen gezeigt.
+Die Rückmeldungen der ersten beiden Demonstrationen werden
+in den Kapiteln \ref{i2} Iteration 2 und \ref{i3} Iteration 3 jeweils am Anfang ausführlich beschrieben.
 
-Bezug auf Demo nach Entwicklungsende nehmen.
+Das Feedback war meist positiv, führte jedoch auch dazu, dass die Benutzeroberfläche nach der ersten Iteration
+komplett neu gestaltet wurde, da Fokus von Mobile auf Desktop geschoben wurden.
 
-% aus Aufbau_Bericht.pdf
-% Auswertung und Interpretation der Ergebnisse. Nachweis, dass die Ziele erreicht wurden, oder
-% warum welche nicht erreicht wurden.
 
-Anforderungen erfüllt.
-Sinn und Zweck Labeling noch unklar.
-Grundsteine sind gelegt für weiterführende Projekte.
+In der Demo nach der dritten Iteration konnte dem Auftraggeber die finale Version der Applikation gezeigt werden.
+Die dabei entstandenen Rückmeldungen beziehen sich somit nicht nur auf diese eine Iteration, sondern auch auf das gesamte Projekt.
+Es wurde auch explizit abgeholt, ob die Anforderungen erfüllt wurden und die gelieferten Produkte den Erwartungen entsprechen.
+Folgende Punkte wurden dabei von Auftraggeber gesagt:
+\begin{itemize}
+    \item Die Funktionen für das Labeling der Daten sind verständlich.
+    \item Alles Use Cases der Aufgabenstellung sind vollständig umgesetzt.
+    \item Er möchte die Applikation gerne selbst testen. Dazu wäre eine Anleitung hilfreich.
+    \item Wie die Applikation bei der Landis+Gyr AG eingesetzt werden soll, wird intern noch abgeklärt.
+\end{itemize}
 
-Bedienungsanleitung?
+
+\section{Reflexion}
+In den folgenden Abschnitte reflektieren die beiden Mitglieder des Projektteams das vergangene Projekt persönlich.
+\subsection{Jonas Wyss}
+Dieses Projekt war für mich eine gute Mischung aus Anwenden von gelerntem und bereits Bekannten
+sowie auch Erlernen von Neuem.
+Zu Beginn des Projekts war ich mit der Herausforderung konfrontiert, mit React.js die Grundsteine der
+Benutzerschnittelle zu implementieren. Dies war meine erste richtige Anwendung von React.js.
+Anfangs musste ich dazu noch viel nachlesen und lernen.
+Stundenlanges Suchen nach kleinen Fehlern stand auf der Tagesordnung und führte oft zu Frustration und Verzweiflung.
+Ich bin froh, dass sich dies im weiteren Verlauf des Projekts gebessert hat und ich React.js mittlerweile als
+eine erfreuliche Erweiterung meines persönlichen Programmier-Werkzeugkastens bezeichnen kann,
+auf welche ich in Zukunft gerne zurückgreifen werde.
+
+Für mich war es interessant, die Thematik der Strommessung aus einer neuen Perspektive zu bearbeiten.
+In meinem Beruf programmiere ich für die Landis+Gyr AG an der Firmware der Stromzählern.
+
+In der Zusammenarbeit mit Benjamin konnte ich von seiner Expertise in den Bereichen Python, Containern und CI/CD profitieren.
+Wir haben uns gut ergänzt und konnten einander fordern.
+Mit der gelieferten Applikation konnten wir die Aufgabenstellung erfüllen 
+und unsere Fähigkeiten, welche wir während des Studiums erlernt haben, demonstrieren.
+
+\subsection{Benjamin Fassbind}
+
+Grundsätzlich bin ich sehr zufrieden mit dem erreichten Ergebnis.
+Persönlich finde ich eine gute Architektur zu entwickeln die sowohl simpel
+als auch im nötigen masse erweiterbar ist eine grosse Herausforderung.
+Aus meiner Erfahrung wird eine Architektur oft komplizierter als nötig.
+Genau aus diesem Grund bin ich sehr zufrieden mit der entstandenen Architektur.
+Sie ist nur so kompliziert wie nötig und die Komplexität dient dem Zweck
+der Automatisierung was bei der Entwicklung und dem Deployment wieder einfacher wird.
+
+Zudem war es für mich das erste Mal, dass ich ein richtiges Multicontainerprojekt
+mit podman aufgesetzt habe. Mit den in diesem Projekt gemachten Erfahrungen
+würde ich jederzeit wieder podman anstatt docker-compose für mein Setup wählen.
+
+Auch die Python Library poetry, sqlmodel und FastAPI habe ich im Kontext dieses
+Projektes zum ersten mal benutzt. Zwar hab ich schon viel Erfahrung mit
+ähnlichen Libraries, es ist aber eine willkommene Abwechslung bei einem
+Greenfield Projekt neue Technologien auszuprobieren und zu sehen welche Probleme sie lösen
+und ob sie wirklich besser sind als ihre Vorgänger.
+
+Nicht zuletzt war es für mich ein spannender Einblick in die Welt von Landis+Gyr
+und Stromzähler. Ich durfte viele Sachen in dieser Domäne im Verlaufe des Projektes lernen.
+
+Gerne hätte ich noch etwas Zeit ins Frontend investiert, dies war aber aus zeitlichen Gründen
+nicht mehr möglich.
