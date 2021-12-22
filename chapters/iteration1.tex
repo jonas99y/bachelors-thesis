@@ -206,6 +206,25 @@ Sqlmodel wird vom gleichen Entwickler wie FastAPI maintaint und bietet eine gute
 Da nun das Datenmodell (in der datastore Library) und die \ac{API} definiert wurden,
 kann das Web Frontend unabhängig vom Verarbeiten der \ac{MQTT} Daten gemacht werden.
 
+\subsection{Implementation der Benutzerschnittelle}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{gfx/mobileUI}
+    \caption{
+        Minimale Benutzerschnittstelle für die Anzeige der Spannungswerte über die Zeit.
+    }
+    \label{fig:mobileUI}
+\end{figure}
+Um den Anwendungsfall, ``Einsehen von Spannungswerten über Zeit`` (Abbildung \ref{fig:usecase1}) zu erfüllen,
+wurde eine minimale Benutzerschnittstelle entwickelt, welches lediglich einen Graphen darstellt.
+Dieser stellt den Verlauf der Spannungswerte über die Zeit dar.
+Der Aufbau der Benutzerschnittstelle basiert auf der Skizze,
+welche im Kapitel \ref{konzepte:entwurf-benutzerschnittstelle} vorgestellt wurde.
+Auf die dort angedachten Filter-Komponenten wurde bewusst verzichtet, da diese für das erreichen des
+minimalen Prototypen noch nicht benötigt werden.
+Die angezeigten Daten werden über die \ac{REST} \ac{API} geladen und mit Hilfe von d3.js dargestellt.
+Abbildung \ref{fig:mobileUI} zeigt wie die Benutzerschnittelle nach der ersten Iteration ausgesehen hat.
+
 \subsection{Implementation der Backend \ac{API}}
 
 Wie alle Python Komponenten dieses Projektes wird auch das Backend \ac{API}
@@ -336,17 +355,6 @@ danach starten und testen (Abbildung \ref{fig:ci-env}).
 
 Um die Tests lokal während der Entwicklung auszuführen, kann der Anleitung
 im Anhang \ref{anhang:readme-tests} gefolgt werden.
-
-\subsection{Benutzerschnittelle} TODO no ufeneh?
-Um den Anwendungsfall, ``Einsehen von Spannungswerten über Zeit`` (Abbildung \ref{fig:usecase1}) zu erfüllen,
-wurde eine minimale Benutzerschnittstelle entwickelt, welches lediglich einen Graphen darstellt.
-Dieser stellt den Verlauf der Spannungswerte über die Zeit dar.
-Der Aufbau der Benutzerschnittstelle basiert auf der Skizze,
-welche im Kapitel \ref{konzepte:entwurf-benutzerschnittstelle} vorgestellt wurde.
-Auf die dort angedachten Filter-Komponenten wurde bewusst verzichtet, da diese für das erreichen des
-minimalen Prototypen noch nicht benötigt werden.
-
-Die gezeigten Daten werden über die \ac{REST} \ac{API} geladen und mit Hilfe von d3.js dargestellt.
 
 
 \subsection{Schwierigkeiten}
