@@ -67,7 +67,7 @@ Basierend auf diesen Anforderungen fiel die Wahl auf MUI \footnote{https://mui.c
 
 
 \subsection{Backend}
-Bei er Auswahl des Technologiestacks wurde auf verschiedene Aspekte geachtet.
+Auch bei er Auswahl des Backend Technologiestacks wurde auf verschiedene Aspekte geachtet.
 Zum einen sollte das Frontend unabhängig vom Backend entwickelt werden können.
 Aus diesem Grund wurde für die Kommunikation, wie in Kapitel \ref{konzepte:api-kommunikation}
 bereits beschrieben, eine \ac{REST} \ac{API} verwendet.
@@ -151,9 +151,8 @@ dass der \texttt{dataingress} keine Daten liest, sondern diese nur von
 der \ac{MQTT} Queue abarbeitet und in die Datenbank schreibt.
 
 Auf die einzelnen Komponenten wird später in der Realisierungsiteration noch genauer
-eingegangen.
-
-
+eingegangen. Mosquitto wird in dieser Arbeit als \ac{MQTT} Broker verwendet.
+Dies da auch die paho Python \ac{MQTT} Library vom gleichen Entwickler Eclipse verwendet wird.
 
 \subsection{Frontend und Backend Abstraktion}
 
@@ -180,6 +179,8 @@ Wie in Abbildung \ref{fig:api-visualization} dargestellt, besteht die \ac{API} d
 und Messdaten ausschliesslich aus Abfragen. Die zu speichernden Daten kommen dann (wie im nächsten
 Abschnitt erklärt) aus den \ac{MQTT} Daten der Stromzähler selbst.
 
+Die gesamte \ac{API} Dokumentation ist zudem im Anhang \ref{anhang:smic-api} zu finden.
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{gfx/sim-arch-api}
@@ -189,8 +190,8 @@ Abschnitt erklärt) aus den \ac{MQTT} Daten der Stromzähler selbst.
     \label{fig:arch-visualization-front-back}
 \end{figure}
 
-Sobald die WebApp von einem Benutzer aufgerufen wird, lifert der Nginx Server
-die WebApp per \ac{HTTP} request aus. (Abbildung \ref{fig:arch-visualization-front-back})
+Sobald die WebApp von einem Benutzer aufgerufen wird, liefert der Nginx Server
+die WebApp per \ac{HTTP} request aus (Abbildung \ref{fig:arch-visualization-front-back}).
 Wenn der Benutzer (in diesem Fall über das React Web Frontend) danach die Messdaten seines
 Stromzählers abfragen will, wird ebenfalls eine Asynchrone \ac{HTTP} Anfrage an die Backend \ac{API} gemacht.
 Die Abfrage landet dann beim Nginx und wird an das Python FastAPI Backend weitergeleitet.
