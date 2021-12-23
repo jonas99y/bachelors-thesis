@@ -19,7 +19,7 @@ wie die erforderlichen Anpassungen an den einzelnen Teilen der Applikation vorge
 \subsection{\ac{MQTT} Datenverarbeitung}
 \label{i2:mqtt}
 Da neu auch die Leistungs- und \ac{THD}-Werte der Stromzähler verarbeitet werden sollen, wurde
-die \ac{MQTT} Datenverarbeitung angepasst. Der Dataingress erwartet nun, dass nebst
+die \ac{MQTT} Datenverarbeitung angepasst. Der \texttt{dataingress} erwartet nun, dass nebst
 den Spannungen der drei Phasen auch noch die Leistungs- und \ac{THD}-Werte mitgeschickt werden.
 
 Um die neuen Daten abspeichern zu können, wurde auch das Datenbankschema entsprechend erweitert.
@@ -37,7 +37,7 @@ mitgesendet werden.
     \label{fig:dataingress-sequence}
 \end{figure}
 
-Während der Entwicklung zeigte es sich, dass der Dataingress nicht sehr stabil
+Während der Entwicklung zeigte es sich, dass der \texttt{dataingress} nicht sehr stabil
 funktioniert und sporadisch fehlschlägt. Analysen zeigten, dass
 die Datenbankverbindung teilweise instabil ist.
 Diese Verbindungsprobleme liessen sich auf die verwendete SQLite Datenbank zurückführen.
@@ -55,13 +55,13 @@ Nach einer festgelegten Anzahl von Versuchen wird der fehlgeschlagene Schreibver
 
 \subsection{Fakemeter}
 Die im vorherigen Abschnitt erwähnten Anpassungen wurden auch für den Fakemeter umgesetzt.
-So konnten die Änderungen am Dataingress direkt getestet werden. 
+So konnten die Änderungen am \texttt{dataingress} direkt getestet werden.
 Der Auftraggeber stellte einen Datensatz von echten Stromzählerdaten
 zur Verfügung. Damit diese echten Daten in das System eingelesen werden können,
 wurde der Fakemeter noch um einen ``Batch Mode`` erweitert. Das heisst,
 er liest das bereitgestellte CSV File mit den Datensätzen ein und sendet die Daten in
 gewissen Zeitabständen. Dies soll das Verhalten eines echten Stromzählers
-möglichst realitätsnah simulieren. 
+möglichst realitätsnah simulieren.
 
 \begin{figure}
     \centering
@@ -114,12 +114,12 @@ Zurückgegeben werden dann alle Messungen des Zählers, welche während des Inte
 
 \subsection{Verifikation}
 
-Um die neue Funktionalität des Dataingress zu testen, wurde der in Iteration 1
+Um die neue Funktionalität des \texttt{dataingress} zu testen, wurde der in Iteration 1
 implementierte Test (Abbildung \ref{fig:test-iteration-1}) um die neue Funktionalität
 erweitert.
 
 \subsection{Schwierigkeiten}
 Bis auf die im Absatz \ref{i2:mqtt} beschriebenen Instabilitäten der Datenbank konnte
 die zweite Iteration ohne grosse Schwierigkeiten durchgeführt werden.
-Dies lässt darauf schliessen, dass die erstellten Grundlagen und getroffenen Entscheidungen aus 
+Dies lässt darauf schliessen, dass die erstellten Grundlagen und getroffenen Entscheidungen aus
 der ersten Iteration gut und richtig waren.

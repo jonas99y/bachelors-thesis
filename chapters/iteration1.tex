@@ -127,11 +127,11 @@ Architektur auf. Hier noch einige Informationen zu den einzelnen Komponenten:
 
     \item \texttt{datastore}:
           Der \texttt{datastore} ist eine Python Library, die das Datenbankschema mittels \ac{ORM} festlegt.
-          Sowohl die \ac{API} als auch der dataingress greifen auf die Datenbank zu
+          Sowohl die \ac{API} als auch der \texttt{dataingress} greifen auf die Datenbank zu
           und verwenden somit die \texttt{datastore} Library.
 
     \item \texttt{dataingress}:
-          Der dataingress arbeitet die von den \ac{IoT} Geräten gesendeten
+          Der \texttt{dataingress} arbeitet die von den \ac{IoT} Geräten gesendeten
           Stromzählerdaten ab und speichert diese in die Datenbank.
 
     \item \texttt{mosquitto}:
@@ -244,32 +244,32 @@ Die Daten der Stromzähler werden per \ac{MQTT} an den Broker gesendet. \ref{sta
     \centering
     \includegraphics[width=1.0\textwidth]{gfx/smic-arch-mqtt}
     \caption{
-        Architektur des \ac{MQTT} Messagebrokers und des Dataingresses, welcher die
+        Architektur des \ac{MQTT} Messagebrokers und des \texttt{dataingress}, welcher die
         empfangenen Nachrichten in die Datenbank persistiert
     }
     \label{fig:arch-mqtt}
 \end{figure}
 
-Der Dataingress (ebenfalls ein Python Poetry projekt) registriert sich dann auf die von
+Der \texttt{dataingress} (ebenfalls ein Python Poetry projekt) registriert sich dann auf die von
 den Stromzählern gesendeten Events und arbeitet diese ab. Das Empfangen und Abarbeiten, bzw.
 in die Datenbank Schreiben, wird von unterschiedlichen internen Komponenten übernommen.
 
-Auch der Dataingress verwendet die \texttt{datastore} Python Library. Dies stellt sicher,
-dass die \ac{API} und der Dataingress das gleiche Datenbankformat verwenden, da
+Auch der \texttt{dataingress} verwendet die \texttt{datastore} Python Library. Dies stellt sicher,
+dass die \ac{API} und der \texttt{dataingress} das gleiche Datenbankformat verwenden, da
 die Datenbank ja zwischen den beiden Applikationen geteilt ist.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=1.0\textwidth]{gfx/dataingress-sequence-no-err}
     \caption{
-        Das Sequenzdiagramm zeigt auf wie, der Dataingress die \ac{MQTT} Messages
+        Das Sequenzdiagramm zeigt auf wie, der \texttt{dataingress} die \ac{MQTT} Messages
         von den Stromzählern abarbeitet und in die Datenbank persisitiert
     }
     \label{fig:dataingress-sequence-no-err}
 \end{figure}
 
-Im Sequenzdiagramm des Dataingress (Abbildung \ref{fig:dataingress-sequence-no-err}) wird aufgezeigt,
-wie \ac{MQTT} Messages vom Dataingress abgearbeitet werden.
+Im Sequenzdiagramm des \texttt{dataingress} (Abbildung \ref{fig:dataingress-sequence-no-err}) wird aufgezeigt,
+wie \ac{MQTT} Messages vom \texttt{dataingress} abgearbeitet werden.
 Die Messages müssen zuerst \ac{JSON} deserialisiert werden, um in Python
 gebraucht zu werden. Danach werden die Messdaten und allenfalls der
 Stromzähler mit Serialnummer in die Datenbank gespeichert.
