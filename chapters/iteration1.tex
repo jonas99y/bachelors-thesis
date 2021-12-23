@@ -92,11 +92,11 @@ Podman verwendet (Siehe Kapitel \ref{state:deployment}).
 %TODO Aufschreiben, dass geplantes Konzept umgesetzt wurde, konkrete Technologien erwähnen.
 
 
-In dieser Arbeit wird keine Microservice Architektur im klassischen Sinne verwendet (Siehe Kapitel \ref{konzepte:microservices}). 
+In dieser Arbeit wird keine Microservice Architektur im klassischen Sinne verwendet (Siehe Kapitel \ref{konzepte:microservices}).
 Die einzelnen Komponenten werden zwar in separaten Container deployt (Abbildung: \ref{fig:smic-arch}),
 besitzen jedoch keine eigene Datenbank.
 Das hat den Vorteil, dass weniger Overhead implementiert werden muss (mittels Message Queue)
-und das Datenbankschema kann zentral in der Datastore Library einmal definiert
+und das Datenbankschema kann zentral in der \texttt{datastore} Library einmal definiert
 und dann in den verschiedenen Komponenten wiederverwendet werden.
 
 Die grundlegenden Ideen für diesen Architekturentscheid wurden bereits im
@@ -126,9 +126,9 @@ Architektur auf. Hier noch einige Informationen zu den einzelnen Komponenten:
           beispielsweise die Stromzählerdaten eines Tages zurück.
 
     \item \texttt{datastore}:
-          Der datastore ist eine Python Library, die das Datenbankschema mittels \ac{ORM} festlegt.
+          Der \texttt{datastore} ist eine Python Library, die das Datenbankschema mittels \ac{ORM} festlegt.
           Sowohl die \ac{API} als auch der dataingress greifen auf die Datenbank zu
-          und verwenden somit die datastore Library.
+          und verwenden somit die \texttt{datastore} Library.
 
     \item \texttt{dataingress}:
           Der dataingress arbeitet die von den \ac{IoT} Geräten gesendeten
@@ -191,12 +191,12 @@ Dieses Python Backend führt danach eine SQL Abfrage via \ac{ORM} auf der Datenb
 Um die Daten im Web Frontend anzeigen zu können, werden sie nach \ac{JSON} serialisiert
 und zurück an die WebApp gesendet.
 
-Die datastore Python Library stellt der \ac{API} das Datenbankschema zur Verfügung,
+Die \texttt{datastore} Python Library stellt der \ac{API} das Datenbankschema zur Verfügung,
 damit das \ac{ORM} die Abfragen an die Datenbank machen kann.
 Als \ac{ORM} Framework wird sqlmodel\footnote{https://github.com/tiangolo/sqlmodel} verwendet.
 Sqlmodel wird vom gleichen Entwickler wie FastAPI maintaint und bietet eine gute Integration.
 
-Da nun das Datenmodell (in der datastore Library) und die \ac{API} definiert wurden,
+Da nun das Datenmodell (in der \texttt{datastore} Library) und die \ac{API} definiert wurden,
 kann das Web Frontend unabhängig vom Verarbeiten der \ac{MQTT} Daten gemacht werden.
 
 \subsection{Implementation der Benutzerschnittstelle}
@@ -254,7 +254,7 @@ Der Dataingress (ebenfalls ein Python Poetry projekt) registriert sich dann auf 
 den Stromzählern gesendeten Events und arbeitet diese ab. Das Empfangen und Abarbeiten, bzw.
 in die Datenbank Schreiben, wird von unterschiedlichen internen Komponenten übernommen.
 
-Auch der Dataingress verwendet die Datastore Python Library. Dies stellt sicher,
+Auch der Dataingress verwendet die \texttt{datastore} Python Library. Dies stellt sicher,
 dass die \ac{API} und der Dataingress das gleiche Datenbankformat verwenden, da
 die Datenbank ja zwischen den beiden Applikationen geteilt ist.
 
