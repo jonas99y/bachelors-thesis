@@ -155,9 +155,9 @@ Labelerstellung und zum anderen, ob die \ac{TLS} Verschlüsselung funktioniert (
 \end{figure}
 
 \subsection{Schwierigkeiten}
-Die Python Library `paho`, welche für die \ac{MQTT} Kommunikation verwendet wird, so zu konfigurieren,
+Die Python Library \texttt{paho}, welche für die \ac{MQTT} Kommunikation verwendet wird, so zu konfigurieren,
 dass sie die \ac{TLS} Verschlüsselung unterstützt, stellte sich als Schwierigkeit heraus.
-Nach einiger Recherche zeigte sich, dass `paho` ein unübliches \ac{TLS}
+Nach einiger Recherche zeigte sich, dass \texttt{paho} ein unübliches \ac{TLS}
 Verhalten aufweist \parencite{eclipse_paho_ssl_2019}.
 Nachdem der Parameter \texttt{cert\_reqs=ssl.CERT\_NONE} gesetzt wurde, funktionierte
 die \ac{TLS} Verschlüsselung dann auch.
