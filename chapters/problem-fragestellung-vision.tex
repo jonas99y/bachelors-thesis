@@ -1,35 +1,4 @@
 \chapter{Problem, Fragestellung, Vision}
-\label{cap1}
-Die Landis+Gyr AG prüfte intern mögliche Projekte für eine Bachelorarbeit im Bereich Machine Learning.
-Eine dieser Ideen war das Erkennen einzelner Stromverbraucher, wie beispielsweise des Backofens oder der Waschmaschine,
-basierend auf den Messwerten des gesamten Haushalts.
-Bei dieser sowie auch bei anderen Idee traten folgende Probleme auf:
-\begin{itemize}
-      \item Für Supervised Learning müssen Daten vorhanden sein,
-            welche über Labels verfügen. 
-            Solche Daten waren nicht verfügbar. (Mehr dazu im Kapitel \ref{state:supervised-learning} Supervised Learning)
-      \item Die gemessenen Stromzählerdaten werden meist über 15 Minuten aggregiert und dann übermittelt.
-            Diese Frequenz und Auflösung lässt kaum Echtzeitanalysen der Messdaten zu.
-
-\end{itemize}
-
-Um für die genannten Probleme Lösungen zu erarbeiten, wurde eine Aufgabenstellung mit dem Titel ``Smart Metering into the cloud`` (siehe Anhang \ref{anhang:aufgabenstellung}) verfasst,
-welche Ausgangspunkt dieser Arbeit ist.
-
-\section{Zusammenfassung Aufgabenstellung}
-\label{aufgabenstellung}
-
-Es soll eine Plattform entwickelt werden, welche Messdaten mittels \ac{MQTT} Protokoll  empfangen kann.
-Diese Daten sollen abgespeichert werden und über eine Benutzerschnittstelle abrufbar sein.
-Dort sollen sie visuell mittels Graphen dargestellt werden.
-Über diese Schnittstelle soll es eine Möglichkeit geben, den Daten Labels hinzuzufügen,
-damit diese für Machine Learning verwendet werden können.
-Es wird verlangt, dass die Lösung mittels Container umgesetzt wird und dass die Benutzerschnittstelle für mobile Geräte entwickelt wird.
-Bei den restlichen Technologien verfügt das Projektteam über kreativen Freiraum.
-Die konkreten Technologien werden im Kapitel \ref{p1:evaluation_tech} evaluiert.
-Dabei soll agil vorgegangen werden um Änderungen der Anforderungen im Verlauf des Projekts zu ermöglichen.
-Wie dieses Vorgehen umgesetzt wurde, ist im Kapitel \ref{methoden} beschrieben.
-Die vollständige Aufgabenstellung ist dieser Arbeit als Anhang \ref{anhang:aufgabenstellung} beigelegt.
 
 % Aus Aufbau_Bericht.pdf
 % Welche Ziele, Fragestellungen werden mit dem Projekt verfolgt? Die Bedeutung, Auswirkung und
