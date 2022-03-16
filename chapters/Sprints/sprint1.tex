@@ -1,3 +1,101 @@
+
+
 \section{Schwierigkeiten}
 Benutzen von Shims mittels Microsoft Fakes
 https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/test/isolating-code-under-test-with-microsoft-fakes?view=vs-2015&redirectedfrom=MSDN
+
+\subsection{Build}
+<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers> vs <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+Probleme beim Build via msbuild Kommando und im CI/CD
+
+Probleme beim ausführen von tests via vstest.console.exe
+"Could not find testhost"
+Dieses Problem tritt ebenfalls auf, wenn ein neues Testprojekt erstllt wird und dies mit vstest abgespielt wird.
+
+Lösung:
+dotnet cli verwenden. neuses Problem:  The imported project "C:\Program Files\dotnet\sdk\6.0.200\Microsoft\DesktopBridge\Microsoft.DesktopBridge.props" was not found.
+Lösung:
+neue Solution nur mit Test projekten
+
+\section{CI/CD}
+
+\subsection{Schwierigkeiten}
+Die Azure DevOps Instanz der Landis+Gyr wird global verwaltet. Für neue Projekte, Anpassungen und Berechtigugen mussten jeweils die entsprechenden Prozesse eingehalten werden. (SP/Azure work item)
+Projekt
+Pipeline erstellen
+Agent
+Agent mit VS 2022
+
+Workaround VS 2022 nicht gefunden
+https://stackoverflow.com/questions/70174595/visual-studio-2022-not-listed-in-devops-build-solution-pipeline-task
+
+Secure File für Zertifikat
+-> Vorerst wurde der Private Key in das Repository eingecheckt, da keine Secure Files erstellt werden können. Verantwortlicher ist in den Ferien.
+
+
+\subsection{InfraLib}
+Parsen von ClassDescriptions kaum getestet. Xml node hat im Code einen anderen Namen als in den Dateien.
+
+Neue tests für InfraLib schreiben und code fixen.
+
+\subsection{Adapter Pattern}
+
+Mithilfe des Adapter Pattern wurde die bestehende Klassenstrukture der InfraLib auf die benötigten Interfaces adaptiert.
+Dies erlaubte es, die Interfaces genau so zu modellieren, wie sie für den DlmsQuickAccess benötigt werden.
+Dependency auf InfraLib ist an einem Ort.
+
+
+\section{Entscheidungen}
+
+Mock Framework:
+https://github.com/moq/moq4
+
+
+Logging Framework
+log4Net, weil es bereits für InfraLib verwendet wird. 
+
+https://stackoverflow.com/questions/53092470/how-to-configure-logging-via-log4net-in-an-uwp-app
+
+\section{Globaler Exception Handler}
+
+Exceptions, welche vom Programm nicht abgefangen werden und zu einem Absturz der Anwendung führen, werden von einem globalen Exception Handler gefangen.
+Dieser schreibt deren auftreten in die Log-Datei. Für vereinfachtes Troubeshooting, wir diese Log Datei auch sofort geöffnet. Das Programm stürtzt danach ab.
+
+Limitierugen:
+Exception, welche im Aufbau der Anwendung vorkommen. Also beispielsweise im XAML oder im Konstruktor eines ViewModels können nicht abgefangen werden.
+https://docs.microsoft.com/en-us/windows/winui/api/microsoft.ui.xaml.application.unhandledexception?view=winui-3.0
+
+
+\section{Versionen von .net}
+WinUI3 benötigt spezifische Version net6.0-windows10.0.19041.0.
+Test Projekt muss ebenfals diese als TargetFramwork haben.
+Wenn dieses ausgewählt wird könne jedoch keine UT mehr ausgeführt werden.
+
+UWP UnitTest Projekt hilft auch nicht
+
+Lösung:
+Eigenes Projekt für VM und so
+
+
+
+
+UnitTest:
+
+Internal Classes testen:
+https://stackoverflow.com/questions/358196/c-sharp-internal-access-modifier-when-doing-unit-testing
+
+\section{Dummy Klassen}
+Für das Testig von Picasso Tool wurde Dummy Klassen erstellt, welche diverse Edge-Cases abdekend.
+Diese sind sehr praktisch für das entwickeln und testen der Anwendung.
+
+
+\section{Sprint resultat}
+Nur 2 stories fertig.
+
+
+nichts fertig
+Release funktioniert noch nicht
+Unittest laufen noch nicht
+
+Damit erster release n
+
