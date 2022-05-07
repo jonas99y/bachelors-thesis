@@ -6,3 +6,54 @@ Die grösste Lücke besteht aktuell noch darin, dass es nicht möglich ist, zwis
 Es ist lediglich möglich mit dem Referenzprodukt "Ref_MMI3" zu kommunizieren.
 
 Des Weiteren sollen kleinere Verbesserungen an der Benutzerschnittelle gemacht werden.
+
+
+\section{Produkte}
+Benötigte Infos:
+- Object Model xml file
+- HW file
+   - hat link auf ObjectList file
+
+Object Model aus Artifacts des Nightly
++ Möglichkeit für eigene
+HW file aus Picasso_Test
+
+vs.
+
+alles mit der Anwendung bundeln?
+- cons:
+weniger Flexiblität
+abhänig vom Netz
+abhänig von offiziellen Object Models, keine manuelle anpassungen für Debugging möglich
+Unnötig viele Updates nötig
+- pros:
+einfach umzusetzten
+auto update kümmert sich darum, dass immer alles aktuell ist.
+
+: Kann ja zusätzlich immernoch gemacht werden?
+
+
+ObjectModel kann aus Repo geladen werden, ObjectList ebenfalls.
+evtl. sogar ats file?
+Wo ist source of truth von bswp: DLMS_OPTICAL_HW1_Ref_MMI3.xml?
+
+
+Dlms HW file nicht standardisiert abgelegt
+-> Diese fix an den release binden mit Möglichkeit für Erweiterung
+
+.dlmsquickaccess file in repo that directly opens the app?
+-pros:
+File will be created via workspaces or manually.
+This file could then also be used to store preferences of the user. Its up to the user, where and how he stores it.
+
+HW could either be specified by a path or by on of the predefined HW files.
+app would save previous opened configs.
+
+
+
+\section{Schwierigkeiten}
+FilePicker nicht eifach zu verwenden
+https://github.com/microsoft/WindowsAppSDK/issues/1188
+
+Kommunikation muss deinitialisiert werden (TLS). Destruktor wird nicht aufgerufen von GC. 
+In diesem Sprint ein Hack angewendet, da im nächsten asynchrone kommunikation ansteht.
