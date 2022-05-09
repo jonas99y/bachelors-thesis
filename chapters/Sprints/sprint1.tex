@@ -2,7 +2,7 @@
 Im ersten Sprint wurde der Grundstein für das Projekt sowie die Applikation gelegt.
 
 
-\section{Schwierigkeiten}
+\subsection{Schwierigkeiten}
 Benutzen von Shims mittels Microsoft Fakes
 % https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/test/isolating-code-under-test-with-microsoft-fakes?view=vs-2015&redirectedfrom=MSDN
 
@@ -19,7 +19,7 @@ dotnet cli verwenden. neuses Problem:  The imported project "C:\\Program Files\\
 Lösung:
 neue Solution nur mit Test projekten
 
-\section{CI/CD}
+\subsection{CI/CD}
 
 \subsection{Schwierigkeiten}
 Die Azure DevOps Instanz der Landis+Gyr wird global verwaltet. Für neue Projekte, Anpassungen und Berechtigugen mussten jeweils die entsprechenden Prozesse eingehalten werden. (SP/Azure work item)
@@ -47,7 +47,7 @@ Dies erlaubte es, die Interfaces genau so zu modellieren, wie sie für den DlmsQ
 Dependency auf InfraLib ist an einem Ort.
 
 
-\section{Entscheidungen}
+\subsection{Entscheidungen}
 
 Mock Framework:
 https://github.com/moq/moq4
@@ -58,7 +58,7 @@ log4Net, weil es bereits für InfraLib verwendet wird.
 
 https://stackoverflow.com/questions/53092470/how-to-configure-logging-via-log4net-in-an-uwp-app
 
-\section{Globaler Exception Handler}
+\subsection{Globaler Exception Handler}
 
 Exceptions, welche vom Programm nicht abgefangen werden und zu einem Absturz der Anwendung führen, werden von einem globalen Exception Handler gefangen.
 Dieser schreibt deren auftreten in die Log-Datei. Für vereinfachtes Troubeshooting, wir diese Log Datei auch sofort geöffnet. Das Programm stürtzt danach ab.
@@ -68,7 +68,7 @@ Exception, welche im Aufbau der Anwendung vorkommen. Also beispielsweise im XAML
 https://docs.microsoft.com/en-us/windows/winui/api/microsoft.ui.xaml.application.unhandledexception?view=winui-3.0
 
 
-\section{Versionen von .net}
+\subsection{Versionen von .net}
 WinUI3 benötigt spezifische Version net6.0-windows10.0.19041.0.
 Test Projekt muss ebenfals diese als TargetFramwork haben.
 Wenn dieses ausgewählt wird könne jedoch keine UT mehr ausgeführt werden.
@@ -86,12 +86,12 @@ UnitTest:
 Internal Classes testen:
 https://stackoverflow.com/questions/358196/c-sharp-internal-access-modifier-when-doing-unit-testing
 
-\section{Dummy Klassen}
+\subsection{Dummy Klassen}
 Für das Testig von Picasso Tool wurde Dummy CosemKlassen erstellt, welche diverse Edge-Cases abdekend.
 Diese sind sehr praktisch für das entwickeln und testen der Anwendung.
 
 
-\section{Sprint resultat}
+\subsection{Sprint resultat}
 Nur 2 stories fertig.
 
 
@@ -101,3 +101,26 @@ Unittest laufen noch nicht
 
 Damit erster release n
 
+
+
+\subsection{Einbindung ATS Code}
+In Kapitel TODO wird erklärt, wieso der Code des \ac{ATS} als Kommunikationsstack ausgewählt wurde.
+Die Story "Harvest parts of the ATS" beschäftigte sich damit, Teile des \ac{ATS} Codes so in die Anwendung einzubindend, dass Stromzählerdaten gelesen und geschrieben werden können.
+Dabei trat die Schwierigkeit auf, dass alle Klassen des \ac{ATS} in einem einzelnen C\# Projekt mit dem Namen Befehlsinterpreter abgelegt sind.
+Nebst den benötigten \ac{DLMS} Kommunikationskomponenten beinhaltet dieses Projekt auch Code für Benutzerschnittstellen sowie diversen andere Kommunikationsprotokolle.
+Eine saubere Trennung der einzelnen Komponenten ist nicht erkennbar. 
+Dies bestätigen auch die Code Metrics Results (TODO footnote was diese sind und wie sie erstellt werden können) sichtbar in Abbildung TODO.
+Einzelne Klassen sind mit bis zu 71 anderen gekoppelt, während laut \parencite{quantitativeInvestigationRiskCodeMetrics} TODO neun eine gute Obergrenze wäre.
+Abbildung TODO zeigt des weiteren, dass teils englische und teils deutsche Klassennamen verwendet werden.
+Es ist somit nicht möglich, den \ac{ATS} Code als Bibliothek mittels eines NuGet TODO Paketes einzubinden.
+Im Kapitel \ref{ausblick:ats_split} wird jedoch darauf hingewiesen, dass es in der Zukunft sinnvoll sein könnte,
+das Befehlsinterpreter Projekt aufzuspalten und einzelne Komponenten als Bibliothek bereitzustellen.
+
+
+Das Repository des \ac{ATS} wurde mittels Git Subtree TODO in das Projekt dieser Arbeit eingebunden. 
+Dies ermöglichte es, dass Klassen und Funktionen, welche nicht benötigt werden, entfernt werden konnten.
+Die Änderungen am \ac{ATS} Code mussten lediglich in das Repository dieser Arbeit gepusht werden.
+Wäre anstelle von Git Subtree Git Submodule verwendet worden, wäre dies nicht möglich gewesen.
+Neue Versionen des \ac{ATS} Code können ebenfalls gepullt und gemerget werden. 
+Der Nachteil dieses Ansatzes ist es, dass es etwas schwieriger ist, die gemachten Änderungen zum Ursprungsrepository zu pushen \parencite{gitSubtree}.
+Da die geplanten Änderungen jedoch nur vorsehen, Code zu löschen, ist dieser Nachteil nicht relevant.

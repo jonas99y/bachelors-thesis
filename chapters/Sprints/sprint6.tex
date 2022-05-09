@@ -10,3 +10,18 @@ Kommunikation Asynchron machen
 Bisher wird bei Kommunikation mit dem Zähler das UI eingefrohren
 Wenn Kommunikation fehlschlägt stürtzt die Anwendung ab.
 Kommt immer dan vor, wenn TLS Verbindung zuvor nicht sauber beendet wurde.
+
+Die verschiedenen Zustände der Kommunikation soll mit dem State Pattern implementiert werden.
+Das State Pattern ermöglicht, dass sich das Verhalten eines Objekts basierend auf dessen Zustand verändert \parencite{designPatterns}
+Die Kommunikation kann mehrere Zustände haben:
+\begin{itemize}
+   \item Uninitiert
+   \item Initiert
+   \item Kommunizierend
+   \item Fehlerzustand
+\end{itemize}
+Je nach Zustand muss sie anders auf neue Anfragen reagieren.
+Ist sie beispielsweise noch uniniteiert, muss sie zuerst initiert werden, bevor die eigentliche Anfrage kommunizert werden kann.
+Vom kommunizierenden Zustand ist es möglich, dass sie in einen Fehlerzustand gerät.
+Um diesen zu verlassen muss erneut initiert werden.
+Abblidung TODO zeigt auf, wie diese Zustände mithilfe des State Patterns implementiert wurden.
