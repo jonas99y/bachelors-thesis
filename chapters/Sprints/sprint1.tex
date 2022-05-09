@@ -1,8 +1,10 @@
+\section{Sprint 1}
+Im ersten Sprint wurde der Grundstein für das Projekt sowie die Applikation gelegt.
 
 
 \section{Schwierigkeiten}
 Benutzen von Shims mittels Microsoft Fakes
-https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/test/isolating-code-under-test-with-microsoft-fakes?view=vs-2015&redirectedfrom=MSDN
+% https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/test/isolating-code-under-test-with-microsoft-fakes?view=vs-2015&redirectedfrom=MSDN
 
 \subsection{Build}
 <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers> vs <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
@@ -13,7 +15,7 @@ Probleme beim ausführen von tests via vstest.console.exe
 Dieses Problem tritt ebenfalls auf, wenn ein neues Testprojekt erstllt wird und dies mit vstest abgespielt wird.
 
 Lösung:
-dotnet cli verwenden. neuses Problem:  The imported project "C:\Program Files\dotnet\sdk\6.0.200\Microsoft\DesktopBridge\Microsoft.DesktopBridge.props" was not found.
+dotnet cli verwenden. neuses Problem:  The imported project "C:\\Program Files\\dotnet\\sdk\\6.0.200\\Microsoft\\DesktopBridge\\Microsoft.DesktopBridge.props" was not found.
 Lösung:
 neue Solution nur mit Test projekten
 
