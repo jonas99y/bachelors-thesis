@@ -4,20 +4,124 @@
 % angehen? Wodurch unterscheidet sich Ihre Lösung von anderen Lösungen? Für wissenschaftlich
 % orientierte Arbeiten sei hier explizit auf (Balzert, S. 66 ff) verwiesen.
 
-\section{DMT2}
-Das Ziel dieser Arbeit ist es, die Software "DMT2" zu ersetzen. Genauergesagt die Teilfunktion "Quick Access" welche für den Zugriff auf Objekte eines Zählers verwendet wird.
 
-\subsection{Funktionen}
-
-\subsection{Schwächen}
 
 
 \section{DLMS}
+\ac{DLMS} ist eine Sammlung von offenen Standards, welche ein Applikations- und ein Transferprotokoll definieren.
+Die Protokolle basieren auf dem \ac{OSI} Modell, sind jedoch auf Layer physical, data link, transport und application reduziert.
+Diese sind in Abbildung \ref{fig:dlmsOsi} dargestellt.
+Dabei ist ersichtlich, dass auf den unteren Layern unterschiedlich Kommunikationskanäle verwendet werden können.
 
-\section{ObjectModel und Class Descriptions}
+% TODO image ist aus PDF. Quelle angeben?
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{gfx/Dlms_osi.png}
+   \caption{
+       DLMS/COSEM Kommunikationslayer
+   }
+   \label{fig:dlmsOsi}
+\end{figure}
+
+Der Applicationlayer des \ac{DLMS} Protokolls definiert die Funktionen eines intelligenten Stromzählers als Objekte \parencite{vyas2012advance}.
+
+\subsection{COSEM}\label{cosem}
+Der \ac{COSEM} Standard, welcher teil von \ac{DLMS} ist, beschreibt eine Sammlung von logischen Geräten, welche gemeinsam in einem physischen Gerät untergebracht werden.
+Diese logischen Geräte bestehen mehreren Attributen und Methoden, welche jeweils zu Objekten zusammengefasst sind.
+Diese Objekte jeweils können mittels \ac{OBIS} Code adressiert werden.
+Die Schnittstellen zu den Objekten sowie eine List von standard \ac{OBIS} Codes sind in \ac{COSEM} enthalten  \parencite{vyas2012advance}.
+
+
+\section{Landis+Gyr intern}
+In den folgenden Abschnitten werden Konzepte, Anwendungen und Produkte erklärt, welche bei der Landis+Gyr intern verwendet.
+
+\subsection{Object Model und Class Description}\label{objectModelsClassDescriptions}
+Im Absatz \ref{cosem} wurde erwähnt, dass die Funktionen eines intelligenten Stromzählers mittels Objekten abstrahiert werden.
+Bei der Landis+Gyr werden alle Objekte eines bestimmten Produkts jeweils in einem Object Model zusammengefasst.
+Anhand des Object Models entwerfen Architekten die Funktionen eines Zählers.
+Dazu verwenden sie eine Excel Tabelle um die Werte des Object Models zu bearbeiten.
+In Abbildung \ref{fig:objectModel} ein der Header sowie ein Objekt aus einer solchen Tabelle dargestellt.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/objectModel.png}
+   \caption{
+       Ausschnitt aus der Excel Tabelle eines Object Models
+   }
+   \label{fig:objectModel}
+\end{figure}
+
+Diese Objekte sind jeweils Instanzen von \ac{COSEM} Klassen.
+Die Funktionalität und Schnittstelle dieser Klassen sind in sogenannten Class Descriptions dokumentiert.
+Jede Class Description ist in einem eigenen Word Dokument abgelegt.
+Ein Beispiel dazu in in Abbildung \ref{fig:classDescription} ersichtlich.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/ClassDescription.png}
+   \caption{
+       Ausschnitt aus einer Class Description
+   }
+   \label{fig:classDescription}
+\end{figure}
+
+Das Object Model in Kombination mit den verwendeten Class Descriptions dient bei der Firmwareentwicklung als Referenz für die Implementation \ac{DLMS}/\ac{COSEM} Schnittstelle.
+Um die Integrität der Daten sicherzustellen und um diese in andere Dateiformate zu konvertieren, entwickelt und betreibt die Landis+Gyr mehrere Programme.
+Diese werden im nächsten Abschnitt erläutert.
+
+\subsubsection{Tools}
+Das Programm \textit{Picasso Tools} stellt ein Plugin für Excel bereit, welches dem Benutzer ermöglicht den Inhalt eines Object Models zu validieren.
+Dabei werden die Objekte anhand von vordefinierten Regeln auf Korrektheit und Vollständigkeit überprüft.
+Des Weiteren wird mithilfe der entsprechenden Class Description überprüft, ob die Attribute und Methoden eines Objekts korrekt sind.
+Die Class Descriptions müssen dazu als XML Datei vorhanden sein.
+Da die Class Descriptions wie zuvor beschrieben jedoch Word Dokumente sind, müssen diese mit dem Programm \textit{Description Tools} exportiert werden.
+Analgo zu \textit{Picasso Tools} stellt \textit{Description Tools} ein Plugin für Word bereit, welches Dokumente validieren und als XML exportieren kann.
+
+Nebst den Plugins bieten beide Programme auch ein \ac{CLI} an.
+Dieses wird von einem Server verwendet, welcher jeden Tag alle Object Models und Class Description validiert und als XML exportiert.
+Anhand der Validierungsresultate erstellt er einen Report, welche einen Überblick über die Qualität der Dokumente gibt sowie auf Fehler hinweist.
+
+Beide Tools sind in der Programmiersprache C\# entwickelt und nutzen die Komponente \textit{InfraLib}.
+Diese ist eine C\# Bibliothek, welche Funktionalitäten wie das Parsen der XML files anbietet. 
+\footnote{\textit{Picasso Tools}, \textit{Description Tools} sowie \textit{InfraLib} wurden vom Autor dieser Arbeit erstellt, als dieser seine Berufslehre bei der Landis+Gyr absolvierte und seither weiterentwickelt }
+
+
+\subsection{Firmwareentwicklung}
+Am Standort Cham entwickelt die Landis+Gyr Firmware für intelligent Stromzähler.
+Dazu wird die Programmiersprache C++ eingesetzt.
+Wie im Abschnitt \ref{objectModelsClassDescriptions} bereits erwähnt, stützt sich die Firmware auf Object Models.
+Diese werden verwendet, um jenen Code zu generieren, welcher die \ac{COSEM} Objekte in der Firmware instanziert.
+Ein Tool, welches in der Programmiersprache Python geschrieben ist, parst die XML Repräsentation des Object Models und mit Hilfe von Templates den entsprechenden Code.
+Da das verwendete Buildsystem, SCons \footnote{https://scons.org/}, ebenfalls mit Python arbeitet ist Python hinter C++ die zweit meist verwendete Sprache im Projekt der Firmwareentwicklung.
+
+\subsection{E66C Testing}
+\textit{E66C} ist die Modellbezeichnung eines Kommunikationsmoduls, welches von der Landis+Gyr in Cham entwickelt wird.
+Dabei handelt es sich um eine Komponente, welcher auf gewisse Stromzählermodelle aufgesteck werden kann und diesen um Kommunikationsfunktionen erweitert.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{gfx/landis-e66c.jpg}
+   \caption{
+      Kommunikationsmodule E66C der Landis+Gyr
+   }
+   \label{fig:e66c}
+\end{figure}
+
+Um das Zusammenspiel des \textit{E66C} mit einem Stromzähler automatisiert zu testen, entwickelte das Team in Cham das Programm \textit{libpydlms}.
+Dieses ermöglicht das Lesen und Schrieben von \ac{COSEM} Objekten in der Sprache Python.
+
+
+\subsection{ATS}
+
+
+\subsection{DMT2}
+Das Ziel dieser Arbeit ist es, die Software "DMT2" zu ersetzen. Genauergesagt die Teilfunktion "Quick Access" welche für den Zugriff auf Objekte eines Zählers verwendet wird.
+
+\subsubsection{Funktionen}
++settings als UI
+
+\subsubsection{Schwächen}
 
 \section{WinUI3}
+\input{chapters/softwarequality.tex}
 
-\section{ATS}
-
-\section{E660 testing python zeugs}

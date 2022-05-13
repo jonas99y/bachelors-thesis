@@ -40,3 +40,71 @@ Diese Konfiurationsdateien sollen die Endung \".dlmsquickaccess\" tragen,
 
 Um das Wechseln zwischen Produkten zu vereinfachen, soll sich der DlmsQuickAccess zuvor verwendete Konfigurationen merken, so dass der Benutzer diese auswählen kann.
 
+
+TODO ufschribe, was passiert bim erste start und bi doppelclick.
+
+
+
+\section{Testkonzept}
+
+Manuelle Testszenarien
+
+\section{Model View ViewModel}\label{mvvm}
+
+\section{Architektur}
+Der Quellcode der Anwendung ist in mehrere C\# Projekte aufgeteilt.
+
+Dies soll die Wiederverwendbarkeit der Komponenten sicherstellen.
+Wenn in Zukunft eine Komponente wie bspw. die Kommunikation ausgetauscht werden soll, so müssen nur in einem spezifischen Teil des Codes Änderungen vorgenommen werden.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/Architecture view for DlmsQuickAccess.png}
+   \caption{
+      Abhänigkeiten der Projekte
+   }
+   \label{fig:projectDependencies}
+\end{figure}
+
+In der Abbildung \ref{fig:projectDependencies} sind alle Projekte und deren Abhängigkeit aufgezeigt.
+Diese werden in den folgenden Abschnitten näher beschrieben.
+
+\subsection{DlmsQuickAccess}
+Dieses Projekt ist der Einstiegspunk der Anwendung.
+Die Klasse \textit{App} lässt sich mit der \texttt{main()} Method vergleichen, welchen den meisten C basierten Sprachen als erstes ausgeführt, wenn ein Programm gestartet wird.
+Diese lädt \textit{Windows} und \textit{Controls} aus dem DlmsQuickAccess.View Projekt und zeigt diese dem Nutzer an.
+
+
+\subsection{DlmsQuickAccess.Config}
+
+\subsection{DlmsQuickAccess.View}
+Sämtliche Komponenten der Benutzerschnittstelle, also \textit{Windows} und \textit{Controls}, sind in diesem Projekt definiert. 
+Nebst der Abhängigkeit zum Framework WinUI3, welches für die Darstellung der Element der Benutzerschnittstelle benötigt wird, gibt es nur eine einzige Abhängigkeit, jene zu DlmsQuickAccess.Interfaces.
+Diese ist dazu da, dass die Controls die Interfaces der ViewModels kennen, auf welche sie binden.
+Das Zusammenspiel von View und ViewModel ist im Abschnitt (\ref{mvvm}) beschrieben.
+Währen diese Interfaces im selben Projekt wie die Controls definiert, so hätten die Implementationen der ViewModels eine Abhängigkeit auf DlmsQuickAccess.View.
+Um eine solche Koppelung zu vermeiden, wurden die Interfaces in ein eigenes Projekt ausgelagert.
+
+
+\subsection{DlmsQuickAccess.ViewModel}
+
+
+
+\subsection{DlmsQuickAccess.Interfaces}
+
+\subsection{DlmsQuickAccess.ProductConfig}
+External dependency to yamllib
+
+
+\subsection{DlmsQuickAccess.Dlms}
+evtl widerverwendbar
+
+\subsection{DlmsQuickAccess.Cosem}
+evtl widerverwendbar
+infralib etc.
+
+\subsection{DlmsQuickAccess.Befehlsinterpreter}
+isolation des Befehlsinterpreter
+
+
+

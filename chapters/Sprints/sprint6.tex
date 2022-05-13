@@ -1,10 +1,46 @@
 \section{Sprint 6}
 
+\subsection{Isolation des Befehlsinterpreter}
+In \ref{s1:ats} wurde erklärt, wie der Code des \ac{ATS} eingebunden wurde.
+Bisher war das Befehlsinterpreter Projekt eine direkte Abhängigkeit des DlmsQuickAccess.Dlms Projekts.
+Die benötigten Klassen wurden dort instanziert und verwendet. 
+Dies führt dazu, dass DlmsQuickAccess.Dlms stark an den Befehlsinterpreter gekoppelt ist.
+Ein Austausch des Kommunikationsstacks wäre mit grösseren Anpassungen verbunden.
 
-% https://www.c-sharpcorner.com/UploadFile/78607b/difference-between-ienumerable-icollection-and-ilist-interf/
 
-% https://books.google.ch/books?hl=de&lr=&id=pKVFDwAAQBAJ&oi=fnd&pg=PA3&dq=software+quality+assurance&ots=Gd9uAgA9c3&sig=7e-9sSZofRdKz3-WDZYGtqzuigE&redir_esc=y#v=onepage&q=software%20quality%20assurance&f=false
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.5\textwidth]{gfx/dlms_vorher.png}
+   \caption{
+      Reduziertes Klassendiagramm um die ReaderWriter Klasse vor der Dependency Inversion
+   }
+   \label{fig:dlms_vorher}
+\end{figure}
 
+Da in diesem Sprint Änderungen am Kommunikationscode, also an DlmsQuickAccess.Dlms, geplant sind, wurde als erstes die zuvor gennante Koplung bereinigt.
+Dazu wurde das Dependency Inversion Principle angewendet.
+Dieses besagt, dass High-Level-Module nicht von Low-Level-Modulen abhängen sollen.
+Beide sollten von Abstraktionen abhänig sein \parencite{madasu35solid}.
+Das Klassendiagramm in Abbildung \ref{fig:dlms_vorher} zeigt, wie die Klasse ReaderWriter von Klassen des Befehlsinterpreter abhänig ist.
+Wie die Abhänigkeiten nach dem Refactoring nach Dependency Inversion Principle aussehen, ist in Abblidung \ref{fig:dlms_nachher} gezeigt.
+Mit dem ICommunicator Interface definiert DlmsQuickAccess.Dlms nun lediglich die Schnistelle eines Objekts, welches vom ReaderWriter benötigt wird.
+Dieses wird mit der Communicator Klasse implementiert. Eine Instaz dieser Klasse kann nun in den ReaderWriter injected werden.
+Somit wurde die Koppelung von DlmsQuickAccess.Dlms und Befehlsinterpreter aufgelöst.
+
+% evtl schreiben, wo Communicator instantiert wird
+
+
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.5\textwidth]{gfx/dlms_nachher.png}
+   \caption{
+      Reduziertes Klassendiagramm um die ReaderWriter Klasse nach der Dependency Inversion
+   }
+   \label{fig:dlms_nachher}
+\end{figure}
+
+\subsection{states oder}
 
 Kommunikation Asynchron machen
 Bisher wird bei Kommunikation mit dem Zähler das UI eingefrohren
@@ -25,3 +61,51 @@ Ist sie beispielsweise noch uniniteiert, muss sie zuerst initiert werden, bevor 
 Vom kommunizierenden Zustand ist es möglich, dass sie in einen Fehlerzustand gerät.
 Um diesen zu verlassen muss erneut initiert werden.
 Abblidung TODO zeigt auf, wie diese Zustände mithilfe des State Patterns implementiert wurden.
+
+\subsection{async}
+Bsp. ReadyState bekommt Read() befehl.
+-> Startet Read via ICommunicator des contexts.
+-> Sets Next state auf Communicating state
+
+IsCommuncating state erwartet die antwort des Reads.
+Beantwortet den das await des ursprünglichen callers.
+setzt zurück auf ReadyState
+-> kann jedoch auch ein stop erhalten während des warten
+   -> antwortet await ebenfalls (mit exception)
+
+Schwierigkeit -> 
+ATS Code nutz intern System.CurrentThread.Name für das Session Management.
+Das Desing der Applikation sieht jedoch vor, dass die Kommunikation in Tasks ausgelagert wird.
+Dann ist der Thread Name jeweils ein andere, als wenn aus dem UI oder Main Thread zugegriffen wird.
+
+Lösung "1"
+
+
+
+\subsection{Bereinigung der internen Abhänigkeiten}
+"Sync Namespaces" sehr hilfreich.
+
+
+\subsection{Gruppen}
+
+Wunsch Ronny M. : Import / Export 
+
+
+\subsection{Feedback}
+Chakrit: 
+- Landingscreen ist leer, wenn zuvor noch kein Produkt gestartet wurde. // auch von christoph
+   - Wo finde ich einen Browser? // Chistoph
+- Version nicht sichtbar im Loadingscreen
+- Version nicht sichtbar im Log
+- Wenn er via Windows startet steht im Log ein fehler.
+- Enter to search
+
+Someone:
+- Lesen von Arrays stimmt nicht richtig
+   - repro: Object list lesen
+
+\subsection{Class Descriptions}
+
+
+
+Bug, dass app crasht, wenn Description nicht vorhanden
