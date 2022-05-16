@@ -46,8 +46,40 @@ TODO ufschribe, was passiert bim erste start und bi doppelclick.
 
 
 \section{Testkonzept}
+Um sicherstellen, dass die Applikation und deren Komponenten richtig funktionieren, wurden verschieden Arten von Tests eingesetzt.
+Die unterscheiden sich primär im Umfang des Getesteten. 
+In den folgenden Abschnitten werden sie detailliert beschrieben und verglichen.
 
-Manuelle Testszenarien
+\subsection{Unittests}
+Unittests werden so eingesetzt, dass sie die Funktionalität einer einzelnen Klasse testen.
+Abhängigkeiten zu anderen Klassen sollen jeweils durch Mocks ersetzt werden.
+Die Tests werden jeweils parallel zum getesteten Code geschrieben.
+Mehr dazu im Abschnitt \ref{tdd} Test Driven Development.
+Um sicherzustellen, dass zuvor implementierte Funktionen nicht durch neue Änderungen nicht zerstört werden, werden alle Unittest regelmässig und automatisiert ausgeführt.
+Dies wurde mit der CI/CD Pipeline realisiert. Diese ist im Abschnitt TODO detailliert beschrieben.
+
+\subsection{Modultests}
+Bei den Modultests wird das Zusammenspiel mehrere Klassen getestet, welche gemeinsam ein Modul bilden.
+Dabei soll nur das öffentliche Interface des Moduls verwendet werden.
+Abhängigkeit, welche nicht Teil dieses Moduls sind, werden wie bei den Unittests durch Mocks oder Fakes ersetzt.
+Im Gegensatz zu den Unittests ist der Zeitpunkt für das Schrieben der Modultests nicht definiert.
+Sie sollen so eingesetzt werden, wie sie für den Entwicklungsprozess hilfreich sind.
+
+Beispiel: Mittels Refactoring soll das interne Design eines bestehenden Moduls verbessert werden.
+Um sicherzustellen, dass das Modul nach dem Refactoring noch korrekt funktioniert, werden zuvor Modultests geschrieben, welche die öffentliche Schnittstelle des Moduls testet.
+Da sich diese beim Refactoring nicht verändert, können die Modultests auch noch nach dem Refactoring ausgeführt werden.
+Unittests, welche interne Klassen getestet haben sind womöglich nicht mehr brauchbar, da sich die internen Schnittstellen bei Refactoring stark verändert haben.
+
+Im Bezug auf die regelmässige und automatisierte Ausführung sollen sich Modultests nicht von Unittests unterscheiden.
+
+
+\subsection{Integrationstests}\label{Integrationstests}
+Integrationstests sind im dazu da, die Funktionalität von Komponenten sowie das Zusammenspiel dieser mit anderen zu Testen \parencite{winter2012integrationstest}.
+Im Gegensatz zu Unit- und Modultests wird auf den Einsatz von Mocks oder Fakes verzichtet um ein möglichst realitätsnahen Testaufbau zu erreichen.
+Da die Kommunikation mit Stromzähler für die zu testende Applikation zentral ist, wird für das Ausführen der Integrationstests ein angeschlossener Stromzähler benötigt.
+Im Rahmen dieses Projekts war es nicht mögliche einen Testagent mit angeschlossenem Zähler bereit zu stellen.
+Deshalb wurden die Integrationstests ausschliesslich lokal auf dem Rechner des Entwicklers ausgeführt.
+
 
 \section{Model-View-ViewModel}\label{mvvm}
 \ac{MVVM} ist ein Entwurfsmuster welches 2005 von Microsoft vorgestellt wurde.
@@ -166,3 +198,11 @@ isolation des Befehlsinterpreter
 
 
 
+\section{Benutzerschnittstelle}
+TODO einleitung
+
+
+\subsection{Gridsystem}
+
+\subsection{Entwürfe}
+TODO Entwürfe zeigen
