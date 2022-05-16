@@ -49,9 +49,35 @@ TODO ufschribe, was passiert bim erste start und bi doppelclick.
 
 Manuelle Testszenarien
 
-\section{Model View ViewModel}\label{mvvm}
+\section{Model-View-ViewModel}\label{mvvm}
+\ac{MVVM} ist ein Entwurfsmuster welches 2005 von Microsoft vorgestellt wurde.
+Sein Ziel ist es, das Daten, Logik und Views einer Anwendung unabhängig von einander entwickelt und getestet werden können.
+Es besteht aus folgenden Sichten:
+\begin{itemize}
+   \item Model: Das Domänen Model der Applikation
+   \item View: XAML Komponenten, welche die visuellen Aspekte der Applikation definieren
+   \item ViewModel: Klassen bestehend aus Properties und Commands, welche von den Views verwendet verden
+\end{itemize}
+
+% TODO Image source : https://www.dev-insider.de/was-bedeutet-mvvm-a-1103448/
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/mvvm.jpg}
+   \caption{
+      Das Model-View-ViewModel Entwurfsmuster
+   }
+   \label{fig:mvvm}
+\end{figure}
+Die ViewModels sind dabei der wichtigste Teil, da sie den Zustand der Applikation abbilden.
+Sie sammeln die für die Views benötigten Daten zusammen und stellen sie als Properties bereit.
+Mittels DataBinding referenzieren die Views diese Properties, ohne dabei das konkrete ViewModel kennen zu müssen \parencite{vermeir2022desktop}.
+Wie \ac{MVVM} für diese Arbeit umgesetzt werden kann, ist im folgenden Abschnitt beschrieben.
+
+
+
 
 \section{Architektur}
+% TODO, evtl verschieben zu Realisierung und hier nur die grundlegenden Idee aufzeigen. Wie MVVM angewendet wurde
 Der Quellcode der Anwendung ist in mehrere C\# Projekte aufgeteilt.
 
 Dies soll die Wiederverwendbarkeit der Komponenten sicherstellen.
@@ -66,7 +92,7 @@ Wenn in Zukunft eine Komponente wie bspw. die Kommunikation ausgetauscht werden 
    \label{fig:projectDependencies}
 \end{figure}
 
-In der Abbildung \ref{fig:projectDependencies} sind alle Projekte und deren Abhängigkeit aufgezeigt.
+In der Abbildung \ref{fig:projectDependencies} sind alle\footnote{Die Testprojekte wurde einfachheitshalber weggelassen.} Projekte und deren Abhängigkeit aufgezeigt.
 Diese werden in den folgenden Abschnitten näher beschrieben.
 
 \subsection{DlmsQuickAccess}
@@ -75,20 +101,52 @@ Die Klasse \textit{App} lässt sich mit der \texttt{main()} Method vergleichen, 
 Diese lädt \textit{Windows} und \textit{Controls} aus dem DlmsQuickAccess.View Projekt und zeigt diese dem Nutzer an.
 
 
-\subsection{DlmsQuickAccess.Config}
 
 \subsection{DlmsQuickAccess.View}
 Sämtliche Komponenten der Benutzerschnittstelle, also \textit{Windows} und \textit{Controls}, sind in diesem Projekt definiert. 
 Nebst der Abhängigkeit zum Framework WinUI3, welches für die Darstellung der Element der Benutzerschnittstelle benötigt wird, gibt es nur eine einzige Abhängigkeit, jene zu DlmsQuickAccess.Interfaces.
 Diese ist dazu da, dass die Controls die Interfaces der ViewModels kennen, auf welche sie binden.
-Das Zusammenspiel von View und ViewModel ist im Abschnitt (\ref{mvvm}) beschrieben.
+Das Zusammenspiel von View und ViewModel ist im Abschnitt \ref{mvvm} beschrieben.
 Währen diese Interfaces im selben Projekt wie die Controls definiert, so hätten die Implementationen der ViewModels eine Abhängigkeit auf DlmsQuickAccess.View.
 Um eine solche Koppelung zu vermeiden, wurden die Interfaces in ein eigenes Projekt ausgelagert.
 
 
 \subsection{DlmsQuickAccess.ViewModel}
+Die zuvor erwähnten ViewModel Interfaces sind in diesem Projekt implementiert.
+Nebst den eigentlichen ViewModel Klassen enthält das Projekt mehrere Factory Klassen, welche für die Instanziierung der ViewModel Klassen zuständig sind.
+Hier wurde das Factory Method Erstellungsmuster angewendet \parencite{designPatterns}.
+In Abbildung \ref{fig:filterViewModel} ist die \textit{FilterViewModelFactory} Klasse zur Erstellung des \textit{FilterViewModel} aufgezeigt.
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{gfx/Filter ViewModel.png}
+   \caption{
+      Unvollständiges Klassendiagramm zum FilterViewModel und FilterViewModelFactory
+      }
+      \label{fig:filterViewModel}
+\end{figure}
+
+Dieses Design vereinfacht das Testen der Instanziierungen.
+Ein weitere Vorteil ist, dass eine Factory eine andere Factory mittels Assoziation verwenden kann, deren konkrete Implementation jedoch nicht kennen muss.
+In Abbildung \ref{fig:vmfactories} ist ganz oben die \textit{MainWindowViewModelFactory} Klasse abgebildet, welche für die Erstellung des \textit{MainWindowViewModel} zuständig ist.
+Dieses ViewModel beinhaltete alle anderen ViewModels welche für die verschiedenen Bereiche der Applikation benötigt werden.
+Um diese zu erstellen verwendete \textit{MainWindowViewModelFactory} Instanzen der \textit{IObjectModelViewModelFactory} und \textit{IFavoritesViewModelFactory} welche selbst weitere Factories verwenden.
+Das bringt den Vorteil, dass die einzelnen Factory Klassen nicht aneinander gekoppelt sind.
+Sie werden erst bei ihrer Instanziierung mittels Dependency Injection miteinander verbunden.
+Diese ist Teils des Projekts DlmsQuickAccess.Config (\ref{dqa:config}).
+   
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/vmfactories.png}
+   \caption{
+      Unvollständiges Klassendiagramm zu den verschiedenen ViewModel Factories.
+      }
+   \label{fig:vmfactories}
+\end{figure}
+
+\subsection{DlmsQuickAccess.Model}
 
 
+\subsection{DlmsQuickAccess.Config}\label{dqa:config}
 
 \subsection{DlmsQuickAccess.Interfaces}
 

@@ -32,7 +32,7 @@ Diese Objekte jeweils können mittels \ac{OBIS} Code adressiert werden.
 Die Schnittstellen zu den Objekten sowie eine List von standard \ac{OBIS} Codes sind in \ac{COSEM} enthalten  \parencite{vyas2012advance}.
 
 
-\section{Landis+Gyr intern}
+\section{Landis+Gyr intern}\label{lgintern}
 In den folgenden Abschnitten werden Konzepte, Anwendungen und Produkte erklärt, welche bei der Landis+Gyr intern verwendet.
 
 \subsection{Object Model und Class Description}\label{objectModelsClassDescriptions}
@@ -94,7 +94,7 @@ Diese werden verwendet, um jenen Code zu generieren, welcher die \ac{COSEM} Obje
 Ein Tool, welches in der Programmiersprache Python geschrieben ist, parst die XML Repräsentation des Object Models und mit Hilfe von Templates den entsprechenden Code.
 Da das verwendete Buildsystem, SCons \footnote{https://scons.org/}, ebenfalls mit Python arbeitet ist Python hinter C++ die zweit meist verwendete Sprache im Projekt der Firmwareentwicklung.
 
-\subsection{E66C Testing}
+\subsection{E66C Testing}\label{pythonTesting}
 \textit{E66C} ist die Modellbezeichnung eines Kommunikationsmoduls, welches von der Landis+Gyr in Cham entwickelt wird.
 Dabei handelt es sich um eine Komponente, welcher auf gewisse Stromzählermodelle aufgesteck werden kann und diesen um Kommunikationsfunktionen erweitert.
 
@@ -111,11 +111,12 @@ Um das Zusammenspiel des \textit{E66C} mit einem Stromzähler automatisiert zu t
 Dieses ermöglicht das Lesen und Schrieben von \ac{COSEM} Objekten in der Sprache Python.
 
 
-\subsection{ATS}
+\subsection{ATS}\label{ats}
 
 
-\subsection{DMT2}
+\subsection{DMT2}\label{dmt}
 Das Ziel dieser Arbeit ist es, die Software "DMT2" zu ersetzen. Genauergesagt die Teilfunktion "Quick Access" welche für den Zugriff auf Objekte eines Zählers verwendet wird.
+C++
 
 \subsubsection{Funktionen}
 +settings als UI

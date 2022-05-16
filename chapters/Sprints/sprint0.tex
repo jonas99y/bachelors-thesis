@@ -75,6 +75,40 @@ Im nächsten Abschnitt werden die Antworten (Abbildung \ref{fig:SurveryPlatforms
 \end{figure}
 
 \subsection{Evaluation des Technologiestacks}
+% TODO Windows als Platfrom einbringen
+Um im ersten Sprint mit der Implementation der Applikation beginnen zu können, musste zuerst ein geeigneter Technologiestack evaluiert werden.
+Im Projektauftrag TODO ist festgehalten, dass die Technologien frei gewählt werden können, für die Landis+Gyr jedoch günstig zu unterhalten sein soll.
+Um dies zu erreichen, wurden für die Evaluation nur Programmiersprachen in Betracht gezogen, welche bei der Landis+Gyr bereits aktiv verwendet werden.
+Im Kapitel \ref{lgintern} werden einige Anwendungen und Softwareprojekte der Landis+Gyr, welche im Umfeld der zu entwickelnden Anwendung betrieben und unterhalten werden, genauer beschrieben.
+Die dort verwendeten Programmiersprachen sind C\#, Python und C++.
+
+
+Ein wichtiger Teil der Anwendung wird die \ac{DLMS} Kommunikation mit den Stromzählern sein.
+Diese ist in allen drei zuvor genannten Programmiersprachen bereits implementieren und wird in den Tools \textit{ATS}, \textit{libpydlms} rsp. \textit{DMT2} verwendet.
+Da der \textit{DMT2} jedoch von einem externen Lieferanten entwickelt wurde, erlaubt die zugehörige Lizenz die Verwendung des Codes nicht ohne weiteres.
+
+
+Der Fokus der zu entwickelnden Anwendung liegt auf der Benutzerschnittstelle.
+Python Applikationen mit Benutzerschnittstelle gibt es bei der Landis+Gyr keine.
+Möglich wäre ein Technologiestack bestehend aus Python Backend mit einem Angular \footnote{https://angular.io} Frontend.
+Das Web-Framework Angular, welches mit der Sprache TypeScript verwendet wird, wird im Projekt \textit{Test Script Manager} eingesetzt.
+Dieses Projekt wird an einem Standort ausserhalb der Schweiz entwickelt.
+Als Backend wird dort jedoch nicht Python sondern C\# eingesetzt.
+Eine Python+Angular Applikation wäre somit nicht komplett neu für die Landis+Gyr.
+
+Im Gegensatz zu Python existieren bei der Landis+Gyr bereits mehrere C\# Anwendungen, welche über eine Benutzerschnittstelle verfügen.
+Die \textit{PicParted} und \textit{DocTool} sind C\# Anwendungen welche über eine \ac{WPF}\footnote{https://docs.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf?view=vs-2022} Benutzerschnittstelle verfügen.
+Sie werde im Bereich des Picasso Projekts TODO eingesetzt und Unterhalten. 
+Ursprünglich wurden sie vom Autor dieser Arbeit entwickelt.
+
+Die Anwendung \textit{ATS}, welche im Abschnitt \ref{ats} genauer beschrieben wird, verfügt über Code für die DLMS Kommunikation mit Stromzählern.
+Dieser könnte für die neue Anwendung wiederverwendet werden.
+Die in Abschnitt \ref{objectModelsClassDescriptions} beschriebenen Tools verfügen ebenfalls über C\# Code, welcher thematisch nahe an der neuen Anwendung ist und evtl. ebenfalls wiederverwendet werden kann.
+
+Aufgrund der genannten Umstände viel die Entscheidung auf einen C\# Technologiestack.
+
+% TODO WinUI3 Evaluation beschreiben
+
 
 \subsection{Erstellung des Backlogs}
 Wie in Abschnitt \ref{methoden:ADO} erklärt, wurde \ac{ADO} für die Verwaltung des Backlogs verwendet.
