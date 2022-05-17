@@ -1,10 +1,91 @@
 \section{Sprint 1}
 Im ersten Sprint wurde der Grundstein für das Projekt sowie die Applikation gelegt.
+Dies beinhaltete folgende Stories:
+\begin{itemize}
+   \item Teile des \ac{ATS} Codes sollen übernommen werden, so dass die Kommunikation mit Stromzählern möglich ist.
+% in ADO gibt es no eine zweite story zur kommunikation, diese wird hier weggelassen
+   \item Die Applikation DlmsQuickAccess soll an Benutzer soll so an Benutzer ausgeliefert werden, dass diese automatisch neue Updates erhalten.
+   \item Die Applikation soll auf \ac{ADO} bei jedem neuem Commit automatisch gebaut und getestet werden. 
+   \item Es soll eine Benutzerschnittstelle erstellt werden, welche alle Objekte eines Zählers auflistet.
+% in ADO gibt es eine extra story zum ObjectModel parsen, diese wird hier weggelassen
+\end{itemize}
+In den folgenden Abschnitten werden die genannten Stories einzeln ausführlich beschrieben.
+Als erstes wird jeweils das Ziel der Story genauer festgehalten.
+Darauf folgen wird beschrieben wie die Story bearbeitet wurde, welche Schwierigkeiten aufgetreten sind und in welchem Zustand sich die Story zum Ende des Sprints befand.
+
+\subsection{Implementation der Kommunikation mittels ATS Code}\label{s1:ats}
+\dq Teile des \ac{ATS} Codes sollen übernommen werden, so dass die Kommunikation mit Stromzählern möglich ist.\dq
+
+\subsubsection{Ziel}
+Nebst des Codes für die Kommunikation mit Stromzähler beinhaltet das Projekt des \ac{ATS} viele weitere Komponenten wie beispielsweise eine Benutzerschnittstelle für das Verwalten von Testscripts oder einen Interpreter für die eigene Scriptsprache.
+Die Story gilt als erledigt, wenn die eine erfolgreiche Kommunikation mit einem Stromzähler durchgeführt werden kann.
+Dabei soll nur jener Code, welche effektiv für die Kommunikation zuständig ist, in die DlmsQuickAccess Solution eingebunden werden. 
 
 
-\subsection{Schwierigkeiten}
-Benutzen von Shims mittels Microsoft Fakes
-% https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2015/test/isolating-code-under-test-with-microsoft-fakes?view=vs-2015&redirectedfrom=MSDN
+\subsubsection{Vorgehen und Schwierigkeiten}
+
+In Kapitel TODO wird erklärt, wieso der Code des \ac{ATS} als Kommunikationsstack ausgewählt wurde.
+Die Story "Harvest parts of the ATS" beschäftigte sich damit, Teile des \ac{ATS} Codes so in die Anwendung einzubindend, dass Stromzählerdaten gelesen und geschrieben werden können.
+Dabei trat die Schwierigkeit auf, dass alle Klassen des \ac{ATS} in einem einzelnen C\# Projekt mit dem Namen Befehlsinterpreter abgelegt sind.
+Nebst den benötigten \ac{DLMS} Kommunikationskomponenten beinhaltet dieses Projekt auch Code für Benutzerschnittstellen sowie diversen andere Kommunikationsprotokolle.
+Eine saubere Trennung der einzelnen Komponenten ist nicht erkennbar. 
+Dies bestätigen auch die Code Metrics Results (TODO footnote was diese sind und wie sie erstellt werden können) sichtbar in Abbildung TODO.
+Einzelne Klassen sind mit bis zu 71 anderen gekoppelt, während laut \parencite{quantitativeInvestigationRiskCodeMetrics} TODO neun eine gute Obergrenze wäre.
+Abbildung TODO zeigt des weiteren, dass teils englische und teils deutsche Klassennamen verwendet werden.
+Es ist somit nicht möglich, den \ac{ATS} Code als Bibliothek mittels eines NuGet TODO Paketes einzubinden.
+Im Kapitel \ref{ausblick:ats_split} wird jedoch darauf hingewiesen, dass es in der Zukunft sinnvoll sein könnte,
+das Befehlsinterpreter Projekt aufzuspalten und einzelne Komponenten als Bibliothek bereitzustellen.
+
+
+Das Repository des \ac{ATS} wurde mittels Git Subtree TODO in das Projekt dieser Arbeit eingebunden. 
+Dies ermöglichte es, dass Klassen und Funktionen, welche nicht benötigt werden, entfernt werden konnten.
+Die Änderungen am \ac{ATS} Code mussten lediglich in das Repository dieser Arbeit gepusht werden.
+Wäre anstelle von Git Subtree Git Submodule verwendet worden, wäre dies nicht möglich gewesen.
+Neue Versionen des \ac{ATS} Code können ebenfalls gepullt und gemerget werden. 
+Der Nachteil dieses Ansatzes ist es, dass es etwas schwieriger ist, die gemachten Änderungen zum Ursprungsrepository zu pushen \parencite{gitSubtree}.
+Da die geplanten Änderungen jedoch nur vorsehen, Code zu löschen, ist dieser Nachteil nicht relevant.
+
+
+
+\subsection{Deployment}
+\dq Die Applikation DlmsQuickAccess soll an Benutzer soll so an Benutzer ausgeliefert werden, dass diese automatisch neue Updates erhalten.\dq
+
+\subsubsection{Ziel}
+Obwohl die Anwendung zu diesem Zeitpunkt noch über keinerlei Funktionen verfügt, welche für einen Benutzer nützlich sein könnten, soll das Deployment der Applikation bearbeitete werden.
+Damit wird sichergestellt, dass WinUI3 Applikationen in der Umgebung der Landis+Gyr korrekt ausgeliefert werden können.
+Dies ist wichtig, da es in der Vergangenheit Probleme mit restriktiven Sicherheitsrichtlinien gab.
+
+Die Story gilt als abgeschlossen wenn es für einen Benutzer möglich ist die Applikation eigenständig zu installieren.
+Updates, welche nach dem Installationszeitpunkt erscheinen, sollen automatisch aufgespielt werden.
+\subsubsection{Vorgehen und Schwierigkeiten}
+
+
+
+\subsection{Build bei Commit}
+\dq Die Applikation soll auf \ac{ADO} bei jedem neuem Commit automatisch gebaut und getestet werden.\dq
+
+\subsubsection{Ziel}
+Die \ac{CI} Umgebung auf \ac{ADO} soll so konfiguriert werden, dass bei jeder neuen Änderung geprüft wird, ob diese valid ist und keine bestehenden Funktionen bricht.
+Die Story gilt als erledigt, wenn bei jedem Commit automatisch ein vollständiger Build erstellt wird und alle UnitTests ausgeführt werden.
+
+\subsubsection{Vorgehen und Schwierigkeiten}
+
+\subsection{Darstellung des Object Model}
+\dq Es soll eine Benutzerschnittstelle erstellt werden, welche alle Objekte eines Zählers auflistet.\dq
+
+\subsubsection{Ziel}
+Eine zentrale Funktion des zu ersetzenden \textit{Quick Access} ist die visuelle Auflistung aller Objekte eines Stromzählers.
+In der neuen Applikation wird eine solche ebenfalls benötigt.
+Die Story gilt als erledigt, wenn folgende Elemente der Objekte vollständig angezeigt werden:
+\begin{itemize}
+   \item Der Name des Objekts
+   \item Die ClassId inklusive Version, Own Class Version und Sub Type
+   \item Der Name und die Id aller Attribute und Methoden
+\end{itemize}
+
+\subsubsection{Vorgehen und Schwierigkeiten}
+
+\pagebreak
 
 \subsection{Build}
 <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers> vs <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
@@ -103,24 +184,4 @@ Damit erster release n
 
 
 
-\subsection{Einbindung ATS Code}\label{s1:ats}
-In Kapitel TODO wird erklärt, wieso der Code des \ac{ATS} als Kommunikationsstack ausgewählt wurde.
-Die Story "Harvest parts of the ATS" beschäftigte sich damit, Teile des \ac{ATS} Codes so in die Anwendung einzubindend, dass Stromzählerdaten gelesen und geschrieben werden können.
-Dabei trat die Schwierigkeit auf, dass alle Klassen des \ac{ATS} in einem einzelnen C\# Projekt mit dem Namen Befehlsinterpreter abgelegt sind.
-Nebst den benötigten \ac{DLMS} Kommunikationskomponenten beinhaltet dieses Projekt auch Code für Benutzerschnittstellen sowie diversen andere Kommunikationsprotokolle.
-Eine saubere Trennung der einzelnen Komponenten ist nicht erkennbar. 
-Dies bestätigen auch die Code Metrics Results (TODO footnote was diese sind und wie sie erstellt werden können) sichtbar in Abbildung TODO.
-Einzelne Klassen sind mit bis zu 71 anderen gekoppelt, während laut \parencite{quantitativeInvestigationRiskCodeMetrics} TODO neun eine gute Obergrenze wäre.
-Abbildung TODO zeigt des weiteren, dass teils englische und teils deutsche Klassennamen verwendet werden.
-Es ist somit nicht möglich, den \ac{ATS} Code als Bibliothek mittels eines NuGet TODO Paketes einzubinden.
-Im Kapitel \ref{ausblick:ats_split} wird jedoch darauf hingewiesen, dass es in der Zukunft sinnvoll sein könnte,
-das Befehlsinterpreter Projekt aufzuspalten und einzelne Komponenten als Bibliothek bereitzustellen.
 
-
-Das Repository des \ac{ATS} wurde mittels Git Subtree TODO in das Projekt dieser Arbeit eingebunden. 
-Dies ermöglichte es, dass Klassen und Funktionen, welche nicht benötigt werden, entfernt werden konnten.
-Die Änderungen am \ac{ATS} Code mussten lediglich in das Repository dieser Arbeit gepusht werden.
-Wäre anstelle von Git Subtree Git Submodule verwendet worden, wäre dies nicht möglich gewesen.
-Neue Versionen des \ac{ATS} Code können ebenfalls gepullt und gemerget werden. 
-Der Nachteil dieses Ansatzes ist es, dass es etwas schwieriger ist, die gemachten Änderungen zum Ursprungsrepository zu pushen \parencite{gitSubtree}.
-Da die geplanten Änderungen jedoch nur vorsehen, Code zu löschen, ist dieser Nachteil nicht relevant.

@@ -5,6 +5,11 @@ Mit einer Dauer von zwei Wochen war die Vorbereitungsphase gleich lang, wie ein 
 Der Backlog für die Sprints wurde währen dieser Phase basierend auf den Erkenntnissen der zuvor genannten Punkte erstellt.
 In den folgenden Abschnitten wird die Umsetzung der Vorbereitungsphase detailliert beschrieben.
 
+\subsection{DlmsQuickAccess}
+Für die Erstellung des Projekts in \ac{ADO}, für das Git-Repository sowie für die C\# Solution wurden jeweils Namen benötigt.
+Dazu wurde \textit{DlmsQuickAccess} kreiert.
+Der Name ist an die zu ersetzende Funktion des \ac{DMT2}, \textit{Quick Access}, angelehnt.
+
 \subsection{Nutzerbefragung}
 Wie im Kapitel \ref{erwarteteResultate} erklärt, ist das Ziel dieses Projekts, die bestehende Anwendung, \textit{DMT2}, durch einen Neuentwicklung zu ersetzen.
 
@@ -75,7 +80,6 @@ Im nächsten Abschnitt werden die Antworten (Abbildung \ref{fig:SurveryPlatforms
 \end{figure}
 
 \subsection{Evaluation des Technologiestacks}
-% TODO Windows als Platfrom einbringen
 Um im ersten Sprint mit der Implementation der Applikation beginnen zu können, musste zuerst ein geeigneter Technologiestack evaluiert werden.
 Die im vorherigen Abschnitt erwähnt Umfrage hat ergeben, dass sich alle Befragten Windows als Zielplatform der neuen Anwendung wünschen.
 Nur vereinzelt wurde nebst Windows noch Android oder Linux angegeben.
@@ -105,7 +109,7 @@ Die \textit{PicParted} und \textit{DocTool} sind C\# Anwendungen welche über ei
 Sie werde im Bereich des Picasso Projekts TODO eingesetzt und Unterhalten. 
 Ursprünglich wurden sie vom Autor dieser Arbeit entwickelt.
 
-Die Anwendung \textit{ATS}, welche im Abschnitt \ref{ats} genauer beschrieben wird, verfügt über Code für die DLMS Kommunikation mit Stromzählern.
+Die Anwendung \textit{ATS}, welche im Abschnitt \ref{ats} genauer beschrieben wird, verfügt über Code für die \ac{DLMS} Kommunikation mit Stromzählern.
 Dieser könnte für die neue Anwendung wiederverwendet werden.
 Die in Abschnitt \ref{objectModelsClassDescriptions} beschriebenen Tools verfügen ebenfalls über C\# Code, welcher thematisch nahe an der neuen Anwendung ist und evtl. ebenfalls wiederverwendet werden kann.
 
@@ -113,16 +117,15 @@ Aufgrund der genannten Umstände viel die Entscheidung auf einen C\# Technologie
 
 % TODO WinUI3 Evaluation beschreiben
 
+Um im ersten Sprint direkt mit der Entwicklung loslegen zu können wurde in \ac{ADO} ein Repository erstellt.
+Dieses wurde mit einer leeren WinUI3 Projekt initialisiert.
+
+
+
 
 \subsection{Erstellung des Backlogs}
 Wie in Abschnitt \ref{methoden:ADO} erklärt, wurde \ac{ADO} für die Verwaltung des Backlogs verwendet.
 Dazu musste als erstes eine neues \ac{ADO} Projekt erstellt und die Sprints eingetragen werden.
 Nun konnten User Stories formuliert und auf die sechs geplanten Sprints verteilt werden.
-
-
-% TODO no chli meh schribe?
-
 Welche Stories im ersten Sprint bearbeitet wurden und wie dies genau ablief ist im folgenden Kapitel zu lesen.
-
-\subsection{DlmsQuickAccess}
-Der name.
+% TODO no chli meh schribe?
