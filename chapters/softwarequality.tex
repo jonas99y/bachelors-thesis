@@ -12,12 +12,43 @@ Des weiteren definiert sie, dass sich Software aus vier Komponenten zusammensetz
    \item Dokumentation für Entwickler, Benutzer und Betreiber des Programs.
    \item Die Daten, welche benötigt werden, um das Programm zu betreiben.
 \end{itemize}
-Ist die Qualität dieser vier Komponenten hoch und erfüllen die Anforderungen und Erwartungen, so ist auch die Qualität der Software hoch \parencite{galin2004software}.
+Ist die Qualität dieser vier Komponenten hoch und erfüllen die Anforderungen und Erwartungen,
+so ist auch die Qualität der Software hoch \parencite{galin2004software}.
 Wie dies erreicht werden kann, wird im folgenden Abschnitt beschrieben.
 
-\subsection{Sicherstellung von Softwarequalität}
+\subsection{Software-Qualitätssicherung}
+Unter Software-Qualitätssicherung versteht sich eine systematische und geplante Sammlung von Aktionen, 
+welche die Sicherheit geben, dass die erstellte Software den Anforderungen entspricht.
+Diese sollen den Entwicklungsprozess evaluieren und sicherstellen,
+dass die Software im gegebenen zeitlichen sowie finanziellen Rahmen erstellt werden kann \parencite{galin2004software}. 
 
+Sie unterscheidet sich von der Qualitätskontrolle indem sie nicht das fertige Produkt sondern den Herstellungsprozess evaluiert und prüft \parencite{galin2004software}.
 
 
 \subsection{Softwarefehler}
 Nicht jeder Fehler führt zu einem Versagen
+
+\subsection{SonarQube}\label{quality:sonar}
+SonarQube ist eine Software-Qualitatssicherungstool, welches Code analysiert und Berichte zur Codequalität erstellt.
+Die Berichte könne beispielsweise Code-Style-Verletzungen, Designfehler oder gar Sicherheitslücken aufzeigen.
+Da die Analysen statisch sowie dynamisch durchgeführt werden, können auch Metriken zu Codeabdeckung durch Tests erstellt werden \parencite{malloy_2021}.
+SonarQube berichtet nicht nur über erkannte Probleme sondern beinhaltete auch Funktionen um diese zu Verwalten.
+Ein Problem kann beispielsweise direkt der Person zugewiesen werden, welche es bearbeiten soll.
+Meldungen, welche nicht bearbeitet werden, können entsprechend markiert werden, so dass sie in Zukunft nicht erneut auftreten.
+Da SonarQube die Historie der Berichte speichert werden neue Probleme speziell hervorgehoben.
+Wie sich die totale Anzahl der Problem über die Zeit entwickelt wird ebenfalls angezeigt und gibt einen Trend der Softwarequalität an.
+
+% Maintainability, Security, Reliability, Complexity
+
+\subsubsection{Funktionsweise}
+Ein einem produktiven Umfeld ist die Funktionsweise von SonarQube wie folgt:
+SonarQube auf einem Server installiert und mit einer \ac{CI} Server verbunden.
+Wenn Entwickler Änderungen am Code in das jeweilige \ac{SCM} System pushen löst dies einen Build auf dem \ac{CI} Server aus.
+Dieser Build beinhaltet Sonar Scanner.
+Ist der Build abgeschlossen werden die Berichte der Scanner an die SonarQube Instanz übermittelt.
+Dort werden sie verarbeitet, in der Datenbank abgelegt und über eine Benutzerschnittstelle dargestellt \parencite{malloy_2021}.
+
+\subsection{Qualitätssicherungstools bei der Landis+Gyr}
+Für die Qualitätssicherung der Firmware setzt die Landis+Gyr aktuell C-STAT\footnote{https://www.iar.com/cstat} für statische Codeanalysen ein.
+Eine kürzlich durchgeführte Evaluation hat jedoch ergeben, dass SonarQube die geeignetere Lösung wäre.
+Der Umstieg ist aktuell in Planung.
