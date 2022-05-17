@@ -13,3 +13,13 @@ Wie werden dies aktuell gehalten?
 \subsection{Testagent mit Zähler}
 Im Abschnitt \ref{Integrationstests} wurde beschrieben, dass für das ausführen der Integrationstests ein angeschlossener Stromzähler vorausgesetzt wird.
 TODO
+
+\subsection{SonarQube}
+In Abschnitt \ref{s6:sonar} wurde erklärt, wieso im Rahmen dieser Arbeit lediglich eine lokale Instanz des Qualitätssicherungstools SonarQube eingesetzt wurde.
+Für den Unterhalt und die Weiterentwicklung der Anwendung sollte jedoch eine Instanz auf einem Server eingesetzt werden, welche mit dem \ac{CI} Server verbunden ist.
+Dies hätte zwei Vorteile:
+\begin{itemize}
+   \item Die Berichte zu Codequalität werden bei jeder Änderung des Codes automatisch erstellt. 
+Entwickler müssen sich nicht selber darum kümmern.
+   \item Die Metriken zur Qualität der Anwendung sind für alle Personen einsehbar.
+\end{itemize}

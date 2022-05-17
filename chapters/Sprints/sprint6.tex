@@ -110,11 +110,14 @@ Someone:
 
 Bug, dass app crasht, wenn Description nicht vorhanden
 
-\subsection{SonarQube}
+\subsection{SonarQube}\label{s6:sonar}
 Im Abschnitt \ref{quality:sonar} wurde das Tool SonarQube erklärt und festgehalten, dass es von der Landis+Gyr als bevorzugtes Software-Qualitatssicherungstool evaluiert wurde.
 Zum Zeitpunkt dieser Arbeit verfügte die Landis+Gyr noch über keine laufende Instanz von SonarQube.
 Deshalb wurde eine solche lokal auf dem Rechner des Entwicklers aufgesetzt.
-Diese hatte den Nachteil, dass keine Verbindung mit \ac{ADO} aufgebaut werden konnte und Codeänderungen jeweils manuell hinzugefügt werden mussten.
+Dies hat den Nachteil, dass ein Aufbau, wie er in Abschnitt \ref{sonar:funktionsweise} beschrieben ist nicht möglich ist.
+Anstelle des \ac{CI} Servers muss der Build jeweils manuell augeführt und an die lokale SonarQube Instanz übermittelt werden.
+Für dieses Projekt stellt dies kein Problem dar, da nur ein einzelner Entwickler am Code arbeitet.
+
 
 
 % dotnet sonarscanner begin /k:"DlmsQuickAccess_NoATS" /d:sonar.host.url="http://localhost:9000"  /d:sonar.login="8568d95955df20f319cd05320e41bc4c8dac02f3"
