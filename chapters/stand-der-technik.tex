@@ -35,6 +35,17 @@ Die Schnittstellen zu den Objekten sowie eine List von standard \ac{OBIS} Codes 
 \section{Landis+Gyr intern}\label{lgintern}
 In den folgenden Abschnitten werden Konzepte, Anwendungen und Produkte erklärt, welche bei der Landis+Gyr intern verwendet.
 
+\subsection{Picasso Platform}\label{picasso}
+Picasso ist der Name einer Software Platform der Landis+Gyr.
+Mehrere Teams, verteilt auf vier Kontinente, arbeiten am C++ Code dieser Platform.
+Sie beinhaltet Grundlegende Komponenten wie beispielsweise das Betriebs- und Filesystem sowie Funktionen welche von allen Produkttypen verwendet werden.
+Die Teams welche die konkreten Stromzähler-Produkte entwickeln bauen auf Picasso auf und ergänzen die Platform um Funktionen, welche nur von ihrem Produkt verwendet werden.
+
+Am Standort Cham arbeitet ein Team an der Platform sowie eines an einem Produkt.
+Der Autor dieser Arbeit ist seit mehreren Jahren Teil des Platformteams.
+
+
+
 \subsection{Object Model und Class Description}\label{objectModelsClassDescriptions}
 Im Absatz \ref{cosem} wurde erwähnt, dass die Funktionen eines intelligenten Stromzählers mittels Objekten abstrahiert werden.
 Bei der Landis+Gyr werden alle Objekte eines bestimmten Produkts jeweils in einem Object Model zusammengefasst.
@@ -85,8 +96,7 @@ Beide Tools sind in der Programmiersprache C\# entwickelt und nutzen die Kompone
 Diese ist eine C\# Bibliothek, welche Funktionalitäten wie das Parsen der XML files anbietet. 
 \footnote{\textit{Picasso Tools}, \textit{Description Tools} sowie \textit{InfraLib} wurden vom Autor dieser Arbeit erstellt, als dieser seine Berufslehre bei der Landis+Gyr absolvierte und seither weiterentwickelt }
 
-
-\subsection{Firmwareentwicklung}
+\subsection{Firmwareentwicklung}\label{fwEntwicklung}
 Am Standort Cham entwickelt die Landis+Gyr Firmware für intelligent Stromzähler.
 Dazu wird die Programmiersprache C++ eingesetzt.
 Wie im Abschnitt \ref{objectModelsClassDescriptions} bereits erwähnt, stützt sich die Firmware auf Object Models.
@@ -112,6 +122,15 @@ Dieses ermöglicht das Lesen und Schrieben von \ac{COSEM} Objekten in der Sprach
 
 
 \subsection{ATS}\label{ats}
+\ac{ATS} ist eine Software welche für das Testen von intelligenten Stromzählern verwendet wird.
+Dazu werden Testscripts in einer \ac{ATS} spezifischen Scriptsprache benötigt.
+Über diese Scripts könne Werte des Zählers über die \ac{DLMS} Schnittstelle geschrieben, ausgelesen und mit Erwartungswerten vergleichen werden.
+Zusätzlich ist die Steuerung der Testumgebung möglich.
+Befindet sich der Testaufbau beispielsweise auf dem Tisch des Entwicklers, so wird der Stromzähler in der Regel nicht über eine richtige Stromquelle betrieben sondern an einen Emulator angeschlossen, welcher diese ersetzt.
+In diesem Fall wird der Emulator über das \ac{ATS} Testscript gesteuert.
+
+Die \ac{ATS} wurde von der Landis+Gyr in der Programmiersprache C\# entwickelt und wird aktuell für das Testen aller Stromzähler der Picasso Platform (siehe \ref{picasso}) eingesetzt.
+
 
 
 \subsection{DMT2}\label{dmt}

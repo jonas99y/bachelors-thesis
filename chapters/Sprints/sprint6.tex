@@ -1,6 +1,20 @@
 \section{Sprint 6}
+Im sechsten und letzten Sprint wurde die beiden Stories bearbeitet:
+\begin{itemize}
+   \item Die Kommunikation mit den Stromzähler soll asynchron ausgeführt werden.
+   \item SonarQube soll aufgesetzt werden und die gemeldete Code Smells bearbeitete werden.
+\end{itemize}
+Neben diesen Story wurde Zeit eingeplant, um bei den Nutzern der Anwendung ausführliches Feedback einzuholen.
+Kleinere Änderungen und Bugfixes, welche aus dem Feedback hervorgehen sollen ebenfalls direkt im Sprint umgesetzt werden.
+Die folgenden Abschnitte geben Auskunft über die erwähnten Arbeiten.
 
-\subsection{Isolation des Befehlsinterpreter}
+\subsection{Asynchrone Kommunikation}
+
+Ziel / ACs
+
+Nötige Refactorings
+
+\subsubsection{Isolation des Befehlsinterpreter}
 In \ref{s1:ats} wurde erklärt, wie der Code des \ac{ATS} eingebunden wurde.
 Bisher war das Befehlsinterpreter Projekt eine direkte Abhängigkeit des DlmsQuickAccess.Dlms Projekts.
 Die benötigten Klassen wurden dort instanziert und verwendet. 
@@ -17,7 +31,7 @@ Ein Austausch des Kommunikationsstacks wäre mit grösseren Anpassungen verbunde
    \label{fig:dlms_vorher}
 \end{figure}
 
-Da in diesem Sprint Änderungen am Kommunikationscode, also an DlmsQuickAccess.Dlms, geplant sind, wurde als erstes die zuvor gennante Koplung bereinigt.
+Da in diesem Sprint Änderungen am Kommunikationscode, also an DlmsQuickAccess.Dlms, geplant sind, wurde als erstes die zuvor genannte Kopplung bereinigt.
 Dazu wurde das Dependency Inversion Principle angewendet.
 Dieses besagt, dass High-Level-Module nicht von Low-Level-Modulen abhängen sollen.
 Beide sollten von Abstraktionen abhänig sein \parencite{madasu35solid}.
@@ -40,7 +54,7 @@ Somit wurde die Koppelung von DlmsQuickAccess.Dlms und Befehlsinterpreter aufgel
    \label{fig:dlms_nachher}
 \end{figure}
 
-\subsection{states oder}
+\subsubsection{states oder}
 
 Kommunikation Asynchron machen
 Bisher wird bei Kommunikation mit dem Zähler das UI eingefrohren
@@ -57,23 +71,21 @@ Die Kommunikation kann mehrere Zustände haben:
    \item Fehlerzustand
 \end{itemize}
 Je nach Zustand muss sie anders auf neue Anfragen reagieren.
-Ist sie beispielsweise noch uniniteiert, muss sie zuerst initiert werden, bevor die eigentliche Anfrage kommunizert werden kann.
+Ist sie beispielsweise noch uniniteiert, muss sie zuerst initiert werden, bevor die eigentliche Anfrage kommuniziert werden kann.
 Vom kommunizierenden Zustand ist es möglich, dass sie in einen Fehlerzustand gerät.
 Um diesen zu verlassen muss erneut initiert werden.
 Abblidung TODO zeigt auf, wie diese Zustände mithilfe des State Patterns implementiert wurden.
 
-\subsection{async}
-Bsp. ReadyState bekommt Read() befehl.
--> Startet Read via ICommunicator des contexts.
--> Sets Next state auf Communicating state
+\subsubsection{Schwierigkeiten}
+% Bsp. ReadyState bekommt Read() befehl.
+% -> Startet Read via ICommunicator des contexts.
+% -> Sets Next state auf Communicating state
 
-IsCommuncating state erwartet die antwort des Reads.
-Beantwortet den das await des ursprünglichen callers.
-setzt zurück auf ReadyState
--> kann jedoch auch ein stop erhalten während des warten
-   -> antwortet await ebenfalls (mit exception)
-
-Schwierigkeit -> 
+% IsCommuncating state erwartet die antwort des Reads.
+% Beantwortet den das await des ursprünglichen callers.
+% setzt zurück auf ReadyState
+% -> kann jedoch auch ein stop erhalten während des warten
+%    -> antwortet await ebenfalls (mit exception)
 ATS Code nutz intern System.CurrentThread.Name für das Session Management.
 Das Desing der Applikation sieht jedoch vor, dass die Kommunikation in Tasks ausgelagert wird.
 Dann ist der Thread Name jeweils ein andere, als wenn aus dem UI oder Main Thread zugegriffen wird.
@@ -82,14 +94,8 @@ Lösung "1"
 
 
 
-\subsection{Bereinigung der internen Abhänigkeiten}
+\subsubsection{Bereinigung der internen Abhänigkeiten}
 "Sync Namespaces" sehr hilfreich.
-
-
-\subsection{Gruppen}
-
-Wunsch Ronny M. : Import / Export 
-
 
 \subsection{Feedback}
 Chakrit: 
@@ -104,11 +110,34 @@ Someone:
 - Lesen von Arrays stimmt nicht richtig
    - repro: Object list lesen
 
-\subsection{Class Descriptions}
+Christoph:
+- Favoriten sind für mich eine Killerfeature
+- Klartext der Enums auch ein Killerfeature
+
+- Länge der Namen zu lang
+- Cursor in Suchfeld nicht gut sichtbar
+- Enter um Suche zu starten
+- Feedback, dass kommunikation im Gange ist
+- Feedback, wenn kommunikation fehlschlägt
+- CHOICE type nicht supported
+- Integers need to be correct length (leading 0)
+
+DMT2 QuickAccess verwende ich nur noch, wenn bei einzelnen Attribtue/Objekte die im DlmsQuickAccess nicht richtig funktionieren.
+   Wünsche mir, dass die Applikation weiterentwickelt wird und von der Firma den nötigen Support erhält.
 
 
 
-Bug, dass app crasht, wenn Description nicht vorhanden
+Ronny:
+- Bug, dass app crasht, wenn Description nicht vorhanden
+- Beim Auslesen von Arrays mit vielen Einträgen wird das UI schnell unübersichtlich.
+- Eines wäre praktisch, wenn genesene Werte als Datei gespeichert werden könnten. Z.B. Yaml.
+- Starten der Anwendung sehr Praktisch. Suchen in Windows nach "DlmsQuickAccess", Click auf das gewünschte Produkt und schon ist alles einsatzbereit.
+Beim DMT2 wusste man nie, welche Konfiguration gerade geladen war und das ändern dieser ist jeweils umständlich.
+- Die Schreib und Lesegeschwindigkeit ist eindrücklich.
+
+
+
+
 
 \subsection{SonarQube}\label{s6:sonar}
 Im Abschnitt \ref{quality:sonar} wurde das Tool SonarQube erklärt und festgehalten, dass es von der Landis+Gyr als bevorzugtes Software-Qualitatssicherungstool evaluiert wurde.
