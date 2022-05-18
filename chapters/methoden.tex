@@ -10,6 +10,8 @@
 % Einsatz von Review-Techniken (Architektur-Reviews) oder bekannter Programmiertechniken sein.
 
 
+% TODO evtl einleitung schreiben
+
 
 \section{Vorgehensmodell}\label{vorgehen}
 In der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) wurde verlangt, das der Scrum Prozess, so wie er bei der Landis+Gyr gelebt wird, als Vorgehensmodell verwendet werden soll.
@@ -28,7 +30,7 @@ Auf Story Points wurde bei dieser Arbeit verzichtet, da sie für den Einzelentwi
 
 Während die Dauer aller Sprints genau gleich ist variiert die Zeit, welche der Entwickler für Entwicklungsarbeiten aufwenden kann von Sprint zu Sprint stark.
 
-\subsubsection{User Story}
+\subsubsection{User Story}\label{userstory}
 Der Scrum Prozess der Landis+Gyr kennt viele unterschiedliche Work Items wie z.B. Epics, Requirements oder Features.
 In Abbildung \ref{fig:workitems} sind sie alle dargestellt.
 \begin{figure}[H]
@@ -41,12 +43,22 @@ In Abbildung \ref{fig:workitems} sind sie alle dargestellt.
 \end{figure}
 Um möglichst wenig Zeit mit administrativen Aufgaben zu verbrauchen wurde für diese Arbeit nur User Stories eingesetzt.
 Eine User Story beschreibt jeweils ein Arbeitspaket welches während eines Sprints vollständig bearbeitet werden kann.
-Sie enthält eine Sammlung von Akzeptanzkriterien, welche alle erfüllte werden müssen, damit die Story als erledigt gekennzeichnet werden kann.
+Sie enthält eine Sammlung von Akzeptanzkriterien, welche durch die Bearbeitung der Story erfüllt werden müssen.
+Damit eine Story als fertig gilt, muss die Definition of Done erreicht werden. Diese wird im folgenden Abschnitt erläutert.
 
 %todo task?
 
-\subsection{Definition of Done}
-review nicht möglich
+\subsubsection{Definition of Done}
+Für diese Arbeit besteht diese aus folgenden Punkten:
+\begin{itemize}
+   \item Alle Akzeptanzkriterien sind erfüllt.
+   \item Unittests wurden implementiert oder angepasst, decken mindestens 80\% des Codes ab und laufen erfolgreich durch.
+   \item Der Code entspricht dem Coding Standard, siehe \ref{codingStandard}.
+\end{itemize}
+
+Bei der Landis+Gyr gehört zur Definition of Done zusätzlich noch, dass der Code von mindestens zwei weiteren Entwicklern gegengelesen wurde.
+Dies ist bei diesem Projekt leider nicht möglich.
+
 
 \subsection{Meetings}
 Zum Scrum Prozess gehören diverse Meetings, welche regelmässig stattfinden.
@@ -73,7 +85,41 @@ Für diese Arbeit werden die Rollen des Entwickler, Tester, Scrum Master und Pro
 
 
 \section{Azure DevOps}\label{methoden:ADO}
+Bei der Landis+Gyr wird \ac{ADO} für die Verwaltung des Scrum Backlogs eingesetzt.
+In der Software können die Work Items, welche im Abschnitt \ref{userstory} aufgezeigt werden, verwaltet werden.
+Für dieses Projekt soll \ac{ADO} verwendet werden, um die einzelnen Sprints zu planen.
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/ado.png}
+   \caption{
+         Ausschnitt aus dem Backlog des sechsten Sprints in \ac{ADO}
+      }
+      \label{fig:adosprint6}
+\end{figure}
+Wärend der Sprints soll das aktuelle Backlog jeweils einen Überblick über den aktuellen Stand der Arbeiten geben.
+In Abbildung \ref{fig:adosprint6} ist gezeigt, wie dies ausschauen kann.
 
-\section{Coding Standard}
+Zusätzlich sollen zwei weitere Funktionen von \ac{ADO} verwendet werden:
+\begin{itemize}
+   \item Der Quellcode soll in einem Repository abgelegt werden, welches von \ac{ADO} verwaltet wird.
+   \item Die Pipelines von \ac{ADO} sollen für \ac{CICD} verwendet werden.
+\end{itemize}
+
+\section{Coding Standard}\label{codingStandard}
+% TODO move to Konzepte?
+Der C\# Code der für diese Arbeit geschrieben wird, befolgt den Coding Style der dotnet runtime \footnote{https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md}.
+Die Entwicklungsumgebung Visual Studio ist standardmässig so konfiguriert, dass sie diesem Style folgt.
+Sie unterstützt die Entwickler mit automatischen Formatierungen und weisst darauf hin, wenn der Standard verletzt wird. 
 
 \section{Test Driven Development} \label{tdd}
+\ac{TDD} ist ein Vorgehen zur parallelen Entwicklung von produktiv Code sowie Testfällen.
+Dabei wird jeweils zuerst ein Testfall geschrieben, welcher fehlschlagen soll.
+Danach wird genau so viel Code geschrieben, dass der Testfall abgedeckt ist.
+Nun kann der geschrieben Code wenn nötig überarbeitet werden.
+Bestehende Testfälle dürfen nicht gebrochen werden.
+Diese Vorgehen wird solange wiederholt, bis alle benötigten Funktionen getestet und implementiert sind.
+Ein Vorteil von \ac{TDD} ist, das Entwicklungsarbeit vorhersagbar wird.
+Ist eine Funktion implementiert kann mit Sicherheit gesagt werden, dass diese auch richtig funktioniert \parencite{beck2003test}.
+
+In dieser Arbeit sollen möglichst immer nach \ac{TDD} vorgegangen werden.
+
