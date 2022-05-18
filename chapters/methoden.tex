@@ -12,27 +12,68 @@
 
 
 \section{Vorgehensmodell}\label{vorgehen}
-In der Aufgabenstellung TODO cite wurde verlangt, das der Scrum Prozess, so wie er bei der Landis+Gyr gelebt wird, als Vorgehensmodell verwendet werden soll.
+In der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) wurde verlangt, das der Scrum Prozess, so wie er bei der Landis+Gyr gelebt wird, als Vorgehensmodell verwendet werden soll.
 Diverse Eigenschaften und Abläufe dieses Prozesses konnten direkt für diese Arbeit übernommen und angewandt werden.
 Da an dieser Arbeit nur ein Entwickler arbeitet und auch die Anzahl Stakeholders kleiner ist, wurde mehrere Dinge angepasst.
 Die folgenden Abschnitte geben einen Überblick über den Prozess, wo sich dieser von jeden der Landis+Gyr unterscheidet und wieso diese Anpassungen vorgenommen wurden.
 
-\subsection{Azure DevOps}\label{methoden:ADO}
-
-\subsection{Workitems}
-So ist es bei LG:
-Epic / Feature / Story / Task
-
-
 \subsection{Sprints}
-Ebenfalls zwei wochen. Andere start/end tage.
-Kapazität des Sprints stark von der Verfügbarkeit des einen Entwicklers abhänig.
+Das Projekt besteht aus mehreren aufeinanderfolgenden Sprints.
+Jeder Sprint dauert zwei Wochen.
+Wären eines Sprints wird an jenen User Stories gearbeitete, welche für diesen Sprint eingeplant sind.
+Die Entwickler geben zu Beginn des Sprints das Commitment ab, dass sie die geplanten Stories im Sprint abschliessen werden.
+Um weder zu viele Stories noch zu wenige in einem Sprint zu planen, werden bei der Landis+Gyr jeder Story einen Wert gegeben.
+Dieser Wert, welche Story Points genannt wird, wird von den Entwicklern geschätzt und beziffert den erwarteten Aufwand.
+Auf Story Points wurde bei dieser Arbeit verzichtet, da sie für den Einzelentwickler keinen Mehrwert bieten.
 
+Während die Dauer aller Sprints genau gleich ist variiert die Zeit, welche der Entwickler für Entwicklungsarbeiten aufwenden kann von Sprint zu Sprint stark.
+
+\subsubsection{User Story}
+Der Scrum Prozess der Landis+Gyr kennt viele unterschiedliche Work Items wie z.B. Epics, Requirements oder Features.
+In Abbildung \ref{fig:workitems} sind sie alle dargestellt.
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/WorkItemRelationsship.png}
+   \caption{
+      Übersicht über die verschiedenen Work Items im Scrum Prozess der Landis+Gyr
+      }
+      \label{fig:workitems}
+\end{figure}
+Um möglichst wenig Zeit mit administrativen Aufgaben zu verbrauchen wurde für diese Arbeit nur User Stories eingesetzt.
+Eine User Story beschreibt jeweils ein Arbeitspaket welches während eines Sprints vollständig bearbeitet werden kann.
+Sie enthält eine Sammlung von Akzeptanzkriterien, welche alle erfüllte werden müssen, damit die Story als erledigt gekennzeichnet werden kann.
+
+%todo task?
 
 \subsection{Definition of Done}
 review nicht möglich
 
+\subsection{Meetings}
+Zum Scrum Prozess gehören diverse Meetings, welche regelmässig stattfinden.
+So wir ein Sprint jeweils im Voraus während des \textit{Sprint Planning} geplant.
+Während des Sprints findet im \textit{Daily Meeting} ein täglicher Austausch zwischen allen Entwicklern statt.
+Im \textit{Sprint Review} werden nach einem Sprint die erarbeiteten Stories präsentiert.
+Die \textit{Retrospektive}, welche ebenfalls nach jedem Sprint stattfindet, regt die Entwickler dazu an, die eigene Arbeitsprozesse zu reflektieren und diese womöglich zu verbessern.
 
-\subsection{Coding Standard}
+Alle diese Meetings werden für diese Arbeit weggelassen.
+Die Planung des neuen Sprints wird jeweils ad hoc erledigt und Änderungen am Arbeitsprozess sofort umgesetzt.
+Während des Projekts finden mehrere Meetings mit der Betreuungsperson dieser Arbeit statt.
+Dort werden jeweils die gemachten Fortschritte und erledigten Arbeiten präsentiert.
+Somit lassen sich diese teilweise mit dem \textit{Sprint Review} vergleichen.
+Sie sind zeitlich jedoch nicht an die Sprints geknüpft.
 
-\subsection{Test Driven Development} \label{tdd}
+\subsection{Rollen}
+Bei der Landis+Gyr besteht jedes Entwicklungsteam aus mehreren Entwicklern und ein bis zwei Testern.
+Eine dieser Personen übernimmt zusätzlich die Rolle des Scrum Master.
+Dieser ist für die Organisation und Durchführung der zuvor genannten Meetings verantwortlich.
+Eine weiter Rolle ist der Produkt Owner.
+Dieser erstellt und verwaltet die User Stories im Backlog.
+
+Für diese Arbeit werden die Rollen des Entwickler, Tester, Scrum Master und Product Owner in einer einzigen Person vereint.
+
+
+\section{Azure DevOps}\label{methoden:ADO}
+
+\section{Coding Standard}
+
+\section{Test Driven Development} \label{tdd}
