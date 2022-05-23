@@ -17,34 +17,125 @@
 % evaluieren, dann gehören die entsprechenden Beschreibungen ins Kapitel 5.
 
 
-\section{Konfiguration} \label{idea_config} %todo delete
-\subsection{Motivation}
-Bei der Landis+Gyr werden verschiedenen Stromzählermodelle entwickelt. Der DlmsQuickAccess soll mit möglichst allen kommunizieren können.
-Wie bereits in XY TODO erwähnt, wird für die Kommunikation Code der ATS verwendet.
-Damit dieser richtig funktionieren kann, werden folgende zwei Dateien benötigt:
-- AddressList
-- DLMS.xml
-Für die Auflistung aller Objekte eines Zählers wird zusätzlich ein ObjectModel als XML Datei benötigt.
-Diese drei Dateien unterscheiden sich von Produkt zu Produkt. Ebenfalls muss berücksichtigt werden, dass sich die Informationen in diesen Dateien jederzeit ändern können.
-Insbesondere beim ObjectModel ist dies regelmässig der Fall.
+% \section{Konfiguration} \label{idea_config} %todo delete
+% \subsection{Motivation}
+% Bei der Landis+Gyr werden verschiedenen Stromzählermodelle entwickelt. Der DlmsQuickAccess soll mit möglichst allen kommunizieren können.
+% Wie bereits in XY TODO erwähnt, wird für die Kommunikation Code der ATS verwendet.
+% Damit dieser richtig funktionieren kann, werden folgende zwei Dateien benötigt:
+% - AddressList
+% - DLMS.xml
+% Für die Auflistung aller Objekte eines Zählers wird zusätzlich ein ObjectModel als XML Datei benötigt.
+% Diese drei Dateien unterscheiden sich von Produkt zu Produkt. Ebenfalls muss berücksichtigt werden, dass sich die Informationen in diesen Dateien jederzeit ändern können.
+% Insbesondere beim ObjectModel ist dies regelmässig der Fall.
 
-Diese Konfigurationen sollen somit von den Produktteams verwaltet und versioniert werden können.
+% Diese Konfigurationen sollen somit von den Produktteams verwaltet und versioniert werden können.
 
-\subsection{Lösungsidee}
-Eine Konfigurationsdatei in welcher die zuvor erwähnten Dateien definiert sind. Die soll im YAML format geschrieben sein, was das Bearbeiten vereinfacht.
-Jedes Produktteam kann diese Konfigurationsdatei im Repository des Produktquellcodes ablegen und versionieren.
+% \subsection{Lösungsidee}
+% Eine Konfigurationsdatei in welcher die zuvor erwähnten Dateien definiert sind. Die soll im YAML format geschrieben sein, was das Bearbeiten vereinfacht.
+% Jedes Produktteam kann diese Konfigurationsdatei im Repository des Produktquellcodes ablegen und versionieren.
 
-TODO
-damit sich der DlmsQuickAccess beim Betriebssystem so registrieren kann, dass 
-Diese Konfiurationsdateien sollen die Endung \".dlmsquickaccess\" tragen, 
+% TODO
+% damit sich der DlmsQuickAccess beim Betriebssystem so registrieren kann, dass 
+% Diese Konfiurationsdateien sollen die Endung \".dlmsquickaccess\" tragen, 
 
-Um das Wechseln zwischen Produkten zu vereinfachen, soll sich der DlmsQuickAccess zuvor verwendete Konfigurationen merken, so dass der Benutzer diese auswählen kann.
-
-
-TODO ufschribe, was passiert bim erste start und bi doppelclick.
+% Um das Wechseln zwischen Produkten zu vereinfachen, soll sich der DlmsQuickAccess zuvor verwendete Konfigurationen merken, so dass der Benutzer diese auswählen kann.
 
 
+% TODO ufschribe, was passiert bim erste start und bi doppelclick.
 
+
+\section{Aufbau Benutzerschnittstelle}
+Die Benutzerschnittstelle soll in zwei Bereiche aufgeteilt werde.
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/App strucutre sketch.png}
+   \caption{
+      Sketch des Aufbau der Benutzeroberfläche
+      }
+      \label{fig:uisketch}
+   \end{figure}
+Der erste Bereich soll Object Model beinhalten.
+Im folgenden Abschnitt wird darauf detailliert eingegangen.
+Dieser Bereich soll alle Grundfunktionen der Applikation abdecken.
+Also jene, welche bei der zu ersetzenden Applikation, dem \textit{DMT2} vorhanden sind.
+Der zweite Bereich soll Platz für die erweiterten Funktionen bieten.
+Die Idee ist, dass diese vertikal übereinander aufgelistet sind.
+Möchte der Nutzer eine Funktion verwenden, so kann er diese anklicken und entsprechenden Controls erscheinen in der Liste.
+In Abbildung \ref{fig:uisketch} ist gezeigt, wie die beiden Bereiche horizontal nebeneinander angezeigt werden sollen.
+Auf der rechten Seite ist zu erkennen, wie die verschiedenen Features übereinander aufgelistet werden sollen.
+\textit{Feature D} nimmt dabei mehr Platz ein als die anderen.
+Damit wird dargestellt, dass dieses von Nutzer angewählt und geöffnet wurde.
+Eine dieser Funktionen sind die Favoriten.
+Wie deren Benutzerschnittstelle aussehen soll, ist im Abschnitt \ref{uifavorites} aufgeführt.
+
+\subsection{Object Model}
+Der \textit{Quick Access} des \ac{DMT2} besteht aus vier Teilen.
+In Abbildung \ref{fig:dmt2QuickAccess} ist dies dargestellt.
+Oben links sind alle Objekte angezeigt.
+Rechts daneben werden die Attribute und Methoden des aktuell aktiven Objekts angezeigt.
+Fürs Lesen und Schreiben werden in den unteren beiden Teilen des Fensters jeweils der Request und die Response in einer als \text{XML} Text dargestellt.
+
+\begin{figure}
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/UI_DMT2.png}
+   \caption{
+      Quick Access Fenster des \ac{DMT2}
+      }
+      \label{fig:dmt2QuickAccess}
+\end{figure}
+In der neuen Anwendungen sollen diese viert Teile in einer einzelnen Komponente kombiniert dargestellt werden.
+Wie dies aussehen kann, ist in Abbildung \ref{fig:objectModelUIsktech} gezeigt.
+Die Objekte, beispielsweise \textit{Profile 1}, werden untereinander aufgelistete.
+Wird ein Objekt angeklick, soll vergrössert sich dieses und die Attribute und Methoden werden ersichtlich.
+Wird ein Attribute gelesen, so soll der Wert in einem Textfeld neben dem Attribut dargestellt werden.
+Das bietet den Vorteil, dass die Werte mehrere ausgelesener Attribute gleichzeitig angeschaut werden können. 
+Dies ist beim \textit{Quick Access} nicht möglich, da der Bereich mit der Response bei jedem Auslesen überschrieben wird.
+Die Textfelder, welche für das Anzeigen der gelesenen Werte verwendet werden, sollen jeweils auch für das Schreiben von Werten verwendet werden.
+
+\begin{figure}
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/Object Explorer Sketch.png}
+   \caption{
+      Sketch der Object Model Komponente
+      }
+      \label{fig:objectModelUIsktech}
+\end{figure}
+
+
+\subsection{Suchen und filtern}\label{searchandfilterUiSktech}
+Im Sketch zum Object Model (Abbildung \ref{fig:objectModelUIsktech}) ist der Bereich oberhalb der Objekte für die Such- und Filterkomponente vorgesehen.
+Eine Idee zur Umsetzung dieser ist in Abbildung \ref{fig:searchFilterSketch}.
+Um die Objekte nach ClassId zu filtern, können die Textfelder im oberen Bereich des Sketchs verwendet werden.
+Das Textfeld im unteren Bereich ist für die textbasierte suche gedacht.
+Ein Schalter in der Mitte soll dazu da sein, dass bei der Textsuche zwischen Objekten und Attributen rsp. Methoden gewechselt werden kan.
+Der \textit{Find} Knopf soll die Parameter anwenden, mit dem \textit{Reset} Knopf sollen diese zurückgesetzt werden.
+
+\begin{figure}
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/Search _ Filter sketch.png}
+   \caption{
+      Sketch der Komponente fürs Suchen und Filtern des Object Models
+      }
+      \label{fig:searchFilterSketch}
+\end{figure}
+
+\subsection{Favoriten}\label{uifavorites}
+In einem vorherigen Abschnitt wurde erklärt, dass auf die rechte Hälfte der Benutzerschnittstelle Platz für unterschiedliche Features haben soll.
+Dort sollen auch die Favoriten aufgelistete werden.
+Diese sollen in zwei Bereichen dargestellt werden und nehmen somit auch zwei Plätze in der Features Liste ein.
+Einer für favorisierte Objekte und einer für favorisierte Attribute und Methoden.
+In Abbildung \ref{fig:favoritesSketch} ist ersichtlich, wie Attribute und Methoden gruppiert dargestellt werden sollen.
+
+\begin{figure}
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/Favorites Sketch.png}
+   \caption{
+      Sketch der Favoriten Komponente
+      }
+      \label{fig:favoritesSketch}
+\end{figure}
+
+\pagebreak
 \section{Testkonzept}
 Um sicherstellen, dass die Applikation und deren Komponenten richtig funktionieren, wurden verschieden Arten von Tests eingesetzt.
 Die unterscheiden sich primär im Umfang des Getesteten. 
