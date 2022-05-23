@@ -2,7 +2,7 @@
 % http://aagasc.edu.in/cs/books/Software%20Quality%20Assurance%20From%20Theory%20to%20Implementation.pdf
 % see document in Downloads!
 
-\section{Softwarequalität}
+\section{Softwarequalität}\label{softwarequality}
 Die \ac{IEEE} definiert Softwarequalität als den Grad, zu dem ein System,
 eine Komponente oder ein Prozess die spezifizierten Anforderungen sowie die Erwartungen der Benutzer erfüllt.
 Des weiteren definiert sie, dass sich Software aus vier Komponenten zusammensetzt.
@@ -35,14 +35,14 @@ Da die Analysen statisch sowie dynamisch durchgeführt werden, können auch Metr
 SonarQube berichtet nicht nur über erkannte Probleme sondern beinhaltete auch Funktionen um diese zu Verwalten.
 Ein Problem kann beispielsweise direkt der Person zugewiesen werden, welche es bearbeiten soll.
 Meldungen, welche nicht bearbeitet werden, können entsprechend markiert werden, so dass sie in Zukunft nicht erneut auftreten.
-Da SonarQube die Historie der Berichte speichert werden neue Probleme speziell hervorgehoben.
-Wie sich die totale Anzahl der Problem über die Zeit entwickelt wird ebenfalls angezeigt und gibt einen Trend der Softwarequalität an.
+Da SonarQube die Historie der Berichte speichert, werden neue Probleme speziell hervorgehoben.
+Wie sich die totale Anzahl der Problem über die Zeit entwickelt, wird ebenfalls angezeigt und gibt einen Trend der Softwarequalität an.
 
 % Maintainability, Security, Reliability, Complexity
 
 \subsubsection{Funktionsweise}\label{sonar:funktionsweise}
-Ein einem produktiven Umfeld ist die Funktionsweise von SonarQube wie folgt:
-SonarQube auf einem Server installiert und mit einer \ac{CI} Server verbunden.
+In einem produktiven Umfeld ist die Funktionsweise von SonarQube wie folgt:
+SonarQube wird auf einem Server installiert und mit einem \ac{CI} Server verbunden.
 Wenn Entwickler Änderungen am Code in das jeweilige \ac{SCM} System pushen löst dies einen Build auf dem \ac{CI} Server aus.
 Dieser Build beinhaltet Sonar Scanner.
 Ist der Build abgeschlossen werden die Berichte der Scanner an die SonarQube Instanz übermittelt.
@@ -51,4 +51,4 @@ Dort werden sie verarbeitet, in der Datenbank abgelegt und über eine Benutzersc
 \subsection{Qualitätssicherungstools bei der Landis+Gyr}
 Für die Qualitätssicherung der Firmware setzt die Landis+Gyr aktuell C-STAT\footnote{https://www.iar.com/cstat} für statische Codeanalysen ein.
 Eine kürzlich durchgeführte Evaluation hat jedoch ergeben, dass SonarQube die geeignetere Lösung wäre.
-Der Umstieg ist aktuell in Planung.
+Dieser Umstieg ist zum Zeitpunkt dieser Arbeit bereits geplant, jedoch noch nicht realisiert.

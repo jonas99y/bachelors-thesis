@@ -3,16 +3,13 @@
 % dieses oder ähnliche Probleme gelöst haben. Worauf können Sie aufbauen, was müssen Sie neu
 % angehen? Wodurch unterscheidet sich Ihre Lösung von anderen Lösungen? Für wissenschaftlich
 % orientierte Arbeiten sei hier explizit auf (Balzert, S. 66 ff) verwiesen.
-In diesem Kaptiel werden gängige Technologien vorgestellt, welche für die Lösung der Aufgabenstellung relevant sind.
-
-
-TODO Intro -> LG sparchen
-
+In diesem Kapitel werden gängige Technologien vorgestellt, welche für die Lösung der Aufgabenstellung relevant sind.
+Des Weiteren wir Theorie zu den Themen Softwarequalität und Benutzerschnittstellenergonomie aufgearbeitet.
 
 
 \section{DLMS}
 \ac{DLMS} ist eine Sammlung von offenen Standards, welche ein Applikations- und ein Transferprotokoll definieren.
-Die Protokolle basieren auf dem \ac{OSI} Modell, sind jedoch auf die Layer \textit{physical},\textit{data link}, \textit{transport} und \textit{application} reduziert.
+Die Protokolle basieren auf dem \ac{OSI} Modell, sind jedoch auf die Layer \textit{physical}, \textit{data link}, \textit{transport} und \textit{application} reduziert.
 Diese sind in Abbildung \ref{fig:dlmsOsi} dargestellt.
 Dabei ist ersichtlich, dass auf den unteren Layern unterschiedliche Kommunikationskanäle verwendet werden können.
 
@@ -23,6 +20,7 @@ Dabei ist ersichtlich, dass auf den unteren Layern unterschiedliche Kommunikatio
    \caption{
        DLMS/COSEM Kommunikationslayer
    }
+   \source{\cite{vyas2012advance}}
    \label{fig:dlmsOsi}
 \end{figure}
 
@@ -44,7 +42,7 @@ Mehrere Teams, verteilt auf vier Kontinente, arbeiten am C++ Code dieser Platfor
 Sie beinhaltet grundlegende Komponenten wie beispielsweise das Betriebs- und Filesystem sowie Funktionen welche von allen Produkttypen verwendet werden.
 Die Teams welche die konkreten Stromzähler-Produkte entwickeln, bauen auf Picasso auf und ergänzen die Platform um Funktionen, welche nur von ihrem Produkt verwendet werden.
 Damit die Platform mit unterschiedlichen Konfigurationen getestet werden kann, verfügt sie über mehrere Referenzprodukte.
-Referenzprodukte sind Produkte, welche nicht Verkauft werden, sondern dazu da sind, um ... TODO
+Referenzprodukte sind Produkte, welche nicht Verkauft werden, sondern nur für interne Zwecke verwendet werden.
 Am Standort Cham arbeitet ein Team an der Platform sowie eines an einem Produkt, dem Stromzähler Model \textit{E660}.
 Der Autor dieser Arbeit ist seit mehreren Jahren Teil des Platformteams.
 
@@ -118,6 +116,7 @@ Dabei handelt es sich um eine Komponente, welcher auf gewisse Stromzählermodell
    \caption{
       Kommunikationsmodule E66C der Landis+Gyr
    }
+   \source{Landis+Gyr AG}
    \label{fig:e66c}
 \end{figure}
 
@@ -138,14 +137,56 @@ Die \ac{ATS} wurde von der Landis+Gyr in der Programmiersprache C\# entwickelt u
 
 
 \subsection{DMT2}\label{dmt}
-Das Ziel dieser Arbeit ist es, die Software "DMT2" zu ersetzen. Genauergesagt die Teilfunktion "Quick Access" welche für den Zugriff auf Objekte eines Zählers verwendet wird.
-C++
+Die Software \ac{DMT2} wurde für die Landis+Gyr von einem externen Lieferanten entwickelt.
+Mit ihr können Scripts geschrieben und ausgeführt werden, welche mittels \ac{DLMS} mit intelligenten Stromzähler kommunizieren.
+Diese Scripts können um einfach Benutzeroberflächen erweitert werden, welche mit XML deklarativ definiert werden.
+Verwendet werden diese, um Interaktionen, welche die Entwickler oft durchführen müssen, zu vereinfachen.
+In Abbildung \ref{fig:dmt2logger} wir beispielsweise ein Script und die dazugehörige Benutzerschnittstelle für die Laufzeitkonfiguration des Loggers eines Zählers gezeigt.
+Wenn dort beispielsweise das Log Level verändert wird, schreibt das Script den entsprechenden Wert automatisch in die korrekte \ac{COSEM} Klasse.
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/dmt2logger.png}
+   \caption{
+      Ausschnitt aus DMT2 mit geladenem Logger-Konfigurationsscript
+   }
+   \label{fig:dmt2logger}
+\end{figure}
 
-\subsubsection{Funktionen}
-+settings als UI
+Eine weitere Funktion des \ac{DMT2} ist \textit{Quick Access}.
+Diese ermöglicht das Lesen und Schrieben einzelne Attribute sowie das ausführen von Methoden.
+Das Ziel dieser Arbeit ist es, die Funktionalität des \textit{Quick Access} durch eine neue Softwarelösung zu ersetzten.
+Im folgenden Abschnitt werden einige Stärken und Schwächen des \ac{DMT2} aufgezeigt.
+Diese basieren auf einer Umfrage, welche unter den Benutzern des \ac{DMT2} durchgeführt wurde.
+Im Abschnitt \ref{survey} ist mehr zur Umfrage zu lesen.
+
+\subsubsection{Stärken}
+\begin{itemize}
+   \item Die Anwendung läuft stabil, Abstürze kommen sehr selten vor.
+   \item Es kann zwischen verschiedenen Kommunikationseinstellungen gewechselt werden. Dazu muss jeweils eine entsprechende Datei geladen werden.
+\end{itemize}
 
 \subsubsection{Schwächen}
+\begin{itemize}
+   \item Fehlermeldungen werden als Dialog angezeigt und müssen jeweils bestätigt werden um fortzufahren.
+   \item Es ist schwierig, nach spezifischen Objekten zu suchen.
+   \item Das ausführen von Methoden und Schrieben von Attributen ist umständlich. Die Parameter müssen in einer XML Struktur eingetragen werden, welche anfällig für Fehler ist.
+   \item Es wird jeweils nur die Antwort des zuletzt ausgeführten Befehls angezeigt.
+   \item Es ist Umständlich mehrere Instanzen des \ac{DMT2} gleichzeitig zu nutzen. 
+\end{itemize}
+
 
 \section{WinUI3}
+WinUI3 ist eine Platform, welche es erlaubt native Benutzeroberflächen für Windows zu entwickeln.
+Sie ist teil der Windows APP SDK \footnote{https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/}.
+Der Quellcode dazu ist Open Source \parencite{winuiintro}.
+WinUI3 wird Microsoft als beste Technologie zur Erstellung von Benutzerschnittstellen bezeichnet und löst ältere Technologien wie \ac{WPF} oder \ac{UWP} ab.
+Die erste stabile Version ist seit November 2021 verfügbar.
+Neue Updates sollen regelmässig veröffentlich werden.
+WinUI3 kann in Kombination mit dem .Net Framework von Microsoft verwendet werden, ist jedoch nicht davon abhängig.
+Es werden die Programmiersprachen C\# und C++ unterstützt \parencite{winuiroadmap}.
+
+
 \input{chapters/softwarequality.tex}
+\input{chapters/uiergonomie.tex}
+
 
