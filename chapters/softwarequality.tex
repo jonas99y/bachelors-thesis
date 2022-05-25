@@ -3,18 +3,83 @@
 % see document in Downloads!
 
 \section{Softwarequalität}\label{softwarequality}
-Die \ac{IEEE} definiert Softwarequalität als den Grad, zu dem ein System,
-eine Komponente oder ein Prozess die spezifizierten Anforderungen sowie die Erwartungen der Benutzer erfüllt.
-Des weiteren definiert sie, dass sich Software aus vier Komponenten zusammensetzt.
-\begin{itemize}
-   \item Das Program, welches aus Code besteht und vom Computer ausgeführt wird.
-   \item Prozeduren, welche definieren, wie und von wem das Program ausgeführt wird.
-   \item Dokumentation für Entwickler, Benutzer und Betreiber des Programs.
-   \item Die Daten, welche benötigt werden, um das Programm zu betreiben.
-\end{itemize}
-Ist die Qualität dieser vier Komponenten hoch und erfüllen die Anforderungen und Erwartungen,
-so ist auch die Qualität der Software hoch \parencite{galin2004software}.
-Wie dies erreicht werden kann, wird im folgenden Abschnitt beschrieben.
+In der DIN-ISO-Norm 9126 wird Software Qualität so definiert:
+\dq Software-Qualität ist die Gesamtheit der Merkmale und Merkmalswerte eines Software-Produkts, die sich auf dessen Eignung beziehen, festgelegte Erfordernisse zu erfüllen.\dq
+
+\citeauthor{hoffmann2013software} (\citeyear{hoffmann2013software}) hebt zu dieser Definition hevor, dass es nicht ein einziges Kriterium gibt, welches die Qualität von Software misst.
+Vielmehr ist es eine Kombination verschiedener Kriterien.
+Auf diese wird im folgenden Abschnitt eingegangen.
+TODO verweis uf übernöchsti abschnitt und so.
+
+\subsection{Kriterien}
+In den folgenden Abschnitten werden die Kriterien erklärt, welche nach \citeauthor{hoffmann2013software} relevant sind für die Softwarequalität.
+Die Kriterien ersten vier Kriterien sind dabei für den Kunden wichtig, da diese direkte Auswirkung auf ihn haben.
+Die weiteren Kriterien sind für den Hersteller der Software relevant.
+\subsubsection{Funktionalität}
+Die Funktionalität gibt an, ob die spezifizierten Anforderungen erfüllt sind.
+Funktionale Fehler werden meist durch Bug in der Implementierung verursacht, können ihren Ursprung jedoch auch in fehlenden oder falsche verstandenen Spezifikationen haben.
+Sie können durch den Einsatz von Software-Qualitätsicherungstools vorgebeugt werden.
+
+\subsubsection{Performance}
+Mit Performance sind die Anforderungen an die Software während deren Laufzeit gemeint.
+Für einfache Desktop Anwendungen stellt dieses Kriterium meist kein Problem dar.
+Handelt es sich bei der Anwendungen jedoch um ein Echtzeitsystem, so ist die Performance eines der wichtigsten Kriterien.
+
+\subsubsection{Zuverlässigkeit}
+Mit diesem Kriterium ist gemein, wie zuverlässig eine Software ihre Funktionen ausführt.
+Kommt es oft zu Fehlern oder Abstürzen, so ist die Zuverlässigkeit tief.
+Sie ist stark an die anderen Kriterien gekoppelt.
+Hat die Software inkorrekte Funktionalität oder schlechte Performance, so ist auch Zuverlässigkeit tief.
+
+\subsubsection{Benutzbarkeit}
+Die Eingenschaften einer Software, welche mit dem Menschen interagieren, sind in diesem Kriterium zusammengefasst.
+Im Abschnitt \ref{usability} wird diese Thematik vertieft.
+
+\subsubsection{Wartbarkeit}
+Um an einer Software auch nach der ersten Inbetriebnahme weiter zu entwickeln, so muss diese Wartbar sein.
+Es soll möglich sein, erkannte Bugs einfach zu beheben.
+Die Software soll so aufgebaut sein, dass sie nicht vollständig umgebaut werden muss, nur um eine neue Funktion hinzuzufügen.
+
+
+\subsubsection{Transparenz}
+Mit diesem Kriterium wird bewertet, wie transparent das Program intern umgesetzt ist.
+Alle Teilkomponenten der Software einfach zu verstehen sein.
+Tendenziell verschlechtert sich die Transparenz im verlaufe der Weiterentwicklungen.
+
+
+\subsubsection{Übertragbarkeit}
+Die Übertragbarkeit gibt an, ob sich eine bestehende Software in eine andere Umgebung übertragen lässt.
+Kann ein Programm nur auf einer bestimmten Betriebsstemmversion oder gar nur auf einem einzigen Rechner ausgeführt werden, so ist dessen Übertragbarkeit sehr schlecht.
+Mit Umgebung ist jedoch nicht nur die technische Umgebung wie das Betriebssystem gemeint sonder sie kann auch Aspekte wie die Sprache oder Kultur beinhalten.
+
+\subsubsection{Testbarkeit}
+Software ist meist so komplex, dass es nicht ausreicht lediglich die Benutzerschnittstellen zu testen.
+Die möglichen Kombinationen von Eingabeparametern sind dabei viel zu umfangreich.
+So müssen einzelne Komponenten einzel getestet werden.
+Dies ist nur möglich, wenn diese so entwickelt werden, dass sie auch testbar sind.
+Damit ist gemeint, dass bspw. ein Algorithmus so implementiert ist, dass er von keinerlei internen Zustände der Anwendungen abhängig ist. 
+
+
+\subsection{Produktqualität}
+
+\subsubsection{Konstruktive Qualitätssicherung}
+typing
+fehlertolerante programmierung
+dokumentation
+portabilität
+\subsubsection{Analytische Qualitätssicherung}
+test, arten von tests, metriken
+
+static analyiss
+verifikation
+
+
+\subsection{Prozessqualität}
+Versionsverwaltung
+CI/CD
+Vorgehensmodelle
+
+
 
 \subsection{Software-Qualitätssicherung}
 Unter Software-Qualitätssicherung versteht sich eine systematische und geplante Sammlung von Aktionen, 
@@ -24,9 +89,6 @@ dass die Software im gegebenen zeitlichen sowie finanziellen Rahmen erstellt wer
 
 Sie unterscheidet sich von der Qualitätskontrolle indem sie nicht das fertige Produkt sondern den Herstellungsprozess evaluiert und prüft \parencite{galin2004software}.
 
-
-\subsection{Softwarefehler}
-Nicht jeder Fehler führt zu einem Versagen
 
 \subsection{SonarQube}\label{quality:sonar}
 SonarQube ist eine Software-Qualitatssicherungstool, welches Code analysiert und Berichte zur Codequalität erstellt.
