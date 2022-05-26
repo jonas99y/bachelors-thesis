@@ -1,7 +1,7 @@
 \section{Sprint 3}
 Der Fokus des dritten Sprints liegt bei der Verbesserung der Benutzererfahrung.
 Das Ziel ist es, dass die Anwendung danach für die täglichen Arbeiten der Entwickler eingesetzt werden kann.
-Dazu sind folgende beiden Stories geplant:
+Dazu sind die folgende beiden Stories geplant:
 \begin{itemize}
    \item DlmsQuickAccess soll mehrere, unterschiedliche Stromzählermodelle unterstützen.
    \item Ein Lese- oder Schreibbefehl soll nur dann abgesetzt werden können, wenn dieser laut Object Model vom jeweiligen Objekt unterstützt wird.
@@ -16,17 +16,17 @@ Dazu sind folgende beiden Stories geplant:
 \dq  DlmsQuickAccess soll mehrere, unterschiedliche Stromzählermodelle unterstützen.\dq
 \subsubsection{Ziel}
 Im Abschnitt \ref{picasso} wurde erwähnt, das die Picasso Platform über mehrere Referenzprodukte verfügt.
-Drei dieser Referenzprodukte, namentlich \textit{Ref\_IMS1}, \textit{Ref\_NMS2}, \textit{Ref\_MMI3}, werden für die Arbeiten an der Platform täglich verwendet.
+Drei dieser Referenzprodukte, namentlich \textit{Ref\_IMS1}, \textit{Ref\_NMS2} und \textit{Ref\_MMI3}, werden für die Arbeiten an der Platform täglich verwendet.
 Das Ziel dieser Story ist es, dass DlmsQuickAccess mit allen drei kommunizieren kann.
 Im Bezug auf die \ac{DLMS} Kommunikation unterscheiden sich diese in zwei Dingen.
 Erstens werden verschiedene Kommunikationskanäle verwendet. 
 Während bei \textit{Ref\_MMI3} seriell mittels optischem Auslesekopf kommuniziert wird, wird bei \textit{Ref\_NMS2} eine \ac{TLS} Verbindung aufgebaut.
-Der zweite Unterschied ist das Objekt Model, je nach Produkt andere Objekte enthält.
+Der zweite Unterschied ist das Objekt Model, welches je nach Produkt andere Objekte enthält.
 Damit die Story als erledigt betrachtet werden kann sind noch folgende Punkte zu beachten:
 \begin{itemize}
    \item Die Konfiguration eines Produkts soll in einer Datei abgespeichert werden. Wir diese Datei angeklickt, so soll sich der DlmsQuickAccess mit der entsprechend konfiguriert öffnen. % todo evtl file agnostic formulieren
-   \item Wird der DlmsQuickAccess ohne Produkt Konfiguration gestartet, so soll eine Auswahl von zuvor geöffneten Konfiguration angezeigt werden.
-   \item Das funktionierende Konfigurationen für die drei genannten Referenzprodukte sollen für die Benutzer abrufbar sein.
+   \item Wird der DlmsQuickAccess ohne Produkt Konfiguration gestartet, so soll eine Auswahl von zuvor geöffneten Konfigurationen angezeigt werden.
+   \item Den Benutzern sollen funktionierende Konfigurationen für die drei genannten Referenzprodukte bereitgestellt werden.
    \item Auf der Landis+Gyr internen Wiki soll ein Artikel geschrieben werden, welche Auskunft über DlmsQuickAccess und die Konfigurationsdateien gibt.
 \end{itemize}
 
@@ -43,13 +43,13 @@ Für die Referenzprodukte sind sie im Repository der Testscripts abgelegt.
 Der bisherige Ansatz, die Dateien als Teil der Anwendung an die Benutzer auszulieferen, hat nur einen Vorteil.
 Die Anwendung kann nach der Installation direkt verwendet werden. Es werden keine weiteren Dateien oder manuelle Konfigurationen benötigt.
 Der Nachteil, dass bei jeder Änderung an der Konfiguration eine neue Version der Applikation erstellt und veröffentlich werden muss überwiegt diesen jedoch, da beispielsweise das Object Model regelmässig verändert wird.
-Weitere Nachteile wären, dass um mit einer älteren Version der Firmware zu ebenfalls eine ältere Version des DlmsQuickAccess installiert werden müsste.
+Weitere Nachteile wären, dass um mit einer älteren Version der Firmware Kommuniziert werden kann jeweils eine ältere Version des DlmsQuickAccess installiert werden müsste.
 
 Der zu ersetzende \ac{DMT2} wird über Textfiles konfiguriert.
 Um das Produkt zu wechseln, muss jeweils das entsprechende Textfile importiert werden.
-Diese Textfiles sind im Repository der Firmware abgelegt somit versintert.
+Diese Textfiles sind im Repository der Firmware abgelegt somit versioniert.
 Die importierte Konfiguration bleibt jeweils sitzungsübergreifend erhalten.
-Dies wurde von den Nutzer als unpraktisch gemeldet, da bei start der Anwendung nicht ersichtlich ist, welche Konfiguration aktiv ist.
+Dies wurde von den Nutzer als unpraktisch gemeldet, da beim Start der Anwendung nicht ersichtlich ist, welche Konfiguration aktiv ist.
 
 Da auch andere Konfigurationen, wie beispielsweise jene des Debuggers oder des FlashTools im Repository des Firmwarecodes abgelegt sind, soll auch jene des DlmsQuickAccess dort verwaltet werden.
 Die benötigten Object Models sind ebenfalls bereits Teil des Repository.
@@ -71,16 +71,17 @@ Die Applikation wird so angepasst, dass sie mittels Klick auf eine Konfiguration
 Dabei wird jeweils direkt die entsprechende Konfiguration angewendet.
 
 Diese Lösung ermöglicht eine flexible Konfiguration der Produkte.
-Dass das \textit{SetupHW} File aus dem Testscript Repository kopiert wurde und somit manuell gepflegt werden muss ist nicht optimal, bietet jedoch den Vorteil, dass keine direkte Abhängigkeit zu weiteren Repositories besteht.
+Dass das \textit{SetupHW} File aus dem Testscript Repository kopiert und somit manuell gepflegt werden muss ist nicht optimal, bietet jedoch den Vorteil, dass keine direkte Abhängigkeit zu weiteren Repositories besteht.
 
 Wie beschrieben wurde die Anwendung so angepasst, dass sie direkt über eine .dlmsquickaccess Datei gestartet werden kann.
 Für den Fall, dass sie ohne eine solche gestartet wird, wurde ein neues Fenster implementiert.
 Dieses listet alle bisher geöffneten Konfigurationen auf, welche direkt gestartet werden können.
 Des weiteren war es geplant, dass mittels Filepicker eine Konfiguration gesucht und geöffnet werden kann.
-Dies konnte so jedoch nicht umgesetzt werden, zu der \textit{FileOpenPicker} zu jenem Zeitpunkt fehlerhaft funktionierte \footnote{https://github.com/microsoft/WindowsAppSDK/issues/1188}.
+Dies konnte so jedoch nicht umgesetzt werden.
+Die dazu benötigte Komponente von WinUI3, \textit{FileOpenPicker}, funktionierte zu jenem Zeitpunkt nur fehlerhaft\footnote{https://github.com/microsoft/WindowsAppSDK/issues/1188}.
 
 
-Die neuen Konfigurationsfiles ermöglichen das einfache wechseln zwischen verschiedenen Produkten.
+Die neuen Konfigurationsfiles ermöglichen das einfache Wechseln zwischen verschiedenen Produkten.
 Als versucht wurde mit einem \textit{Ref\_NMS2} Zähler zu kommunizieren, führte dies regelmässig zu Fehler.
 Wurden die Integrationstest mit einem \textit{Ref\_NMS2} Gerät ausgeführte, so schlug jeweils jeder zweite Test fehl.
 Dies wurde von der \ac{TLS} Kommunikation verursacht, welche nach dem Kommunizieren nicht richtig beendet wurde.
@@ -97,3 +98,13 @@ Da dies direkt zu Beginn des nächsten Sprints erfolgte und alle anderen Arbeite
 \subsection{Deaktivieren von Lese- und Schreibknöpfen}
 Das Feld \textit{Access Rights} im Object Model gibt an, ob ein Attribut gelesen und/oder geschrieben werden kann.
 Für diese Story wurde die Benutzerschnittstelle so angepasst, dass die Lese- und Schreibknöpfe nur bei jenen Attributen aktiv sind, bei denen die entsprechende Operation möglich ist.
+In Abbildung \ref{fig:logicalNameAttribute} ist ein \textit{logical\_name} Attribut gezeigt, welches nur gelesen und nicht geschrieben werden kann.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1.0\textwidth]{gfx/logicalNameAttribute.png}
+   \caption{
+      Ausschnitt aus DlmsQuickAccess welcher ein einzelnes Attribut zeigt, welches gelesen, jedoch nicht geschrieben werden kann.
+      }
+      \label{fig:logicalNameAttribute}
+   \end{figure}

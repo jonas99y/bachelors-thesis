@@ -56,6 +56,7 @@ Die Abbildungen \ref{fig:WhatWorksWell}, \ref{fig:WhatBothersYou} und \ref{fig:I
 \end{figure}
 Anschliessend an dies Diskussion in der Fokusgruppe wurde eine Befragung mithilfe einer Online-Umfrage durchgeführt.
 Das Ziel dieser ware es, quantitative Daten zu erheben.
+Die Resultate der Umfrage sind dieser Arbeit im Anhang \ref{anhang:survey} beigelegt.
 So mussten die Nutzer zehn mögliche Features, welche auf den von ihnen eingebrachten Ideen \& Wünsche basieren, priorisieren.
 
 
@@ -84,8 +85,8 @@ Im nächsten Abschnitt werden die Antworten (Abbildung \ref{fig:SurveryPlatforms
 Um im ersten Sprint mit der Implementation der Applikation beginnen zu können, musste zuerst ein geeigneter Technologiestack evaluiert werden.
 Die im vorherigen Abschnitt erwähnt Umfrage hat ergeben, dass sich alle Befragten Windows als Zielplatform der neuen Anwendung wünschen.
 Nur vereinzelt wurde nebst Windows noch Android oder Linux angegeben.
-Somit
-Im Projektauftrag TODO ist festgehalten, dass die Technologien frei gewählt werden können, für die Landis+Gyr jedoch günstig zu unterhalten sein soll.
+
+Im Projektauftrag (Anhang \ref{anhang:aufgabenstellung}) ist festgehalten, dass die Technologien frei gewählt werden können, für die Landis+Gyr jedoch günstig zu unterhalten sein soll.
 
 Um dies zu erreichen, wurden für die Evaluation nur Programmiersprachen in Betracht gezogen, welche bei der Landis+Gyr bereits aktiv verwendet werden.
 Im Kapitel \ref{lgintern} werden einige Anwendungen und Softwareprojekte der Landis+Gyr, welche im Umfeld der zu entwickelnden Anwendung betrieben und unterhalten werden, genauer beschrieben.
@@ -103,11 +104,11 @@ Möglich wäre ein Technologiestack bestehend aus Python Backend mit einem Angul
 Das Web-Framework Angular, welches mit der Sprache TypeScript verwendet wird, wird im Projekt \textit{Test Script Manager} eingesetzt.
 Dieses Projekt wird an einem Standort ausserhalb der Schweiz entwickelt.
 Als Backend wird dort jedoch nicht Python sondern C\# eingesetzt.
-Eine Python+Angular Applikation wäre somit nicht komplett neu für die Landis+Gyr.
+Eine Python+Angular Stack wäre somit neu für die Landis+Gyr, die einzelnen Technologien jedoch bereits etabliert.
 
 Im Gegensatz zu Python existieren bei der Landis+Gyr bereits mehrere C\# Anwendungen, welche über eine Benutzerschnittstelle verfügen.
-Die \textit{PicParted} und \textit{DocTool} sind C\# Anwendungen welche über eine \ac{WPF}\footnote{https://docs.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf?view=vs-2022} Benutzerschnittstelle verfügen.
-Sie werde im Bereich des Picasso Projekts TODO eingesetzt und Unterhalten. 
+\textit{PicParted} und \textit{DocTool} sind C\# Anwendungen welche eine \ac{WPF}\footnote{https://docs.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf?view=vs-2022} Benutzerschnittstelle haben.
+Sie werde im Bereich des Picasso Projekts \ref{picasso} eingesetzt und Unterhalten. 
 Ursprünglich wurden sie vom Autor dieser Arbeit entwickelt.
 
 Die Anwendung \textit{ATS}, welche im Abschnitt \ref{ats} genauer beschrieben wird, verfügt über Code für die \ac{DLMS} Kommunikation mit Stromzählern.
@@ -115,7 +116,7 @@ Dieser könnte für die neue Anwendung wiederverwendet werden.
 Die in Abschnitt \ref{objectModelsClassDescriptions} beschriebenen Tools verfügen ebenfalls über C\# Code, welcher thematisch nahe an der neuen Anwendung ist und evtl. ebenfalls wiederverwendet werden kann.
 
 Aufgrund der genannten Umstände viel die Entscheidung auf einen C\# Technologiestack.
-
+Ein weitere Vorteil von C\# ist, dass die Sprache, wie in Abschnitt \ref{typing} erwähnt, über eine statische sowie dynamische Typenüberprüfung verfügt.
 % TODO WinUI3 Evaluation beschreiben
 
 Um im ersten Sprint direkt mit der Entwicklung loslegen zu können wurde in \ac{ADO} ein Repository erstellt.

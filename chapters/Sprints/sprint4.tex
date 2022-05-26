@@ -1,6 +1,6 @@
 \section{Sprint 4}\label{sprint4}
 Nach dem dritten von sechs Sprints sind die Grundfunktionen des DlmsQuickAccess implementiert.
-In diesem Sprint begann die zweite Hälfte des Projekts und die Arbeit am ersten Zusatzfeature.
+In diesem Sprint begann die zweite Hälfte des Projekts und die Arbeit am ersten Zusatzfeature, den Favoriten.
 
 
 \subsection{Favoriten}
@@ -28,9 +28,9 @@ Die Obis Codes und Indizes werden dann im \textit{AppicationDataContainer}\footn
 Dabei handelt es sich um einen Key-Value-Store.
 Da dieser vom Betriebssystem verwaltet wird, müssen sich bei der Entwicklung keinerlei Gedanken über Dinge wie Files oder Schreibzugriff gemacht werden müsse.
 
-Damit der Benutzer Steuern kann, welche Element zu seinen Favoriten gehören, wurden Objekte, Attribute und Methoden in der Benutzerschnittstelle um das \textit{CanBeFavoriteControl} erweitert.
+Damit der Benutzer steuern kann, welche Element zu seinen Favoriten gehören, wurden Objekte, Attribute und Methoden in der Benutzerschnittstelle um das \textit{CanBeFavoriteControl} erweitert.
 Dieses besteht aus einem Knopf, mit welchem ein Element favorisiert oder entfavorisiert werden kann.
-Das Icon des Knopfs gibt Auskunft darüber, ob das Element bereits Favorit ist oder nicht.
+Das Icon des Knopfs sowie dessen Farbe gibt Auskunft darüber, ob das Element bereits Favorit ist oder nicht und verändert sich wenn der Knopf angeklickt wird.
 In Abbildung \ref{fig:objectModelWithFavorites} ist das \textit{CanBeFavoriteControl} auf der rechten Seite der Objekte zu sehen.
 Das erste Objekt ist nicht favorisiert, das zweite schon.
 
@@ -70,7 +70,7 @@ In der Abbildung ist dies am Beispiel des Objekts \textit{Password Supervision} 
 
 Werden einzelne Attribute oder Methoden favorisiert, so erscheinen sie in der Komponente \textit{Favorite Attributes and Methods}, welche in Abbildung \ref{fig:favoriteAttribtuesAndMethods} gezeigt wird.
 Die Attribute und Methoden werden jeweils unterhalb des Names des Objektes zu dem sie gehören, angezeigt.
-Dies ermöglicht es, dass mit ausgewählten Attribute oder Methoden unterschiedlichster Objekte gearbeitet werden kann, ohne dass hin und her gescrollt werden muss.
+Dies ermöglicht es, dass mit ausgewählten Attributen oder Methoden unterschiedlichster Objekte gearbeitet werden kann, ohne dass hin und her gescrollt werden muss.
 \begin{figure}
    \centering
    \includegraphics[width=1.0\textwidth]{gfx/favoriteAttributeAndMethods.png}

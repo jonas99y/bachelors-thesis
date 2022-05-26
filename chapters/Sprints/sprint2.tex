@@ -5,7 +5,7 @@ Konkret wurde diesen Stories gearbeitet:
 \begin{itemize}
    \item Die Applikation soll auf \ac{ADO} bei jedem neuem Commit automatisch gebaut und getestet werden. 
    \item Werte von Attributen sollen vom Zähler ausgelesen und in der Benutzerschnittstelle dargestellt werden.
-   \item Die Benutzerschnittstelle soll das Schrieben von Attributwerten sowie ausführen von Methoden unterstützen.
+   \item Die Benutzerschnittstelle soll das Schreiben von Attributwerten sowie ausführen von Methoden unterstützen.
 \end{itemize}
 
 
@@ -16,12 +16,12 @@ Die Pipeline in \ac{ADO} wurde nun so konfiguriert, dass die Solution kompiliert
 Dies funktionierte problemlos.
 Als die Pipeline um einen Task erweitert wurde, welcher die Tests ausführen soll traten Schwierigkeiten auf.
 Im Log war der Fehler \dq  Could not find testhost\dq , ausgelöst von \textit{vstest.console.exe}, zu lesen.
-Da die Unittests lokal jeweils über Visual Studio ausgeführt wurde, trat dieser Fehler lokal nicht auf.
-Er konnte jedoch reproduziert werden, indem \textit{vstest.console.exe} analog zur Pipeline aufgerufen wurde.
-Ein Test mit einem neuen, leeren Projekt zeigte, dass es sich dabei um einen Fehler von Visual Studio handelt.
+Da die Unittests lokal jeweils über Visual Studio ausgeführt wurde, trat dieser Fehler dort nicht auf.
+Er konnte jedoch reproduziert werden, indem \textit{vstest.console.exe} gleich wie bei der Pipeline aufgerufen wurde.
+Ein Test mit einem neuen, leeren Projekt, welcher zum gleichen Fehler fürte, zeigte, dass es sich dabei um einen Fehler von Visual Studio handelt muss.
 
 Dieses Problem konnte umgangen werden, indem anstelle von msbuild\footnote{https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2022}
-die .NET CLI\footnote{https://docs.microsoft.com/en-us/dotnet/core/tools/} verwendet wurde.
+die .NET CLI\footnote{https://docs.microsoft.com/en-us/dotnet/core/tools/} für das Kompilieren und Ausführen der Tests verwendet wird.
 Bei der Verwendung der .NET CLI trat ein neues Problem auf.
 Diese Unterstützt das Kompilieren von WinUI3 Anwendungen nicht.
 Da, wie bereits in Abschnitt \ref{objectModelDevSchwierigkeiten} erklärt, bei den Unittest gar keine Abhängigkeiten zu WinUi3 bestehen können ist dies nicht weiter tragisch.
@@ -41,9 +41,9 @@ Die Story gilt als erledigt, wenn Attribute inklusive Arrays und Strukturen korr
 \subsubsection{Vorgehen und Schwierigkeiten}\label{readAttributVorgehen}
 Für das Auslesen von Attributen kann das \textit{IRawReader} Interface verwendet werden.
 Dieses wird von der in Sprint 1 implementierten Klasse \textit{ReaderWriter} implementiert.
-Der Methode Read() wird ein Short Name als Parameter mitgegeben und sie gibt den ausgelesenen Wert als string zurück.
+Der Methode Read() wird ein Short Name als Parameter mitgegeben und sie gibt den ausgelesenen Wert als String zurück.
 Beim Short Name handelt es sich um eine Kombination aus Objektname und Attributname welche ein bestimmtes Attribut eindeutig identifizieren.
-Die Werte werden in einem proprietären Format zurückgegeben. 
+Die ausgelesenen Werte werden vom \ac{ATS} Code in einem proprietären Format zurückgegeben. 
 Dieses sieht beispielsweise wie folgt aus:
 \begin{verbatim}
    Struct[3](
@@ -60,7 +60,7 @@ Dieses sieht beispielsweise wie folgt aus:
    }
    \label{fig:reader}
 \end{figure}
-Diese Struktur wurde durch das Interface \textit{IPayload} repräsentiert.
+Diese Struktur wurde in der Applikation durch das Interface \textit{IPayload} repräsentiert.
 Die Klasse \textit{Reader}, welche im Klassendiagramm \ref{fig:reader} dargestellt ist, liest Werte aus dem Zähler aus und gibt diese als \textit{IPayload} zurück.
 So kann in der Applikationslogik vereinfacht gelesen und auf die Antwort zugegriffen werden.
 
@@ -76,7 +76,7 @@ Weiterführende Informationen, wie beispielsweise die Namen der Felder einer Str
 
 Wie bereits in Abschnitt \ref{objectModelsClassDescriptions} hat die Landis+Gyr C\# Programme, welche Class Descriptions parsen.
 Das C\# Projekt \textit{InfraLib} enthält eine Klassenstruktur, welche Class Descriptions repräsentiert.
-Um eine möglichst lose Koppelung zu \textit{InfraLib} zu erreichen, wurden Interfaces für eine eigene Klassenstruktur geschrieben.
+Um eine möglichst lose Koppelung zu \textit{InfraLib} zu erreichen, wurden Interfaces für eine eigene Klassenstruktur geschreiben.
 Das Adapter Pattern \parencite{designPatterns} wurde eingesetzt, um die Klassen der \textit{InfraLib} mit den eigenen Interfaces zu verbinden.
 So konnte jedes Objekt mit seiner Class Description verbunden werden.
 Die zusätzlichen Informationen ermöglichten ein einfaches Darstellen von komplexen Typen.
@@ -92,12 +92,12 @@ In Abbildung \ref{fig:AttributeReadExample} ist ein Attribut abgebildet, welches
 Dabei ist ersichtlich, dass alle Felder des Struktur \textit{xDLMS\_context\_type} mit Name und Typ beschriftet sind.
 
 Bei der Integration der \textit{InfraLib} in die Solution musste festgestellt werden, dass zwar einige Unit Tests vorhanden sind, jedoch nur geringe Teile des Codes getestet sind.
-Da einige Fehler im Parsing-Code gefunden wurde, wurden einige Modul Tests geschrieben, welche das Zusammenspiel der verschiedenen Komponenten von XML-Files bis Adapter testen.
+Da einige Fehler im Parsing-Code gefunden wurde, wurden einige Modul Tests geschreiben, welche das Zusammenspiel der verschiedenen Komponenten von XML-Files bis Adapter testen.
 
-% TODO evtl schrieben, wie und wieso InfraLib eingebunden wurde (NUGET etc)
+% TODO evtl schreiben, wie und wieso InfraLib eingebunden wurde (NUGET etc)
 
 \subsection{Schreiben von Attributen}
-\dq  Die Benutzerschnittstelle soll das Schrieben von Attributwerten sowie ausführen von Methoden unterstützen.\dq
+\dq  Die Benutzerschnittstelle soll das Schreiben von Attributwerten sowie ausführen von Methoden unterstützen.\dq
 
 \subsubsection{Ziel}
 In der vorherigen Story wurde das Lesen von Attributen über die Benutzerschnittstelle implementiert.
@@ -105,10 +105,10 @@ Ziel dieser Story ist es, dass über die selbe Schnittstelle Schreibbefehle ausg
 Ebenfalls soll es möglich sein, dass Methoden ausgeführt werden können.
 
 \subsubsection{Vorgehen und Schwierigkeiten}
-Um nebst dem Lesen auch das Schrieben von Attributen über die Benutzerschnittstelle steuern zu können mussten entsprechende \textit{Button} Controls hinzugefügt werden.
-Die meisten bestehenden Komponente wurden bereits zuvor so entwickelt, dass das Schreiben ebenfalls unterstützen.
-In der Vorgehensbeschriebung zur vorgehenden Story wurde beschrieben, wie das Datenformat der \ac{ATS} in eine Klassenstruktur überführt wurden.
-Um Daten zu schrieben, musste dieser Prozess umgekehrt werden.
+Um nebst dem Lesen auch das Schreiben von Attributen über die Benutzerschnittstelle steuern zu können mussten entsprechende \textit{Button} Controls hinzugefügt werden.
+Die meisten bestehenden Komponente wurden bereits zuvor so entwickelt, dass sie das Schreiben ebenfalls unterstützen.
+In Text zur vorgehenden Story wurde beschreiben, wie das Datenformat der \ac{ATS} in eine Klassenstruktur überführt wurden.
+Um Daten zu schreiben, musste dieser Prozess umgekehrt werden.
 
 \begin{figure}
    \centering
@@ -120,7 +120,8 @@ Um Daten zu schrieben, musste dieser Prozess umgekehrt werden.
    \end{figure}
 Dies wurde mit der \textit{Writer} Klasse, welche in Abbildung \ref{fig:writer} aufgezeigt ist, implementiert.
 
-Um Methoden auszuführen muss ein Schreibbefehl ausgeführt werden.
+
+Das Ausführen von Methoden funktioniert technisch gleiche wie das schreiben von Attributen.
 Die Parameter der Methode werden als Payload mitgegeben.
 So kann die \textit{Writer} Klasse auch für das Ausführen von Methode verwendet werden.
 Die Darstellung der Methoden in der Benutzeroberfläche musste um Eingabefelder für die Parameter und ein \textit{Button} Control für das Starten der Ausführung ergänzt werden.
@@ -138,15 +139,15 @@ Dabei konnten Element wiederverwendet werden, welche auch bei Attributen eingese
 
 \subsection{Integration Tests}
 Währen dieses Sprints musste oft die ganze Anwendung gestartet werden, um die Integration neuer Funktionen zu testen.
-Deshalb wurde für die Validation der Stories dieses Sprints erste Integration Tests geschrieben.
-Diese sind so aufgebaut, dass sie bis auf die Benutzerschnittstelle alle Teile der Applikation aufgesetzt werden.
+Deshalb wurde für die Validation der Stories dieses Sprints erste Integrations Tests geschrieben.
+Diese sind so aufgebaut, dass bis auf die Benutzerschnittstelle alle Teile der Applikation aufgesetzt werden und verschiedene Aktionen ausgeführt werden.
 Es wird also das Zusammenspiel der ViewModels mit dem Model getestet.
 
 \subsection{Erster richtiger Release}\label{firstRelease}
 Bereist ein Arbeitstag vor Sprintende waren alle geplanten Stories fertiggestellt.
-Da die Applikation bereits erste Funktionalität beinhaltet, wurde diese Released den Zukünftigen Benutzern in einer Demo präsentiert.
+Da die Applikation bereits erste Funktionalität beinhaltet, wurde diese veröffentlicht und den Nutzern in einer Demo präsentiert.
 Die Resonanz dabei war positiv.
 Der Release beinhaltete jedoch noch einige Limitierungen.
-So wird beispielsweise nur ein spezifisches Version eines Produktes, \textit{Ref\_MMI3}, unterstützt.
+So wird beispielsweise nur ein spezifisches Version eines einzigen Produktes, \textit{Ref\_MMI3}, unterstützt.
 Als erste Benutzer den DlmsQuickAccess installierten und starteten stürzte dieser direkt ab.
 Im nächsten Sprint sollen diese Abstürze untersucht sowie die Unterstützung von weiteren Produkttypen sichergestellt werden.

@@ -53,7 +53,7 @@ Die Übertragbarkeit gibt an, ob sich eine bestehende Software in eine andere Um
 Kann ein Programm nur auf einer bestimmten Betriebssystemversion oder gar nur auf einem einzigen Rechner ausgeführt werden, so ist dessen Übertragbarkeit sehr schlecht.
 Mit Umgebung ist jedoch nicht nur die technische Umgebung wie das Betriebssystem gemeint sonder sie kann auch Aspekte wie die Sprache oder Kultur beinhalten.
 
-\subsubsection{Testbarkeit}
+\subsubsection{Testbarkeit}\label{testability}
 Software ist meist so komplex, dass es nicht ausreicht lediglich die Benutzerschnittstellen zu testen.
 Die möglichen Kombinationen von Eingabeparametern sind dabei viel zu umfangreich.
 So müssen einzelne Komponenten einzeln getestet werden.
@@ -100,7 +100,7 @@ In Abbildung \ref{fig:misra} ist ein Ausschnitt aus \textit{MISCRA-C} abgebildet
 \end{figure}
 
 
-\subsubsection{Typisierung}
+\subsubsection{Typisierung}\label{typing}
 Die Verwendung eines Typisierungssystem steigert die Qualität einer Software.
 Mittels statischer Typprüfung wird durch den Compiler geprüft, ob die verwendete Typen jeweils korrekt sind.
 Die dynamische Typprüfung, welche meist von einem Interpreter durchgeführt wird, erkennt falsch verwendete Typen bei Laufzeit und kann so Programmabstürze verhindern.
@@ -108,7 +108,7 @@ Die dynamische Typprüfung, welche meist von einem Interpreter durchgeführt wir
 Viele Programmiersprachen bieten eine statische oder dynamische Typprüfung an.
 Einige, wie bspw. C\# sogar beide.
 
-\subsubsection{Portabilität}
+\subsubsection{Portabilität}\label{portability}
 Bei der Portabilität geht es nicht direkt darum, dass eine Software auf allen erdenklichen Systemen läuft, sondern vielmehr, dass die Portierung auf ein neues System mit geringem Aufwand vollbracht werden kan.
 Dazu gehört, dass nur jene Codeteile angepasst oder neu geschrieben werden müssen, welche effektiv eine Abhängigkeit zum jeweiligen System haben.
 Die Businesslogik einer Anwendung ist typischerweise eher unabhängig von einem System, währen die Benutzerschnittstelle stark an ein bestimmtes Betriebssystem gekoppelt sein kann.
@@ -134,7 +134,7 @@ So kann sichergestellt werden, dass eine Komponente so funktioniert wie sie soll
 Da Tests nicht nur auf der Ebene einer einzelnen Komponente geschrieben und ausgeführt werden können sondern auch das Zusammenspiel mehrere Komponente oder ganzer System testen können,
 sind sie für das Kriterium der Funktionalität sehr wichtig.
 Sie sind somit ein wichtiger Bestandteil eines Softwareprojekts.
-%todo evtl schrieben, dass tests selbst hohe quali haben müssen
+%todo evtl schreiben, dass tests selbst hohe quali haben müssen
 Während des Schreiben von Tests zeigt sich auch, zu welchem Grad das Kriterium der Testbarkeit erfüllt ist.
 
 Testmetriken geben Auskunft zu einer Testmenge.

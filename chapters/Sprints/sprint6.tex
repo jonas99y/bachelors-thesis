@@ -1,5 +1,5 @@
 \section{Sprint 6}
-Im sechsten und letzten Sprint wurde die beiden Stories bearbeitet:
+Im sechsten und letzten Sprint wurde diese beiden Stories bearbeitet:
 \begin{itemize}
    \item Die Kommunikation mit den Stromzähler soll asynchron ausgeführt werden.
    \item SonarQube soll aufgesetzt werden und die gemeldete Code Smells bearbeitete werden.
@@ -9,18 +9,22 @@ Kleinere Änderungen und Bugfixes, welche aus dem Feedback hervorgehen sollen eb
 Die folgenden Abschnitte geben Auskunft über die erwähnten Arbeiten.
 
 \subsection{Asynchrone Kommunikation}
+\dq Die Kommunikation mit den Stromzähler soll asynchron ausgeführt werden.\dq
+\subsubsection{Ziele}
+Bisher funktioniert die Kommunikation mit den Zählern so, diese direkt im UI Thread ausgeführt wird.
+Dies hat den Nachteil, dass die Benutzerschnittstelle während der Kommunikation eingefroren ist und nicht auf weitere Eingaben des Benutzers reagiert.
+Ein weitere Nachteil der bisherigen Implementation ist, dass Kommunikationsfehler zu Abstürzen der ganzen Anwendung führen.
+Das Ziel dieser Story ist es, die Kommunikation in einen Thread auszulagern und so asynchron auszuführen.
+Dies soll Wert auf die Fehlertoleranz der Implementation gelegt werden.
 
-Ziel / ACs
 
-Nötige Refactorings
-
-\subsubsection{Isolation des Befehlsinterpreter}
-In \ref{s1:ats} wurde erklärt, wie der Code des \ac{ATS} eingebunden wurde.
+\subsubsection{Vorgehen \& Schwierigkeiten}
+In \ref{atsUmsetztung} wurde erklärt, wie der Code des \ac{ATS} eingebunden wurde.
 Bisher war das Befehlsinterpreter Projekt eine direkte Abhängigkeit des DlmsQuickAccess.Dlms Projekts.
-Die benötigten Klassen wurden dort instanziert und verwendet. 
+Die benötigten Klassen wurden dort instanziiert und verwendet. 
 Dies führt dazu, dass DlmsQuickAccess.Dlms stark an den Befehlsinterpreter gekoppelt ist.
 Ein Austausch des Kommunikationsstacks wäre mit grösseren Anpassungen verbunden.
-
+Wie in Abschnitt \ref{portability} erklärt wurde, sind dies Anzeichen von tiefer Portabilität.
 
 \begin{figure}[H]
    \centering
@@ -34,11 +38,11 @@ Ein Austausch des Kommunikationsstacks wäre mit grösseren Anpassungen verbunde
 Da in diesem Sprint Änderungen am Kommunikationscode, also an DlmsQuickAccess.Dlms, geplant sind, wurde als erstes die zuvor genannte Kopplung bereinigt.
 Dazu wurde das Dependency Inversion Principle angewendet.
 Dieses besagt, dass High-Level-Module nicht von Low-Level-Modulen abhängen sollen.
-Beide sollten von Abstraktionen abhänig sein \parencite{madasu35solid}.
-Das Klassendiagramm in Abbildung \ref{fig:dlms_vorher} zeigt, wie die Klasse ReaderWriter von Klassen des Befehlsinterpreter abhänig ist.
-Wie die Abhänigkeiten nach dem Refactoring nach Dependency Inversion Principle aussehen, ist in Abblidung \ref{fig:dlms_nachher} gezeigt.
-Mit dem ICommunicator Interface definiert DlmsQuickAccess.Dlms nun lediglich die Schnistelle eines Objekts, welches vom ReaderWriter benötigt wird.
-Dieses wird mit der Communicator Klasse implementiert. Eine Instaz dieser Klasse kann nun in den ReaderWriter injected werden.
+Beide sollten von Abstraktionen abhängig sein \parencite{madasu35solid}.
+Das Klassendiagramm in Abbildung \ref{fig:dlms_vorher} zeigt, wie die Klasse ReaderWriter von Klassen des Befehlsinterpreter abhängig ist.
+Wie die Abhängigkeiten nach dem Refactoring nach Dependency Inversion Principle aussehen, ist in Abblidung \ref{fig:dlms_nachher} gezeigt.
+Mit dem ICommunicator Interface definiert DlmsQuickAccess.Dlms nun lediglich die Schnittstelle eines Objekts, welches vom ReaderWriter benötigt wird.
+Dieses wird mit der Communicator Klasse implementiert. Eine Instanz dieser Klasse kann nun in den ReaderWriter injected werden.
 Somit wurde die Koppelung von DlmsQuickAccess.Dlms und Befehlsinterpreter aufgelöst.
 
 % evtl schreiben, wo Communicator instantiert wird
@@ -94,8 +98,27 @@ Lösung "1"
 
 
 
-\subsubsection{Bereinigung der internen Abhänigkeiten}
-"Sync Namespaces" sehr hilfreich.
+% \subsubsection{Bereinigung der internen Abhänigkeiten}
+% "Sync Namespaces" sehr hilfreich.
+
+
+
+
+
+\subsection{SonarQube}\label{s6:sonar}
+Im Abschnitt \ref{quality:sonar} wurde das Tool SonarQube erklärt und festgehalten, dass es von der Landis+Gyr als bevorzugtes Software-Qualitatssicherungstool evaluiert wurde.
+Zum Zeitpunkt dieser Arbeit verfügte die Landis+Gyr noch über keine laufende Instanz von SonarQube.
+Deshalb wurde eine solche lokal auf dem Rechner des Entwicklers aufgesetzt.
+Dies hat den Nachteil, dass ein Aufbau, wie er in Abschnitt \ref{sonar:funktionsweise} beschrieben ist nicht möglich ist.
+Anstelle des \ac{CI} Servers muss der Build jeweils manuell ausgeführt und an die lokale SonarQube Instanz übermittelt werden.
+Für dieses Projekt stellt dies kein Problem dar, da nur ein einzelner Entwickler am Code arbeitet.
+
+
+
+
+% dotnet sonarscanner begin /k:"DlmsQuickAccess_NoATS" /d:sonar.host.url="http://localhost:9000"  /d:sonar.login="8568d95955df20f319cd05320e41bc4c8dac02f3"
+% dotnet build DlmsQuickAccess_NoWinUI.sln
+% dotnet sonarscanner end /d:sonar.login="8568d95955df20f319cd05320e41bc4c8dac02f3"
 
 \subsection{Feedback}
 Chakrit: 
@@ -134,21 +157,3 @@ Ronny:
 - Starten der Anwendung sehr Praktisch. Suchen in Windows nach "DlmsQuickAccess", Click auf das gewünschte Produkt und schon ist alles einsatzbereit.
 Beim DMT2 wusste man nie, welche Konfiguration gerade geladen war und das ändern dieser ist jeweils umständlich.
 - Die Schreib und Lesegeschwindigkeit ist eindrücklich.
-
-
-
-
-
-\subsection{SonarQube}\label{s6:sonar}
-Im Abschnitt \ref{quality:sonar} wurde das Tool SonarQube erklärt und festgehalten, dass es von der Landis+Gyr als bevorzugtes Software-Qualitatssicherungstool evaluiert wurde.
-Zum Zeitpunkt dieser Arbeit verfügte die Landis+Gyr noch über keine laufende Instanz von SonarQube.
-Deshalb wurde eine solche lokal auf dem Rechner des Entwicklers aufgesetzt.
-Dies hat den Nachteil, dass ein Aufbau, wie er in Abschnitt \ref{sonar:funktionsweise} beschrieben ist nicht möglich ist.
-Anstelle des \ac{CI} Servers muss der Build jeweils manuell augeführt und an die lokale SonarQube Instanz übermittelt werden.
-Für dieses Projekt stellt dies kein Problem dar, da nur ein einzelner Entwickler am Code arbeitet.
-
-
-
-% dotnet sonarscanner begin /k:"DlmsQuickAccess_NoATS" /d:sonar.host.url="http://localhost:9000"  /d:sonar.login="8568d95955df20f319cd05320e41bc4c8dac02f3"
-% dotnet build DlmsQuickAccess_NoWinUI.sln
-% dotnet sonarscanner end /d:sonar.login="8568d95955df20f319cd05320e41bc4c8dac02f3"
