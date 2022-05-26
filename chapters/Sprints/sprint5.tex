@@ -116,7 +116,7 @@ In der XML Repräsentation der Class Description, welche vom DlmsQuickAccess ein
 \end{verbatim}
 
 Im Abschnitt \ref{readAttributVorgehen} wurde erklärt, dass das Adapter Pattern verwendet wurde, um die Class Descriptions in die gewünschte Klassenstruktur zu überführen.
-Als versucht wurde, auf die einzelnen Enum Werte zuzugreiffen, traten Fehler bei der Implementation der Adapter auf.
+Als versucht wurde, auf die einzelnen Enum Werte zuzugreifen, traten Fehler bei der Implementation der Adapter auf.
 Diese zeigten sich dann, wenn mehrere Typendefinitionen ineinander verschachtelt sind.
 Dies kommt beispielsweise vor, wenn es sich beim Typen eines Attributes um ein Array handelt, wessen Elemente jeweils Strukturen sind, welche ein Feld von Type Enum enthalten.
 Bei Lösen diesen Fehler zeigte sich durch eine erschwerte Testbarkeit, dass das Adapter Pattern nicht optimal angewendet wurde.
