@@ -24,11 +24,11 @@ Das Projekt besteht aus mehreren aufeinanderfolgenden Sprints.
 Jeder Sprint dauert zwei Wochen.
 Wären eines Sprints wird an jenen User Stories gearbeitete, welche für diesen Sprint eingeplant sind.
 Die Entwickler geben zu Beginn des Sprints das Commitment ab, dass sie die geplanten Stories im Sprint abschliessen werden.
-Um weder zu viele Stories noch zu wenige in einem Sprint zu planen, werden bei der Landis+Gyr jeder Story einen Wert gegeben.
-Dieser Wert, welche Story Points genannt wird, wird von den Entwicklern geschätzt und beziffert den erwarteten Aufwand.
+Um weder zu viele Stories noch zu wenige in einem Sprint zu planen, wird bei der Landis+Gyr jeder Story einen Wert gegeben.
+Dieser Wert, welcher Story Points genannt wird, wird von den Entwicklern geschätzt und beziffert den erwarteten Aufwand.
 Auf Story Points wurde bei dieser Arbeit verzichtet, da sie für den Einzelentwickler keinen Mehrwert bieten.
 
-Während die Dauer aller Sprints genau gleich ist variiert die Zeit, welche der Entwickler für Entwicklungsarbeiten aufwenden kann von Sprint zu Sprint stark.
+Während die Dauer aller Sprints genau gleich ist, variiert die Zeit, welche der Entwickler für Entwicklungsarbeiten aufwenden kann von Sprint zu Sprint stark.
 
 \subsubsection{User Story}\label{userstory}
 Der Scrum Prozess der Landis+Gyr kennt viele unterschiedliche Work Items wie z.B. Epics, Requirements oder Features.
@@ -41,7 +41,7 @@ In Abbildung \ref{fig:workitems} sind sie alle dargestellt.
       }
       \label{fig:workitems}
 \end{figure}
-Um möglichst wenig Zeit mit administrativen Aufgaben zu verbrauchen wurde für diese Arbeit nur User Stories eingesetzt.
+Um möglichst wenig Zeit mit administrativen Aufgaben zu verbrauchen, werden für diese Arbeit nur User Stories eingesetzt.
 Eine User Story beschreibt jeweils ein Arbeitspaket welches während eines Sprints vollständig bearbeitet werden kann.
 Sie enthält eine Sammlung von Akzeptanzkriterien, welche durch die Bearbeitung der Story erfüllt werden müssen.
 Damit eine Story als fertig gilt, muss die Definition of Done erreicht werden. Diese wird im folgenden Abschnitt erläutert.
@@ -52,8 +52,8 @@ Damit eine Story als fertig gilt, muss die Definition of Done erreicht werden. D
 Für diese Arbeit besteht diese aus folgenden Punkten:
 \begin{itemize}
    \item Alle Akzeptanzkriterien sind erfüllt.
-   \item Unittests wurden implementiert oder angepasst, decken mindestens 80\% des Codes ab und laufen erfolgreich durch.
-   \item Der Code entspricht dem Coding Standard, siehe \ref{codingStandard}.
+   \item Unittests wurden implementiert oder angepasst wurden, decken mindestens 80\% des Codes ab und laufen erfolgreich durch.
+   \item Der Code entspricht dem Coding Style, siehe \ref{codingStandard}.
 \end{itemize}
 
 Bei der Landis+Gyr gehört zur Definition of Done zusätzlich noch, dass der Code von mindestens zwei weiteren Entwicklern gegengelesen wurde.
@@ -61,7 +61,7 @@ Dies ist bei diesem Projekt leider nicht möglich.
 
 
 \subsection{Meetings}
-Zum Scrum Prozess gehören diverse Meetings, welche regelmässig stattfinden.
+Zum Scrum Prozess der Landis+Gyr gehören diverse Meetings, welche regelmässig stattfinden.
 So wir ein Sprint jeweils im Voraus während des \textit{Sprint Planning} geplant.
 Während des Sprints findet im \textit{Daily Meeting} ein täglicher Austausch zwischen allen Entwicklern statt.
 Im \textit{Sprint Review} werden nach einem Sprint die erarbeiteten Stories präsentiert.
@@ -72,7 +72,7 @@ Die Planung des neuen Sprints wird jeweils ad hoc erledigt und Änderungen am Ar
 Während des Projekts finden mehrere Meetings mit der Betreuungsperson dieser Arbeit statt.
 Dort werden jeweils die gemachten Fortschritte und erledigten Arbeiten präsentiert.
 Somit lassen sich diese teilweise mit dem \textit{Sprint Review} vergleichen.
-Sie sind zeitlich jedoch nicht an die Sprints geknüpft.
+Sie sind zeitlich jedoch nicht an die Sprints gebunden.
 
 \subsection{Rollen}
 Bei der Landis+Gyr besteht jedes Entwicklungsteam aus mehreren Entwicklern und ein bis zwei Testern.
@@ -112,17 +112,17 @@ Die Entwicklungsumgebung Visual Studio ist standardmässig so konfiguriert, dass
 Sie unterstützt die Entwickler mit automatischen Formatierungen und weisst darauf hin, wenn der Standard verletzt wird. 
 
 \section{Test Driven Development} \label{tdd}
-\ac{TDD} ist ein Vorgehen zur parallelen Entwicklung von produktiv Code sowie Testfällen.
+\ac{TDD} ist ein Vorgehen bei dem Produktiv- und Testcode parallel geschrieben werden.
 Dabei wird jeweils zuerst ein Testfall geschrieben, welcher fehlschlagen soll.
 Danach wird genau so viel Code geschrieben, dass der Testfall abgedeckt ist.
 Nun kann der geschrieben Code wenn nötig überarbeitet werden.
 Bestehende Testfälle dürfen nicht gebrochen werden.
 Diese Vorgehen wird solange wiederholt, bis alle benötigten Funktionen getestet und implementiert sind.
-Ein Vorteil von \ac{TDD} ist, das Entwicklungsarbeit vorhersagbar wird.
+Ein Vorteil von \ac{TDD} ist, dass die Entwicklungsarbeit vorhersagbar wird.
 Ist eine Funktion implementiert kann mit Sicherheit gesagt werden, dass diese auch richtig funktioniert \parencite{beck2003test}.
 Mit diesem Vorgehen wird auch sichergestellt, das die Testbarkeit (mehr dazu in Abschnitt \ref{testability}) einer Komponente gut ist.
 
-In dieser Arbeit sollen möglichst immer nach \ac{TDD} vorgegangen werden.
+In dieser Arbeit soll möglichst immer nach \ac{TDD} vorgegangen werden.
 
 
 \section{Diagramme}
