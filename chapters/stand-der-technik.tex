@@ -4,7 +4,7 @@
 % angehen? Wodurch unterscheidet sich Ihre Lösung von anderen Lösungen? Für wissenschaftlich
 % orientierte Arbeiten sei hier explizit auf (Balzert, S. 66 ff) verwiesen.
 In diesem Kapitel werden gängige Technologien vorgestellt, welche für die Lösung der Aufgabenstellung relevant sind.
-Des Weiteren wir Theorie zu den Themen Softwarequalität und Benutzerschnittstellenergonomie aufgearbeitet.
+Des Weiteren wird Theorie zu den Themen Softwarequalität und Benutzerschnittstellenergonomie aufgearbeitet.
 
 
 \section{DLMS}
@@ -13,7 +13,6 @@ Die Protokolle basieren auf dem \ac{OSI} Modell, sind jedoch auf die Layer \text
 Diese sind in Abbildung \ref{fig:dlmsOsi} dargestellt.
 Dabei ist ersichtlich, dass auf den unteren Layern unterschiedliche Kommunikationskanäle verwendet werden können.
 
-% TODO image ist aus PDF. Quelle angeben?
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.7\textwidth]{gfx/Dlms_osi.png}
@@ -39,10 +38,10 @@ In den folgenden Abschnitten werden Konzepte, Anwendungen und Produkte erklärt,
 \subsection{Picasso Platform}\label{picasso}
 Picasso ist der Name einer Software Platform der Landis+Gyr.
 Mehrere Teams, verteilt auf vier Kontinente, arbeiten am C++ Code dieser Platform.
-Sie beinhaltet grundlegende Komponenten wie beispielsweise das Betriebs- und Filesystem sowie Funktionen welche von allen Produkttypen verwendet werden.
-Die Teams welche die konkreten Stromzähler-Produkte entwickeln, bauen auf Picasso auf und ergänzen die Platform um Funktionen, welche nur von ihrem Produkt verwendet werden.
+Sie beinhaltet grundlegende Komponenten wie beispielsweise das Betriebs- und Filesystem sowie Funktionen, welche von allen Produkttypen verwendet werden.
+Die Teams, welche die konkreten Stromzähler-Produkte entwickeln, bauen auf Picasso auf und ergänzen die Platform um Funktionen, welche nur von ihrem Produkt verwendet werden.
 Damit die Platform mit unterschiedlichen Konfigurationen getestet werden kann, verfügt sie über mehrere Referenzprodukte.
-Referenzprodukte sind Produkte, welche nicht Verkauft werden, sondern nur für interne Zwecke verwendet werden.
+Referenzprodukte sind Produkte, welche nicht verkauft, sondern nur für interne Zwecke verwendet werden.
 Am Standort Cham arbeitet ein Team an der Platform sowie eines an einem Produkt, dem Stromzähler Model \textit{E660}.
 Der Autor dieser Arbeit ist seit mehreren Jahren Teil des Platformteams.
 
@@ -52,8 +51,8 @@ Der Autor dieser Arbeit ist seit mehreren Jahren Teil des Platformteams.
 Im Absatz \ref{cosem} wurde erwähnt, dass die Funktionen eines intelligenten Stromzählers mittels Objekten abstrahiert werden.
 Bei der Landis+Gyr werden alle Objekte eines bestimmten Produkts jeweils in einem Object Model zusammengefasst.
 Anhand des Object Models entwerfen Architekten die Funktionen eines Zählers.
-Sie verwenden eine Excel Tabellen um die Werte der Object Models zu bearbeiten.
-In Abbildung \ref{fig:objectModel} ein der Header sowie ein Objekt aus einer solchen Tabelle dargestellt.
+Sie verwenden eine Excel-Tabelle um die Werte der Object Models zu bearbeiten.
+In Abbildung \ref{fig:objectModel} ist ein der Header sowie ein Objekt aus einer solchen Tabelle dargestellt.
 
 \begin{figure}[H]
    \centering
@@ -83,7 +82,7 @@ Um die Integrität dieser Dateien sicherzustellen und um diese in andere Dateifo
 Diese werden im nächsten Abschnitt erläutert.
 
 \subsubsection{Tools}
-Das Programm \textit{Picasso Tools} stellt ein Plugin für Excel bereit, welches dem Benutzer ermöglicht den Inhalt eines Object Models zu validieren.
+Das Programm \textit{Picasso Tools} stellt ein Plugin für Excel bereit, welches dem Benutzer ermöglicht, den Inhalt eines Object Models zu validieren.
 Dabei werden die Objekte anhand von vordefinierten Regeln auf Korrektheit und Vollständigkeit überprüft.
 Des Weiteren wird mithilfe der entsprechenden Class Description überprüft, ob die Attribute und Methoden eines Objekts korrekt sind.
 Die Class Descriptions müssen dazu als XML Dateien vorhanden sein.
@@ -92,23 +91,23 @@ Analog zu \textit{Picasso Tools} stellt \textit{Description Tools} ein Plugin, i
 
 Nebst den Plugins bieten beide Programme auch ein \ac{CLI} an.
 Dieses wird von einem Server verwendet, welcher jeden Tag alle Object Models und Class Description validiert und als XML exportiert.
-Anhand der Validierungsresultate erstellt er einen Report, welche einen Überblick über die Qualität der Dokumente gibt sowie auf Fehler hinweist.
+Anhand der Validierungsresultate erstellt er einen Report, welcher einen Überblick über die Qualität der Dokumente gibt sowie auf Fehler hinweist.
 
 Beide Tools sind in der Programmiersprache C\# entwickelt und nutzen die Komponente \textit{InfraLib}.
 Diese ist eine C\# Bibliothek, welche Funktionalitäten wie das Parsen der XML files anbietet. 
 \footnote{\textit{Picasso Tools}, \textit{Description Tools} sowie \textit{InfraLib} wurden vom Autor dieser Arbeit erstellt, als dieser seine Berufslehre bei der Landis+Gyr absolvierte und seither weiterentwickelt }
 
 \subsection{Firmwareentwicklung}\label{fwEntwicklung}
-Am Standort Cham entwickelt die Landis+Gyr Firmware für intelligent Stromzähler.
+Am Standort Cham entwickelt die Landis+Gyr Firmware für intelligente Stromzähler.
 Dazu wird die Programmiersprache C++ eingesetzt.
 Wie im Abschnitt \ref{objectModelsClassDescriptions} bereits erwähnt, stützt sich die Firmware auf Object Models.
 Diese werden verwendet, um jenen Code zu generieren, welcher die \ac{COSEM} Objekte in der Firmware instanziert.
 Ein Tool, welches in der Programmiersprache Python geschrieben ist, parst die XML Repräsentation des Object Models und mit Hilfe von Templates den entsprechenden Code.
-Da das verwendete Buildsystem, SCons \footnote{https://scons.org/}, ebenfalls mit Python arbeitet ist Python hinter C++ die zweit meist verwendete Sprache im Projekt der Firmwareentwicklung.
+Da das verwendete Buildsystem, SCons \footnote{https://scons.org/}, ebenfalls mit Python arbeitet, ist Python hinter C++ die zweit meist verwendete Sprache im Projekt der Firmwareentwicklung.
 
 \subsection{E66C Testing}\label{pythonTesting}
 \textit{E66C} ist die Modellbezeichnung eines Kommunikationsmoduls, welches von der Landis+Gyr in Cham entwickelt wird.
-Dabei handelt es sich um eine Komponente, welcher auf gewisse Stromzählermodelle aufgesteck werden kann und diesen um Kommunikationsfunktionen erweitert.
+Dabei handelt es sich um eine Komponente, welche auf gewisse Stromzählermodelle aufgesteck werden kann und diese um Kommunikationsfunktionen erweitert.
 
 \begin{figure}[H]
    \centering
@@ -121,15 +120,15 @@ Dabei handelt es sich um eine Komponente, welcher auf gewisse Stromzählermodell
 \end{figure}
 
 Um das Zusammenspiel des \textit{E66C} mit einem Stromzähler automatisiert zu testen, entwickelte das Team in Cham das Programm \textit{libpydlms}.
-Dieses ermöglicht das Lesen und Schrieben von \ac{COSEM} Objekten in der Sprache Python.
+Dieses ermöglicht das Lesen und Schreiben von \ac{COSEM} Objekten in der Sprache Python.
 
 
 \subsection{ATS}\label{ats}
 \ac{ATS} ist eine Software welche für das Testen von intelligenten Stromzählern verwendet wird.
 Dazu werden Testscripts in einer \ac{ATS} spezifischen Scriptsprache benötigt.
-Über diese Scripts könne Werte des Zählers über die \ac{DLMS} Schnittstelle geschrieben, ausgelesen und mit Erwartungswerten vergleichen werden.
+Über diese Scripts können Werte des Zählers über die \ac{DLMS} Schnittstelle geschrieben, ausgelesen und mit Erwartungswerten verglichen werden.
 Zusätzlich ist die Steuerung der Testumgebung möglich.
-Befindet sich der Testaufbau beispielsweise auf dem Tisch des Entwicklers, so wird der Stromzähler in der Regel nicht über eine richtige Stromquelle betrieben sondern an einen Emulator angeschlossen, welcher diese ersetzt.
+Befindet sich der Testaufbau beispielsweise auf dem Tisch des Entwicklers, so wird der Stromzähler in der Regel nicht über eine richtige Stromquelle betrieben, sondern an einen Emulator angeschlossen, welcher diese ersetzt.
 In diesem Fall wird der Emulator über das \ac{ATS} Testscript gesteuert.
 
 Die \ac{ATS} wurde von der Landis+Gyr in der Programmiersprache C\# entwickelt und wird aktuell für das Testen aller Stromzähler der Picasso Platform (siehe \ref{picasso}) eingesetzt.
@@ -139,9 +138,9 @@ Die \ac{ATS} wurde von der Landis+Gyr in der Programmiersprache C\# entwickelt u
 \subsection{DMT2}\label{dmt}
 Die Software \ac{DMT2} wurde für die Landis+Gyr von einem externen Lieferanten entwickelt.
 Mit ihr können Scripts geschrieben und ausgeführt werden, welche mittels \ac{DLMS} mit intelligenten Stromzähler kommunizieren.
-Diese Scripts können um einfach Benutzeroberflächen erweitert werden, welche mit XML deklarativ definiert werden.
+Diese Scripts können um einfache Benutzeroberflächen erweitert werden, welche mit XML deklarativ definiert werden.
 Verwendet werden diese, um Interaktionen, welche die Entwickler oft durchführen müssen, zu vereinfachen.
-In Abbildung \ref{fig:dmt2logger} wir beispielsweise ein Script und die dazugehörige Benutzerschnittstelle für die Laufzeitkonfiguration des Loggers eines Zählers gezeigt.
+In Abbildung \ref{fig:dmt2logger} wird beispielsweise ein Script und die dazugehörige Benutzerschnittstelle für die Laufzeitkonfiguration des Loggers eines Zählers gezeigt.
 Wenn dort beispielsweise das Log Level verändert wird, schreibt das Script den entsprechenden Wert automatisch in die korrekte \ac{COSEM} Klasse.
 \begin{figure}[H]
    \centering
@@ -153,7 +152,7 @@ Wenn dort beispielsweise das Log Level verändert wird, schreibt das Script den 
 \end{figure}
 
 Eine weitere Funktion des \ac{DMT2} ist \textit{Quick Access}.
-Diese ermöglicht das Lesen und Schrieben einzelne Attribute sowie das ausführen von Methoden.
+Diese ermöglicht das Lesen und Schreiben einzelner Attribute sowie das ausführen von Methoden.
 Das Ziel dieser Arbeit ist es, die Funktionalität des \textit{Quick Access} durch eine neue Softwarelösung zu ersetzten.
 Im folgenden Abschnitt werden einige Stärken und Schwächen des \ac{DMT2} aufgezeigt.
 Diese basieren auf einer Umfrage, welche unter den Benutzern des \ac{DMT2} durchgeführt wurde.
@@ -169,15 +168,15 @@ Im Abschnitt \ref{survey} ist mehr zur Umfrage zu lesen.
 \begin{itemize}
    \item Fehlermeldungen werden als Dialog angezeigt und müssen jeweils bestätigt werden um fortzufahren.
    \item Es ist schwierig, nach spezifischen Objekten zu suchen.
-   \item Das ausführen von Methoden und Schrieben von Attributen ist umständlich. Die Parameter müssen in einer XML Struktur eingetragen werden, welche anfällig für Fehler ist.
+   \item Das Ausführen von Methoden und Schreiben von Attributen ist umständlich. Die Parameter müssen in einer XML Struktur eingetragen werden, welche anfällig für Fehler ist.
    \item Es wird jeweils nur die Antwort des zuletzt ausgeführten Befehls angezeigt.
-   \item Es ist Umständlich mehrere Instanzen des \ac{DMT2} gleichzeitig zu nutzen. 
+   \item Es ist umständlich, mehrere Instanzen des \ac{DMT2} gleichzeitig zu nutzen. 
 \end{itemize}
 
 
 \section{WinUI3}
-WinUI3 ist eine Platform, welche es erlaubt native Benutzeroberflächen für Windows zu entwickeln.
-Sie ist teil der Windows APP SDK \footnote{https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/}.
+WinUI3 ist eine Platform, welche es erlaubt, native Benutzeroberflächen für Windows zu entwickeln.
+Sie ist Teil der Windows APP SDK \footnote{https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/}.
 Der Quellcode dazu ist Open Source \parencite{winuiintro}.
 WinUI3 wird Microsoft als beste Technologie zur Erstellung von Benutzerschnittstellen bezeichnet und löst ältere Technologien wie \ac{WPF} oder \ac{UWP} ab.
 Die erste stabile Version ist seit November 2021 verfügbar.

@@ -105,9 +105,9 @@ Zusätzlich sollen zwei weitere Funktionen von \ac{ADO} verwendet werden:
    \item Die Pipelines von \ac{ADO} sollen für \ac{CICD} verwendet werden.
 \end{itemize}
 
-\section{Coding Standard}\label{codingStandard}
-% TODO move to Konzepte?
-Der C\# Code der für diese Arbeit geschrieben wird, befolgt den Coding Style der dotnet runtime \footnote{https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md}.
+\section{Coding Style}\label{codingStandard}
+In Abschnitt \ref{quality_richtline} ist beschrieben, wie das befolgen einer Software-Richtlinie einen positiv effekt auf die Codequalität haben kann.
+Der C\# Code der für diese Arbeit geschrieben wird, soll den Coding Style der dotnet runtime \footnote{https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md} befolgen.
 Die Entwicklungsumgebung Visual Studio ist standardmässig so konfiguriert, dass sie diesem Style folgt.
 Sie unterstützt die Entwickler mit automatischen Formatierungen und weisst darauf hin, wenn der Standard verletzt wird. 
 
@@ -120,6 +120,7 @@ Bestehende Testfälle dürfen nicht gebrochen werden.
 Diese Vorgehen wird solange wiederholt, bis alle benötigten Funktionen getestet und implementiert sind.
 Ein Vorteil von \ac{TDD} ist, das Entwicklungsarbeit vorhersagbar wird.
 Ist eine Funktion implementiert kann mit Sicherheit gesagt werden, dass diese auch richtig funktioniert \parencite{beck2003test}.
+Mit diesem Vorgehen wird auch sichergestellt, das die Testbarkeit (mehr dazu in Abschnitt \ref{testability}) einer Komponente gut ist.
 
 In dieser Arbeit sollen möglichst immer nach \ac{TDD} vorgegangen werden.
 
