@@ -14,21 +14,21 @@
 
 
 \section{Vorgehensmodell}\label{vorgehen}
-In der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) wurde verlangt, das der Scrum Prozess, so wie er bei der Landis+Gyr gelebt wird, als Vorgehensmodell verwendet werden soll.
+In der Aufgabenstellung (Anhang \ref{anhang:aufgabenstellung}) wurde verlangt, das der Scrum Prozess, so wie er bei der Landis+Gyr gelebt wird, als Vorgehensmodell verwendet wird.
 Diverse Eigenschaften und Abläufe dieses Prozesses konnten direkt für diese Arbeit übernommen und angewandt werden.
-Da an dieser Arbeit nur ein Entwickler arbeitet und auch die Anzahl Stakeholders kleiner ist, wurde mehrere Dinge angepasst.
-Die folgenden Abschnitte geben einen Überblick über den Prozess, wo sich dieser von jeden der Landis+Gyr unterscheidet und wieso diese Anpassungen vorgenommen wurden.
+Da an dieser Arbeit nur ein Entwickler arbeitet und auch die Anzahl Stakeholders kleiner ist, wurden mehrere Dinge angepasst.
+Die folgenden Abschnitte geben einen Überblick über den Prozess, wo sich dieser von jenem der Landis+Gyr unterscheidet und wieso diese Anpassungen vorgenommen wurden.
 
 \subsection{Sprints}
 Das Projekt besteht aus mehreren aufeinanderfolgenden Sprints.
 Jeder Sprint dauert zwei Wochen.
-Wären eines Sprints wird an jenen User Stories gearbeitete, welche für diesen Sprint eingeplant sind.
+Während eines Sprints wird an jenen User Stories gearbeitete, welche für diesen Sprint eingeplant sind.
 Die Entwickler geben zu Beginn des Sprints das Commitment ab, dass sie die geplanten Stories im Sprint abschliessen werden.
-Um weder zu viele Stories noch zu wenige in einem Sprint zu planen, wird bei der Landis+Gyr jeder Story einen Wert gegeben.
+Um weder zu viele noch zu wenige Stories in einem Sprint zu planen, wird bei der Landis+Gyr jeder Story eine Wert gegeben.
 Dieser Wert, welcher Story Points genannt wird, wird von den Entwicklern geschätzt und beziffert den erwarteten Aufwand.
 Auf Story Points wurde bei dieser Arbeit verzichtet, da sie für den Einzelentwickler keinen Mehrwert bieten.
 
-Während die Dauer aller Sprints genau gleich ist, variiert die Zeit, welche der Entwickler für Entwicklungsarbeiten aufwenden kann von Sprint zu Sprint stark.
+Während die Dauer aller Sprints genau gleich ist, variiert die Zeit, welche der Entwickler für Entwicklungsarbeiten aufwenden kann, von Sprint zu Sprint stark.
 
 \subsubsection{User Story}\label{userstory}
 Der Scrum Prozess der Landis+Gyr kennt viele unterschiedliche Work Items wie z.B. Epics, Requirements oder Features.
@@ -42,17 +42,17 @@ In Abbildung \ref{fig:workitems} sind sie alle dargestellt.
       \label{fig:workitems}
 \end{figure}
 Um möglichst wenig Zeit mit administrativen Aufgaben zu verbrauchen, werden für diese Arbeit nur User Stories eingesetzt.
-Eine User Story beschreibt jeweils ein Arbeitspaket welches während eines Sprints vollständig bearbeitet werden kann.
+Eine User Story beschreibt jeweils ein Arbeitspaket, welches während eines Sprints vollständig bearbeitet werden kann.
 Sie enthält eine Sammlung von Akzeptanzkriterien, welche durch die Bearbeitung der Story erfüllt werden müssen.
 Damit eine Story als fertig gilt, muss die Definition of Done erreicht werden. Diese wird im folgenden Abschnitt erläutert.
 
 %todo task?
 
 \subsubsection{Definition of Done}
-Für diese Arbeit besteht diese aus folgenden Punkten:
+Für diese Arbeit besteht die Definition of Done aus folgenden Punkten:
 \begin{itemize}
    \item Alle Akzeptanzkriterien sind erfüllt.
-   \item Unittests wurden implementiert oder angepasst wurden, decken mindestens 80\% des Codes ab und laufen erfolgreich durch.
+   \item Unittests wurden implementiert oder angepasst, decken mindestens 80\% des Codes ab und laufen erfolgreich durch.
    \item Der Code entspricht dem Coding Style, siehe \ref{codingStandard}.
 \end{itemize}
 
@@ -62,10 +62,10 @@ Dies ist bei diesem Projekt leider nicht möglich.
 
 \subsection{Meetings}
 Zum Scrum Prozess der Landis+Gyr gehören diverse Meetings, welche regelmässig stattfinden.
-So wir ein Sprint jeweils im Voraus während des \textit{Sprint Planning} geplant.
+So wird ein Sprint jeweils im Voraus während des \textit{Sprint Planning} geplant.
 Während des Sprints findet im \textit{Daily Meeting} ein täglicher Austausch zwischen allen Entwicklern statt.
 Im \textit{Sprint Review} werden nach einem Sprint die erarbeiteten Stories präsentiert.
-Die \textit{Retrospektive}, welche ebenfalls nach jedem Sprint stattfindet, regt die Entwickler dazu an, die eigene Arbeitsprozesse zu reflektieren und diese womöglich zu verbessern.
+Die \textit{Retrospektive}, welche ebenfalls nach jedem Sprint stattfindet, regt die Entwickler dazu an, die eigenen Arbeitsprozesse zu reflektieren und diese womöglich zu verbessern.
 
 Alle diese Meetings werden für diese Arbeit weggelassen.
 Die Planung des neuen Sprints wird jeweils ad hoc erledigt und Änderungen am Arbeitsprozess sofort umgesetzt.
@@ -78,7 +78,7 @@ Sie sind zeitlich jedoch nicht an die Sprints gebunden.
 Bei der Landis+Gyr besteht jedes Entwicklungsteam aus mehreren Entwicklern und ein bis zwei Testern.
 Eine dieser Personen übernimmt zusätzlich die Rolle des Scrum Master.
 Dieser ist für die Organisation und Durchführung der zuvor genannten Meetings verantwortlich.
-Eine weiter Rolle ist der Produkt Owner.
+Eine weitere Rolle ist der Produkt Owner.
 Dieser erstellt und verwaltet die User Stories im Backlog.
 
 Für diese Arbeit werden die Rollen des Entwickler, Tester, Scrum Master und Product Owner in einer einzigen Person vereint.
@@ -106,25 +106,25 @@ Zusätzlich sollen zwei weitere Funktionen von \ac{ADO} verwendet werden:
 \end{itemize}
 
 \section{Coding Style}\label{codingStandard}
-In Abschnitt \ref{quality_richtline} ist beschrieben, wie das befolgen einer Software-Richtlinie einen positiv effekt auf die Codequalität haben kann.
-Der C\# Code der für diese Arbeit geschrieben wird, soll den Coding Style der dotnet runtime \footnote{https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md} befolgen.
+In Abschnitt \ref{quality_richtline} ist beschrieben, wie das Befolgen einer Software-Richtlinie einen positiv Effekt auf die Codequalität haben kann.
+Der C\# Code, der für diese Arbeit geschrieben wird, soll den Coding Style der dotnet runtime \footnote{https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md} befolgen.
 Die Entwicklungsumgebung Visual Studio ist standardmässig so konfiguriert, dass sie diesem Style folgt.
-Sie unterstützt die Entwickler mit automatischen Formatierungen und weisst darauf hin, wenn der Standard verletzt wird. 
+Sie unterstützt die Entwickler mit automatischen Formatierungen und weist auf Verletzungen des Standards hin.
 
 \section{Test Driven Development} \label{tdd}
 \ac{TDD} ist ein Vorgehen bei dem Produktiv- und Testcode parallel geschrieben werden.
 Dabei wird jeweils zuerst ein Testfall geschrieben, welcher fehlschlagen soll.
 Danach wird genau so viel Code geschrieben, dass der Testfall abgedeckt ist.
-Nun kann der geschrieben Code wenn nötig überarbeitet werden.
+Nun kann der geschriebene Code wenn nötig überarbeitet werden.
 Bestehende Testfälle dürfen nicht gebrochen werden.
-Diese Vorgehen wird solange wiederholt, bis alle benötigten Funktionen getestet und implementiert sind.
+Dieses Vorgehen wird solange wiederholt, bis alle benötigten Funktionen getestet und implementiert sind.
 Ein Vorteil von \ac{TDD} ist, dass die Entwicklungsarbeit vorhersagbar wird.
-Ist eine Funktion implementiert kann mit Sicherheit gesagt werden, dass diese auch richtig funktioniert \parencite{beck2003test}.
-Mit diesem Vorgehen wird auch sichergestellt, das die Testbarkeit (mehr dazu in Abschnitt \ref{testability}) einer Komponente gut ist.
+Ist eine Funktion implementiert, kann mit Sicherheit gesagt werden, dass diese auch richtig funktioniert \parencite{beck2003test}.
+Mit diesem Vorgehen wird auch sichergestellt, dass die Testbarkeit (mehr dazu in Abschnitt \ref{testability}) einer Komponente gut ist.
 
-In dieser Arbeit soll möglichst immer nach \ac{TDD} vorgegangen werden.
+In dieser Arbeit soll wenn immer möglich nach \ac{TDD} vorgegangen werden.
 
 
 \section{Diagramme}
-Diagramme welche während des Designprozesses erstellt werden, sollen mit PlantUML\footnote{https://plantuml.com/} erstellt und dem UML Standard folgen.
+Diagramme, welche während des Designprozesses erstellt werden, sollen mit PlantUML\footnote{https://plantuml.com/} erstellt und dem UML Standard folgen.
 Dies gilt auch für jene Diagramme, die in dieser Arbeit aufgeführt werden.
