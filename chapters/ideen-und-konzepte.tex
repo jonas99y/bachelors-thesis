@@ -1,5 +1,5 @@
 \chapter{Ideen und Konzepte}
-TODO einleitung
+In diesem Kapitel werden Ideen und Konzepte aufgezeigt, welche für die Implementation der Anwendung relevant sind.
 
 % Hier geht es um die Fragestellung, wie Sie die formulierten Ziele der Arbeit erreichen wollen.
 % Sie halten z.B. erste, grobe Ideen, skizzenhafte Lösungsansätze fest. Gibt es mehrere Wege, Ansätze
@@ -54,13 +54,13 @@ Die Benutzerschnittstelle soll in zwei Bereiche aufgeteilt werde.
       }
       \label{fig:uisketch}
    \end{figure}
-Der erste Bereich soll Object Model beinhalten.
+Der erste Bereich soll das Object Model beinhalten.
 Im folgenden Abschnitt wird darauf detailliert eingegangen.
 Dieser Bereich soll alle Grundfunktionen der Applikation abdecken.
 Also jene, welche bei der zu ersetzenden Applikation, dem \ac{DMT2} vorhanden sind.
 Der zweite Bereich soll Platz für die erweiterten Funktionen bieten.
 Die Idee ist, dass diese vertikal übereinander aufgelistet sind.
-Möchte der Nutzer eine Funktion verwenden, so kann er diese anklicken und entsprechenden Controls erscheinen in der Liste.
+Möchte der Nutzer eine Funktion verwenden, so kann er diese anklicken und die entsprechenden Controls erscheinen in der Liste.
 In Abbildung \ref{fig:uisketch} ist gezeigt, wie die beiden Bereiche horizontal nebeneinander angezeigt werden sollen.
 Auf der rechten Seite ist zu erkennen, wie die verschiedenen Features übereinander aufgelistet werden sollen.
 \textit{Feature D} nimmt dabei mehr Platz ein als die anderen.
@@ -73,7 +73,7 @@ Der \textit{Quick Access} des \ac{DMT2} besteht aus vier Teilen.
 In Abbildung \ref{fig:dmt2QuickAccess} ist dies dargestellt.
 Oben links sind alle Objekte angezeigt.
 Rechts daneben werden die Attribute und Methoden des aktuell aktiven Objekts angezeigt.
-Fürs Lesen und Schreiben werden in den unteren beiden Teilen des Fensters jeweils der Request und die Response in einer als \text{XML} Text dargestellt.
+Fürs Lesen und Schreiben werden in den unteren beiden Teilen des Fensters jeweils der Request und die Response in als \text{XML} Text dargestellt.
 
 \begin{figure}
    \centering
@@ -83,11 +83,11 @@ Fürs Lesen und Schreiben werden in den unteren beiden Teilen des Fensters jewei
       }
       \label{fig:dmt2QuickAccess}
 \end{figure}
-In der neuen Anwendungen sollen diese viert Teile in einer einzelnen Komponente kombiniert dargestellt werden.
+In der neuen Anwendungen sollen diese vier Teile in einer einzelnen Komponente kombiniert dargestellt werden.
 Wie dies aussehen kann, ist in Abbildung \ref{fig:objectModelUIsktech} gezeigt.
 Die Objekte, beispielsweise \textit{Profile 1}, werden untereinander aufgelistete.
-Wird ein Objekt angeklick, soll vergrössert sich dieses und die Attribute und Methoden werden ersichtlich.
-Wird ein Attribute gelesen, so soll der Wert in einem Textfeld neben dem Attribut dargestellt werden.
+Wird ein Objekt angeklick, so vergrössert sich dieses und die Attribute und Methoden werden ersichtlich.
+Wird ein Attribut gelesen, so soll der Wert in einem Textfeld neben dem Attribut dargestellt werden.
 Das bietet den Vorteil, dass die Werte mehrere ausgelesener Attribute gleichzeitig angeschaut werden können. 
 Dies ist beim \textit{Quick Access} nicht möglich, da der Bereich mit der Response bei jedem Auslesen überschrieben wird.
 Die Textfelder, welche für das Anzeigen der gelesenen Werte verwendet werden, sollen jeweils auch für das Schreiben von Werten verwendet werden.
@@ -104,11 +104,12 @@ Die Textfelder, welche für das Anzeigen der gelesenen Werte verwendet werden, s
 
 \subsection{Suchen und filtern}\label{searchandfilterUiSktech}
 Im Sketch zum Object Model (Abbildung \ref{fig:objectModelUIsktech}) ist der Bereich oberhalb der Objekte für die Such- und Filterkomponente vorgesehen.
-Eine Idee zur Umsetzung dieser ist in Abbildung \ref{fig:searchFilterSketch}.
+Eine Idee zur Umsetzung dieser ist in Abbildung \ref{fig:searchFilterSketch} gezeigt.
 Um die Objekte nach ClassId zu filtern, können die Textfelder im oberen Bereich des Sketchs verwendet werden.
-Das Textfeld im unteren Bereich ist für die textbasierte suche gedacht.
-Ein Schalter in der Mitte soll dazu da sein, dass bei der Textsuche zwischen Objekten und Attributen rsp. Methoden gewechselt werden kan.
-Der \textit{Find} Knopf soll die Parameter anwenden, mit dem \textit{Reset} Knopf sollen diese zurückgesetzt werden.
+Das Textfeld im unteren Bereich ist für die textbasierte Suche gedacht.
+Ein Schalter in der Mitte soll dazu da sein, dass bei der Textsuche zwischen Objekten und Attributen rsp. Methoden gewechselt werden kann.
+Der \textit{Find} Knopf soll die suche Suche starten.
+Mit dem \textit{Reset} Knopf werden die Such- und Filterparameter zurückgesetzt.
 
 \begin{figure}
    \centering
@@ -120,11 +121,11 @@ Der \textit{Find} Knopf soll die Parameter anwenden, mit dem \textit{Reset} Knop
 \end{figure}
 
 \subsection{Favoriten}\label{uifavorites}
-In einem vorherigen Abschnitt wurde erklärt, dass auf die rechte Hälfte der Benutzerschnittstelle Platz für unterschiedliche Features haben soll.
+In einem vorherigen Abschnitt wurde erklärt, dass die rechte Hälfte der Benutzerschnittstelle Platz für unterschiedliche Features haben soll.
 Dort sollen auch die Favoriten aufgelistete werden.
 Diese sollen in zwei Bereichen dargestellt werden und nehmen somit auch zwei Plätze in der Features Liste ein.
 Einer für favorisierte Objekte und einer für favorisierte Attribute und Methoden.
-In Abbildung \ref{fig:favoritesSketch} ist ersichtlich, wie Attribute und Methoden gruppiert dargestellt werden sollen.
+In Abbildung \ref{fig:favoritesSketch} ist ersichtlich, wie Attribute und Methoden gruppiert dargestellt werden.
 
 \begin{figure}
    \centering
@@ -137,58 +138,59 @@ In Abbildung \ref{fig:favoritesSketch} ist ersichtlich, wie Attribute und Method
 
 \pagebreak
 \section{Testkonzept}
-Um sicherstellen, dass die Applikation und deren Komponenten richtig funktionieren, wurden verschieden Arten von Tests eingesetzt.
-Die unterscheiden sich primär im Umfang des Getesteten. 
+Um sicherzustellen, dass die Applikation und deren Komponenten richtig funktionieren, wurden verschieden Arten von Tests eingesetzt.
+Sie unterscheiden sich primär im Umfang des Getesteten. 
 In den folgenden Abschnitten werden sie detailliert beschrieben und verglichen.
 
-\subsection{Unittests}
-Unittests werden so eingesetzt, dass sie die Funktionalität einer einzelnen Klasse testen.
-Abhängigkeiten zu anderen Klassen sollen jeweils durch Mocks ersetzt werden.
+\subsection{Unit-Tests}
+Unit-Tests werden so eingesetzt, dass sie die Funktionalität einer einzelnen Klasse testen.
+Abhängigkeiten zu anderen Klassen sollen dabei durch Mocks ersetzt werden.
 Die Tests werden jeweils parallel zum getesteten Code geschrieben.
 Mehr dazu im Abschnitt \ref{tdd} Test Driven Development.
-Um sicherzustellen, dass zuvor implementierte Funktionen nicht durch neue Änderungen nicht zerstört werden, werden alle Unittest regelmässig und automatisiert ausgeführt.
-Dies wurde mit der CI/CD Pipeline realisiert. Diese ist im Abschnitt TODO detailliert beschrieben.
+Um sicherzustellen, dass zuvor implementierte Funktionen nicht durch neue Änderungen gebrochen werden, werden Unit-Test regelmässig und automatisiert ausgeführt.
+Dies ist mit der CI/CD Pipeline realisiert.
+
 
 \subsection{Modultests}
 Bei den Modultests wird das Zusammenspiel mehrere Klassen getestet, welche gemeinsam ein Modul bilden.
 Dabei soll nur das öffentliche Interface des Moduls verwendet werden.
-Abhängigkeit, welche nicht Teil dieses Moduls sind, werden wie bei den Unittests durch Mocks oder Fakes ersetzt.
-Im Gegensatz zu den Unittests ist der Zeitpunkt für das Schreiben der Modultests nicht definiert.
+Abhängigkeit, welche nicht Teil dieses Moduls sind, werden wie bei den Unit-Tests durch Mocks oder Fakes ersetzt.
+Im Gegensatz zu den Unit-Tests ist der Zeitpunkt für das Schreiben der Modultests nicht definiert.
 Sie sollen so eingesetzt werden, wie sie für den Entwicklungsprozess hilfreich sind.
 
 Beispiel: Mittels Refactoring soll das interne Design eines bestehenden Moduls verbessert werden.
-Um sicherzustellen, dass das Modul nach dem Refactoring noch korrekt funktioniert, werden zuvor Modultests geschrieben, welche die öffentliche Schnittstelle des Moduls testet.
+Um sicherzustellen, dass das Modul nach dem Refactoring noch korrekt funktioniert, werden zuvor Modultests geschrieben, welche die öffentliche Schnittstelle des Moduls testen.
 Da sich diese beim Refactoring nicht verändert, können die Modultests auch noch nach dem Refactoring ausgeführt werden.
-Unittests, welche interne Klassen getestet haben sind womöglich nicht mehr brauchbar, da sich die internen Schnittstellen bei Refactoring stark verändert haben.
+Unit-Tests, welche interne Klassen getestet haben sind womöglich nicht mehr brauchbar, wenn sich die internen Schnittstellen bei Refactoring stark verändert haben.
 
-Im Bezug auf die regelmässige und automatisierte Ausführung sollen sich Modultests nicht von Unittests unterscheiden.
+Im Bezug auf die regelmässige und automatisierte Ausführung sollen sich Modultests nicht von Unit-Tests unterscheiden.
 
 
 \subsection{Integrationstests}\label{Integrationstests}
-Integrationstests sind im dazu da, die Funktionalität von Komponenten sowie das Zusammenspiel dieser mit anderen zu Testen \parencite{winter2012integrationstest}.
-Im Gegensatz zu Unit- und Modultests wird auf den Einsatz von Mocks oder Fakes verzichtet um ein möglichst realitätsnahen Testaufbau zu erreichen.
-Da die Kommunikation mit Stromzähler für die zu testende Applikation zentral ist, wird für das Ausführen der Integrationstests ein angeschlossener Stromzähler benötigt.
+Integrationstests sind dazu da, die Funktionalität von Komponenten sowie das Zusammenspiel dieser mit anderen zu Testen \parencite{winter2012integrationstest}.
+Im Gegensatz zu Unit- und Modultests wird auf den Einsatz von Mocks oder Fakes verzichtet um einen möglichst realitätsnahen Testaufbau zu erreichen.
+Da die Kommunikation mit Stromzählern für die zu testende Applikation zentral ist, wird für das Ausführen der Integrationstests ein angeschlossener Stromzähler benötigt.
 Im Rahmen dieses Projekts war es nicht mögliche einen Testagent mit angeschlossenem Zähler bereit zu stellen.
 Deshalb wurden die Integrationstests ausschliesslich lokal auf dem Rechner des Entwicklers ausgeführt.
 
 
 \section{Model-View-ViewModel}\label{mvvm}
 \ac{MVVM} ist ein Entwurfsmuster welches 2005 von Microsoft vorgestellt wurde.
-Sein Ziel ist es, das Daten, Logik und Views einer Anwendung unabhängig von einander entwickelt und getestet werden können.
-Es besteht aus folgenden Sichten:
+Sein Ziel ist es, dass Daten, Logik und Views einer Anwendung unabhängig von einander entwickelt und getestet werden können.
+Es besteht aus folgenden Schichten:
 \begin{itemize}
-   \item Model: Das Domänen Model der Applikation
+   \item Model: das Domänen Model der Applikation
    \item View: XAML Komponenten, welche die visuellen Aspekte der Applikation definieren
-   \item ViewModel: Klassen bestehend aus Properties und Commands, welche von den Views verwendet verden
+   \item ViewModel: Klassen bestehend aus Properties und Commands, welche von den Views verwendet werden
 \end{itemize}
 
-% TODO Image source : https://www.dev-insider.de/was-bedeutet-mvvm-a-1103448/
 \begin{figure}[H]
    \centering
    \includegraphics[width=1.0\textwidth]{gfx/mvvm.jpg}
    \caption{
       Das Model-View-ViewModel Entwurfsmuster
    }
+   \source{dev-insider.de}
    \label{fig:mvvm}
 \end{figure}
 Die ViewModels sind dabei der wichtigste Teil, da sie den Zustand der Applikation abbilden.
@@ -230,7 +232,7 @@ Sämtliche Komponenten der Benutzerschnittstelle, also \textit{Windows} und \tex
 Nebst der Abhängigkeit zum Framework WinUI3, welches für die Darstellung der Element der Benutzerschnittstelle benötigt wird, gibt es nur eine einzige Abhängigkeit, jene zu DlmsQuickAccess.Interfaces.
 Diese ist dazu da, dass die Controls die Interfaces der ViewModels kennen, auf welche sie binden.
 Das Zusammenspiel von View und ViewModel ist im Abschnitt \ref{mvvm} beschrieben.
-Währen diese Interfaces im selben Projekt wie die Controls definiert, so hätten die Implementationen der ViewModels eine Abhängigkeit auf DlmsQuickAccess.View.
+Wären diese Interfaces im selben Projekt wie die Controls definiert, so hätten die Implementationen der ViewModels eine Abhängigkeit auf DlmsQuickAccess.View.
 Um eine solche Koppelung zu vermeiden, wurden die Interfaces in ein eigenes Projekt ausgelagert.
 
 

@@ -120,7 +120,7 @@ Als versucht wurde, auf die einzelnen Enum Werte zuzugreifen, traten Fehler bei 
 Diese zeigten sich dann, wenn mehrere Typendefinitionen ineinander verschachtelt sind.
 Das kommt beispielsweise dan vor, wenn es sich beim Typen eines Attributes um ein Array handelt, wessen Elemente jeweils Strukturen sind, welche ein Feld von Type Enum enthalten.
 
-Um das Problem zu lösen, wurde es versucht mittels Unit Tests zu reproduzieren.
+Um das Problem zu lösen, wurde es versucht mittels Unit-Tests zu reproduzieren.
 Dies war sehr umständlich, was auf eine tiefe Testbarkeit dieser Adapterklassen hinwies.
 In Abschnitt \ref{testability} wurde erklärt, dass schwer testbarer Code auf tiefe Qualität hindeutet.
 Deshalb wurden einige dieser Adapter Klassen durch neue, bessere Implementationen ersetzt.

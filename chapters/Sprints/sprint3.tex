@@ -13,37 +13,38 @@ Dazu sind die folgende beiden Stories geplant:
 
 
 \subsection{Unterstützung für unterschiedliche Stromzählermodelle}
-\dq  DlmsQuickAccess soll mehrere, unterschiedliche Stromzählermodelle unterstützen.\dq
+\dq DlmsQuickAccess soll mehrere, unterschiedliche Stromzählermodelle unterstützen.\dq
 \subsubsection{Ziel}
 Im Abschnitt \ref{picasso} wurde erwähnt, das die Picasso Platform über mehrere Referenzprodukte verfügt.
 Drei dieser Referenzprodukte, namentlich \textit{Ref\_IMS1}, \textit{Ref\_NMS2} und \textit{Ref\_MMI3}, werden für die Arbeiten an der Platform täglich verwendet.
 Das Ziel dieser Story ist es, dass DlmsQuickAccess mit allen drei kommunizieren kann.
 Im Bezug auf die \ac{DLMS} Kommunikation unterscheiden sich diese in zwei Dingen.
-Erstens werden verschiedene Kommunikationskanäle verwendet. 
+Zum Einen werden verschiedene Kommunikationskanäle verwendet. 
 Während bei \textit{Ref\_MMI3} seriell mittels optischem Auslesekopf kommuniziert wird, wird bei \textit{Ref\_NMS2} eine \ac{TLS} Verbindung aufgebaut.
-Der zweite Unterschied ist das Objekt Model, welches je nach Produkt andere Objekte enthält.
-Damit die Story als erledigt betrachtet werden kann sind noch folgende Punkte zu beachten:
+Der zweite Unterschied ist das Object Model, welches je nach Produkt andere Objekte enthält.
+Damit die Story als erledigt betrachtet werden kann, sind noch folgende Punkte zu beachten:
 \begin{itemize}
-   \item Die Konfiguration eines Produkts soll in einer Datei abgespeichert werden. Wir diese Datei angeklickt, so soll sich der DlmsQuickAccess mit der entsprechend konfiguriert öffnen. % todo evtl file agnostic formulieren
-   \item Wird der DlmsQuickAccess ohne Produkt Konfiguration gestartet, so soll eine Auswahl von zuvor geöffneten Konfigurationen angezeigt werden.
+   \item Die Konfiguration eines Produkts soll in einer Datei abgespeichert werden. Wir diese Datei angeklickt, so soll sich der DlmsQuickAccess mit der entsprechend konfiguriert öffnen.
+   \item Wird der DlmsQuickAccess ohne Produktkonfiguration gestartet, so soll eine Auswahl von zuvor geöffneten Konfigurationen angezeigt werden.
    \item Den Benutzern sollen funktionierende Konfigurationen für die drei genannten Referenzprodukte bereitgestellt werden.
    \item Auf der Landis+Gyr internen Wiki soll ein Artikel geschrieben werden, welche Auskunft über DlmsQuickAccess und die Konfigurationsdateien gibt.
 \end{itemize}
 
 \subsubsection{Vorgehen und Schwierigkeiten}\label{s3configvorgehen}
 Wie in Abschnitt \ref{firstRelease} beschrieben, funktioniert die Anwendungen bisher nur mit dem Produkt \textit{Ref\_MMI3}.
-Dies hat damit zu tun, das einige produktspezifische Dateien bisher mit der Anwendung ausgeliefert werden und somit nicht anpassbar sind.
+Dies hat damit zu tun, das einige produktspezifische Dateien bisher mit der Anwendung ausgeliefert werden und nicht anpassbar sind.
 Eine dieser Dateien ist das Object Model als XML. 
 Dieses wird, wie im Abschnitt \ref{visualizeOM} erläutert, für die Visualisierung der einzelnen Objekte benötigt und unterscheidet sich von Produkt zu Produkt.
 Der Kommunikationscode des \ac{ATS} benötigt ein File mit der Konfiguration des Kommunikationskanals, dieses wird \textit{SetupHW} genannt.
 Das \textit{SetupHW} File referenziert eine Adressliste, welche relativ zu ihm abgelegt sein muss.
-Da alle Produkte der Picasso Platform mit dem \ac{ATS} getestet werden sind alle benötigten Konfigurationsdateien bereits vorhanden.
+Da alle Produkte der Picasso Platform mit dem \ac{ATS} getestet werden, sind alle benötigten Konfigurationsdateien bereits vorhanden.
 Für die Referenzprodukte sind sie im Repository der Testscripts abgelegt.
 
 Der bisherige Ansatz, die Dateien als Teil der Anwendung an die Benutzer auszulieferen, hat nur einen Vorteil.
-Die Anwendung kann nach der Installation direkt verwendet werden. Es werden keine weiteren Dateien oder manuelle Konfigurationen benötigt.
-Der Nachteil, dass bei jeder Änderung an der Konfiguration eine neue Version der Applikation erstellt und veröffentlicht werden muss überwiegt diesen jedoch, da beispielsweise das Object Model regelmässig verändert wird.
-Weitere Nachteile wären, dass um mit einer älteren Version der Firmware Kommuniziert werden kann jeweils eine ältere Version des DlmsQuickAccess installiert werden müsste.
+Die Anwendung kann nach der Installation direkt verwendet werden.
+Es werden keine weiteren Dateien oder manuelle Konfigurationen benötigt.
+Der Nachteil, dass bei jeder Änderung an der Konfiguration eine neue Version der Applikation erstellt und veröffentlicht werden muss überwiegt diesen jedoch, da beispielsweise das Object Model regelmässig angepasst wird.
+Weitere Nachteil ist, dass um mit einer älteren Version der Firmware kommunizieren zu können auch eine ältere Version des DlmsQuickAccess installiert werden müsste.
 
 Der zu ersetzende \ac{DMT2} wird über Textfiles konfiguriert.
 Um das Produkt zu wechseln, muss jeweils das entsprechende Textfile importiert werden.
@@ -66,18 +67,18 @@ ObjectModel: ObjectModel\\ObjectModel_Ref_NMS2.xml
 SetupHW: SetupHW1Ref_NMS2.xml
 \end{verbatim}
 Die Konfigurationsdateien der Referenzprodukte werden im Repository der Firmware abgelegt.
-Das \textit{SetupHW} File wird vom Repository der Testscripts in jedes der Firmware kopiert.
+Das \textit{SetupHW} File wird vom Repository der Testscripts in jenes der Firmware kopiert.
 Die Applikation wird so angepasst, dass sie mittels Klick auf eine Konfigurationsdatei gestartet werden kann.
 Dabei wird jeweils direkt die entsprechende Konfiguration angewendet.
 
 Diese Lösung ermöglicht eine flexible Konfiguration der Produkte.
 Dass das \textit{SetupHW} File aus dem Testscript Repository kopiert und somit manuell gepflegt werden muss ist nicht optimal, bietet jedoch den Vorteil, dass keine direkte Abhängigkeit zu weiteren Repositories besteht.
 
-Wie beschrieben wurde die Anwendung so angepasst, dass sie direkt über eine .dlmsquickaccess Datei gestartet werden kann.
+Wie beschrieben, wurde die Anwendung so angepasst, dass sie direkt über eine .dlmsquickaccess Datei gestartet werden kann.
 Für den Fall, dass sie ohne eine solche gestartet wird, wurde ein neues Fenster implementiert.
 Dieses listet alle bisher geöffneten Konfigurationen auf, welche direkt gestartet werden können.
-Des weiteren war es geplant, dass mittels Filepicker eine Konfiguration gesucht und geöffnet werden kann.
-Dies konnte so jedoch nicht umgesetzt werden.
+Des weiteren war es geplant, dass mittels File-Picker eine Konfiguration gesucht und geöffnet werden kann.
+Dies konnte jedoch nicht umgesetzt werden.
 Die dazu benötigte Komponente von WinUI3, \textit{FileOpenPicker}, funktionierte zu jenem Zeitpunkt nur fehlerhaft\footnote{https://github.com/microsoft/WindowsAppSDK/issues/1188}.
 
 
@@ -86,11 +87,11 @@ Als versucht wurde mit einem \textit{Ref\_NMS2} Zähler zu kommunizieren, führt
 Wurden die Integrationstest mit einem \textit{Ref\_NMS2} Gerät ausgeführte, so schlug jeweils jeder zweite Test fehl.
 Dies wurde von der \ac{TLS} Kommunikation verursacht, welche nach dem Kommunizieren nicht richtig beendet wurde.
 Für die Tests konnte das Schliessen der Verbindung jeweils in einer \textit{TestCleanup} Funktion aufgerufen werden.
-In der Applikation konnte der \textit{OnClose} Event der \textit{Window} Klasse abonniert werden um die Verbindung beim Schliessen des Fensters zu beenden.
+In der Applikation konnte der \textit{OnClose} Event der \textit{Window} Klasse abonniert werden, um die Verbindung beim Schliessen des Fensters zu beenden.
 Dieser Event wird jedoch nur dann ausgelöst, wenn die Applikation vom User geschlossen wird und nicht wenn sie abstürzt.
 
 
-An Ende des Sprints konnte diese Story  nicht geschlossen werden, da sich die Konfigurationsdateien noch nicht im Repository der Firmware befanden.
+An Ende des Sprints konnte diese Story noch nicht geschlossen werden, da sich die Konfigurationsdateien noch nicht im Repository der Firmware befanden.
 Der entsprechende Commit wartete noch auf ein Review.
 Da dies direkt zu Beginn des nächsten Sprints erfolgte und alle anderen Arbeiten in diesem Sprint erledigt werden konnten, wird diese Story im Text zum Sprint 4 (\ref{sprint4}) nicht erwähnt.
 
