@@ -1,7 +1,8 @@
 \section{Vorbereitungsphase}
 Die Arbeiten am Projekt begannen mit der Vorbereitungsphase. Das Zeil dieser war es, wichtige Abklärungen zu machen und Entscheidungen zu treffen damit im ersten Sprint mir der eigentlichen Entwicklung begonnen werden konnte.
 Dies beinhaltete zum einen eine Befragung potenzieller Benutzer der zu entwickelnden Applikation sowie die Evaluation eines geeigneten Technologiestacks.
-Mit einer Dauer von zwei Wochen war die Vorbereitungsphase gleich lang, wie ein Sprint. Bei ihr handelt es sich jedoch nicht um einen richtigen Sprint, da noch kein Backlog mit User Stories vorhanden war.
+Mit einer Dauer von zwei Wochen war die Vorbereitungsphase gleich lang, wie ein Sprint.
+Bei ihr handelt es sich jedoch nicht um einen richtigen Sprint, da noch kein Backlog mit User Stories vorhanden ist.
 Der Backlog für die Sprints wurde währen dieser Phase basierend auf den Erkenntnissen der zuvor genannten Punkte erstellt.
 In den folgenden Abschnitten wird die Umsetzung der Vorbereitungsphase detailliert beschrieben.
 
@@ -11,10 +12,10 @@ Dazu wurde \textit{DlmsQuickAccess} kreiert.
 Der Name ist an die zu ersetzende Funktion des \ac{DMT2}, \textit{Quick Access}, angelehnt.
 
 \subsection{Kennenlernen der Nutzer}\label{survey}
-Wie im Kapitel \ref{erwarteteResultate} erklärt, ist das Ziel dieses Projekts, die bestehende Anwendung, \textit{DMT2}, durch einen Neuentwicklung zu ersetzen.
+Wie im Kapitel \ref{erwarteteResultate} erklärt, ist das Ziel dieses Projekts, eine Funktion der Software \ac{DMT2} durch einen Neuentwicklung zu ersetzen.
 
 Am Standort Cham der Landis+Gyr gibt es zwei Entwicklerteams, welche den \ac{DMT2} regelmässig verwenden.
-Für dieses Projekt wurden die Mitglieder dieser beiden Teams als Nutzer definiert und in dieser Arbeit so bezeichnet.  % chamer das besser formuliere?
+Für dieses Projekt wurden die Mitglieder dieser beiden Teams als Nutzer definiert.
 Um die Nutzer besser kennen zu lernen, wurden die Methoden \textit{Fokusgruppe} (\ref{fokusgruppe}) und \textit{Befragung} (\ref{befragung}) eingesetzt.
 
 Zu Beginn der Vorbereitungsphase wurden alle Nutzer zu einer Gruppendiskussion eingeladen, um eine Fokusgruppe zu bilden.
@@ -23,9 +24,6 @@ Ebenfalls wurde von den Nutzern Ideen \& Wünsche für die Neuentwicklung abgeho
 
 Für das sammeln der Antworten wurde während der Diskussion retrotool.io \footnote{https://retrotool.io/8mWyxCzpbIfQPydp2FPf4} eingesetzt.
 Die Abbildungen \ref{fig:WhatWorksWell}, \ref{fig:WhatBothersYou} und \ref{fig:IdeasAndWishes} sind Screenshots daraus.
-
-% todo In einem anderen Kapitel die Resultate der Umfrage aufarbeiten und hier referenzieren
-% https://retrotool.io/8mWyxCzpbIfQPydp2FPf4
 
 
 \begin{figure}[H]
@@ -50,15 +48,15 @@ Die Abbildungen \ref{fig:WhatWorksWell}, \ref{fig:WhatBothersYou} und \ref{fig:I
    \centering
    \includegraphics[width=1.0\textwidth]{gfx/S1_RetroBoard_IdeasAndWishes.png}
    \caption{
-       Ideen und Wünsche der Nutzer an die neue Anwendung.
+       Ideen und Wünsche der Nutzer an die neue Anwendung
    }
    \label{fig:IdeasAndWishes}
 \end{figure}
-Anschliessend an dies Diskussion in der Fokusgruppe wurde eine Befragung mithilfe einer Online-Umfrage durchgeführt.
-Das Ziel dieser ware es, quantitative Daten zu erheben.
+Anschliessend an diese Diskussion in der Fokusgruppe wurde eine Befragung mithilfe einer Online-Umfrage durchgeführt.
+Das Ziel dieser war es, quantitative Daten zu erheben.
 Die Resultate der Umfrage sind dieser Arbeit im Anhang \ref{anhang:survey} beigelegt.
-So mussten die Nutzer zehn mögliche Features, welche auf den von ihnen eingebrachten Ideen \& Wünsche basieren, priorisieren.
-
+Um herauszufinden, an welchen Funktionen als erstes gearbeitet werden soll, mussten die Nutzer zehn mögliche Features, welche auf den in der Fokusgruppe gesammelten Ideen \& Wünsche basieren, priorisieren.
+In Abbildung \ref{fig:FeaturesPrio} ist das Resultat dieser Priorisierung dargestellt.
 
 \begin{figure}[H]
    \centering
@@ -94,40 +92,44 @@ Die dort verwendeten Programmiersprachen sind C\#, Python und C++.
 
 
 Ein wichtiger Teil der Anwendung wird die \ac{DLMS} Kommunikation mit den Stromzählern sein.
-Diese ist in allen drei zuvor genannten Programmiersprachen bereits implementieren und wird in den Tools \textit{ATS}, \textit{libpydlms} rsp. \textit{DMT2} verwendet.
-Da der \textit{DMT2} jedoch von einem externen Lieferanten entwickelt wurde, erlaubt die zugehörige Lizenz die Verwendung des Codes nicht ohne weiteres.
+Diese ist in allen drei zuvor genannten Programmiersprachen bereits implementieren und wird in den Tools \textit{\ac{ATS}}, \textit{libpydlms} rsp. \textit{\ac{DMT2}} verwendet.
+Da der \ac{DMT2} jedoch von einem externen Lieferanten entwickelt wurde, erlaubt die zugehörige Lizenz die Verwendung des Codes nicht ohne Weiteres.
 
 
 Der Fokus der zu entwickelnden Anwendung liegt auf der Benutzerschnittstelle.
-Python Applikationen mit Benutzerschnittstelle gibt es bei der Landis+Gyr keine.
+Python-Applikationen mit Benutzerschnittstelle gibt es bei der Landis+Gyr keine.
 Möglich wäre ein Technologiestack bestehend aus Python Backend mit einem Angular \footnote{https://angular.io} Frontend.
-Das Web-Framework Angular, welches mit der Sprache TypeScript verwendet wird, wird im Projekt \textit{Test Script Manager} eingesetzt.
+Das Web-Framework Angular, welches mit der Sprache TypeScript verwendet wird, setzt die Landis+Gyr bereits im Projekt \textit{Test Script Manager} ein.
 Dieses Projekt wird an einem Standort ausserhalb der Schweiz entwickelt.
 Als Backend wird dort jedoch nicht Python sondern C\# eingesetzt.
 Eine Python+Angular Stack wäre somit neu für die Landis+Gyr, die einzelnen Technologien jedoch bereits etabliert.
 
 Im Gegensatz zu Python existieren bei der Landis+Gyr bereits mehrere C\# Anwendungen, welche über eine Benutzerschnittstelle verfügen.
 \textit{PicParted} und \textit{DocTool} sind C\# Anwendungen welche eine \ac{WPF}\footnote{https://docs.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf?view=vs-2022} Benutzerschnittstelle haben.
-Sie werde im Bereich des Picasso Projekts \ref{picasso} eingesetzt und Unterhalten. 
+Sie werde im Bereich des Picasso Projekts (\ref{picasso}) eingesetzt und unterhalten. 
 Ursprünglich wurden sie vom Autor dieser Arbeit entwickelt.
 
-Die Anwendung \textit{ATS}, welche im Abschnitt \ref{ats} genauer beschrieben wird, verfügt über Code für die \ac{DLMS} Kommunikation mit Stromzählern.
+Die Anwendung \ac{ATS}, welche im Abschnitt \ref{ats} genauer beschrieben wird, verfügt über C\# Code für die \ac{DLMS} Kommunikation mit Stromzählern.
 Dieser könnte für die neue Anwendung wiederverwendet werden.
-Die in Abschnitt \ref{objectModelsClassDescriptions} beschriebenen Tools verfügen ebenfalls über C\# Code, welcher thematisch nahe an der neuen Anwendung ist und evtl. ebenfalls wiederverwendet werden kann.
+Die in Abschnitt \ref{objectModelsClassDescriptions} beschriebenen Tools verfügen ebenfalls über C\# Code, welcher thematisch nahe an der neuen Anwendung ist und eventuell ebenfalls wiederverwendet werden kann.
 
 Aufgrund der genannten Umstände viel die Entscheidung auf einen C\# Technologiestack.
 Ein weitere Vorteil von C\# ist, dass die Sprache, wie in Abschnitt \ref{typing} erwähnt, über eine statische sowie dynamische Typenüberprüfung verfügt.
-% TODO WinUI3 Evaluation beschreiben
+
+Zur Benutzerschnittstelle gibt der Projektauftrag vor, dass diese modern und benutzerfreundlich daherkommt.
+Um mit C\# Benutzerschnittstellen zu erstellen, gibt es verschiedene Frameworks.
+Wie bereits erwähnt, unterhält die Landis+Gyr bereits einige Anwendungen welche mit dem Framework \ac{WPF} umgesetzt wurden.
+Für die zu entwickelnde Anwendungen wurde WinUI3 als Framework gewählt.
+In der Bedingung ist WinUI3 nahe an \ac{WPF} da es ebenfalls da \ac{MVVM}-Muster verwendet wird und die Controls in XAML deklariert werden.
+Es bietet jedoch den Vorteil, dass es das Fluent Design System von Microsoft befolgt und im Gegensatz zu \ac{WPF} noch aktiv weiterentwickelt wird.
+Somit ist WinUI3 optisch und technisch moderner als \ac{WPF}.
 
 Um im ersten Sprint direkt mit der Entwicklung loslegen zu können wurde in \ac{ADO} ein Repository erstellt.
-Dieses wurde mit einer leeren WinUI3 Projekt initialisiert.
-
-
+Dieses wurde mit einem leeren WinUI3 Projekt initialisiert.
 
 
 \subsection{Erstellung des Backlogs}
-Wie in Abschnitt \ref{methoden:ADO} erklärt, wurde \ac{ADO} für die Verwaltung des Backlogs verwendet.
+Wie in Abschnitt \ref{methoden:ADO} erklärt, wird \ac{ADO} für die Verwaltung des Backlogs verwendet.
 Dazu musste als erstes eine neues \ac{ADO} Projekt erstellt und die Sprints eingetragen werden.
-Nun konnten User Stories formuliert und auf die sechs geplanten Sprints verteilt werden.
+Danach konnten User Stories formuliert und auf die sechs geplanten Sprints verteilt werden.
 Welche Stories im ersten Sprint bearbeitet wurden und wie dies genau ablief ist im folgenden Kapitel zu lesen.
-% TODO no chli meh schribe?

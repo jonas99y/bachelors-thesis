@@ -30,7 +30,7 @@ Damit die Story als erledigt betrachtet werden kann sind noch folgende Punkte zu
    \item Auf der Landis+Gyr internen Wiki soll ein Artikel geschrieben werden, welche Auskunft über DlmsQuickAccess und die Konfigurationsdateien gibt.
 \end{itemize}
 
-\subsubsection{Vorgehen und Schwierigkeiten}
+\subsubsection{Vorgehen und Schwierigkeiten}\label{s3configvorgehen}
 Wie in Abschnitt \ref{firstRelease} beschrieben, funktioniert die Anwendungen bisher nur mit dem Produkt \textit{Ref\_MMI3}.
 Dies hat damit zu tun, das einige produktspezifische Dateien bisher mit der Anwendung ausgeliefert werden und somit nicht anpassbar sind.
 Eine dieser Dateien ist das Object Model als XML. 
@@ -42,7 +42,7 @@ Für die Referenzprodukte sind sie im Repository der Testscripts abgelegt.
 
 Der bisherige Ansatz, die Dateien als Teil der Anwendung an die Benutzer auszulieferen, hat nur einen Vorteil.
 Die Anwendung kann nach der Installation direkt verwendet werden. Es werden keine weiteren Dateien oder manuelle Konfigurationen benötigt.
-Der Nachteil, dass bei jeder Änderung an der Konfiguration eine neue Version der Applikation erstellt und veröffentlich werden muss überwiegt diesen jedoch, da beispielsweise das Object Model regelmässig verändert wird.
+Der Nachteil, dass bei jeder Änderung an der Konfiguration eine neue Version der Applikation erstellt und veröffentlicht werden muss überwiegt diesen jedoch, da beispielsweise das Object Model regelmässig verändert wird.
 Weitere Nachteile wären, dass um mit einer älteren Version der Firmware Kommuniziert werden kann jeweils eine ältere Version des DlmsQuickAccess installiert werden müsste.
 
 Der zu ersetzende \ac{DMT2} wird über Textfiles konfiguriert.

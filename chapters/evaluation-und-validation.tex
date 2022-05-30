@@ -5,26 +5,26 @@
 In diesem Kapitel wird ausgewertet, ob die Ziele der Arbeit erreicht wurden.
 Um die Funktionalität des DlmsQuickAccess zu beurteilen werden Rückmeldungen der Nutzer aufgelistet und analysiert.
 Für einen Vergleich mit den \ac{DMT2} werden diese ebenfalls beigezogen.
-Des weiteren wird betrachtet, wie die Schwerpunkte Softwarequalität und Usability umgesetzt wurden.
+Des Weiteren wird betrachtet, wie die Schwerpunkte Softwarequalität und Usability umgesetzt wurden.
 
 
 
 \section{Rückmeldungen der Nutzer}
-Im verlauf des sechsten Sprints (\ref{s6}) wurden von den Nutzer der Anwendung ausführliche Rückmeldungen abgeholt.
+Im Verlauf des sechsten Sprints (\ref{s6}) wurden von den Nutzer der Anwendung ausführliche Rückmeldungen abgeholt.
 Der nächste Abschnitt widmet sich den positiven Rückmeldungen.
-Danach werden jene aufgelistet, welche von gefundene Fehlern und möglich Verbesserung handeln.
+Danach werden jene aufgelistet, welche von gefundenen Fehlern und möglichen Verbesserungen handeln.
 \subsection{Positive Rückmeldungen}
 
 \begin{enumerate}
    \item Die Funktion, einzelne Objekte oder Attribute als Favorit vermerken zu können, ist sehr hilfreich.
    \item Da die Beschreibungen der Enum Werte direkt angezeigt werden, bleibt das separate öffnen der Class Description erspart.
-   \item Es ist praktisch, dass beim Starten der Anwendung direkt das gewünschte Produkt angewählt werden kann. Beim starten des \ac{DMT2} war jeweils nicht klar, welche Konfiguration gerade geladen war.
+   \item Es ist praktisch, dass beim Starten der Anwendung direkt das gewünschte Produkt angewählt werden kann. Beim Starten des \ac{DMT2} ist es nicht klar, welche Konfiguration gerade geladen ist.
    \item Die Anwendung wirkt auf mich optisch ansprechend und modern.
    \item Die Lese- und Schreibgeschwindigkeit ist sehr eindrücklich. Ein klarer Vorteil gegenüber \ac{DMT2}.
-   \item Ich nutze den \ac{DMT2} nur noch dann, wenn ein bestimmtes Attribut im DlmsQuickAccess nicht richtig funktioniert. Ich hoffe, dass die Anwendung von der Landis+Gyr weiterhin den nötigen Support erhält und weiterentwickelt wird.
+   \item Ich nutze den \ac{DMT2} nur noch dann, wenn ein bestimmtes Attribut im DlmsQuickAccess nicht richtig funktioniert. Ich hoffe, dass die Anwendung von der Landis+Gyr den nötigen Support erhält und weiterentwickelt wird.
 \end{enumerate}
 
-\subsection{Gefundene Fehler und Verbesserungsvorschläge}
+\subsection{Gefundene Fehler und Verbesserungsvorschläge}\label{gefundeneFehler}
 Rückmeldungen, welche bereits umgesetzten werden konnten wurden in dieser Auflistung weggelassen.
 \begin{enumerate}
    \item Beim Auslesen von grossen Arrays wirkt die Benutzerschnittstelle unübersichtlich.
@@ -33,15 +33,15 @@ Rückmeldungen, welche bereits umgesetzten werden konnten wurden in dieser Aufli
    \item Die Titel von Objekten werden je nach Länge nicht richtig dargestellt.
    \item Beim Schreiben von Zahlenwerten muss der Nutzer die Länge des Typs kennen und beachten, dies ist mühsam und fehleranfällig.
    \item Gelesene Arrays werden teilweise falsch dargestellt.
-   \item Es wäre hilfreich, wenn die Suche mit einem Shortkey wie bspw. Enter gestartet werden könnte.
+   \item Es wäre hilfreich, wenn die Suche mit einer Tastenkombination gestartet werden könnte.
 \end{enumerate}
 
 \section{Vergleich mit DMT2}
 Im Abschnitt \ref{dmt} wurden die Stärken und Schwächen des \ac{DMT2} aufgezählt.
-Diese werden für einen Vergleich mit dem DlmsQuickAccess genutzt.
+Diese werden nun für einen Vergleich mit dem DlmsQuickAccess genutzt.
 
 Die Stärke, dass der \ac{DMT2} einfach konfiguriert werden kann, wird im DlmsQuickAccess weitergeführt.
-Das Design, dass der DlmsQuickAccess jeweils mit einer bestimmten Produktkonfiguration gestartet werden muss, ist bei den Nutzern beliebt.
+Das Design, dass der DlmsQuickAccess mit einer bestimmten Produktkonfiguration gestartet werden muss, ist bei den Nutzern beliebt.
 Dadurch ist es auch möglich, mehrere Instanzen mit unterschiedlichen Konfigurationen gleichzeitig zu verwenden.
 Dies ist beim \ac{DMT2} nicht möglich.
 Beim \ac{DMT2} ist es möglich, die aktuelle Konfiguration mittels Benutzerschnittstelle zu bearbeiten.
@@ -58,10 +58,10 @@ Diese ist beim Lesen umständlich und beim Schreiben fehleranfällig.
 Im DlmsQuickAccess wurde auf eine solche Darstellung verzichtet.
 Keiner der Nutzer meldete zurück, dass er diese vermisst, obwohl bei der Umfrage zu Beginn des Projekts (Anhang \ref{anhang:survey}) noch über die Hälfte der Nutzer diese als nützlich bezeichneten.
 
-Ein Schwäche des \ac{DMT2} ist, dass jeweils zu die Antwort der zuletzt durchgeführten Kommunikation angezeigt wird.
+Ein Schwäche des \ac{DMT2} ist, dass nur die Antwort der zuletzt durchgeführten Kommunikation angezeigt wird.
 Dies konnte im DlmsQuickAccess verbessert werden, indem die ausgelesene Werte bei den jeweiligen Attribute angezeigt werden.
 Das heisst, ein gelesener Wert beleibt solange erhalten, bis das zugehörige Attribut erneut ausgelesen wird.
-Eine Funktion, um alle vergangenen Kommunikationen aufzuzeichnen und darzustellen wurde von den Nutzern sehr hoch priorisiert, konnte aus Zeitgründen jedoch nicht innerhalb der sechst Sprints umgesetzt werden.
+Eine Funktion, um alle durchgeführten Kommunikationen aufzuzeichnen und darzustellen wurde von den Nutzern sehr hoch priorisiert, konnte aus Zeitgründen jedoch nicht innerhalb der sechst Sprints umgesetzt werden.
 Im Abschnitt \ref{ausblick} ist dies festgehalten.
 
 
@@ -75,3 +75,5 @@ Alle kategorien?
 
 \section{Usabilty}
 Verschieden Kategorien?
+
+short cuts
