@@ -1,5 +1,5 @@
 \section{Sprint 5}
-Im fünften Sprint wurde zwei weiter Zusatzfeatures eingeplant, welche von den Nutzern gewünscht wurden.
+Für den fünften Sprint waren zwei weiter Zusatzfeatures eingeplant, welche von den Nutzern gewünscht wurden.
 Eine weitere Story befasst sich mit einer kleinen Verbesserung des Object Models.
 Dies sind die Stories:
 \begin{itemize}
@@ -14,15 +14,16 @@ Dies sind die Stories:
 Die Object Models bestehe aus mehreren hundert Objekten und tausenden Attributen und Methoden.
 Eine Suchfunktion soll das Finden eines spezifischen Objekts oder einer Gruppe von Objekten erleichtern.
 Ebenfalls soll es mögliche sein, bestimmte Attribute oder Methoden zu finden, ohne die dazugehörige Klasse zu kennen.
-Bei der Suche soll nach Name, Titel und Obis Code der Objekte gesucht werden.
+Bei der Suche soll nach Name, Titel und \ac{Obis}-Code der Objekte gesucht werden.
 Für Attribute und Methoden soll jeweils nur der Name verwendet werden.
 Die Gross- und Kleinschreibung soll dabei ignoriert werden.
-Dass ein Element in den Suchergebnissen erscheint muss der Suchbegriff vollständig enthalten sein.
+Dass ein Element in den Suchergebnissen erscheint, muss der Suchbegriff vollständig enthalten sein.
 
 \subsubsection{Vorgehen und Schwierigkeiten}
 Im Abschnitt \ref{searchandfilterUiSktech} wird ein Konzept für die Darstellung der Such- und Filterkomponente erklärt.
 Für diese Story wurde die Benutzerschnittstelle für die Suche nach diesem Konzept umgesetzt.
 Der geplante Platz für die Filterkomponente wurde frei gelassen, da diese in der Folgestory implementiert wird.
+
 In Klassendiagramm \ref{fig:objectModelVMClassDiagram} ist das Interface \textit{IObjectModelViewModel} abgebildet.
 \begin{figure}
    \centering
@@ -34,7 +35,7 @@ In Klassendiagramm \ref{fig:objectModelVMClassDiagram} ist das Interface \textit
 \end{figure}
 Über diese werden alle Daten abgerufen, welche für die Darstellung der Object Model Komponente benötigt werden.
 Die Liste \textit{Objects} beinhaltete alle Objekte, welche im Object Model angezeigt werden.
-Die Suchfunktion wie folgt implementieren:
+Die Suchfunktion wurde wie folgt implementiert:
 \begin{enumerate}
    \item Die Suche wird mit einem Klick auf den \textit{Find} Knopf gestartet.
    \item Alle \textit{ISingleObjectViewModel} Objekte werden aus der \textit{Objects} Liste entfernt.
@@ -70,7 +71,7 @@ In Abbildung \ref{fig:searchforClock} ist die Suche nach Attributen und Methoden
 \dq Implementation einer Filterfunktion für das Object Model\dq
 \subsubsection{Ziel}
 Um Objekte einer bestimmten \ac{COSEM} Klasse anzuzeigen, soll eine Filterfunktion implementiert werden.
-Es soll möglich sein, dass nach Class Id, Class Version, Own Class Version und Sub Type gefiltert werden können.
+Es soll möglich sein, dass nach Class Id, Class Version, Own Class Version und Sub Type gefiltert werden kann.
 \subsubsection{Vorgehen und Schwierigkeiten}
 \begin{figure}
    \centering
@@ -91,7 +92,7 @@ Dies konnte ohne Schwierigkeiten umgesetzt werden.
 \subsection{Enums}
 \dq Das Lesen und Schreiben von Enum Werten soll verbessert werden.\dq
 \subsubsection{Ziel}
-Im \ac{DMT2} sowie in den bisherigen Versionen des DlmsQuickAccess wurden Enums gleich wie andere Zahlenwerte behandelt.
+Im \ac{DMT2}, sowie in den bisherigen Versionen des DlmsQuickAccess wurden Enums gleich wie andere Zahlenwerte behandelt.
 Nutzer der Anwendungen mussten jeweils die Class Description der entsprechenden Klasse abrufen, um die Bedeutung eines bestimmten Werts zu erfahren.
 Dies soll verbessert werden, indem anstelle der Nummer die dazugehörige Bezeichnung angezeigt wird.
 
@@ -118,12 +119,12 @@ In der XML Repräsentation dieser Class Description, welche vom DlmsQuickAccess 
 Im Abschnitt \ref{readAttributVorgehen} wurde erklärt, dass das Adapter Pattern verwendet wurde, um die Class Descriptions in die gewünschte Klassenstruktur zu überführen.
 Als versucht wurde, auf die einzelnen Enum Werte zuzugreifen, traten Fehler bei der Implementation der Adapter auf.
 Diese zeigten sich dann, wenn mehrere Typendefinitionen ineinander verschachtelt sind.
-Das kommt beispielsweise dan vor, wenn es sich beim Typen eines Attributes um ein Array handelt, wessen Elemente jeweils Strukturen sind, welche ein Feld von Type Enum enthalten.
+Das kommt beispielsweise vor, wenn es sich beim Typen eines Attributes um ein Array handelt, wessen Elemente jeweils Strukturen sind, welche ein Feld vom Typ Enum enthalten.
 
-Um das Problem zu lösen, wurde es versucht mittels Unit-Tests zu reproduzieren.
+Es wurde versucht, das Problem mittels Unit-Tests zu reproduzieren.
 Dies war sehr umständlich, was auf eine tiefe Testbarkeit dieser Adapterklassen hinwies.
 In Abschnitt \ref{testability} wurde erklärt, dass schwer testbarer Code auf tiefe Qualität hindeutet.
-Deshalb wurden einige dieser Adapter Klassen durch neue, bessere Implementationen ersetzt.
+Deshalb wurden einige dieser Adapterklassen durch neue, bessere Implementationen ersetzt.
 
 Rückblickend muss gesagt werden, dass das Verwenden des Codes der \textit{InfraLib} nicht zu den erhofften Zeitersparnissen geführt hat.
 Die Library war nicht ausreichend getestet und einige erwarteten Funktionen fehlten ganz.

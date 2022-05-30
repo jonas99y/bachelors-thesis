@@ -1,5 +1,5 @@
 \section{Sprint 4}\label{sprint4}
-Nach dem dritten von sechs Sprints sind die Grundfunktionen des DlmsQuickAccess implementiert.
+Nach dem dritten von sechs Sprints waren die Grundfunktionen des DlmsQuickAccess fertig implementiert.
 In diesem Sprint begann die zweite Hälfte des Projekts und die Arbeit am ersten Zusatzfeature, den Favoriten.
 
 
@@ -7,7 +7,7 @@ In diesem Sprint begann die zweite Hälfte des Projekts und die Arbeit am ersten
 
 \subsubsection{Ziel}
 In der Vorbereitungsphase wurde eine Umfrage bei den zukünftigen Nutzern des DlmsQuickAccess durchgeführt.
-Wie in Abschnitt \ref{survey} erklärt priorisierten sie dabei mögliche Zusatzfeatures.
+Wie in Abschnitt \ref{survey} erklärt, priorisierten sie dabei mögliche Zusatzfeatures.
 Die Funktion, bestimmte Objekte, Attribute oder Methoden als Favoriten markieren und so vereinfacht abrufen zu können erhielt von den Nutzern die höchste Priorität.
 Zun den Akzeptanzkriterien der Story gehören folgende Punkte:
 \begin{itemize}
@@ -21,14 +21,14 @@ Zun den Akzeptanzkriterien der Story gehören folgende Punkte:
 
 \subsubsection{Vorgehen und Schwierigkeiten}
 Damit die Favoriten  Sitzungs- und Produktübergreifend bestehen bleiben, muss eine eindeutige Identifikation der favorisierten Objekte persistiert werden.
-Als Identifikation bietet sich der Obis Code des Objektes an.
-Dieser ist standartisiert und ändert sich von Produkt zu Produkt nicht.
-Bei Attributen und Methoden kann der Obis Code in Kombination mit dem Index des Attributes rsp. der Methode für die Identifikation verwendet werden.
-Die Obis Codes und Indizes werden dann im \textit{AppicationDataContainer}\footnote{https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdatacontainer} gespeichert.
+Als Identifikation bietet sich der \ac{Obis}-Code des Objektes an.
+Dieser ist standardisiert und ändert sich von Produkt zu Produkt nicht.
+Bei Attributen und Methoden kann der \ac{Obis}-Code in Kombination mit dem Index des Attributes rsp. der Methode für die Identifikation verwendet werden.
+Die \ac{Obis}-Codes und Indizes werden dann im \textit{ApplicationDataContainer}\footnote{https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdatacontainer} gespeichert.
 Dabei handelt es sich um einen Key-Value-Store.
 Da dieser vom Betriebssystem verwaltet wird, müssen sich bei der Entwicklung keinerlei Gedanken über Dinge wie Files oder Schreibzugriff gemacht werden müsse.
 
-Damit der Benutzer steuern kann, welche Element zu seinen Favoriten gehören, wurden Objekte, Attribute und Methoden in der Benutzerschnittstelle um das \textit{CanBeFavoriteControl} erweitert.
+Damit der Benutzer steuern kann, welche Elemente zu seinen Favoriten gehören, wurden Objekte, Attribute und Methoden in der Benutzerschnittstelle um das \textit{CanBeFavoriteControl} erweitert.
 Dieses besteht aus einem Knopf, mit welchem ein Element favorisiert oder entfavorisiert werden kann.
 Das Icon des Knopfs sowie dessen Farbe gibt Auskunft darüber, ob das Element bereits Favorit ist oder nicht und verändert sich wenn der Knopf angeklickt wird.
 In Abbildung \ref{fig:objectModelWithFavorites} ist das \textit{CanBeFavoriteControl} auf der rechten Seite der Objekte zu sehen.
@@ -43,10 +43,10 @@ Das erste Objekt ist nicht favorisiert, das zweite schon.
    \label{fig:objectModelWithFavorites}
 \end{figure}
 
-Ein Konzept, um die favorisierten Elemente darzustellen ist im Abschnitt \ref{uifavorites} beschrieben.
+Ein Konzept, um die favorisierten Elemente darzustellen, ist im Abschnitt \ref{uifavorites} beschrieben.
 Dieses wurde im Rahmen dieser Story umgesetzt.
-Ursprünglich war geplant, dass lediglich die Namen der favorisierten Objekte aufgelistet werden sollen.
-Werden diese angeklickt, so soll das entsprechende Objekt im bereits bestehenden Object Model angezeigt und fokussiert werden.
+Ursprünglich war geplant, dass lediglich die Namen der favorisierten Objekte aufgelistet werden.
+Werden diese angeklickt, so sollte das entsprechende Objekt im bereits bestehenden Object Model angezeigt und fokussiert werden.
 Dies liess sich so jedoch technisch nicht umsetzten.
 Um in der Liste ein bestimmtes Element fokussieren zu können, wir eine Referenz auf dieses benötigt.
 Die Instanzen der Controls werden jedoch nicht im C\# Code der Anwendung erstellt, sonder deklarativ mittels XAML.
@@ -54,7 +54,7 @@ Deshalb war es nicht möglich, an eine Referenz des gewünschten Controls zu gel
 
 So musste die Idee mit dem Fokussieren verworfen werden.
 Stattdessen werden die ganzen Objekte, inklusive Attribute und Methoden, in der Liste der Favoriten dargestellt.
-In Abbildung \ref{fig:favoritesUi} ist Liste der favorisierten Objekte gezeigt.
+In Abbildung \ref{fig:favoritesUi} ist die Liste der favorisierten Objekte gezeigt.
 Für die Objekte werden die gleichen Controls wie im Object Model verwendet.
 So können die Objekte ebenfalls ein- und ausgeklappt werden.
 In der Abbildung ist dies am Beispiel des Objekts \textit{Password Supervision} zu sehen.
@@ -63,7 +63,7 @@ In der Abbildung ist dies am Beispiel des Objekts \textit{Password Supervision} 
    \centering
    \includegraphics[width=1.0\textwidth]{gfx/favoritesUi.png}
    \caption{
-      Die Liste der favorisierten Objekte mit bestehend aus einem Objekt
+      Die Liste der favorisierten Objekte bestehend aus einem Objekt
       }
    \label{fig:favoritesUi}
 \end{figure}
@@ -80,5 +80,5 @@ Dies ermöglicht es, dass mit ausgewählten Attributen oder Methoden unterschied
    \label{fig:favoriteAttribtuesAndMethods}
 \end{figure}
 
-Die Views des Object Model und jener der Favoritenliste nutzen die selben ViewModel Instanzen.
+Die Views des Object Model und jene der Favoritenliste nutzen die selben ViewModel Instanzen.
 Wird bei einem Element aus der Favoritenliste ein Lesebefehl ausgeführt, so wird der gelesene Wert auch im Object Model angezeigt.
