@@ -269,23 +269,47 @@ Diese ist Teil des Projekts DlmsQuickAccess.Config (\ref{dqa:config}).
 \end{figure}
 
 \subsection{DlmsQuickAccess.Model}
-
+Diese Projekt enthält die eigentliche Businesslogik der Anwendung.
+Dazu gehört der Code zur Verwaltung von Favoriten oder zum Filtern und Suchen von Objekten. 
 
 \subsection{DlmsQuickAccess.Config}\label{dqa:config}
+In diesem Projekt befindet sich nur eine einzige Klasse, \textit{AppConfig}.
+Die Aufgabe dieser Klasse ist es, die ViewModels zu instanziieren, welche von der View benötigt werden.
+Da dazu Klassen aus unterschiedlichen Bereichen benötigt werden, hat DlmsQuickAccess.Config Abhängigkeiten zu folgenden Projekten:
+\begin{itemize}
+   \item DlmsQuickAccess.ProductConfig
+   \item DlmsQuickAccess.Model
+   \item DlmsQuickAccess.Befehlsinterpreter
+   \item DlmsQuickAccess.ViewModel
+   \item DlmsQuickAccess.Cosem
+   \item DlmsQuickAccess.Dlms
+   \item DlmsQuickAccess.Interfaces
+\end{itemize}
+
+
+In diesem Projekt wird die Anwendung konfiguriert, indem verschiedene Teile der Anwendung miteinander kombiniert werden.
+Um beispielsweise den Kommunikationsstack auszutauschen, so muss lediglich in \textit{AppConfig} ein anderes Objekt instanziiert und injected werden.
 
 \subsection{DlmsQuickAccess.Interfaces}
+Damit die einzelnen Projekte möglichst unabhängig von einander entwickelt und verwendet werden können, sind Interfaces, welche Projektübergreifend gebraucht werden, in diesem Projekt zentral abgelegt.
+Konkrete Klassenimplementation enthält das Projekt keine.
 
 \subsection{DlmsQuickAccess.ProductConfig}
-External dependency to yamllib
-
+Die Produktkonfigurationsfiles, welche benötigt werden, um die Anwendung zu starte, sind im YAML geschrieben.
+Um diese zu parsen wird die Library \textit{yamllib} verwendet.
+Das Ziel dieses Projekts ist es, die Abhängigkeit zu dieser Library zu isolieren.
 
 \subsection{DlmsQuickAccess.Dlms}
-evtl widerverwendbar
+In diesem Projekt sind jene Klassen abgelegt, welche für die \ac{DLMS} Kommunikation benötigt werden.
+Dazu gehören Klassen, welche den Lese- und Schreibpayload parsen, repräsentieren und verarbeiten.
 
 \subsection{DlmsQuickAccess.Cosem}
-evtl widerverwendbar
-infralib etc.
+Dieses Projekt enthält Klassen, welche das Object Model sowie die Class Descriptions repräsentieren.
+Der Code, welche die dazugehörigen XML Dateien parst und die Klassen erstellt, ist ebenfalls in diesem Projekt abgelegt.
+Diese Komponenten werden in einem eigenen Projekt verwaltet, damit sie möglichst einfach wiederverwendet werden können.
 
 \subsection{DlmsQuickAccess.Befehlsinterpreter}
-isolation des Befehlsinterpreter
+Dieses Projekt wurde erstellt, um die Abhängigkeit zu \ac{ATS} Code zu isolieren.
+Es beinhaltet eine einzelne Klasse, welches das \textit{ICommunicator} Interface implementiert.
+Dieses Interface abstrahiert Lese- und Schreibzugriffe auf einen Stromzähler.
 
