@@ -45,7 +45,11 @@ In Abschnitt \ref{s3configvorgehen} ist beschrieben, wieso dies noch nicht umges
 \end{figure}
 
 \subsection{Continuous Deployment}
-TODO
+Das Ziel von Continuous Deployment ist es, dass Änderungen am Code, welche alle Validierungsschritte (z.B. Tests) erfolgreich durchlaufen konnten, automatisch an Nutzer ausgeliefert werden \parencite{atlassian_2019}.
+Im Text zum ersten Sprint (\ref{s1}) wurde erklärt, dass die Anwendung bei jedem Commit gebaut und wie das Deployment an die Nutzer funktioniert.
+Werden diese beiden Aspekte kombiniert, so spricht man von Continuous Deployment.
+Dies war bisher noch nicht möglich, weil \ac{ADO} keinen Zugriff auf das Netzwerkverzeichnis hat, auf welchem die Artefakte der Anwendung abgelegt sind.
+Wird in Zukunft ein Continuous Deployment eingerichtet, so bringt dies den Vorteil, dass die Entwickler sich nicht selbst um die Veröffentlichung der Anwendung kümmern müssen und dabei auch keine Fehler machen können.
 
 \subsection{\ac{DMT2} Quick Access ablösen}
 Wie im Abschnitt \ref{survey} beschrieben, wurden für diese Arbeit bewusst nur Entwickler aus Cham in den Entwicklungsprozess miteinbezogen.
@@ -56,7 +60,7 @@ Um die alte Software vollständig abzulösen, müssen Konfigurationen für weite
 \subsection{Sourcecode Organisieren}\label{ausblick:ats_split}
 In diesem Projekt wurden Code von anderen C\# Anwendungen der Landis+Gyr verwendet.
 Dazu wurden die Repositories dieser Anwendungen in das Repository des DlmsQuickAccess kopiert.
-Wie das umgesetzt wurde, ist im Abschnitt \ref{gitsubtreeTODO} aufgeführt. 
+Wie das umgesetzt wurde, ist im Abschnitt \ref{atsUmsetztung} aufgeführt. 
 Ein möglicher nächster Schritt wäre es, diese Abhängigkeiten neu zu organisieren.
 Dazu müssten jene Teile des Codes, welche von DlmsQuickAccess benötigt werden, als NuGet Paket bereitgestellt werden.
 
