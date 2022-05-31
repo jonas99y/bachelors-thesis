@@ -11,9 +11,9 @@ Dies sind die Stories:
 \subsection{Suchfunktion}
 \dq Implementation einer Suchfunktion für das Object Model\dq
 \subsubsection{Ziel}
-Die Object Models bestehe aus mehreren hundert Objekten und tausenden Attributen und Methoden.
+Die Object Models bestehen aus mehreren hundert Objekten und tausenden Attributen und Methoden.
 Eine Suchfunktion soll das Finden eines spezifischen Objekts oder einer Gruppe von Objekten erleichtern.
-Ebenfalls soll es mögliche sein, bestimmte Attribute oder Methoden zu finden, ohne die dazugehörige Klasse zu kennen.
+Ebenfalls soll es möglich sein, bestimmte Attribute oder Methoden zu finden, ohne die dazugehörige Klasse zu kennen.
 Bei der Suche soll nach Name, Titel und \ac{Obis}-Code der Objekte gesucht werden.
 Für Attribute und Methoden soll jeweils nur der Name verwendet werden.
 Die Gross- und Kleinschreibung soll dabei ignoriert werden.
@@ -33,7 +33,7 @@ In Klassendiagramm \ref{fig:objectModelVMClassDiagram} ist das Interface \textit
       }
       \label{fig:objectModelVMClassDiagram}
 \end{figure}
-Über diese werden alle Daten abgerufen, welche für die Darstellung der Object Model Komponente benötigt werden.
+Über dieses werden alle Daten abgerufen, welche für die Darstellung der Object Model Komponente benötigt werden.
 Die Liste \textit{Objects} beinhaltete alle Objekte, welche im Object Model angezeigt werden.
 Die Suchfunktion wurde wie folgt implementiert:
 \begin{enumerate}
@@ -47,7 +47,7 @@ Je mehr Objekte als Suchresultat dargestellt werden mussten, desto langsamer wur
 Dies hatte damit zu tun, dass für jedes Objekt ein neues \textit{ISingleObjectViewModel} Objekt erstellt wurde.
 Um dies zu verbessern wurde ein Cache eingesetzt, welcher anstelle eines neuen Objekt jeweils ein bestehendes liefert.
 
-Um nicht nach Objekten sondern nach Attributen und Methoden zu suchen, wurde etwas ähnliches implementiert.
+Um nicht nach Objekten sondern nach Attributen und Methoden zu suchen, wurde etwas Ähnliches implementiert.
 Im Klassendiagramm ist das Interface \textit{IObjectElementsCollectionViewModel} aufgezeigt.
 Dieses fasst alle Attribute und Methoden einer Klasse zusammen, welche dargestellt werden sollen.
 Im Property \textit{ObjectElements} wird eine Liste dieser Objekte gehalten.
@@ -84,7 +84,7 @@ Es soll möglich sein, dass nach Class Id, Class Version, Own Class Version und 
 Die Filterfunktion wurde bereits bei den Arbeiten an der Suchfunktion berücksichtigt.
 In der Benutzerschnittstelle mussten nur noch die zusätzlichen Textfelder hinzugefügt werden.
 Abbildung \ref{fig:searchfilterUIRel} zeigt diese.
-Der Algorithmus, welcher die \ac{COSEM} Objekte bisher nach Suchtext filtert wurde so erweitert, dass die neu hinzugefügten Parameter berücksichtigt werden.
+Der Algorithmus, welcher die \ac{COSEM} Objekte bisher nach Suchtext filterte, wurde so erweitert, dass die neu hinzugefügten Parameter berücksichtigt werden.
 Dies konnte ohne Schwierigkeiten umgesetzt werden.
 
 

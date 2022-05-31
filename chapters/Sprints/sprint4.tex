@@ -8,29 +8,29 @@ In diesem Sprint begann die zweite Hälfte des Projekts und die Arbeit am ersten
 \subsubsection{Ziel}
 In der Vorbereitungsphase wurde eine Umfrage bei den zukünftigen Nutzern des DlmsQuickAccess durchgeführt.
 Wie in Abschnitt \ref{survey} erklärt, priorisierten sie dabei mögliche Zusatzfeatures.
-Die Funktion, bestimmte Objekte, Attribute oder Methoden als Favoriten markieren und so vereinfacht abrufen zu können erhielt von den Nutzern die höchste Priorität.
-Zun den Akzeptanzkriterien der Story gehören folgende Punkte:
+Die Funktion, bestimmte Objekte, Attribute oder Methoden als Favoriten markieren und so vereinfacht abrufen zu können, erhielt von den Nutzern die höchste Priorität.
+Zu den Akzeptanzkriterien der Story gehören folgende Punkte:
 \begin{itemize}
-   \item Der Benutzer kann Objekte, Attribute und Methoden zu den Favoritenlisten hinzufügen und wider entfernen.
-   \item Favorisierte Attribute und Methoden sollen in einer gemeinsam Liste, Objekte in einer eigenen, dargestellt werden.
+   \item Der Benutzer kann Objekte, Attribute und Methoden zu den Favoritenlisten hinzufügen und wieder entfernen.
+   \item Favorisierte Attribute und Methoden sollen in einer gemeinsamen Liste, Objekte in einer eigenen dargestellt werden.
    \item Neue Einträge sollen jeweils am Ende der Liste erscheinen.
-   \item Favorisierte Attribute und Methoden des selben Objekts sollen gruppiert dargestellt werden. Ihre Reihenfolge soll jener innerhalb des Objekts entsprechen.
-   \item Die Favoriten sollen Sitzungs- und Produktübergreifend gespeichert werden.
+   \item Favorisierte Attribute und Methoden desselben Objekts sollen gruppiert dargestellt werden. Ihre Reihenfolge soll jener innerhalb des Objekts entsprechen.
+   \item Die Favoriten sollen sitzungs- und produktübergreifend gespeichert werden.
 \end{itemize}
 
 
 \subsubsection{Vorgehen und Schwierigkeiten}
-Damit die Favoriten  Sitzungs- und Produktübergreifend bestehen bleiben, muss eine eindeutige Identifikation der favorisierten Objekte persistiert werden.
+Damit die Favoriten  sitzungs- und produktübergreifend bestehen bleiben, muss eine eindeutige Identifikation der favorisierten Objekte persistiert werden.
 Als Identifikation bietet sich der \ac{Obis}-Code des Objektes an.
 Dieser ist standardisiert und ändert sich von Produkt zu Produkt nicht.
 Bei Attributen und Methoden kann der \ac{Obis}-Code in Kombination mit dem Index des Attributes rsp. der Methode für die Identifikation verwendet werden.
 Die \ac{Obis}-Codes und Indizes werden dann im \textit{ApplicationDataContainer}\footnote{https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdatacontainer} gespeichert.
 Dabei handelt es sich um einen Key-Value-Store.
-Da dieser vom Betriebssystem verwaltet wird, müssen sich bei der Entwicklung keinerlei Gedanken über Dinge wie Files oder Schreibzugriff gemacht werden müsse.
+Da dieser vom Betriebssystem verwaltet wird, müssen sich bei der Entwicklung keinerlei Gedanken über Dinge wie Files oder Schreibzugriff gemacht werden.
 
 Damit der Benutzer steuern kann, welche Elemente zu seinen Favoriten gehören, wurden Objekte, Attribute und Methoden in der Benutzerschnittstelle um das \textit{CanBeFavoriteControl} erweitert.
 Dieses besteht aus einem Knopf, mit welchem ein Element favorisiert oder entfavorisiert werden kann.
-Das Icon des Knopfs sowie dessen Farbe gibt Auskunft darüber, ob das Element bereits Favorit ist oder nicht und verändert sich wenn der Knopf angeklickt wird.
+Das Icon des Knopfs sowie dessen Farbe gibt Auskunft darüber, ob das Element bereits Favorit ist oder nicht und verändert sich, wenn der Knopf angeklickt wird.
 In Abbildung \ref{fig:objectModelWithFavorites} ist das \textit{CanBeFavoriteControl} auf der rechten Seite der Objekte zu sehen.
 Das erste Objekt ist nicht favorisiert, das zweite schon.
 
@@ -49,7 +49,7 @@ Ursprünglich war geplant, dass lediglich die Namen der favorisierten Objekte au
 Werden diese angeklickt, so sollte das entsprechende Objekt im bereits bestehenden Object Model angezeigt und fokussiert werden.
 Dies liess sich so jedoch technisch nicht umsetzten.
 Um in der Liste ein bestimmtes Element fokussieren zu können, wir eine Referenz auf dieses benötigt.
-Die Instanzen der Controls werden jedoch nicht im C\# Code der Anwendung erstellt, sonder deklarativ mittels XAML.
+Die Instanzen der Controls werden jedoch nicht im C\# Code der Anwendung erstellt, sondern deklarativ mittels XAML.
 Deshalb war es nicht möglich, an eine Referenz des gewünschten Controls zu gelangen.
 
 So musste die Idee mit dem Fokussieren verworfen werden.
@@ -80,5 +80,5 @@ Dies ermöglicht es, dass mit ausgewählten Attributen oder Methoden unterschied
    \label{fig:favoriteAttribtuesAndMethods}
 \end{figure}
 
-Die Views des Object Model und jene der Favoritenliste nutzen die selben ViewModel Instanzen.
+Die Views des Object Model und jene der Favoritenliste nutzen dieselben ViewModel Instanzen.
 Wird bei einem Element aus der Favoritenliste ein Lesebefehl ausgeführt, so wird der gelesene Wert auch im Object Model angezeigt.

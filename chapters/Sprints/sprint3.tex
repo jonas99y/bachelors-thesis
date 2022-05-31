@@ -15,7 +15,7 @@ Dazu sind die folgende beiden Stories geplant:
 \subsection{Unterstützung für unterschiedliche Stromzählermodelle}
 \dq DlmsQuickAccess soll mehrere, unterschiedliche Stromzählermodelle unterstützen.\dq
 \subsubsection{Ziel}
-Im Abschnitt \ref{picasso} wurde erwähnt, das die Picasso Platform über mehrere Referenzprodukte verfügt.
+Im Abschnitt \ref{picasso} wurde erwähnt, dass die Picasso Platform über mehrere Referenzprodukte verfügt.
 Drei dieser Referenzprodukte, namentlich \textit{Ref\_IMS1}, \textit{Ref\_NMS2} und \textit{Ref\_MMI3}, werden für die Arbeiten an der Platform täglich verwendet.
 Das Ziel dieser Story ist es, dass DlmsQuickAccess mit allen drei kommunizieren kann.
 Im Bezug auf die \ac{DLMS} Kommunikation unterscheiden sich diese in zwei Dingen.
@@ -24,7 +24,7 @@ Während bei \textit{Ref\_MMI3} seriell mittels optischem Auslesekopf kommunizie
 Der zweite Unterschied ist das Object Model, welches je nach Produkt andere Objekte enthält.
 Damit die Story als erledigt betrachtet werden kann, sind noch folgende Punkte zu beachten:
 \begin{itemize}
-   \item Die Konfiguration eines Produkts soll in einer Datei abgespeichert werden. Wir diese Datei angeklickt, so soll sich der DlmsQuickAccess mit der entsprechend konfiguriert öffnen.
+   \item Die Konfiguration eines Produkts soll in einer Datei abgespeichert werden. Wird diese Datei angeklickt, so soll sich der DlmsQuickAccess mit der darin enthaltenen Konfiguration gestartet werden.
    \item Wird der DlmsQuickAccess ohne Produktkonfiguration gestartet, so soll eine Auswahl von zuvor geöffneten Konfigurationen angezeigt werden.
    \item Den Benutzern sollen funktionierende Konfigurationen für die drei genannten Referenzprodukte bereitgestellt werden.
    \item Auf der Landis+Gyr internen Wiki soll ein Artikel geschrieben werden, welche Auskunft über DlmsQuickAccess und die Konfigurationsdateien gibt.
@@ -43,12 +43,12 @@ Für die Referenzprodukte sind sie im Repository der Testscripts abgelegt.
 Der bisherige Ansatz, die Dateien als Teil der Anwendung an die Benutzer auszulieferen, hat nur einen Vorteil.
 Die Anwendung kann nach der Installation direkt verwendet werden.
 Es werden keine weiteren Dateien oder manuelle Konfigurationen benötigt.
-Der Nachteil, dass bei jeder Änderung an der Konfiguration eine neue Version der Applikation erstellt und veröffentlicht werden muss überwiegt diesen jedoch, da beispielsweise das Object Model regelmässig angepasst wird.
-Weitere Nachteil ist, dass um mit einer älteren Version der Firmware kommunizieren zu können auch eine ältere Version des DlmsQuickAccess installiert werden müsste.
+Der Nachteil, dass bei jeder Änderung an der Konfiguration eine neue Version der Applikation erstellt und veröffentlicht werden muss, überwiegt diesen jedoch, da beispielsweise das Object Model regelmässig angepasst wird.
+Ein weiterer Nachteil ist, dass um mit einer älteren Version der Firmware kommunizieren zu können auch eine ältere Version des DlmsQuickAccess installiert werden müsste.
 
 Der zu ersetzende \ac{DMT2} wird über Textfiles konfiguriert.
 Um das Produkt zu wechseln, muss jeweils das entsprechende Textfile importiert werden.
-Diese Textfiles sind im Repository der Firmware abgelegt somit versioniert.
+Diese Textfiles sind im Repository der Firmware abgelegt und somit versioniert.
 Die importierte Konfiguration bleibt jeweils sitzungsübergreifend erhalten.
 Dies wurde von den Nutzer als unpraktisch gemeldet, da beim Start der Anwendung nicht ersichtlich ist, welche Konfiguration aktiv ist.
 
@@ -83,7 +83,7 @@ Die dazu benötigte Komponente von WinUI3, \textit{FileOpenPicker}, funktioniert
 
 
 Die neuen Konfigurationsfiles ermöglichen das einfache Wechseln zwischen verschiedenen Produkten.
-Als versucht wurde mit einem \textit{Ref\_NMS2} Zähler zu kommunizieren, führte dies regelmässig zu Fehler.
+Als versucht wurde, mit einem \textit{Ref\_NMS2} Zähler zu kommunizieren, führte dies regelmässig zu Fehlern.
 Wurden die Integrationstest mit einem \textit{Ref\_NMS2} Gerät ausgeführte, so schlug jeweils jeder zweite Test fehl.
 Dies wurde von der \ac{TLS} Kommunikation verursacht, welche nach dem Kommunizieren nicht richtig beendet wurde.
 Für die Tests konnte das Schliessen der Verbindung jeweils in einer \textit{TestCleanup} Funktion aufgerufen werden.

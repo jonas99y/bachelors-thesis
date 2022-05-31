@@ -1,12 +1,12 @@
 \section{Sprint 2}
 Der zweite Sprint baut auf den Arbeiten des ersten auf.
-So wird eine Story welche im ersten Sprint begonnen wurden, in diesem abgeschlossen.
+So wird eine Story, welche im ersten Sprint begonnen wurde, in diesem abgeschlossen.
 Einige Funktionen, welche in Sprint 1 entwickelt wurden, werden in Sprint 2 zusammengeführt und erweitert.
 Konkret werden diesen Stories bearbeitet:
 \begin{itemize}
    \item Die Applikation soll auf \ac{ADO} bei jedem neuem Commit automatisch gebaut und getestet werden. 
    \item Werte von Attributen sollen vom Zähler ausgelesen und in der Benutzerschnittstelle dargestellt werden.
-   \item Die Benutzerschnittstelle soll das Schreiben von Attributwerten sowie ausführen von Methoden unterstützen.
+   \item Die Benutzerschnittstelle soll das Schreiben von Attributwerten sowie Ausführen von Methoden unterstützen.
 \end{itemize}
 
 
@@ -15,7 +15,7 @@ Die Arbeiten an dieser Story wurden bereits im vorherigen Sprint begonnen.
 Das Ziel der Story und das bisherige Vorgehen ist im Abschnitt \ref{story_buildoncommit} aufgeführt.
 Die Pipeline in \ac{ADO} wurde nun so konfiguriert, dass die Solution kompiliert wird.
 Dies funktionierte problemlos.
-Als die Pipeline um einen Task erweitert wurde, welcher die Tests ausführen soll traten Schwierigkeiten auf.
+Als die Pipeline um einen Task erweitert wurde, welcher die Tests ausführen soll, traten Schwierigkeiten auf.
 Im Log war der Fehler \dq  Could not find testhost\dq , ausgelöst von \textit{vstest.console.exe}, zu lesen.
 Da die Unit-Tests lokal jeweils über Visual Studio ausgeführt wurde, trat dieser Fehler dort nicht auf.
 Er konnte jedoch reproduziert werden, indem \textit{vstest.console.exe} gleich wie bei der Pipeline aufgerufen wurde.
@@ -24,8 +24,8 @@ Ein Test mit einem neuen, leeren Projekt, welcher zum gleichen Fehler fürte, ze
 Dieses Problem konnte umgangen werden, indem anstelle von msbuild\footnote{https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2022}
 die .NET CLI\footnote{https://docs.microsoft.com/en-us/dotnet/core/tools/} für das Kompilieren und Ausführen der Tests verwendet wird.
 Bei der Verwendung der .NET CLI trat ein neues Problem auf.
-Diese Unterstützt das Kompilieren von WinUI3 Anwendungen nicht.
-Da, wie bereits in Abschnitt \ref{objectModelDevSchwierigkeiten} erklärt, bei den Unit-Test gar keine Abhängigkeiten zu WinUi3 bestehen können ist dies nicht weiter tragisch.
+Diese unterstützt das Kompilieren von WinUI3 Anwendungen nicht.
+Da, wie bereits in Abschnitt \ref{objectModelDevSchwierigkeiten} erklärt, bei den Unit-Test gar keine Abhängigkeiten zu WinUi3 bestehen können, ist dies nicht weiter tragisch.
 Damit das Kompilieren erfolgreich funktioniert, wurde eine zweite Solution erstellt, welche nur jene C\# Projekte enthält, die nicht von WinUI3 abhängen.
 
 So konnte die Story trotz diverser Schwierigkeiten fertiggestellt werden.
@@ -93,7 +93,7 @@ In Abbildung \ref{fig:AttributeReadExample} ist ein Attribut abgebildet, welches
 Dabei ist ersichtlich, dass alle Felder des Struktur \textit{xDLMS\_context\_type} mit Name und Typ beschriftet sind.
 
 Bei der Integration der \textit{InfraLib} in die Solution musste festgestellt werden, dass zwar einige Unit-Tests vorhanden sind, jedoch nur geringe Teile des Codes getestet sind.
-Da einige Fehler im Parsing-Code gefunden wurde, wurden einige Modul Tests geschreiben, welche das Zusammenspiel der verschiedenen Komponenten von XML-Files bis Adapter testen.
+Da einige Fehler im Parsing-Code gefunden wurden, wurden einige Modul Tests geschrieben, welche das Zusammenspiel der verschiedenen Komponenten von XML-Files bis Adapter testen.
 
 Der Code der \textit{InfraLib} wurde gleich wie der \ac{ATS} Code eingebunden (siehe Abschnitt \ref{atsUmsetztung}).
 Die \textit{InfraLib} in Zukunft als NuGet Paket zu verwenden, wäre jedoch mit weniger Aufwand verbunden als beim \ac{ATS}, da diese bereits als Library aufgebaut ist.
@@ -107,9 +107,9 @@ Ziel dieser Story ist es, dass über die selbe Schnittstelle Schreibbefehle ausg
 Ebenfalls soll es möglich sein, dass Methoden ausgeführt werden können.
 
 \subsubsection{Vorgehen und Schwierigkeiten}
-Um nebst dem Lesen auch das Schreiben von Attributen über die Benutzerschnittstelle steuern zu können mussten entsprechende \textit{Button} Controls hinzugefügt werden.
-Die meisten bestehenden Komponente wurden bereits zuvor so entwickelt, dass sie das Schreiben ebenfalls unterstützen.
-In Text zur vorgehenden Story wurde beschreiben, wie das Datenformat des \ac{ATS} Codes in eine eigene Klassenstruktur überführt wurde.
+Um nebst dem Lesen auch das Schreiben von Attributen über die Benutzerschnittstelle steuern zu können, mussten entsprechende \textit{Button} Controls hinzugefügt werden.
+Die meisten bestehenden Komponenten wurden bereits zuvor so entwickelt, dass sie das Schreiben ebenfalls unterstützen.
+In Text zur vorhergehenden Story wurde beschrieben, wie das Datenformat des \ac{ATS} Codes in eine eigene Klassenstruktur überführt wurde.
 Um Daten zu schreiben, musste dieser Prozess umgekehrt werden.
 
 \begin{figure}
@@ -123,7 +123,7 @@ Um Daten zu schreiben, musste dieser Prozess umgekehrt werden.
 Dies wurde mit der \textit{Writer} Klasse, welche in Abbildung \ref{fig:writer} aufgezeigt ist, implementiert.
 
 
-Das Ausführen von Methoden funktioniert technisch gleiche wie das Schreiben von Attributen.
+Das Ausführen von Methoden funktioniert technisch gleich wie das Schreiben von Attributen.
 Die Parameter der Methode werden dazu als Schreib-Payload mitgegeben.
 So kann die \textit{Writer} Klasse auch für das Ausführen von Methoden verwendet werden.
 Die Darstellung der Methoden in der Benutzeroberfläche musste um Eingabefelder für die Parameter und ein \textit{Button} Control für das Starten der Ausführung ergänzt werden.

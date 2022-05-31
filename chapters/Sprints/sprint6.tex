@@ -1,10 +1,10 @@
 \section{Sprint 6}\label{s6}
-Im sechsten und letzten Sprint wurde diese beiden Stories bearbeitet:
+Im sechsten und letzten Sprint wurden diese beiden Stories bearbeitet:
 \begin{itemize}
-   \item Die Kommunikation mit den Stromzähler soll asynchron ausgeführt werden.
+   \item Die Kommunikation mit den Stromzählern soll asynchron ausgeführt werden.
    \item SonarQube soll aufgesetzt werden und die gemeldete Fehler bearbeitet werden.
 \end{itemize}
-Neben diesen Story wurde Zeit eingeplant, um bei den Nutzern der Anwendung ein letztes mal ausführliches Feedback einzuholen.
+Neben diesen Stories wurde Zeit eingeplant, um bei den Nutzern der Anwendung ein letztes Mal ausführliches Feedback einzuholen.
 Kleinere Änderungen und Bugfixes, welche aus dem Feedback hervorgehen, sollen ebenfalls direkt im Sprint umgesetzt werden.
 Die folgenden Abschnitte geben Auskunft über die erwähnten Arbeiten.
 
@@ -13,7 +13,7 @@ Die folgenden Abschnitte geben Auskunft über die erwähnten Arbeiten.
 \subsubsection{Ziele}
 Bisher funktioniert die Kommunikation mit den Zählern so, dass diese direkt im UI Thread ausgeführt wird.
 Dies hat den Nachteil, dass die Benutzerschnittstelle während der Kommunikation eingefroren ist und nicht auf weitere Eingaben des Benutzers reagiert.
-Ein weitere Nachteil der bisherigen Implementation ist, dass Kommunikationsfehler zu Abstürzen der ganzen Anwendung führen.
+Ein weiterer Nachteil der bisherigen Implementation ist, dass Kommunikationsfehler zu Abstürzen der ganzen Anwendung führen.
 Das Ziel dieser Story ist es, die Kommunikation in einen Thread auszulagern und so asynchron auszuführen.
 Dabei soll Wert auf die Fehlertoleranz der Implementation gelegt werden.
 
@@ -63,10 +63,10 @@ Dieses kann er beispielsweise dazu nutzen, um auf die Beendung der Operation syn
 
 Als der Code im DlmsQuickAccess.Dlms Projekt auf das \ac{TAP} Pattern umgeschrieben wurde, funktionierte die Kommunikation mit den Zählern nicht mehr.
 Eine Fehlermeldung sagte, dass der COM-Port nicht geöffnet werden konnte.
-Beim debuggen des \ac{ATS} Code stellte es sich heraus, dass dieser den Namen des aktuellen Threads nutzt, um internen Zustand zu verwalten.
+Beim debuggen des \ac{ATS} Code stellte es sich heraus, dass dieser den Namen des aktuellen Threads nutzt, um seinen internen Zustand zu verwalten.
 Dazu liest und schreibt er \textit{System.CurrentThread.Name}.
 Bei \ac{TAP} werden die Operationen jeweils in Threads eines geteilten Pools ausgeführt, welche alle den gleichen Namen tragen.
-Dieses Problem wurde so gelöst, dass im \ac{ATS} Code alle Referenzen zum Name des aktuellen Threads auf eine Konstante geändert wurde.
+Dieses Problem wurde so gelöst, dass im \ac{ATS} Code alle Referenzen zum Namen des aktuellen Threads auf eine Konstante geändert wurden.
 Da beim DlmsQuickAccess nur eine Kommunikation mit einem Gerät vorgesehen ist, sollte dies kein Problem darstellen.
 
 
@@ -74,7 +74,7 @@ Da beim DlmsQuickAccess nur eine Kommunikation mit einem Gerät vorgesehen ist, 
 Im Abschnitt \ref{quality:sonar} wurde das Tool SonarQube erklärt und festgehalten, dass es von der Landis+Gyr als bevorzugtes Software-Qualitatssicherungstool evaluiert wurde.
 Zum Zeitpunkt dieser Arbeit verfügte die Landis+Gyr noch über keine laufende Instanz von SonarQube.
 Deshalb wurde eine solche lokal auf dem Rechner des Entwicklers aufgesetzt.
-Dies hat den Nachteil, dass ein Aufbau, wie er in Abschnitt \ref{sonar:funktionsweise} beschrieben ist nicht möglich ist.
+Dies hat den Nachteil, dass ein Aufbau, wie er in Abschnitt \ref{sonar:funktionsweise} beschrieben ist, nicht möglich ist.
 Anstelle des \ac{CI} Servers muss der Build jeweils manuell ausgeführt und an die lokale SonarQube Instanz übermittelt werden.
 Für dieses Projekt stellt dies kein Problem dar, da nur ein einzelner Entwickler am Code arbeitet.
 
@@ -87,25 +87,25 @@ Für dieses Projekt stellt dies kein Problem dar, da nur ein einzelner Entwickle
    \label{fig:sonarFistRunWithAts}
 \end{figure}
 
-Als die Scanners das erste Mal ausgeführt wurde, zeigte SonarQube ernüchternde Resultat.
+Als die Scanners das erste Mal ausgeführt wurden, zeigte SonarQube ernüchternde Resultate.
 In Abbildung \ref{fig:sonarFistRunWithAts} ist eine Übersicht über die SonarQube Berichte dargestellt.
 Nebst der hohen Anzahl Bugs, Vulnerabilities und Code Smells sind auch die Bewertungen von SonarQube in den Bereichen Reliabilität und Sicherheit nicht zufriedenstellend.
 Bei genauere Betrachtung der einzelnen Meldungen konnte jedoch festgestellt werde, dass ein grosser Teil ihren Ursprung im \ac{ATS} Code haben.
 Die tiefe Qualität des \ac{ATS} Codes, welche bereits im ersten Sprint (Abschnitt \ref{atsUmsetztung}) angeprangert wurde, bestätigte sich so.
 
 Um eine Beurteilung des eigentlichen Codes des DlmsQuickAccess zu erhalten, wurde in SonarQube ein zweites Projekt aufgesetzt, bei welchem der \ac{ATS} exkludiert wurde.
-Die Berichte vielen nun bedeuten besser aus.
+Die Berichte fielen nun bedeuten besser aus.
 Da die verbleibende Anzahl Bugs und Vulnerabilities nun überschaubar war, wurden diese als Teil dieser Story behoben.
-Eine Interpretation der finalen SonarQube Ergebnisse ist im Abschnitt \ref{evalQuality} zu Finden.
+Eine Interpretation der finalen SonarQube Ergebnisse ist im Abschnitt \ref{evalQuality} zu finden.
 
 
 \subsection{Rückmeldungen}
 Während des ganzen Projekts und speziell in diesem letzten Sprint wurden Rückmeldungen der Nutzer eingeholt.
-Wenn diese thematisch nahe an einer geplanten Story lagen, wurden diese jeweils im Rahmen dieser umgesetzt.
+Wenn diese thematisch nahe an einer geplanten Story lagen, wurden diese jeweils im Rahmen derselben umgesetzt.
 Folgende Arbeiten wurden aufgrund von Nutzerfeedback im sechsten Sprint gemacht:
 \begin{itemize}
    \item Die aktuelle Version der Anwendung wird neu im Startfenster sowie in der Log-Datei angezeigt.
-   \item Wenn die Applikationen das erste mal gestartet wird, sind im Startfenster noch keine Konfigurationen aufgelistet.
+   \item Wenn die Applikationen das erste Mal gestartet wird, sind im Startfenster noch keine Konfigurationen aufgelistet.
 Es wurde ein Text hinzugefügt, welcher dem Nutzer erklärt, wie er Konfigurationsdateien öffnen kan.
    \item Wird im verwendeten Object Model eine Class Description referenziert, welche für die Applikation unbekannt ist, so führte dies zu Abstürzen.
 Diese Abstürze werden neu verhindert, indem eine leere Class Description als Platzhalter eingesetzt wird.

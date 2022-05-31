@@ -64,7 +64,7 @@ Möchte der Nutzer eine Funktion verwenden, so kann er diese anklicken und die e
 In Abbildung \ref{fig:uisketch} ist gezeigt, wie die beiden Bereiche horizontal nebeneinander angezeigt werden sollen.
 Auf der rechten Seite ist zu erkennen, wie die verschiedenen Features übereinander aufgelistet werden sollen.
 \textit{Feature D} nimmt dabei mehr Platz ein als die anderen.
-Damit wird dargestellt, dass dieses von Nutzer angewählt und geöffnet wurde.
+Damit wird dargestellt, dass dieses vom Nutzer angewählt und geöffnet wurde.
 Eine dieser Funktionen sind die Favoriten.
 Wie deren Benutzerschnittstelle aussehen soll, ist im Abschnitt \ref{uifavorites} aufgeführt.
 
@@ -73,7 +73,7 @@ Der \textit{Quick Access} des \ac{DMT2} besteht aus vier Teilen.
 In Abbildung \ref{fig:dmt2QuickAccess} ist dies dargestellt.
 Oben links sind alle Objekte angezeigt.
 Rechts daneben werden die Attribute und Methoden des aktuell aktiven Objekts angezeigt.
-Fürs Lesen und Schreiben werden in den unteren beiden Teilen des Fensters jeweils der Request und die Response in als \text{XML} Text dargestellt.
+Fürs Lesen und Schreiben werden in den unteren beiden Teilen des Fensters jeweils der Request und die Response als XML Text dargestellt.
 
 \begin{figure}
    \centering
@@ -86,9 +86,9 @@ Fürs Lesen und Schreiben werden in den unteren beiden Teilen des Fensters jewei
 In der neuen Anwendungen sollen diese vier Teile in einer einzelnen Komponente kombiniert dargestellt werden.
 Wie dies aussehen kann, ist in Abbildung \ref{fig:objectModelUIsktech} gezeigt.
 Die Objekte, beispielsweise \textit{Profile 1}, werden untereinander aufgelistete.
-Wird ein Objekt angeklick, so vergrössert sich dieses und die Attribute und Methoden werden ersichtlich.
+Wird ein Objekt angeklickt, so vergrössert sich dieses und die Attribute und Methoden werden sichtbar.
 Wird ein Attribut gelesen, so soll der Wert in einem Textfeld neben dem Attribut dargestellt werden.
-Das bietet den Vorteil, dass die Werte mehrere ausgelesener Attribute gleichzeitig angeschaut werden können. 
+Das bietet den Vorteil, dass die Werte mehrerer ausgelesener Attribute gleichzeitig angeschaut werden können. 
 Dies ist beim \textit{Quick Access} nicht möglich, da der Bereich mit der Response bei jedem Auslesen überschrieben wird.
 Die Textfelder, welche für das Anzeigen der gelesenen Werte verwendet werden, sollen jeweils auch für das Schreiben von Werten verwendet werden.
 
@@ -107,8 +107,8 @@ Im Sketch zum Object Model (Abbildung \ref{fig:objectModelUIsktech}) ist der Ber
 Eine Idee zur Umsetzung dieser ist in Abbildung \ref{fig:searchFilterSketch} gezeigt.
 Um die Objekte nach ClassId zu filtern, können die Textfelder im oberen Bereich des Sketchs verwendet werden.
 Das Textfeld im unteren Bereich ist für die textbasierte Suche gedacht.
-Ein Schalter in der Mitte soll dazu da sein, dass bei der Textsuche zwischen Objekten und Attributen rsp. Methoden gewechselt werden kann.
-Der \textit{Find} Knopf soll die suche Suche starten.
+Ein Schalter in der Mitte soll dazu da sein, dass bei der Textsuche zwischen Objekten und Attributen oder Methoden gewechselt werden kann.
+Der \textit{Find} Knopf soll die Suche starten.
 Mit dem \textit{Reset} Knopf werden die Such- und Filterparameter zurückgesetzt.
 
 \begin{figure}
@@ -122,9 +122,9 @@ Mit dem \textit{Reset} Knopf werden die Such- und Filterparameter zurückgesetzt
 
 \subsection{Favoriten}\label{uifavorites}
 In einem vorherigen Abschnitt wurde erklärt, dass die rechte Hälfte der Benutzerschnittstelle Platz für unterschiedliche Features haben soll.
-Dort sollen auch die Favoriten aufgelistete werden.
-Diese sollen in zwei Bereichen dargestellt werden und nehmen somit auch zwei Plätze in der Features Liste ein.
-Einer für favorisierte Objekte und einer für favorisierte Attribute und Methoden.
+Dort sollen auch die Favoriten aufgelistet werden.
+Diese sollen in zwei Bereichen dargestellt werden und nehmen somit auch zwei Plätze in der Features Liste ein:
+einer für favorisierte Objekte und einer für favorisierte Attribute und Methoden.
 In Abbildung \ref{fig:favoritesSketch} ist ersichtlich, wie Attribute und Methoden gruppiert dargestellt werden.
 
 \begin{figure}
@@ -138,7 +138,7 @@ In Abbildung \ref{fig:favoritesSketch} ist ersichtlich, wie Attribute und Method
 
 \pagebreak
 \section{Testkonzept}
-Um sicherzustellen, dass die Applikation und deren Komponenten richtig funktionieren, wurden verschieden Arten von Tests eingesetzt.
+Um sicherzustellen, dass die Applikation und deren Komponenten richtig funktionieren, wurden verschiedene Arten von Tests eingesetzt.
 Sie unterscheiden sich primär im Umfang des Getesteten. 
 In den folgenden Abschnitten werden sie detailliert beschrieben und verglichen.
 
@@ -152,31 +152,31 @@ Dies ist mit der CI/CD Pipeline realisiert.
 
 
 \subsection{Modultests}
-Bei den Modultests wird das Zusammenspiel mehrere Klassen getestet, welche gemeinsam ein Modul bilden.
+Bei den Modultests wird das Zusammenspiel mehrerer Klassen getestet, welche gemeinsam ein Modul bilden.
 Dabei soll nur das öffentliche Interface des Moduls verwendet werden.
-Abhängigkeit, welche nicht Teil dieses Moduls sind, werden wie bei den Unit-Tests durch Mocks oder Fakes ersetzt.
+Abhängigkeiten, welche nicht Teil dieses Moduls sind, werden wie bei den Unit-Tests durch Mocks oder Fakes ersetzt.
 Im Gegensatz zu den Unit-Tests ist der Zeitpunkt für das Schreiben der Modultests nicht definiert.
 Sie sollen so eingesetzt werden, wie sie für den Entwicklungsprozess hilfreich sind.
 
 Beispiel: Mittels Refactoring soll das interne Design eines bestehenden Moduls verbessert werden.
 Um sicherzustellen, dass das Modul nach dem Refactoring noch korrekt funktioniert, werden zuvor Modultests geschrieben, welche die öffentliche Schnittstelle des Moduls testen.
 Da sich diese beim Refactoring nicht verändert, können die Modultests auch noch nach dem Refactoring ausgeführt werden.
-Unit-Tests, welche interne Klassen getestet haben sind womöglich nicht mehr brauchbar, wenn sich die internen Schnittstellen bei Refactoring stark verändert haben.
+Unit-Tests, welche interne Klassen getestet haben sind womöglich nicht mehr brauchbar, wenn sich die internen Schnittstellen beim Refactoring stark verändert haben.
 
 Im Bezug auf die regelmässige und automatisierte Ausführung sollen sich Modultests nicht von Unit-Tests unterscheiden.
 
 
 \subsection{Integrationstests}\label{Integrationstests}
-Integrationstests sind dazu da, die Funktionalität von Komponenten sowie das Zusammenspiel dieser mit anderen zu Testen \parencite{winter2012integrationstest}.
+Integrationstests sind dazu da, die Funktionalität von Komponenten sowie das Zusammenspiel dieser mit anderen zu testen \parencite{winter2012integrationstest}.
 Im Gegensatz zu Unit- und Modultests wird auf den Einsatz von Mocks oder Fakes verzichtet um einen möglichst realitätsnahen Testaufbau zu erreichen.
 Da die Kommunikation mit Stromzählern für die zu testende Applikation zentral ist, wird für das Ausführen der Integrationstests ein angeschlossener Stromzähler benötigt.
-Im Rahmen dieses Projekts war es nicht mögliche einen Testagent mit angeschlossenem Zähler bereit zu stellen.
+Im Rahmen dieses Projekts war es nicht möglich einen Testagent mit angeschlossenem Zähler bereitzustellen.
 Deshalb wurden die Integrationstests ausschliesslich lokal auf dem Rechner des Entwicklers ausgeführt.
 
 
 \section{Model-View-ViewModel}\label{mvvm}
 \ac{MVVM} ist ein Entwurfsmuster welches 2005 von Microsoft vorgestellt wurde.
-Sein Ziel ist es, dass Daten, Logik und Views einer Anwendung unabhängig von einander entwickelt und getestet werden können.
+Sein Ziel ist es, dass Daten, Logik und Views einer Anwendung unabhängig voneinander entwickelt und getestet werden können.
 Es besteht aus folgenden Schichten:
 \begin{itemize}
    \item Model: das Domänen Model der Applikation
@@ -222,7 +222,7 @@ Diese werden in den folgenden Abschnitten näher beschrieben.
 
 \subsection{DlmsQuickAccess}
 Dieses Projekt ist der Einstiegspunk der Anwendung.
-Die Klasse \textit{App} lässt sich mit der \texttt{main()} Method vergleichen, welchen den meisten C basierten Sprachen als erstes ausgeführt, wenn ein Programm gestartet wird.
+Die Klasse \textit{App} lässt sich mit der \texttt{main()} Method vergleichen, welche bei den meisten C basierten Sprachen als erstes ausgeführt wird, wenn ein Programm gestartet wird.
 Diese lädt \textit{Windows} und \textit{Controls} aus dem DlmsQuickAccess.View Projekt und zeigt diese dem Nutzer an.
 
 
@@ -251,13 +251,13 @@ In Abbildung \ref{fig:filterViewModel} ist die \textit{FilterViewModelFactory} K
 \end{figure}
 
 Dieses Design vereinfacht das Testen der Instanziierungen.
-Ein weitere Vorteil ist, dass eine Factory eine andere Factory mittels Assoziation verwenden kann, deren konkrete Implementation jedoch nicht kennen muss.
+Ein weiterer Vorteil ist, dass eine Factory eine andere Factory mittels Assoziation verwenden kann, deren konkrete Implementation jedoch nicht kennen muss.
 In Abbildung \ref{fig:vmfactories} ist ganz oben die \textit{MainWindowViewModelFactory} Klasse abgebildet, welche für die Erstellung des \textit{MainWindowViewModel} zuständig ist.
-Dieses ViewModel beinhaltete alle anderen ViewModels welche für die verschiedenen Bereiche der Applikation benötigt werden.
-Um diese zu erstellen verwendete \textit{MainWindowViewModelFactory} Instanzen der \textit{IObjectModelViewModelFactory} und \textit{IFavoritesViewModelFactory} welche selbst weitere Factories verwenden.
+Dieses ViewModel beinhaltet alle anderen ViewModels, welche für die verschiedenen Bereiche der Applikation benötigt werden.
+Um diese zu erstellen, verwendete \textit{MainWindowViewModelFactory} Instanzen der \textit{IObjectModelViewModelFactory} und \textit{IFavoritesViewModelFactory}, welche selbst weitere Factories verwenden.
 Das bringt den Vorteil, dass die einzelnen Factory Klassen nicht aneinander gekoppelt sind.
 Sie werden erst bei ihrer Instanziierung mittels Dependency Injection miteinander verbunden.
-Diese ist Teils des Projekts DlmsQuickAccess.Config (\ref{dqa:config}).
+Diese ist Teil des Projekts DlmsQuickAccess.Config (\ref{dqa:config}).
    
 \begin{figure}[H]
    \centering
