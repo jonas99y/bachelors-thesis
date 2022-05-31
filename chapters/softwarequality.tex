@@ -16,12 +16,13 @@ Sie wird im Abschnitt \ref{qualisicherung} behandelt.
 In den folgenden Abschnitten werden die Kriterien erklärt, welche nach \citeauthor{hoffmann2013software} relevant sind für die Softwarequalität.
 Die ersten vier Kriterien sind dabei für den Kunden wichtig, da diese direkte Auswirkung auf ihn haben.
 Die letzteren vier sind nur für den Hersteller der Software relevant.
+
 \subsubsection{Funktionalität}
 Die Funktionalität gibt an, ob die spezifizierten Anforderungen erfüllt sind.
 Funktionale Fehler werden meist durch Bugs in der Implementierung verursacht, können ihren Ursprung jedoch auch in fehlenden oder falsche verstandenen Spezifikationen haben.
 Sie können durch den Einsatz von Software-Qualitätsicherungstools vorgebeugt werden.
 
-\subsubsection{Performance}
+\subsubsection{Performance}\ref{qualityPerformance}
 Mit Performance sind die Anforderungen an die Software während deren Laufzeit gemeint.
 Für einfache Desktop Anwendungen stellt dieses Kriterium meist kein Problem dar.
 Handelt es sich bei der Anwendungen jedoch um ein Echtzeitsystem, so ist die Performance eines der wichtigsten Kriterien.
@@ -42,10 +43,13 @@ Es soll möglich sein, erkannte Bugs einfach zu beheben.
 Die Software soll so aufgebaut sein, dass sie nicht vollständig umgebaut werden muss, nur um eine neue Funktion hinzuzufügen.
 
 
-\subsubsection{Transparenz}
+\subsubsection{Transparenz}\label{transparency}
 Mit diesem Kriterium wird bewertet, wie transparent das Program intern umgesetzt ist.
 Alle Teilkomponenten der Software sollen einfach zu verstehen sein.
 Tendenziell verschlechtert sich die Transparenz im Verlaufe der Weiterentwicklungen.
+Die Kognitive Komplexität ist eine Metrik, welche angibt wie aufwändig es für einen Menschen ist, einen Code zu verstehen.
+Konstrukte, welche für den Leser schwierig zu verstehen sind inkrementieren die Metrik mehr als jene, die einfach zu verstehen sind.
+Auch wenn beide genau das gleich machen \parencite{cognitiveComplexity}.
 
 
 \subsubsection{Übertragbarkeit}
@@ -186,8 +190,32 @@ Ein Problem kann beispielsweise direkt der Person zugewiesen werden, welche es b
 Meldungen, welche nicht bearbeitet werden, können entsprechend markiert werden, so dass sie in Zukunft nicht erneut auftreten.
 Da SonarQube die Historie der Berichte speichert, werden neue Probleme speziell hervorgehoben.
 Wie sich die totale Anzahl der Probleme über die Zeit entwickelt, wird ebenfalls angezeigt und gibt einen Trend der Softwarequalität an.
+In den nächsten Abschnitten werden einige Berichttypen von SonarQube beschrieben.
 
 % Maintainability, Security, Reliability, Complexity
+
+\subsubsection{Maintainability}
+Die Maintainability gibt anhand eines Bewertung von A-E an wie gut die Wartbarkeit ist.
+Konkret sagt sie aus, wie viel Zeit für den Unterhalt des Codes aufgewendet werden muss.
+Dazu werden erkannte Code-Smells summiert und in ein Verhältniss mit der Grösse des ganzen Codes gestellt.
+Die Note A sagt, dass weniger als 5\% der Zeit welche bisher für die Entwicklung der Software aufgewendet wurde, für deren Unterhalt nötig sein wird \parencite{sonarQubeMetrics}.
+
+\subsubsection{Reliability}
+Gleich wie bei der Maintainability wird auch bei der Reliability eine Bewertung von A-E vergeben.
+Die Note A wird nur dann erzielt, wenn SonarQube keine Bugs im Code erkennt.
+Je gravierender die erkannten Bugs sind, dest schlechter fällt die Bewertung aus \parencite{sonarQubeMetrics}.
+
+\subsection{Security}
+Die Security ist gleich aufgebaut wie die Reliability.
+Anstelle von Bugs führen bei ihr erkannte Sicherheitslücken zu einer schlechten Bewertung \parencite{sonarQubeMetrics}.
+
+\subsection{Complexity}
+SonarQube kennt zwei Metriken zur Komplexität.
+Die Cyclomatic Complexity gibt an, wie die Anzahl Pfade, welche im Code eingeschlagen werden können
+Im Abschnitt \ref{transparency} zur Transparenz wurde die Cognitive Transparenz erklärt. 
+Diese wird ebenfalls von SonarQube berechnet \parencite{sonarQubeMetrics}.
+Werden vordefinierte Maximalwerte der Komplexitätsmetriken von einer Methode überschritten, erstellt SonarQube dazu einen Bericht.
+
 
 \subsubsection{Funktionsweise}\label{sonar:funktionsweise}
 In einem produktiven Umfeld ist die Funktionsweise von SonarQube wie folgt:

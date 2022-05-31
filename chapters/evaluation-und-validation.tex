@@ -9,7 +9,7 @@ Des Weiteren wird betrachtet, wie die Schwerpunkte Softwarequalität und Usabili
 
 
 
-\section{Rückmeldungen der Nutzer}
+\section{Rückmeldungen der Nutzer}\ref{feedback}
 Im Verlauf des sechsten Sprints (\ref{s6}) wurden von den Nutzer der Anwendung ausführliche Rückmeldungen abgeholt.
 Der nächste Abschnitt widmet sich den positiven Rückmeldungen.
 Danach werden jene aufgelistet, welche von gefundenen Fehlern und möglichen Verbesserungen handeln.
@@ -67,13 +67,54 @@ Im Abschnitt \ref{ausblick} ist dies festgehalten.
 
 
 \section{Softwarequalität}\label{evalQuality}
+In Abschnitt \ref{kriterien} wurden acht Kriterien beschrieben, welche die Software messen.
+Die Erfüllung dieser Kriterien wird in den folgenden Abschnitten beschrieben.
 
-\subsection{SonarQube}
-Alle kategorien?
+\subsection{Funktionalität}
+Im Abschnitt \ref{feedback} sind Rückmeldungen der Nutzer aufgeführt.
+Diese besagen, dass einige Teile der Anwendung bereits gut funktionieren und andere noch fehlerhaft sind.
+Die Funktionalität lässt sich somit noch verbessern.
 
-% TODO tests und coverage
+\subsection{Performance}
+Wie im Abschnitt \ref{qualityPerformance} beschrieben, sind die Anforderungen an die Performance von Desktop Anwendung meist einfach zu erfüllen.
+Dies ist auch beim DlmsQuickAccess der Fall.
+Die Anwendung läuft flüssig und Befehle werden jeweils sofort ausgeführt.
+Einzig das Scrollen durch die Liste von Objekten ist nicht immer ganz flüssig.
 
-\section{Usabilty}
+\subsection{Zuverlässigkeit}
+SonarQube bewertet die Reliability der Software mit der Bestnote \dq A\dq.
+In Abschnitt \label{gefundeneFehler} sind Fehler aufgeführt, welche von den Nutzer gefunden wurden.
+Um die Zuverlässigkeit der Anwendung noch weiter zu verbessern, müssen diese behoben werden.
+
+\subsection{Benutzbarkeit}
+Die Benutzbarkeit der Anwendung wird im Abschnitt \ref{evalUsabilty} beurteilt.
+
+\subsection{Wartbarkeit}
+SonarQube bewertet die Maintainability der Software mit der Bestnote \dq A\dq.
+Dabei ist jedoch wichtig zu beachten, dass der \ac{ATS} Code für die Bewertung exkludiert wurde.
+Die Abhängigkeit zu diesem verschlechtert die Wartbarkeit.
+Wenn ein Fehler in Kommunikationscode auftritt, kann es schwierig sein, diesen zu finden und zu beheben.
+
+\subsection{Transparenz}
+Anhand der Cognitive Complexity Metrik kann beurteilt werde, wie transparent der Code ist.
+SonarQube meldet 13 Code Smells, welche von zu hoher kognitiver Komplexität kommen.
+Diese befinden sich jedoch alle in Codeteilen, welche sich zwar im Repository befinden, jedoch im DlmsQuickAccess nicht verwendet werden (z.B. \textit{InfraLib}).
+Somit ist die Transparenz der Software gut!
+
+\subsection{Übertragbarkeit}
+Der Code des \ac{ATS}, sowie jener der Benutzerschnittstelle sind an Windows gebunden.
+Diese Teile der Anwendung lassen sich nicht auf andere Systeme übertragen.
+Sie sind jedoch so vom Rest der Anwendung isoliert, dass sie einfach ersetzt werden könnten.
+Die Übertragbarkeit der Anwendung ist somit weder sehr gut noch sehr schlecht.
+
+\subsection{Testbarkeit}
+TODO
+coverage data
+cyclomatic Complexity
+
+
+\section{Usabilty}\label{evalUsabilty}
+TODO
 Verschieden Kategorien?
 
 short cuts
