@@ -16,34 +16,6 @@ In diesem Kapitel werden Ideen und Konzepte aufgezeigt, welche für die Implemen
 % - Besteht z.B. ein wesentliches Ziel der Arbeit darin, eine passende Software-Architektur zu
 % evaluieren, dann gehören die entsprechenden Beschreibungen ins Kapitel 5.
 
-
-% \section{Konfiguration} \label{idea_config} %todo delete
-% \subsection{Motivation}
-% Bei der Landis+Gyr werden verschiedenen Stromzählermodelle entwickelt. Der DlmsQuickAccess soll mit möglichst allen kommunizieren können.
-% Wie bereits in XY TODO erwähnt, wird für die Kommunikation Code der ATS verwendet.
-% Damit dieser richtig funktionieren kann, werden folgende zwei Dateien benötigt:
-% - AddressList
-% - DLMS.xml
-% Für die Auflistung aller Objekte eines Zählers wird zusätzlich ein ObjectModel als XML Datei benötigt.
-% Diese drei Dateien unterscheiden sich von Produkt zu Produkt. Ebenfalls muss berücksichtigt werden, dass sich die Informationen in diesen Dateien jederzeit ändern können.
-% Insbesondere beim ObjectModel ist dies regelmässig der Fall.
-
-% Diese Konfigurationen sollen somit von den Produktteams verwaltet und versioniert werden können.
-
-% \subsection{Lösungsidee}
-% Eine Konfigurationsdatei in welcher die zuvor erwähnten Dateien definiert sind. Die soll im YAML format geschrieben sein, was das Bearbeiten vereinfacht.
-% Jedes Produktteam kann diese Konfigurationsdatei im Repository des Produktquellcodes ablegen und versionieren.
-
-% TODO
-% damit sich der DlmsQuickAccess beim Betriebssystem so registrieren kann, dass 
-% Diese Konfiurationsdateien sollen die Endung \".dlmsquickaccess\" tragen, 
-
-% Um das Wechseln zwischen Produkten zu vereinfachen, soll sich der DlmsQuickAccess zuvor verwendete Konfigurationen merken, so dass der Benutzer diese auswählen kann.
-
-
-% TODO ufschribe, was passiert bim erste start und bi doppelclick.
-
-
 \section{Aufbau Benutzerschnittstelle}\label{aufbauUI}
 Die Benutzerschnittstelle soll in zwei Bereiche aufgeteilt werde.
 \begin{figure}[H]
@@ -202,7 +174,6 @@ Wie \ac{MVVM} für diese Arbeit umgesetzt werden kann, ist im folgenden Abschnit
 
 
 \section{Architektur}
-% TODO, evtl verschieben zu Realisierung und hier nur die grundlegenden Idee aufzeigen. Wie MVVM angewendet wurde
 Der Quellcode der Anwendung ist in mehrere C\# Projekte aufgeteilt.
 
 Dies soll die Wiederverwendbarkeit der Komponenten sicherstellen.

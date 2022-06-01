@@ -23,27 +23,27 @@ Dabei ist ersichtlich, dass auf den unteren Layern unterschiedliche Kommunikatio
    \label{fig:dlmsOsi}
 \end{figure}
 
-Der Applicationlayer des \ac{DLMS} Protokolls definiert die Funktionen eines intelligenten Stromzählers als Objekte \parencite{vyas2012advance}.
+Der Applikationslayer des \ac{DLMS} Protokolls definiert die Funktionen eines intelligenten Stromzählers als Objekte \parencite{vyas2012advance}.
 
 \subsection{COSEM}\label{cosem}
-Der \ac{COSEM} Standard, welcher teil von \ac{DLMS} ist, beschreibt eine Sammlung von logischen Geräten, welche gemeinsam in einem physischen Gerät untergebracht werden.
+Der \ac{COSEM} Standard, welcher Teil von \ac{DLMS} ist, beschreibt eine Sammlung von logischen Geräten, welche gemeinsam in einem physischen Gerät untergebracht werden.
 Diese logischen Geräte bestehen aus mehreren Attributen und Methoden, welche jeweils zu Objekten zusammengefasst sind.
-Spezifische Objekte können mittels \ac{Obis}-Code adressiert werden.
-Die Schnittstellen zu den Objekten sowie eine Liste von standard \ac{Obis}-Codes sind in \ac{COSEM} enthalten  \parencite{vyas2012advance}.
+Spezifische Objekte können mittels \ac{OBIS}-Code adressiert werden.
+Die Schnittstellen zu den Objekten sowie eine Liste von standard \ac{OBIS}-Codes sind in \ac{COSEM} enthalten  \parencite{vyas2012advance}.
 
 
 \section{Landis+Gyr intern}\label{lgintern}
 In den folgenden Abschnitten werden Konzepte, Anwendungen und Produkte erklärt, welche bei der Landis+Gyr intern verwendet werden.
 
-\subsection{Picasso Platform}\label{picasso}
-Picasso ist der Name einer Software Platform der Landis+Gyr.
-Mehrere Teams, verteilt auf vier Kontinente, arbeiten am C++ Code dieser Platform.
+\subsection{Picasso Plattform}\label{picasso}
+Picasso ist der Name einer Software Plattform der Landis+Gyr.
+Mehrere Teams, verteilt auf vier Kontinente, arbeiten am C++ Code dieser Plattform.
 Sie beinhaltet grundlegende Komponenten wie beispielsweise das Betriebs- und Filesystem sowie Funktionen, welche von allen Produkttypen verwendet werden.
-Die Teams, welche die konkreten Stromzähler-Produkte entwickeln, bauen auf Picasso auf und ergänzen die Platform um Funktionen, welche nur von ihrem Produkt verwendet werden.
-Damit die Platform mit unterschiedlichen Konfigurationen getestet werden kann, verfügt sie über mehrere Referenzprodukte.
-Referenzprodukte sind Produkte, welche nicht verkauft, sondern nur für interne Zwecke verwendet werden.
-Am Standort Cham arbeitet ein Team an der Platform sowie eines an einem Produkt, dem Stromzähler Model \textit{E660}.
-Der Autor dieser Arbeit ist seit mehreren Jahren Teil des Platformteams.
+Die Teams, welche die konkreten Stromzähler-Produkte entwickeln, bauen auf Picasso auf und ergänzen die Plattform um Funktionen, welche nur von ihrem Produkt verwendet werden.
+Damit die Plattform mit unterschiedlichen Konfigurationen getestet werden kann, verfügt sie über mehrere Referenzprodukte.
+Referenzprodukte sind Produkte, welche nicht verkauft, sondern nur für interne Verifikation der Platform verwendet werden.
+Am Standort Cham arbeitet ein Team an der Plattform sowie eines an einem Produkt, dem Stromzähler Modell \textit{E660}.
+Der Autor dieser Arbeit ist seit mehreren Jahren Teil des Plattformteams.
 
 
 
@@ -51,7 +51,7 @@ Der Autor dieser Arbeit ist seit mehreren Jahren Teil des Platformteams.
 Im Absatz \ref{cosem} wurde erwähnt, dass die Funktionen eines intelligenten Stromzählers mittels Objekten abstrahiert werden.
 Bei der Landis+Gyr werden alle Objekte eines bestimmten Produkts jeweils in einem Object Model zusammengefasst.
 Anhand des Object Models entwerfen Architekten die Funktionen eines Zählers.
-Sie verwenden eine Excel-Tabelle um die Werte der Object Models zu bearbeiten.
+Sie verwenden eine Excel-Tabelle um die Werte des Object Models zu bearbeiten.
 In Abbildung \ref{fig:objectModel} ist ein der Header sowie ein Objekt aus einer solchen Tabelle dargestellt.
 
 \begin{figure}[H]
@@ -90,8 +90,8 @@ Da die Class Descriptions wie zuvor beschrieben jedoch Word Dokumente sind, müs
 Analog zu \textit{Picasso Tools} stellt \textit{Description Tools} ein Plugin, in diesem Fall für Word, bereit, welches Dokumente validieren und als XML exportieren kann.
 
 Nebst den Plugins bieten beide Programme auch ein \ac{CLI} an.
-Dieses wird von einem Server verwendet, welcher jeden Tag alle Object Models und Class Description validiert und als XML exportiert.
-Anhand der Validierungsresultate erstellt er einen Report, welcher einen Überblick über die Qualität der Dokumente gibt sowie auf Fehler hinweist.
+Dieses wird von einem Server verwendet, welcher jeden Tag alle Object Models und Class Descriptions validiert und als XML exportiert.
+Anhand der Validierungsresultate wird ein Report erstellt, welcher einen Überblick über die Qualität der Dokumente gibt sowie auf Fehler hinweist.
 
 Beide Tools sind in der Programmiersprache C\# entwickelt und nutzen die Komponente \textit{InfraLib}.
 Diese ist eine C\# Bibliothek, welche Funktionalitäten wie das Parsen der XML files anbietet. 
@@ -107,6 +107,7 @@ Da das verwendete Buildsystem, SCons \footnote{https://scons.org/}, ebenfalls mi
 
 \subsection{E66C Testing}\label{pythonTesting}
 \textit{E66C} ist die Modellbezeichnung eines Kommunikationsmoduls, welches von der Landis+Gyr in Cham entwickelt wird.
+Abbildung \ref{fig:e66c} zeigt solch ein Kommunikationsmodul.
 Dabei handelt es sich um eine Komponente, welche auf gewisse Stromzählermodelle aufgesteck werden kann und diese um Kommunikationsfunktionen erweitert.
 
 \begin{figure}[H]
@@ -131,7 +132,7 @@ Zusätzlich ist die Steuerung der Testumgebung möglich.
 Befindet sich der Testaufbau beispielsweise auf dem Tisch des Entwicklers, so wird der Stromzähler in der Regel nicht über eine richtige Stromquelle betrieben, sondern an einen Emulator angeschlossen, welcher diese ersetzt.
 In diesem Fall wird der Emulator über das \ac{ATS} Testscript gesteuert.
 
-Die \ac{ATS} wurde von der Landis+Gyr in der Programmiersprache C\# entwickelt und wird aktuell für das Testen aller Stromzähler der Picasso Platform (siehe \ref{picasso}) eingesetzt.
+Die \ac{ATS} wurde von der Landis+Gyr in der Programmiersprache C\# entwickelt und wird aktuell für das Testen aller Stromzähler der Picasso Plattform (siehe \ref{picasso}) eingesetzt.
 
 
 
@@ -175,7 +176,7 @@ Im Abschnitt \ref{survey} ist mehr zur Umfrage zu lesen.
 
 
 \section{WinUI3}
-WinUI3 ist eine Platform, welche es erlaubt, native Benutzeroberflächen für Windows zu entwickeln.
+WinUI3 ist eine Plattform, welche es erlaubt, native Benutzeroberflächen für Windows zu entwickeln.
 Sie ist Teil der Windows APP SDK \footnote{https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/}.
 Der Quellcode dazu ist Open Source \parencite{winuiintro}.
 WinUI3 wird Microsoft als beste Technologie zur Erstellung von Benutzerschnittstellen bezeichnet und löst ältere Technologien wie \ac{WPF} oder \ac{UWP} ab.
