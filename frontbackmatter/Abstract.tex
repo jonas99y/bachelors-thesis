@@ -2,7 +2,6 @@
 % Abstract
 %*******************************************************
 %\renewcommand{\abstractname}{Abstract}
-\pdfbookmark[1]{Abstract}{Abstract}
 \begingroup
 \let\clearpage\relax
 \let\cleardoublepage\relax
@@ -11,8 +10,40 @@
 \cleardoublepage
 
 
-\pdfbookmark[1]{Zusammenfassung}{Zusammenfassung}
-\chapter*{Zusammenfassung}
+\pdfbookmark[0]{Abstract}{Abstract}
+\chapter*{Abstract}
+Die vorliegende Arbeit beschriebt den Entwicklungsprozess einer Software für die Landis+Gyr.
+
+Während der Entwicklung von intelligenten Stromzählern setzt die Landis+Gyr zu Debugging- und Testing-Zwecken eine Software ein um Werte der Zähler lesen und schrieben zu können.
+Die bisherige Software ist in die Jahre gekommen und nicht benutzerfreundlich.
+Sie soll durch eine Neuentwicklung ersetzt werden.
+Nebst den Funktionen der bisherigen Software sollen Zusatzfunktionen basieren auf den Wünschen der Nutzer implementiert werden.
+
+In einem ersten Schritt werden die Nutzer befragt.
+Es wird erfasst, welche Aspekte der bestehenden Anwendung gut und welche schlecht sind.
+Des Weiteren werden Ideen für Zusatzfunktionen gesammelt und priorisiert.
+Basierend auf diesen Erkenntnissen wird iterativ eine neue Anwendung implementiert.
+Eine Technologieevaluation ergab, dass diese mit C\# und WinUI3 für Windows Desktop umgesetzt wird.
+Um eine hohe Benutzerfreundlichkeit zu gewährleisten, wird die Thematik «Usability» bearbeitet und die daraus gewonnenen Erkenntnisse in der Entwicklungsarbeit angewendet.
+Die Qualität der Software wird mit gängigen Tools und Prozessen gewährleistet.
+
+Für die Kommunikation mit den Zählern wird interner Code der Landis+Gyr verwendet, welcher eine tiefe Qualität aufweist.
+Mit diesem Risiko muss angemessen umgegangen werden.
+Obwohl die Landis+Gyr mehrere C\# Anwendungen unterhält und einsetzt, sind im Bereich CI/CD sowie Qualitätssicherung noch keine etablierten Tools aufgesetzt.
+In dieser Arbeit soll dies geändert werden.
+
+Die in der Abbildung gezeigte Anwendung «DlmsQuickAccess» baut auf den Stärken des Vorgängers auf bügelt dessen Schwächen durch neue Features aus.
+Das moderne Interface der Neuentwicklung ermöglicht einen einfachen und übersichtlichen Zugriff auf die Objekte der Stromzähler. 
+In den ersten Sprints wurden die Grundfunktionen implementiert.
+Auf diese folgten einige Zusatzfeatures, welche in Zusammenarbeit mit den Nutzern definiert und priorisiert wurden.
+Positives Feedback von den Nutzern, welche «DlmsQuickAccess» bereits in ihren täglichen Arbeiten einsetzen, bestätigt, dass Schwächen der alten Software eliminiert sowie mit neuen Funktionen ein Mehrwert geboten werden konnten.
+
+Für diese Arbeit wurde die Zielgruppe des «DlmsQuickAccess» innerhalb der Landis+Gyr auf Firmwareentwickler am Standort Cham beschränkt.
+In Zukunft soll die alte Software jedoch vollständig abgelöst und von über 100 Entwickler*innen, verteilt auf fünf Kontinente, verwendet werden.
+Im Backlog befinden sich noch Work-Items, welche im Rahmen dieser Arbeit nicht bearbeitet werden konnten.
+Dabei handelt es sich um neue Funktionen, welche von dem Nutzer bereits zu Beginn des Projekts gewünscht wurden, sowie Bug-Reports und Verbesserungsvorschläge, welche die Nutzer bei der Verwendung der Anwendung rückmeldeten.
+
+
 TODO
 
 \endgroup

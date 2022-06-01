@@ -80,10 +80,8 @@
 \condLOCK{\cleardoublepage\include{frontbackmatter/BlockingNotice}}
 \cleardoublepage\include{frontbackmatter/Abstract}
 \cleardoublepage\include{frontbackmatter/Contents}
-\cleardoublepage\include{frontbackmatter/Figures}
 %\cleardoublepage\include{frontbackmatter/Tables}
 %\cleardoublepage\include{frontbackmatter/Listings}
-\cleardoublepage\include{frontbackmatter/Acronyms}
 %*************************************************************************
 % Mainmatter
 %*************************************************************************
@@ -92,7 +90,7 @@
 \pagenumbering{arabic}
 % Alwas use \cleardoublepage before \part{...}.
 \cleardoublepage
-\part{Thesis}\label{pt:thesis}
+% \part{Thesis}\label{pt:thesis}
 \include{chapters/problem-fragestellung-vision}
 \include{chapters/stand-der-technik}
 \include{chapters/ideen-und-konzepte}
@@ -108,16 +106,17 @@
 %*************************************************************************
 % Backmatter
 %*************************************************************************
-\appendix
+% \appendix
 %\renewcommand{\thechapter}{\alph{chapter}}
 \cleardoublepage
-\part{Appendix}
-
+% \part{Appendix}
+\include{anhang}
+\cleardoublepage\include{frontbackmatter/Figures}
+\cleardoublepage\include{frontbackmatter/Acronyms}
 %*************************************************************************
 % Other Stuff in the Back
 %*************************************************************************
 \cleardoublepage\include{frontbackmatter/Bibliography}
-\include{anhang}
 %*************************************************************************
 % Game Over: Restore, Restart, or Quit?
 %*************************************************************************

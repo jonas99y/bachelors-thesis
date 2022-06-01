@@ -15,18 +15,18 @@ Der nächste Abschnitt widmet sich den positiven Rückmeldungen.
 Danach werden jene aufgelistet, welche von gefundenen Fehlern und möglichen Verbesserungen handeln.
 \subsection{Positive Rückmeldungen}
 
-\begin{enumerate}
+\begin{itemize}
    \item Die Funktion, einzelne Objekte oder Attribute als Favorit vermerken zu können, ist sehr hilfreich.
    \item Da die Beschreibungen der Enum Werte direkt angezeigt werden, bleibt das separate öffnen der Class Description erspart.
    \item Es ist praktisch, dass beim Starten der Anwendung direkt das gewünschte Produkt angewählt werden kann. Beim Starten des \ac{DMT2} ist es nicht klar, welche Konfiguration gerade geladen ist.
    \item Die Anwendung wirkt auf mich optisch ansprechend und modern.
    \item Die Lese- und Schreibgeschwindigkeit ist sehr eindrücklich. Ein klarer Vorteil gegenüber \ac{DMT2}.
    \item Ich nutze den \ac{DMT2} nur noch dann, wenn ein bestimmtes Attribut im DlmsQuickAccess nicht richtig funktioniert. Ich hoffe, dass die Anwendung von der Landis+Gyr den nötigen Support erhält und weiterentwickelt wird.
-\end{enumerate}
+\end{itemize}
 
 \subsection{Gefundene Fehler und Verbesserungsvorschläge}\label{gefundeneFehler}
 Rückmeldungen, welche bereits umgesetzten werden konnten wurden in dieser Auflistung weggelassen.
-\begin{enumerate}
+\begin{itemize}
    \item Beim Auslesen von grossen Arrays wirkt die Benutzerschnittstelle unübersichtlich.
    \item Es wäre praktisch, wenn ausgelesene Werte aus der Anwendung exportiert werden könnten, z.B. als \ac{YAML} Datei.
    \item Attribute vom Type \textit{CHOICE} funktionieren nicht richtig.
@@ -34,7 +34,7 @@ Rückmeldungen, welche bereits umgesetzten werden konnten wurden in dieser Aufli
    \item Beim Schreiben von Zahlenwerten muss der Nutzer die Länge des Typs kennen und beachten, dies ist mühsam und fehleranfällig.
    \item Gelesene Arrays werden teilweise falsch dargestellt.
    \item Es wäre hilfreich, wenn die Suche mit einer Tastenkombination gestartet werden könnte.
-\end{enumerate}
+\end{itemize}
 
 \section{Vergleich mit DMT2}
 Im Abschnitt \ref{dmt} wurden die Stärken und Schwächen des \ac{DMT2} aufgezählt.
@@ -115,25 +115,26 @@ Des Weiteren führte das Vorgehen nach \ac{TDD} dazu, dass Klassendesigns, welch
 
 
 \section{Usabilty}\label{evalUsabilty}
-Eigenschaften, welche eine Anwendung mit hoher Usability haben soll wurden in Abschnitt \ref{usability} aufgezählt.
-Anhand dieser wird die Usability der Anwendung evaluiert.
+Im Gegensatz zur Softwarequalität gibt es keine Metriken, welche für die Evaluation der Usability verwendet werden können.
+Um die Usability zu bewerten werden die Eigenschaften, welche in Abschnitt \ref{usability} aufgeführt sind, beurteilt.
+Die Bewertung basiert auf den Erkenntnissen des Autors sowie den Rückmeldungen der Nutzer.
 
+Die Nutzer können den DlmsQuickAccess selbständig installieren und ohne Anleitung nutzen.
+Somit ist die Anwendung selbst beschreibend.
+Die ersten Versionen des DlmsQuickAccess stürzten sehr oft ab.
+Beispielsweise wenn ein falsches Objekt ausgelesen wurde oder ein Object Model geladen wurde, welches nicht unterstützt ist.
+Die Fehlertoleranz der Anwendung wurde verbessert, so dass das Ausführen von Lese- oder Schreibbefehlen nicht mehr zu Abstürzen der ganzen Anwendung führen kann.
+Fehler, welche bei der Kommunikation auftreten, werden abgefangen, jedoch für den Nutzer nicht transparent dargestellt.
+Dies ist nicht motivierend, da er nicht weiss, ob der Fehler bei ihm oder dem Programm liegt.
+Die Funktion der Favoriten ermöglicht dem Nutzer, das Program an seine aktuelle Arbeit anzupassen.
+Dies und die Suchfunktion sorgen für eine gute Steuerbarkeit der Anwendung.
+Die Nutzer sind mit der Repräsentation des Zählerschnittstelle als Object Model bestens vertraut.
+Dass der DlmsQuickAccess diese als primäre Komponente für die Kommunikation mit den Zählern verwendet, überrascht die Nutzer somit nicht und ist erwartungskonform.
 
+Die Nutzer meldeten zurück (\ref{gefundeneFehler}), dass einzelne Texte und Ansichten teilweise nicht vollständig angezeigt werden oder unübersichtlich sind.
+Diese Fehler treten auf, wenn das Fenster der Anwendung zu klein ist oder der Bildschirm des Nutzer beispielsweise im Hochformat ist.
+Solche Szenarien wurden bisher nicht ausführlich getestet.
+Um die Usability weiter zu Verbessern, soll dies in Zukunft nachgeholt werden und Optimierungen für unterschiedliche Anzeigegrössen und Formate implementiert werden.
 
-TODO
-Verschieden Kategorien?
-
-short cuts
-
-Fehlertoleranz anfangs noch sehr schlecht.
-
-Erwartungskonform, da Object Model den Nutzer vertraut ist.
-
-Alle information direkt ersichtlich
-
-Farben sind schlicht.
-
-Fehlermeldungen noch verbessert werden.
-Im Log vorhanden, dem Nutzer noch nicht gut dargestellt.
-
-Unterschiedliche Fenstergrössen unterstützen,
+In Abschnitt \ref{moreUser} wird beschrieben, dass der DlmsQuickAccess in einem nächsten Schritt bei der Landis+Gyr weiter etabliert und von mehr Nutzer verwendet werden soll.
+Um weitere Erkenntnissen zur Usability zu sammeln, kann Anhand einer Vor-Ort-Beobachtung\ref{vorort} analysiert werden, wie neue Nutzer mit der Anwendung zurechtkommen.

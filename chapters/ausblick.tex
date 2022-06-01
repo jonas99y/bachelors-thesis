@@ -27,7 +27,14 @@ Da dies während dieses Projektes regelmässig gemacht wurde, waren die Class De
 In der Zukunft sollte jedoch eine Lösung gefunden werden, bei welcher die Class Descriptions unabhängig von der Anwendung aktualisiert werden können.
 
 \subsection{Eingabevalidierung}
--> ref auf Usability
+Dank den Class Descriptions verfügt der DlmsQuickAccess über detaillierte Angaben zu den Typen der Attribute.
+Diese sollen verwendet werden, um die Eingaben der Nutzer zu validieren, bevor diesen an den Zähler geschickt werden.
+So soll der Nutzer beispielsweise darauf hingewiesen werden, wenn er bei einem Integer Attribut unerlaubte Eingaben wie Text oder eine Fliesskommazahl macht.
+
+\subsection{Optimierung für unterschiedliche Fenstergrössen}
+In der Evaluation der Usability wurde (\ref{evalUsabilty}) festgehalten, dess Teile der Anwendung fehlerhaft dargestellt werden, wenn die Fenstergrösse der Anwendung von der Norm abweicht.
+Die Anwendung soll so optimiert werden, dass auch bei kleineren Fenster alle Informationen leserlich sind.
+Unterschiedliche Fenstergrössen und Seitenverhältnisse sollen getestet werden und nötige Anpassungen an der Anwendung gemacht werden.
 
 \subsection{File Picker}\label{ausblick:filePicker}
 Wird die Anwendung beim ersten Start ohne Konfigurationsdatei ausgeführt, so ist es für den Nutzer nicht möglich den DlmsQuickAccess richtig verwenden zu können.
@@ -51,7 +58,7 @@ Werden diese beiden Aspekte kombiniert, so spricht man von Continuous Deployment
 Dies war bisher noch nicht möglich, weil \ac{ADO} keinen Zugriff auf das Netzwerkverzeichnis hat, auf welchem die Artefakte der Anwendung abgelegt sind.
 Wird in Zukunft ein Continuous Deployment eingerichtet, so bringt dies den Vorteil, dass die Entwickler sich nicht selbst um die Veröffentlichung der Anwendung kümmern müssen und dabei auch keine Fehler machen können.
 
-\subsection{\ac{DMT2} Quick Access ablösen}
+\subsection{DMT2 Quick Access ablösen}\label{moreUser}
 Wie im Abschnitt \ref{survey} beschrieben, wurden für diese Arbeit bewusst nur Entwickler aus Cham in den Entwicklungsprozess miteinbezogen.
 Diese verwenden den DlmsQuickAccess in Kombination mit den Referenzprodukten der Picasso Platform.
 Um die alte Software vollständig abzulösen, müssen Konfigurationen für weitere Produkte bereitgestellt sowie alle Entwickler mit dem DlmsQuickAccess bekannt gemacht werden.
